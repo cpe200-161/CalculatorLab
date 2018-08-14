@@ -120,6 +120,7 @@
             this.btn5.TabIndex = 5;
             this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Click += new System.EventHandler(this.btnX_Click);
             // 
             // btn4
             // 
@@ -180,6 +181,7 @@
             this.btnEqual.TabIndex = 15;
             this.btnEqual.Text = "=";
             this.btnEqual.UseVisualStyleBackColor = true;
+            this.btnEqual.Click += new System.EventHandler(this.btnEqual_Click);
             // 
             // btnDot
             // 
