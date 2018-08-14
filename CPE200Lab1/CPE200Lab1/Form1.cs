@@ -17,7 +17,7 @@ namespace CPE200Lab1
             InitializeComponent();
         }
         string first, second;
-        bool setplus, setlob;
+        bool setplus=false, setlob=false,setkon=false,sethan=false,setfirst=false,setsecond;
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
@@ -25,8 +25,11 @@ namespace CPE200Lab1
             second = lblDisplay.Text;
             if (setplus == true)
             {
-                sum=(float.Parse(first)+float.Parse(second)).ToString()
+                sum = (float.Parse(first) + float.Parse(second)).ToString();
+                lblDisplay.Text = sum ;
             }
+            lblDisplay.Text = "";
+           
         }
 
         private void btnX_Click(object sender, EventArgs e)
@@ -36,7 +39,10 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if(setfirst==true && is)
+            if( setfirst ==true  ) {
+                lblDisplay.Text = "";
+
+            }
             if (lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text += btn.Text;
@@ -46,8 +52,10 @@ namespace CPE200Lab1
         private void btnPlus_Click(object sender, EventArgs e)
         {
             first = lblDisplay.Text;
+            setfirst = true;
             setplus = true;
-           
+            
+
         }
         
     }
