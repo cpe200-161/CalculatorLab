@@ -26,7 +26,7 @@ namespace CPE200Lab1
             {
                 second = (float.Parse(first) * float.Parse(lblDisplay.Text) / 100).ToString();
                 lblDisplay.Text = second;
-                isAns = true;
+                isAns = true; isSecond = true;
             }
         }
 
@@ -36,7 +36,7 @@ namespace CPE200Lab1
 
             if (lblDisplay.Text == "0" || isSecond) { lblDisplay.Text = ""; isSecond = false; }
             if (lblDisplay.Text.Length < 8) lblDisplay.Text += num.Text;
-            isTrigger = false; isAns = false;
+            isTrigger = false; isAns = false; 
         }
 
         private void opr_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            first = null; second = null; func = null; isDot = false; isAns = false;
+            first = null; second = null; func = null; isDot = false; isAns = false; isSecond = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
