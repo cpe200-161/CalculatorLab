@@ -12,13 +12,22 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string first = null, second = null, ans = null;
-        string func = null;
+        string first = null, second = null, ans = null, func = null;
         bool isSecond = false, isDot = false, isTrigger = false, isAns = false;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            if (!isAns)
+            {
+                second = (float.Parse(first) * float.Parse(lblDisplay.Text) / 100).ToString();
+                lblDisplay.Text = second;
+                isAns = true;
+            }
         }
 
         private void num_Click(object sender, EventArgs e)
@@ -52,15 +61,18 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {            
-
             if(!isAns) second = lblDisplay.Text;
 
-            if (func == "add") ans = (float.Parse(first) + float.Parse(second)).ToString();
-            else if (func == "sub") ans = (float.Parse(first) - float.Parse(second)).ToString();
-            else if (func == "mul") ans = (float.Parse(first) * float.Parse(second)).ToString();
-            else if (func == "div") ans = (float.Parse(first) / float.Parse(second)).ToString();
+            if (first != null && second != null && func != null)
+            {
+                if (func == "add") ans = (float.Parse(first) + float.Parse(second)).ToString();
+                else if (func == "sub") ans = (float.Parse(first) - float.Parse(second)).ToString();
+                else if (func == "mul") ans = (float.Parse(first) * float.Parse(second)).ToString();
+                else if (func == "div") ans = (float.Parse(first) / float.Parse(second)).ToString();
+                lblDisplay.Text = ans;
+            }
 
-            lblDisplay.Text = ans; first = ans; isSecond = true; isDot = false; isTrigger = false; isAns = true;
+            first = ans; isSecond = true; isDot = false; isTrigger = false; isAns = true;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
