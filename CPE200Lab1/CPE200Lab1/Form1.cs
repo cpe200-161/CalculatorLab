@@ -12,8 +12,8 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string first = null, second = null, ans = null, func = null;
-        bool isSecond = false, isDot = false, isTrigger = false, isAns = false;
+        string first = null, second = null, ans = null, func = null, temp = null;
+        bool isSecond = false, isDot = false, isTrigger = false, isAns = false, isRes = false;
 
         public Form1()
         {
@@ -44,7 +44,8 @@ namespace CPE200Lab1
             Button opr = (Button)sender;
 
             if (func == null || isTrigger) { first = lblDisplay.Text; isSecond = true; isDot = false; }
-            else if (!isTrigger) btnEqual_Click(sender, e);
+            else if (!isTrigger && !isRes) btnEqual_Click(sender, e);
+            else if (isRes) isRes = false;
             isSecond = true; isTrigger = true; isAns = false;
 
             if (opr.Text == "+") func = "add";
@@ -56,11 +57,13 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            first = null; second = null; func = null; isDot = false; isAns = false; isSecond = false;
+            first = null; second = null; func = null; isDot = false; isAns = false; isSecond = false; isRes = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
-        {            
+        {
+            Button eq = (Button)sender;
+
             if(!isAns) second = lblDisplay.Text;
 
             if (first != null && second != null && func != null)
@@ -71,6 +74,8 @@ namespace CPE200Lab1
                 else if (func == "div") ans = (float.Parse(first) / float.Parse(second)).ToString();
                 lblDisplay.Text = ans;
             }
+
+            if (eq.Text == "=" && !isRes) isRes = true;
 
             first = ans; isSecond = true; isDot = false; isTrigger = false; isAns = true;
         }
