@@ -23,7 +23,10 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (float.Parse(lblDisplay.Text)/ 10).ToString();
+
+            //lblDisplay.Text = -= "null";
+            //lblDisplay.Text = (float.Parse(lblDisplay.Text)/ 10).ToString();
+            lblDisplay.Text = (Convert.ToInt32(lblDisplay.Text) / 10).ToString();
         }
 
         private void btnSign_Click(object sender, EventArgs e)
