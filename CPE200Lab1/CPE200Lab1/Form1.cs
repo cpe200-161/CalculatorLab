@@ -14,6 +14,8 @@ namespace CPE200Lab1
     {
         string firstoperand = null;
         string secondoperand = null;
+        float result;
+        bool plus = false, minus = false, multiple = false, divide = false;
         public Form1()
         {
             InitializeComponent();
@@ -40,27 +42,77 @@ namespace CPE200Lab1
            
         }
 
-
-
-
-
-        private void btnDot_Click(object sender, EventArgs e)
+        private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + ".";
+            firstoperand = lblDisplay.Text;
+            lblDisplay.Text = "";
+            plus = false; minus = false; multiple = true; divide = false;
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            firstoperand = lblDisplay.Text;
+            lblDisplay.Text = "";
+            plus = false; minus = false; multiple = false; divide = true;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            firstoperand = "";
+            secondoperand = "";
+            lblDisplay.Text = "";
+            plus = false; minus = false; multiple = false; divide = false;
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            float tmp = 0;
+            tmp = float.Parse(lblDisplay.Text)*(-1);
+            lblDisplay.Text = tmp.ToString();
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            secondoperand = lblDisplay.Text;
+            if (plus) result = float.Parse(firstoperand) + (float.Parse(firstoperand)*(float.Parse(secondoperand)/100));
+            else if (minus) result = float.Parse(firstoperand) - (float.Parse(firstoperand) * (float.Parse(secondoperand) / 100));
+            else if (multiple) result = float.Parse(firstoperand) * (float.Parse(firstoperand) * (float.Parse(secondoperand) / 100));
+            else if (divide) result = float.Parse(firstoperand) / (float.Parse(firstoperand) * (float.Parse(secondoperand) / 100));
+            lblDisplay.Text = result.ToString();
+            firstoperand = lblDisplay.Text;
+            plus = false; minus = false; multiple = false; divide = false;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "";
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
             firstoperand = lblDisplay.Text;
+            lblDisplay.Text = "";
+            plus = true; minus = false; multiple = false; divide = false;
+        }
+
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            firstoperand = lblDisplay.Text;
+            lblDisplay.Text = "";
+            plus = false; minus = true; multiple = false; divide = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result;
+            secondoperand = lblDisplay.Text;
+            if (plus) result = float.Parse(firstoperand) + float.Parse(secondoperand);
+            else if (minus) result = float.Parse(firstoperand) - float.Parse(secondoperand);
+            else if (multiple) result = float.Parse(firstoperand) * float.Parse(secondoperand);
+            else if (divide) result = float.Parse(firstoperand) / float.Parse(secondoperand);
+            lblDisplay.Text = result.ToString();
+            firstoperand = lblDisplay.Text;
+            plus = false; minus = false; multiple = false; divide = false;
+
         }
     }
 }
