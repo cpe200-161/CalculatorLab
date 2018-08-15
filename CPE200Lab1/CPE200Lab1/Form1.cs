@@ -16,7 +16,8 @@ namespace CPE200Lab1
         string secondOperand = null;
         bool reset = false;
         int operation;
-
+        int firstPercent = 1;
+        int secondPercent = 1;
         public Form1()
         {
             InitializeComponent();
@@ -78,29 +79,53 @@ namespace CPE200Lab1
             string result2;
             string result3;
             string result4;
+            string result5;
+
             secondOperand = lblDisplay.Text;
+            reset = false;
+
             if (operation == 1)
             {
-                result1 = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                result1 = ((float.Parse(firstOperand)/firstPercent) + (float.Parse(secondOperand)/secondPercent)).ToString();
                 lblDisplay.Text = result1;
             }
             else if (operation == 2)
             {
-                result2 = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                result2 = ((float.Parse(firstOperand)/firstPercent) - (float.Parse(secondOperand)/secondPercent)).ToString();
                 lblDisplay.Text = result2;
             }
             else if (operation == 3)
             {
-                result3 = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                result3 = ((float.Parse(firstOperand)/firstPercent) * (float.Parse(secondOperand)/secondPercent)).ToString();
                 lblDisplay.Text = result3;
             }
             else if (operation == 4)
             {
-                result4 = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                result4 = ((float.Parse(firstOperand)/firstPercent) / (float.Parse(secondOperand)/secondPercent)).ToString();
                 lblDisplay.Text = result4;
             }
-            
+            else if (operation == 5)
+            {
+                result5 = (float.Parse(secondOperand) / firstPercent).ToString();
+                lblDisplay.Text = result5;
+            }
+            firstPercent = 1;
+            secondPercent = 1;
+            firstOperand = null;
         }
 
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            if(firstOperand == null)
+            {
+                firstPercent = 100;
+                operation = 5;
+            }
+            else
+            {
+                secondPercent = 100;
+            }
+            reset = true;
+        }
     }
 }
