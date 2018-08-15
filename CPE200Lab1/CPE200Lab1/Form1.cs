@@ -12,8 +12,9 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float temp = 0;
-        float num1, num2;
+        string operate = " ";
+        float num1 = 0;
+        float num2 = 1;
         string display = "0";
 
         public Form1()
@@ -29,6 +30,57 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = " ";
+            num1 = 0; num2 = 1; display = "0"; operate = " ";
+        }
+
+        private void btnoperator(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if(btn.Text == "+")
+            {
+                num1 += float.Parse(display);
+                operate = btn.Text;
+            }
+            else if(btn.Text == "-")
+            {
+                if (num1 == 0)
+                {
+                    num1 += float.Parse(display);
+                }
+                else
+                {
+                    num1 -= float.Parse(display);
+                }
+                operate = btn.Text;
+            }
+            else if(btn.Text == "X")
+            {
+                num2 *= float.Parse(display);
+                operate = btn.Text;
+            }
+            else if (btn.Text == "÷")
+            {
+                if (num2 == 1)
+                {
+                    num2 = float.Parse(display)/num2;
+                }
+                else
+                {
+                    num2 /= float.Parse(display);
+                }
+                operate = btn.Text;
+            }
+
+            if(operate == "+" || operate == "-")
+            {
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num1.ToString();
+            }
+            else if(operate == "X" || operate == "÷")
+            {
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num2.ToString();
+            }
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -38,9 +90,51 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = " ";
             }
+            if(num1 != 0 || num2 != 1)
+            {
+                lblDisplay.Text = " ";
+                display = " ";
+            }
             lblDisplay.Text += btn.Text;
             display = lblDisplay.Text;
 
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            if(operate == "+")
+            {
+                num1 += float.Parse(display);
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num1.ToString();
+                display = num1.ToString();
+                num1 = 0;
+
+            }
+            else if(operate == "-")
+            {
+                num1 -= float.Parse(display);
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num1.ToString();
+                display = num1.ToString();
+                num1 = 0;
+            }
+            else if (operate == "X")
+            {
+                num2 *= float.Parse(display);
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num2.ToString();
+                display = num1.ToString();
+                num1 = 0;
+            }
+            else if (operate == "÷")
+            {
+                num2 /= float.Parse(display);
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num2.ToString();
+                display = num1.ToString();
+                num1 = 0;
+            }
         }
     }
 }
