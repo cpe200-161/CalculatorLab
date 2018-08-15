@@ -32,10 +32,11 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            string per;
-            per= (float.Parse(first) * float.Parse(second) / 100).ToString();
+            string per,tri;
+            tri = lblDisplay.Text;
+            per = (float.Parse(first) * float.Parse(tri) / 100).ToString();
             lblDisplay.Text = per;
-            setsecond = false;
+            setsecond = true;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
