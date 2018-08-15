@@ -16,5 +16,23 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
+
+        //add Eq
+        float eq1, eq2, resultshow, resultstore;
+
+        private  void btnnum_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button) sender;
+            if (lblDisplay.Text.Length < 8)
+            {
+                lblDisplay.Text += btn.Text;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "";
+            eq1 = eq2 = resultshow = resultstore = 0;
+        }
     }
 }
