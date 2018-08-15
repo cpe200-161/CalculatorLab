@@ -97,7 +97,7 @@
             this.btnMultiply.TabIndex = 3;
             this.btnMultiply.Text = "X";
             this.btnMultiply.UseVisualStyleBackColor = true;
-            this.btnMultiply.Click += new System.EventHandler(this.btnMultiply_Click);
+            this.btnMultiply.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btnMinus
             // 
@@ -108,8 +108,9 @@
             this.btnMinus.Size = new System.Drawing.Size(117, 79);
             this.btnMinus.TabIndex = 7;
             this.btnMinus.Text = "-";
+            this.btnMinus.UseCompatibleTextRendering = true;
             this.btnMinus.UseVisualStyleBackColor = true;
-            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
+            this.btnMinus.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btn6
             // 
@@ -157,7 +158,7 @@
             this.btnPlus.TabIndex = 11;
             this.btnPlus.Text = "+";
             this.btnPlus.UseVisualStyleBackColor = true;
-            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
+            this.btnPlus.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btn3
             // 
@@ -205,6 +206,7 @@
             this.btnEqual.TabIndex = 15;
             this.btnEqual.Text = "=";
             this.btnEqual.UseVisualStyleBackColor = true;
+            this.btnEqual.Click += new System.EventHandler(this.btnEqual_Click);
             // 
             // btnDot
             // 
@@ -251,7 +253,7 @@
             this.btnDivide.TabIndex = 16;
             this.btnDivide.Text = "÷";
             this.btnDivide.UseVisualStyleBackColor = true;
-            this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
+            this.btnDivide.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btnPercent
             // 
@@ -275,6 +277,7 @@
             this.btnClear.TabIndex = 18;
             this.btnClear.Text = "C";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBack
             // 
