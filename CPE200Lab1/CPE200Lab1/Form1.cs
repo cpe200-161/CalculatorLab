@@ -21,26 +21,23 @@ namespace CPE200Lab1
         public string result ;
         public bool Plus=false, Minus=false, Multi=false, Div=false,Equal = false,Dot = true;
         public bool setFirstnumber = false, setSecoundnumber = false;
-        
-        
-        
-
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
                 if (lblDisplay.Text == "0" ) {
                 
                 lblDisplay.Text = "";
-            }
+                }
                 if (lblDisplay.Text.Length < 8)
                 {
                     lblDisplay.Text += btn.Text;
                     
                 }
-                   else
-            {
+                else
+                {
                 lblDisplay.Text = "overflow";
-            }
+                clearAll();
+                }
 
 
         }
@@ -52,42 +49,20 @@ namespace CPE200Lab1
                 lblDisplay.Text += ".";
                 Dot = false;
             }
-            
-            
-            
-
-        }
-
-
-
-
+         }
         private void lblDisplay_Click(object sender, EventArgs e)
         {
             
         }
-
-        
-
-        
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text != "")
             lblDisplay.Text = lblDisplay.Text.Substring(0,lblDisplay.Text.Length-1);
         }
-
-        
-
-        
-
-        
-
         private void btnPercent_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text != "")
             lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
-
-            
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -137,15 +112,10 @@ namespace CPE200Lab1
             if (lblDisplay.Text.Length > 8)
             {
                 lblDisplay.Text = "overflow";
+                clearAll();
 
             }
-            
-
-
-
-
-
-        }
+          }
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
@@ -173,10 +143,7 @@ namespace CPE200Lab1
             if (btn.Text == "-")
             {
                 
-                if (Plus == true || Minus == true || Multi == true || )
-                {
-                    lblDisplay.Text = "-";
-                }
+              
                 if (lblDisplay.Text != "")
                 {
 
@@ -232,6 +199,12 @@ namespace CPE200Lab1
                 Div = false;
                
             }
+            if (lblDisplay.Text.Length > 8)
+            {
+                lblDisplay.Text = "overflow";
+                clearAll();
+
+            }
 
 
 
@@ -252,6 +225,19 @@ namespace CPE200Lab1
             Div = false;
             Equal = false;
             Dot = true;
-    }
+         }
+        private void clearAll()
+        {
+            
+            number1 = "0";
+            number2 = "0";
+            result = "0";
+            Plus = false;
+            Minus = false;
+            Multi = false;
+            Div = false;
+            Equal = false;
+            Dot = true;
+        }
     }
 }
