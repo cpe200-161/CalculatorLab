@@ -12,26 +12,59 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-		string firstOperand = null ;
-		string secondOperand = null ; 
+
+        Double firstnumber = 0;
+        string operation = "";
+        bool cheakoperator_click = false;
+
+
         public Form1()
         {
             InitializeComponent();
         }
-		
-		}
-		private void btnx_Click(object sender, EventArgs e)
-		{
-			Button btn = (Button)sender;
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
 
-			}
-			if (lblDisplay.Text.Length < 8)
-			{
-				lblDisplay.Text += btn.Text;
-			}
-		}
-	}
+        private void btn_Click(object sender, EventArgs e)
+        {
+            if((lblDisplay.Text == "0")||(cheakoperator_click))
+            {
+                lblDisplay.Text = "";
+            }
+            cheakoperator_click = false;
+            Button bt = (Button)sender;
+            if(lblDisplay.Text.Length < 9)
+            {
+                lblDisplay.Text = lblDisplay.Text + bt.Text;
+            }
+        }
+        
+        private void operator_Click(object sender, EventArgs e)
+        {
+            Button bt = (Button)sender;
+            firstnumber = Double.Parse(lblDisplay.Text);
+            operation = bt.Text;
+            cheakoperator_click = true;
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            switch(operation)
+            {
+                case "+":
+                    lblDisplay.Text = (firstnumber + Double.Parse(lblDisplay.Text)).ToString(); break;
+                case "-":
+                    lblDisplay.Text = (firstnumber - Double.Parse(lblDisplay.Text)).ToString(); break;
+                case "X":
+                    lblDisplay.Text = (firstnumber * Double.Parse(lblDisplay.Text)).ToString(); break;
+                case "÷":
+                    lblDisplay.Text = (firstnumber / Double.Parse(lblDisplay.Text)).ToString(); break;
+                default: break;
+            }
+            cheakoperator_click = false;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+        }
+    }
 }
