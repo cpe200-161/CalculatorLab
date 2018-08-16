@@ -15,7 +15,7 @@ namespace CPE200Lab1
         string firstoperand = null;
         string secondoperand = null;
         float result;
-        bool plus = false, minus = false, multiple = false, divide = false;
+        bool plus = false, minus = false, multiple = false, divide = false,pressed=false;
         public Form1()
         {
             InitializeComponent();
@@ -23,45 +23,47 @@ namespace CPE200Lab1
 
         private void lblDisplay_Click(object sender, EventArgs e)
         {
-            
+           
         }
 
 
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            if (!pressed) clear();
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
-            }
-            if(lblDisplay.Text.Length < 8)
+            }             
+            if (lblDisplay.Text.Length < 8)
             {
-                lblDisplay.Text += btn.Text;
-       
+                    lblDisplay.Text += btn.Text;
+
             }
+            
+       
            
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            firstoperand = lblDisplay.Text;
-            lblDisplay.Text = "";
-            plus = false; minus = false; multiple = true; divide = false;
+                plus = false; minus = false; multiple = true; divide = false;pressed = true;
+                firstoperand = lblDisplay.Text;
+                lblDisplay.Text = "";
+                
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            plus = false; minus = false; multiple = false; divide = true; pressed = true;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
-            plus = false; minus = false; multiple = false; divide = true;
+            
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            firstoperand = "";
-            secondoperand = "";
-            lblDisplay.Text = "";
-            plus = false; minus = false; multiple = false; divide = false;
+            clear(); 
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace CPE200Lab1
             else if (divide) result = float.Parse(firstoperand) / (float.Parse(firstoperand) * (float.Parse(secondoperand) / 100));
             lblDisplay.Text = result.ToString();
             firstoperand = lblDisplay.Text;
-            plus = false; minus = false; multiple = false; divide = false;
+            plus = false; minus = false; multiple = false; divide = false; pressed = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -90,16 +92,18 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            plus = true; minus = false; multiple = false; divide = false; pressed = true;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
-            plus = true; minus = false; multiple = false; divide = false;
+            
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            plus = false; minus = true; multiple = false; divide = false; pressed = true;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
-            plus = false; minus = true; multiple = false; divide = false;
+            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -111,8 +115,15 @@ namespace CPE200Lab1
             else if (divide) result = float.Parse(firstoperand) / float.Parse(secondoperand);
             lblDisplay.Text = result.ToString();
             firstoperand = lblDisplay.Text;
-            plus = false; minus = false; multiple = false; divide = false;
+            plus = false; minus = false; multiple = false; divide = false; pressed = false;
 
+        }
+        public void clear()
+        {
+            firstoperand = "";
+            secondoperand = "";
+            lblDisplay.Text = "";
+            plus = false; minus = false; multiple = false; divide = false;
         }
     }
 }
