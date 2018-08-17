@@ -17,119 +17,30 @@ namespace CPE200Lab1
             InitializeComponent();
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnN_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if(lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "1";
-            }
-
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
+            Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                lblDisplay.Text = lblDisplay.Text + "2";
+                lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
 
         }
 
-        private void btn3_Click(object sender, EventArgs e)
+        private void btnS_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                lblDisplay.Text = lblDisplay.Text + "3";
-            }
-
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "4";
-            }
-
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "5";
-            }
-
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "6";
-            }
-
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "7";
-            }
-
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "8";
-            }
-
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "9";
+                lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
 
         }
@@ -137,23 +48,6 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "0";
-            }
-        }
-
-        private void btnDot_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
