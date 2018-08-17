@@ -16,9 +16,8 @@ namespace CPE200Lab1
 
         string firstNum = "";
         string seccondNum = "";
-        string operationRightNow = "";
-        bool gettingAnotherInput = true;
-        bool getNewNumber = true;
+        string operationRightNow = "=";
+        bool getNewNumber = false;
         
         
         public Form1()
@@ -31,15 +30,15 @@ namespace CPE200Lab1
 
             Button btn = (Button)sender;
 
-            if (gettingAnotherInput)
+            if (!getNewNumber)
             {
                 lblDisplay.Text = "";
-                gettingAnotherInput = false;
+                
                 getNewNumber = true;
 
             }
 
-            if (lblDisplay.Text.Length < 8)
+            if (lblDisplay.Text.Length <= 8)
             {
                 lblDisplay.Text += btn.Text;
             }
@@ -52,62 +51,70 @@ namespace CPE200Lab1
         {
             Button btn = (Button)sender;
 
-            if (operationRightNow == "")
+            if (getNewNumber)
             {
-                operationRightNow = btn.Text;
-            }
-            
-
-            if (!getNewNumber)
-            {
-                return;
-            }
-
-            if (firstNum == "")
-            {
-                firstNum = lblDisplay.Text;
-
-            }
-            else
-            {
-                seccondNum = lblDisplay.Text;
-
-                float num1 = float.Parse(firstNum);
-                float num2 = float.Parse(seccondNum);
-                float result = 0;
-                switch (operationRightNow)
+                if (firstNum == "")
                 {
-                    case "+":
-                        result = num1 + num2;
-                        break;
-                    case "-":
-                        result = num1 - num2;
-                        break;
-                    case "X":
-                        result = num1 * num2;
-                        break;
-                    case "÷":
-                        result = num1 / num2;
-                        break;
-                    default:
-                        Console.WriteLine("Unknown sign");
-                        break;
+                    firstNum = lblDisplay.Text;
+
+                }
+                else
+                {
+                    seccondNum = lblDisplay.Text;
+
+                    float num1 = float.Parse(firstNum);
+                    float num2 = float.Parse(seccondNum);
+
+                    if (operationRightNow == "=")
+                    {
+                        operationRightNow = btn.Text;
+                    }
+
+                    float result = CalculationProcess(num1, num2, operationRightNow);
+                    firstNum = result.ToString();
 
                 }
 
-                firstNum = result.ToString();
-
+                getNewNumber = false;
+                
             }
 
-            gettingAnotherInput = true;
-            getNewNumber = false;
-
-            lblDisplay.Text = firstNum.ToString();
 
             operationRightNow = btn.Text;
+            lblDisplay.Text = firstNum;
 
 
         }
 
+        private float CalculationProcess(float num1, float num2, string operation)
+        {
+            float result = 0;
+            switch (operation)
+            {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "X":
+                    result = num1 * num2;
+                    break;
+                case "÷":
+                    result = num1 / num2;
+                    break;
+                case "=":
+                    result = num2;
+                    break;
+                default:
+                    Console.WriteLine("Unknown sign");
+                    break;
+
+            }
+
+            return result;
+        }
+
+       
     }
 }
