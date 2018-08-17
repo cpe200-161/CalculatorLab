@@ -12,149 +12,135 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        int stage = 0;
+        int operation = 0;
+        string a = null;
+        string b = null;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnX_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if(lblDisplay.Text.Length <= 8)
-            {
-            lblDisplay.Text = lblDisplay.Text + "1";
-            }
-
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
+            Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
+            }
+            if(stage == 1)
+            {
+                lblDisplay.Text = "";
+                stage = 2;
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                lblDisplay.Text = lblDisplay.Text + "2";
-            }
-
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "3";
-            }
-
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "4";
-            }
-
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "5";
-            }
-
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "6";
-            }
-
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "7";
-            }
-
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "8";
-            }
-
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "9";
-            }
-
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length < 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "0";
+                lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
 
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            
+            if (stage == 0)
+            {
+                a = lblDisplay.Text;
+                operation = 1;
+                stage = 1;
+            }
+            if (stage == 2)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) + Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+        }
+        
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            if (stage == 0)
+            {
+                a = lblDisplay.Text;
+                operation = 2;
+                stage = 1;
+            }
+            if (stage == 2)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) - Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
         }
 
-        private void btnDot_Click(object sender, EventArgs e)
+        private void btnMultiply_Click(object sender, EventArgs e)
         {
-            
+            if (stage == 0)
+            {
+                a = lblDisplay.Text;
+                operation = 3;
+                stage = 1;
+            }
+            if (stage == 2)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) * Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (stage == 0)
+            {
+                a = lblDisplay.Text;
+                operation = 4;
+                stage = 1;
+            }
+            if (stage == 2)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) / Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            if (operation == 1)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) + Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+
+            if (operation == 2)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) - Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+
+            if (operation == 3)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) * Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
+
+            if (operation == 4)
+            {
+                b = lblDisplay.Text;
+                a = Convert.ToString(Convert.ToSingle(a) / Convert.ToSingle(b));
+                lblDisplay.Text = a;
+                stage = 1;
+            }
         }
     }
 }
