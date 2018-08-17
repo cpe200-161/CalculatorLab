@@ -99,22 +99,17 @@ namespace CPE200Lab1
         private void btnPlus_Click(object sender, EventArgs e)
         {
             val1 = val;
-            val = val2;
+            val = 0;
             val2 += val1;
             lblDisplay.Text = val2.ToString();
-            val = 0;
-
-            /*val1 = val;
-            val = 0;
-            val = val2;
-            val2 += val1;
-            lblDisplay.Text = val2.ToString();*/
-
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-          
+            val1 = val;
+            val = 0;
+            val2 -= val1;
+            lblDisplay.Text = val2.ToString();
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
@@ -140,7 +135,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            display();
+            val1 = val;
+            val = 0;
+            val2 += val1;
+            lblDisplay.Text = val2.ToString();
         }
     }
 }
