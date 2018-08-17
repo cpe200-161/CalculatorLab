@@ -14,6 +14,7 @@ namespace CPE200Lab1
     {
         double FirstNumber;
         String Operator;
+        bool Check = true;
         public Form1()
         {
             InitializeComponent();
@@ -28,9 +29,10 @@ namespace CPE200Lab1
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                if (Operator == "+" || Operator == "-" || Operator == "*" || Operator == "/")
+                if ((Operator == "+" || Operator == "-" || Operator == "*" || Operator == "/") && Check == true)
                 {
                     lblDisplay.Text = btn.Text;
+                    Check = false;
                 }
                 else
                 {
@@ -41,33 +43,47 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             FirstNumber = Convert.ToDouble(lblDisplay.Text);
             Operator = "+";
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             FirstNumber = Convert.ToDouble(lblDisplay.Text);
             Operator = "-";
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             FirstNumber = Convert.ToDouble(lblDisplay.Text);
             Operator = "*";
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             FirstNumber = Convert.ToDouble(lblDisplay.Text);
             Operator = "/";
         }
 
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length <= 8)
+            {
+                lblDisplay.Text = lblDisplay.Text + ".";
+            }
+            btnDot.Enabled = false;
+        }
+
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             double SecondNumber;
             double Result;
-
+            Check = true;
             SecondNumber = Convert.ToDouble(lblDisplay.Text);
             if (Operator == "+")
             {
@@ -91,7 +107,7 @@ namespace CPE200Lab1
             {
                 if (SecondNumber == 0)
                 {
-                    lblDisplay.Text = "คูณ 0 ไม่ได้";
+                    lblDisplay.Text = "หาร 0 ไม่ได้";
                 }
                 else
                 {
@@ -100,6 +116,14 @@ namespace CPE200Lab1
                     FirstNumber = Result;
                 }
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Check = true;
+            lblDisplay.Text = "0";
+            Operator = "";
+            btnDot.Enabled = true;
         }
     }
 }
