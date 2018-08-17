@@ -12,8 +12,8 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string answer, s;
-        float n1, n2, order;
+        string s;
+        int n1, n2, ;
         bool plusbtn = false, minusbtn = false, multiplybtn = false, devidebtn = false, percentbtn = false;
 
         public Form1()
@@ -38,7 +38,7 @@ namespace CPE200Lab1
             {
                 if (n1 != 0)
                 {
-                    n2 = float.Parse(s);
+                    n2 = int.Parse(s);
                     s = "";
                     n1 = n2 + n1;
                     n2 = 0;
@@ -52,7 +52,7 @@ namespace CPE200Lab1
             {
                 if (n1 != 0)
                 {
-                    n2 = float.Parse(s);
+                    n2 = int.Parse(s);
                     s = "";
                     n1 = n1 - n2;
                     n2 = 0;
@@ -66,7 +66,7 @@ namespace CPE200Lab1
             {
                 if (n1 != 0)
                 {
-                    n2 = float.Parse(s);
+                    n2 = int.Parse(s);
                     s = "";
                     n1 = n1 * n2;
                     n2 = 0;
@@ -80,7 +80,7 @@ namespace CPE200Lab1
             {
                 if (n1 != 0)
                 {
-                    n2 = float.Parse(s);
+                    n2 = int.Parse(s);
                     s = "";
                     n1 = n1 / n2;
                     n2 = 0;
@@ -94,7 +94,7 @@ namespace CPE200Lab1
             {
                 if (n1 != 0)
                 {
-                    n2 = float.Parse(s);
+                    n2 = int.Parse(s);
                     if(n2 == 0)
                     s = "";
                     n1 = (n1 * n2);
@@ -108,17 +108,21 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            n1 = float.Parse(s);
+            n1 = int.Parse(s);
             s = "";
             plusbtn = true;
-            
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            n1 = float.Parse(s);
+            n1 = int.Parse(s);
             s = "";
             minusbtn = true;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -132,7 +136,7 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            n1 = float.Parse(s);
+            n1 = int.Parse(s);
             s = "";
             multiplybtn = true;
 
@@ -140,7 +144,7 @@ namespace CPE200Lab1
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            n1 = float.Parse(s);
+            n1 = int.Parse(s);
             s = "";
             devidebtn = true;
         }
@@ -166,7 +170,7 @@ namespace CPE200Lab1
         private void btnPercent_Click(object sender, EventArgs e)
         {
             {
-                n1 = float.Parse(s);
+                n1 = int.Parse(s);
                 n1 /= 100;
                 lblDisplay.Text = n1.ToString();
                 s = "";
