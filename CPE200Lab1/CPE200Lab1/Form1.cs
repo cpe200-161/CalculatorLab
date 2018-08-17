@@ -13,72 +13,13 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         string answer, s;
-        int n1, n2, order;
+        float n1, n2, order;
+        bool plusbtn = false, minusbtn = false, multiplybtn = false, devidebtn = false, percentbtn = false;
 
         public Form1()
         {
             InitializeComponent();
 
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            s = s + "1";
-            lblDisplay.Text = s;
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            s = s + "2";
-            lblDisplay.Text = s;
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            s = s + "3";
-            lblDisplay.Text = s;
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            s = s + "4";
-            lblDisplay.Text = s;
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            s = s + "5";
-            lblDisplay.Text = s;
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            s = s + "6";
-            lblDisplay.Text = s;
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            s = s + "7";
-            lblDisplay.Text = s;
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            s = s + "8";
-            lblDisplay.Text = s;
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            s = s + "9";
-            lblDisplay.Text = s;
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            s = s + "0";
-            lblDisplay.Text = s;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -93,57 +34,149 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if(order == 1)
+            if (plusbtn == true)
             {
-                answer = (n1 + n2).ToString();
-                lblDisplay.Text = answer.ToString();
+                if (n1 != 0)
+                {
+                    n2 = float.Parse(s);
+                    s = "";
+                    n1 = n2 + n1;
+                    n2 = 0;
+                    s = n1.ToString();
+                    lblDisplay.Text = s;
+                    plusbtn = false;
+                }
+            }
+
+            if (minusbtn == true)
+            {
+                if (n1 != 0)
+                {
+                    n2 = float.Parse(s);
+                    s = "";
+                    n1 = n1 - n2;
+                    n2 = 0;
+                    s = n1.ToString();
+                    lblDisplay.Text = s;
+                    minusbtn = false;
+                }
+            }
+
+            if (multiplybtn == true)
+            {
+                if (n1 != 0)
+                {
+                    n2 = float.Parse(s);
+                    s = "";
+                    n1 = n1 * n2;
+                    n2 = 0;
+                    s = n1.ToString();
+                    lblDisplay.Text = s;
+                    multiplybtn = false;
+                }
+            }
+
+            if (devidebtn == true)
+            {
+                if (n1 != 0)
+                {
+                    n2 = float.Parse(s);
+                    s = "";
+                    n1 = n1 / n2;
+                    n2 = 0;
+                    s = n1.ToString();
+                    lblDisplay.Text = s;
+                    devidebtn = false;
+                }
+            }
+
+            if (percentbtn == true)
+            {
+                if (n1 != 0)
+                {
+                    n2 = float.Parse(s);
+                    if(n2 == 0)
+                    s = "";
+                    n1 = (n1 * n2);
+                    n2 = 0;
+                    s = n1.ToString();
+                    lblDisplay.Text = s;
+                    devidebtn = false;
+                }
             }
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (n1 != 0)
-            {
-                n1 += int.Parse(s);
-                s = "";
-                order = 1;
-            }
+            n1 = float.Parse(s);
+            s = "";
+            plusbtn = true;
+            
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            n1 = float.Parse(s);
+            s = "";
+            minusbtn = true;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            s = "";
+            lblDisplay.Text = "0";
+            n1 = 0; n2 = 0;
+            plusbtn = false; minusbtn = false; multiplybtn = false; devidebtn = false;
 
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            n1 = float.Parse(s);
+            s = "";
+            multiplybtn = true;
 
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-
+            n1 = float.Parse(s);
+            s = "";
+            devidebtn = true;
         }
 
         
 
         private void btnX_click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text.Length < 8)
+            Button btn = (Button)sender;
+            if (lblDisplay.Text == "0")
             {
-                s = s +  ;
-                lblDisplay.Text = s;
+                s = "";
             }
+
+            if(lblDisplay.Text.Length < 8)
+            {
+                s += btn.Text;
+                lblDisplay.Text = s;
+            }      
         }
+
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-
+            {
+                n1 = float.Parse(s);
+                n1 /= 100;
+                lblDisplay.Text = n1.ToString();
+                s = "";
+                percentbtn = true;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void lblDisplay_Click(object sender, EventArgs e)

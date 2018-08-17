@@ -217,7 +217,7 @@
             this.btn0.TabIndex = 13;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
-            this.btn0.Click += new System.EventHandler(this.btn0_Click);
+            this.btn0.Click += new System.EventHandler(this.btnX_click);
             // 
             // btnSign
             // 
@@ -265,6 +265,7 @@
             this.btnClear.TabIndex = 18;
             this.btnClear.Text = "C";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBack
             // 
