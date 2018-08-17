@@ -31,23 +31,21 @@ namespace CPE200Lab1
 
         }
 
-        private void btnS_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + btn.Text;
-            }
-
-        }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            float x = float.Parse(lblDisplay.Text);
+            
+
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
