@@ -13,7 +13,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         string s;
-        int n1, n2, ;
+        int n1, n2;
         bool plusbtn = false, minusbtn = false, multiplybtn = false, devidebtn = false, percentbtn = false;
 
         public Form1()
