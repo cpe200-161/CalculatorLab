@@ -14,8 +14,8 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
 
-        float firstNum = 0f;
-        float seccondNum = 0f;
+        string firstNum = "";
+        string seccondNum = "";
         string operationRightNow = "";
         bool gettingAnotherInput = true;
         bool getNewNumber = true;
@@ -50,44 +50,64 @@ namespace CPE200Lab1
 
         private void btnCalculation_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+
+            if (operationRightNow == "")
+            {
+                operationRightNow = btn.Text;
+            }
+            
+
             if (!getNewNumber)
             {
                 return;
             }
 
-            float lblnum = float.Parse(lblDisplay.Text);
-            
-            Button btn = (Button)sender;
-            string sign = btn.Text;
-            operationRightNow = sign;
-
-            if (firstNum == 0)
+            if (firstNum == "")
             {
-                firstNum = lblnum;
+                firstNum = lblDisplay.Text;
 
             }
             else
             {
-                seccondNum = lblnum;
-                firstNum += seccondNum;
+                seccondNum = lblDisplay.Text;
 
-                
+                float num1 = float.Parse(firstNum);
+                float num2 = float.Parse(seccondNum);
+                float result = 0;
+                switch (operationRightNow)
+                {
+                    case "+":
+                        result = num1 + num2;
+                        break;
+                    case "-":
+                        result = num1 - num2;
+                        break;
+                    case "X":
+                        result = num1 * num2;
+                        break;
+                    case "÷":
+                        result = num1 / num2;
+                        break;
+                    default:
+                        Console.WriteLine("Unknown sign");
+                        break;
+
+                }
+
+                firstNum = result.ToString();
+
             }
 
             gettingAnotherInput = true;
-            
-            lblDisplay.Text = firstNum.ToString();
-
             getNewNumber = false;
 
-            //Debugging
-            Console.WriteLine("operator: " + operationRightNow);
-            Console.WriteLine("firstnum: " + firstNum);
-            Console.WriteLine("seccond: " + seccondNum);
+            lblDisplay.Text = firstNum.ToString();
+
+            operationRightNow = btn.Text;
 
 
         }
 
-        
     }
 }
