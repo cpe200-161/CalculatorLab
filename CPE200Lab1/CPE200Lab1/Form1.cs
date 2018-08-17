@@ -14,12 +14,8 @@ namespace CPE200Lab1
     {
 
         Double firstnumber = 0;
-        string operation = "";
-        string plus_number = "";
+        string operation = "";  
         bool cheakoperator_click = false;
-        bool minus_number = true;
-
-
         public Form1()
         {
             InitializeComponent();
@@ -73,6 +69,9 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
+            string plus_number = "";
+            bool minus_number = true;
+
             if (lblDisplay.Text != "0")
             {
                 if (minus_number)
