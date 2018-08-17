@@ -10,154 +10,82 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
+
     public partial class Form1 : Form
     {
 
+        float firstNum = 0f;
+        float seccondNum = 0f;
+        string operationRightNow = "";
+        bool gettingAnotherInput = true;
+        bool getNewNumber = true;
+        
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnX_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+
+            Button btn = (Button)sender;
+
+            if (gettingAnotherInput)
             {
                 lblDisplay.Text = "";
+                gettingAnotherInput = false;
+                getNewNumber = true;
+
             }
 
             if (lblDisplay.Text.Length < 8)
             {
-                lblDisplay.Text += "1";
+                lblDisplay.Text += btn.Text;
             }
 
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "2";
-            }
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "3";
-            }
             
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "4";
-            }
 
         }
 
-        private void btn5_Click(object sender, EventArgs e)
+        private void btnCalculation_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            if (!getNewNumber)
             {
-                lblDisplay.Text = "";
+                return;
             }
 
-            if (lblDisplay.Text.Length <= 8)
+            float lblnum = float.Parse(lblDisplay.Text);
+            
+            Button btn = (Button)sender;
+            string sign = btn.Text;
+            operationRightNow = sign;
+
+            if (firstNum == 0)
             {
-                lblDisplay.Text += "5";
+                firstNum = lblnum;
+
+            }
+            else
+            {
+                seccondNum = lblnum;
+                firstNum += seccondNum;
+
+                
             }
 
-        }
+            gettingAnotherInput = true;
+            
+            lblDisplay.Text = firstNum.ToString();
 
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
+            getNewNumber = false;
 
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "6";
-            }
+            //Debugging
+            Console.WriteLine("operator: " + operationRightNow);
+            Console.WriteLine("firstnum: " + firstNum);
+            Console.WriteLine("seccond: " + seccondNum);
 
-        }
 
-        private void btn7_Click(object sender, EventArgs e)
-        {
-
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "7";
-            }
-
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "8";
-            }
-
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "9";
-            }
-
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text += "0";
-            }
         }
 
         
