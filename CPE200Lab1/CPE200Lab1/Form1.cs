@@ -35,26 +35,35 @@ namespace CPE200Lab1
             
             Button btn = (Button)sender;
 
-            mem1 = float.Parse(btn.Text);
 
             numClickchk = true;
+
             if (reCheck)
                 {
                     lblDisplay.Text = "";
                     reCheck = false;
             }
-                
+            //if (cur_operand == "=")
+            //{
+            //    lblDisplay.Text = "";
+            //}
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
             }
             if (lblDisplay.Text.Length <= 8)
             {
+                mem1 = float.Parse(lblDisplay.Text + btn.Text);
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearSc();
+        }
+
+        private void ClearSc()
         {
             lblDisplay.Text = "0";
             operandcheck = 0;
@@ -82,10 +91,25 @@ namespace CPE200Lab1
             Button btnn = (Button)sender;
             Calculate(btnn.Text);
         }
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            Button btnn = (Button)sender;
+            Calculate(btnn.Text);
+        }
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            Button btnn = (Button)sender;
+            Calculate(btnn.Text);
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnEqual_Click(object sender, EventArgs e)
         {
             Button btnn = (Button)sender;
-            //    Calculate(btnn.Text);             
+            //    Calculate(btnn.Text);  
+
             ShowResult(prev_operand);
             cur_operand = btnn.Text;
         }
@@ -103,6 +127,7 @@ namespace CPE200Lab1
                     first = float.Parse(lblDisplay.Text);
                     operandcheck = operandcheck + 1;
                     reCheck = true;
+                    numClickchk = false;
                 }
                 else if (operandcheck == 1)
                 {
@@ -116,69 +141,152 @@ namespace CPE200Lab1
         private void ShowResult(string prevOperand)
         {
 
-            second = float.Parse(lblDisplay.Text);
-
-            if (cur_operand == "="){
-
-                if (prevOperand == "+")
-                {
-                    result = first + mem1;
-                    display = result.ToString();
-                    lblDisplay.Text = display;
-                    reCheck = true;
-                    first = result; 
-                }
-                else if (prevOperand == "-")
-                {
-                    result = first - mem1;
-                    display = result.ToString();
-                    lblDisplay.Text = display;
-                    reCheck = true;
-                    first = result;
-                }
+            if (prevOperand == "=")
+            {
+                ClearSc();
             }
             else
-            {                
-                if (prevOperand == "+")
+            {
+                second = float.Parse(lblDisplay.Text);
+
+
+
+                if (cur_operand == "=")
                 {
-                    result = first + second;
-                    display = result.ToString();
-                    lblDisplay.Text = display;
-                    reCheck = true;
-                    if (cur_operand != "=")
+
+                    if (prevOperand == "+")
                     {
+                        result = first + mem1;
+                        display = result.ToString();
+                        lblDisplay.Text = display;
+                        reCheck = true;
                         first = result;
-                        operandcheck = 1;
+                        // numClickchk = false;
                     }
-                    else
+                    else if (prevOperand == "-")
                     {
-                        operandcheck = 0;
+                        result = first - mem1;
+                        display = result.ToString();
+                        lblDisplay.Text = display;
+                        reCheck = true;
+                        first = result;
+                        // numClickchk = false;
                     }
-                    numClickchk = false;
+                    else if (prevOperand == "X")
+                    {
+                        result = first * mem1;
+                        display = result.ToString();
+                        //display = display.PadLeft(9, ' ').Substring(0, 9);
+                        //StringBuilder
+                        lblDisplay.Text = display;
+                        reCheck = true;
+                        first = result;
+                        //  numClickchk = false;
+                    }
+                    else if (prevOperand == "÷")
+                    {
+                        if (mem1 == 0)
+                        {
+                            lblDisplay.Text = "Error";
+                            prev_operand = "=";
+
+                        }
+                        else
+                        {
+                            result = first / mem1;
+                            display = result.ToString();
+                            lblDisplay.Text = display;
+                            reCheck = true;
+                            first = result;
+                            //   numClickchk = false;
+                        }
+                    }
+
                 }
-                else if (prevOperand == "-")
+                else
                 {
-                    result = first - second;
-                    display = result.ToString();
-                    lblDisplay.Text = display;
-                    reCheck = true;
-                    if (cur_operand != "=")
+                    if (prevOperand == "+")
                     {
-                        first = result;
-                        operandcheck = 1;
+                        result = first + second;
+                        display = result.ToString();
+                        lblDisplay.Text = display;
+                        reCheck = true;
+                        if (cur_operand != "=")
+                        {
+                            first = result;
+                            operandcheck = 1;
+                        }
+                        else
+                        {
+                            operandcheck = 0;
+                        }
+                        numClickchk = false;
                     }
-                    else
+                    else if (prevOperand == "-")
                     {
-                        operandcheck = 0;
+                        result = first - second;
+                        display = result.ToString();
+                        lblDisplay.Text = display;
+                        reCheck = true;
+                        if (cur_operand != "=")
+                        {
+                            first = result;
+                            operandcheck = 1;
+                        }
+                        else
+                        {
+                            operandcheck = 0;
+                        }
+                        numClickchk = false;
                     }
-                    numClickchk = false;
+                    else if (prevOperand == "X")
+                    {
+                        result = first * second;
+                        display = result.ToString();
+                        lblDisplay.Text = display;
+                        reCheck = true;
+                        if (cur_operand != "=")
+                        {
+                            first = result;
+                            operandcheck = 1;
+                        }
+                        else
+                        {
+                            operandcheck = 0;
+                        }
+                        numClickchk = false;
+                    }
+                    else if (prevOperand == "÷")
+                    {
+                        if (mem1 == 0)
+                        {
+                            lblDisplay.Text = "Error";
+                            prev_operand = "=";
+                        }
+                        else
+                        {
+                            result = first / second;
+                            display = result.ToString();
+                            lblDisplay.Text = display;
+                            reCheck = true;
+                        }
+
+                        if (cur_operand != "=")
+                        {
+                            first = result;
+                            operandcheck = 1;
+                        }
+                        else
+                        {
+                            operandcheck = 0;
+                        }
+                        numClickchk = false;
+                    }
                 }
             }
             
 
         }
-
-
 
 
     }
