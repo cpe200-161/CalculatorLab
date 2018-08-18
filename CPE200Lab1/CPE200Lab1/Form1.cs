@@ -14,6 +14,9 @@ namespace CPE200Lab1
     {
         String operation = "hi";
         float num1, num2, result;
+        String strNum1 = "";
+        String strNum2 = "";
+        String previousString = "";
 
 
         public Form1()
@@ -29,77 +32,116 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
+
             if (lblDisplay.Text.Length <= 8)
             {
 
-                if(btn.Text == "<")
+                if(previousString != "+" || previousString != "-" || previousString != "X" || previousString != "÷" || previousString != "=" )
                 {
-                    if(lblDisplay.Text.Length > 1)
+                    previousString = btn.Text;
+
+                    if (btn.Text == "<")
                     {
-                        lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+                        if (lblDisplay.Text.Length > 1)
+                        {
+                            lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+                        }
+                        else
+                        {
+                            lblDisplay.Text = "0";
+                        }
                     }
                     else
                     {
-                        lblDisplay.Text = "0";
+                        if (operation == "+" || operation == "-" || operation == "X" || operation == "÷")
+                        {
+                            
+                            if (btn.Text == "=")
+                            {
+                                num1 = float.Parse(strNum1);
+                                num2 = float.Parse(strNum2);
+                                Operation(num1, num2, operation);
+                                strNum1 = result.ToString("");
+                                strNum2 = "";
+                                operation = "";
+
+
+
+
+                            }
+                            else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                            {
+                                num1 = float.Parse(strNum1);
+                                num2 = float.Parse(strNum2);
+                                Operation(num1, num2, operation);
+                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                                strNum1 = result.ToString("");
+                                strNum2 = "";
+                                operation = btn.Text;
+                            }
+
+
+                            else
+                            {
+                                strNum2 = strNum2 + btn.Text;
+                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                            }
+                        }
+                        else
+                        {
+                            if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                            {
+                                operation = btn.Text;
+                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+
+
+                            }
+                            else
+                            {
+                                strNum1 = strNum1 + btn.Text;
+                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+
+                            }
+                        }
                     }
                 }
-                else
-                {
-                    lblDisplay.Text = lblDisplay.Text + btn.Text;
-                }
-
-                if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
-                {
-                    if(operation == "+")
-                    {
-                        cal();
-                        lblDisplay.Text = lblDisplay.Text + btn.Text;
-                        operation = btn.Text;
-
-                    }
-                    operation = btn.Text;
-
-                    //System.Console.WriteLine(operation);
-                }
-
-
-                    //System.Console.WriteLine(operation);
 
 
 
-                if (btn.Text == "=")
-                {
-                    //System.Console.WriteLine(operation);
 
-                    cal();
+                //if (btn.Text == "=")
+                //{
+                //    //System.Console.WriteLine(operation);
 
-                    //stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
+                //    //Operation(num1, num2, operation);
 
-                    //isMinus(stringNum);
-                    ////num1 = float.Parse(stringNum[0]);
-                    ////lblDisplay.Text = stringNum.Length.ToString();
-                    ////var charsToRemove = new string[] { "=" };
-                    ////foreach (var c in charsToRemove)
-                    ////{
-                    ////    stringNum[1] = stringNum[1].Replace(c, string.Empty);
-                    ////}
+                //    //stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
 
-                    ////num2 = float.Parse(stringNum[1]);
+                //    //isMinus(stringNum);
+                //    ////num1 = float.Parse(stringNum[0]);
+                //    ////lblDisplay.Text = stringNum.Length.ToString();
+                //    ////var charsToRemove = new string[] { "=" };
+                //    ////foreach (var c in charsToRemove)
+                //    ////{
+                //    ////    stringNum[1] = stringNum[1].Replace(c, string.Empty);
+                //    ////}
 
-                    //Operation(num1, num2, operation);
+                //    ////num2 = float.Parse(stringNum[1]);
 
-                    //lblDisplay.Text = result.ToString("");
+                //    //Operation(num1, num2, operation);
 
-                    ////lblDisplay.Text = operation;
-                    ////lblDisplay.Text = stringNum[1];
-                    ////lblDisplay.Text = stringNum[0];
-                }
+                //    //lblDisplay.Text = result.ToString("");
+
+                //    ////lblDisplay.Text = operation;
+                //    ////lblDisplay.Text = stringNum[1];
+                //    ////lblDisplay.Text = stringNum[0];
+                //}
 
             }
            
         }
 
-        public float Operation(float num1, float num2, string operation)
+        public void Operation(float num1, float num2, string operation)
         {
             if(operation == "+")
             {
@@ -118,7 +160,9 @@ namespace CPE200Lab1
             {
                 result = num1 / num2;
             }
-            return result;
+
+            lblDisplay.Text = result.ToString("");
+
 
         }
 
@@ -130,35 +174,40 @@ namespace CPE200Lab1
             operation = "";
             result = 0;
             lblDisplay.Text = "0";
+            strNum1 = "";
+            strNum2 = "";
             
         }
 
-        public void isMinus(String[] stringNum)
-        {
-            if(stringNum.Length == 4)
-            {
-                num1 = float.Parse(stringNum[1]) * -1;
-                num2 = float.Parse(stringNum[2]);
-            }
-            else
-            {
-                num1 = float.Parse(stringNum[0]);
-                num2 = float.Parse(stringNum[1]);
-            }
-        }
+        //public void isMinus(String[] stringNum)
+        //{
+        //    if(stringNum.Length == 4)
+        //    {
+        //        num1 = float.Parse(stringNum[1]) * -1;
+        //        num2 = float.Parse(stringNum[2]);
+        //    }
+        //    else
+        //    {
+        //        num1 = float.Parse(stringNum[0]);
+        //        num2 = float.Parse(stringNum[1]);
+        //    }
+        //}
 
-        public void cal()
-        {
-            String[] stringNum;
+        //public void cal(float num1, float num2, String operation)
+        //{
+        //    ////String[] stringNum;
 
-            stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
+        //    //stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
 
-            isMinus(stringNum);
+        //    //isMinus(stringNum);
 
-            Operation(num1, num2, operation);
+        //    //Operation(num1, num2, operation);
 
-            lblDisplay.Text = result.ToString("");
-        }
+        //    lblDisplay.Text = result.ToString("");
+
+
+
+        //}
 
     }
 }
