@@ -12,6 +12,10 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        String operation = "hi";
+        float num1, num2, result;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -19,8 +23,7 @@ namespace CPE200Lab1
 
         public void ConditionBtn(object sender, EventArgs e)
         {
-            float num1, num2, result;
-            String[] operation;
+
             Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
@@ -28,35 +31,134 @@ namespace CPE200Lab1
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                
-               
 
-                lblDisplay.Text = lblDisplay.Text + btn.Text;
-
-                if(btn.Text == "=")
+                if(btn.Text == "<")
                 {
-                    operation = lblDisplay.Text.Split('+');
-                    num1 = float.Parse(operation[0]);
-
-                    var charsToRemove = new string[] { "+", "-", "*", "/", "'" };
-                    foreach (var c in charsToRemove)
+                    if(lblDisplay.Text.Length > 1)
                     {
-                        operation[1] = operation[1].Replace(c, string.Empty);
+                        lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
                     }
+                    else
+                    {
+                        lblDisplay.Text = "0";
+                    }
+                }
+                else
+                {
+                    lblDisplay.Text = lblDisplay.Text + btn.Text;
+                }
 
-                    num2 = float.Parse(operation[1]);
+                if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                {
+                    if(operation == "+")
+                    {
+                        cal();
+                        lblDisplay.Text = lblDisplay.Text + btn.Text;
+                        operation = btn.Text;
 
-                    result = num1 + num2;
-                    lblDisplay.Text = result.ToString("");
+                    }
+                    operation = btn.Text;
+
+                    //System.Console.WriteLine(operation);
+                }
+
+
+                    //System.Console.WriteLine(operation);
+
+
+
+                if (btn.Text == "=")
+                {
+                    //System.Console.WriteLine(operation);
+
+                    cal();
+
+                    //stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
+
+                    //isMinus(stringNum);
+                    ////num1 = float.Parse(stringNum[0]);
+                    ////lblDisplay.Text = stringNum.Length.ToString();
+                    ////var charsToRemove = new string[] { "=" };
+                    ////foreach (var c in charsToRemove)
+                    ////{
+                    ////    stringNum[1] = stringNum[1].Replace(c, string.Empty);
+                    ////}
+
+                    ////num2 = float.Parse(stringNum[1]);
+
+                    //Operation(num1, num2, operation);
+
+                    //lblDisplay.Text = result.ToString("");
+
+                    ////lblDisplay.Text = operation;
+                    ////lblDisplay.Text = stringNum[1];
+                    ////lblDisplay.Text = stringNum[0];
                 }
 
             }
            
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        public float Operation(float num1, float num2, string operation)
         {
+            if(operation == "+")
+            {
+                result = num1 + num2;
+              
+            }
+            else if(operation == "-")
+            {
+                result = num1 - num2;
+            }
+            else if(operation == "X")
+            {
+                result = num1 * num2;
+            }
+            else if(operation == "÷")
+            {
+                result = num1 / num2;
+            }
+            return result;
 
         }
+
+        public void resetButton(object sender, EventArgs e)
+        {
+
+            num1 = 0;
+            num2 = 0;
+            operation = "";
+            result = 0;
+            lblDisplay.Text = "0";
+            
+        }
+
+        public void isMinus(String[] stringNum)
+        {
+            if(stringNum.Length == 4)
+            {
+                num1 = float.Parse(stringNum[1]) * -1;
+                num2 = float.Parse(stringNum[2]);
+            }
+            else
+            {
+                num1 = float.Parse(stringNum[0]);
+                num2 = float.Parse(stringNum[1]);
+            }
+        }
+
+        public void cal()
+        {
+            String[] stringNum;
+
+            stringNum = lblDisplay.Text.Split('+', '-', 'X', '÷', '=');
+
+            isMinus(stringNum);
+
+            Operation(num1, num2, operation);
+
+            lblDisplay.Text = result.ToString("");
+        }
+
     }
 }
