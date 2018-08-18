@@ -93,7 +93,7 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            temp = val;         
+            temp = val;
             val = 0;
             plusval = true;
 
@@ -109,15 +109,16 @@ namespace CPE200Lab1
             if(plusval == true)
             {
                 sum = temp2 + temp + val;
-                temp2 = sum; 
+                temp2 = sum;
+                val = 0;
                 lblDisplay.Text = sum.ToString();
+                
                 plusval = false;
+                 
             }
          
-
-
             //lblDisplay.Text = sum.ToString();
-
+            
         }
 
         private void btnClear_Click(object sender, EventArgs e)
