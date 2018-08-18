@@ -13,123 +13,101 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         string fp = null;
-        string sp = null;
-        string setfp = null;
+        string Op = "";
+        float setFp = 0;
+        float setSp = 0;
+        bool openSp = false;
         public Form1()
         {
             InitializeComponent();
         }
-
-		private void btn1_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			lblDisplay.Text = lblDisplay.Text + "1";
-		}
-
-		private void btn0_Click(object sender, EventArgs e)
-		{
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-			lblDisplay.Text = lblDisplay.Text + "0";
-		}
-
-        private void btn2_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            Button b = (Button)sender;
+            if (lblDisplay.Text.Length < 8)
             {
-                lblDisplay.Text = "";
+                if (lblDisplay.Text == "0" && openSp != true)
+                {
+                    lblDisplay.Text = "";
+                }
+                lblDisplay.Text = lblDisplay.Text + b.Text;
+
+                if (openSp == true)
+                {
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = lblDisplay.Text + b.Text;
+                    openSp = false;
+                }
             }
-            lblDisplay.Text = lblDisplay.Text + "2";
         }
-
-        private void btn3_Click(object sender, EventArgs e)
+        private void btnOp_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "3";
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "4";
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "5";
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "6";
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "7";
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "8";
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text = lblDisplay.Text + "9";
-        }
-
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
+            Button a = (Button)sender;
+            Op = a.Text;
             fp = lblDisplay.Text;
-            setfp = true;
-
+            setFp = float.Parse(fp);
+            openSp = true;
+            if(Op == "±")
+            {
+                lblDisplay.Text = "";
+                lblDisplay.Text = (setFp * (-1)).ToString();
+            }
         }
-
-        private void btnMinus_Click(object sender, EventArgs e)
+        private void btnEqual_Click(object sender, EventArgs e)
         {
-            
+            setSp = float.Parse(lblDisplay.Text);
+            switch (Op)
+            {
+                case "+":
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = (setFp + setSp).ToString();
+                break;
+
+                case "-":
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = (setFp - setSp).ToString();
+                break;
+
+                case "X":
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = (setFp * setSp).ToString();
+                break;
+
+                case "÷":
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = (setFp / setSp).ToString();
+                break;
+            }
         }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            
+            lblDisplay.Text = "0";
+            fp = null;
+            setFp = 0;
+            setSp = 0;
+            Op = "";
+            openSp = false;
         }
-
-        private void btnDivide_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            
+            int clear1 = lblDisplay.Text.Length;
+            if (lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = "0";
+            }
+            else
+            {
+                if (clear1 != 1)
+                    lblDisplay.Text = lblDisplay.Text.Remove(clear1 - 1);
+                else
+                    lblDisplay.Text = "0";
+            }
+        }
+        private void btnPerCent_Click(object sender, EventArgs e)
+        {
+            float perC = 0;
+            perC = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = ((setFp * perC) / 100).ToString();
         }
     }
 }
