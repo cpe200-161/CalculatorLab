@@ -19,7 +19,7 @@ namespace CPE200Lab1
         public string number1="0";
         public string number2="0";
         public string result ;
-        public bool Plus=false, Minus=false, Multi=false, Div=false,Equal = false,Dot = true;
+        public bool Plus=false, Minus=false, Multi=false, Div=false,Equal = true,Dot = true;
         public bool setFirstnumber = false, setSecoundnumber = false;
         private void btnX_Click(object sender, EventArgs e)
         {
@@ -77,13 +77,15 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+           
             
             if (lblDisplay.Text != "" && Plus == true)
             {
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) + float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-
+                
+                Plus = false;
             }
             
             if (lblDisplay.Text != "" && Minus == true)
@@ -91,31 +93,36 @@ namespace CPE200Lab1
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) - float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-
+                
+                Minus = false;
             }
+            
             if (lblDisplay.Text != "" && Multi == true)
             {
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) * float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-
-            }
-
-            if (lblDisplay.Text != "" && Div == true)
-            {
-                 number2 = lblDisplay.Text;
-                result = (float.Parse(number1) / float.Parse(number2)).ToString();
-                lblDisplay.Text = result;
-
+                
+                Multi = false;
             }
             
-            if (lblDisplay.Text.Length > 8)
+            if (lblDisplay.Text != "" && Div == true)
             {
-                lblDisplay.Text = "overflow";
-                clearAll();
+                number2 = lblDisplay.Text;
+                result = (float.Parse(number1) / float.Parse(number2)).ToString();
+                lblDisplay.Text = result;
+                Div = false;
+            }
+            
+            
+
+
+
+
+
+
 
             }
-          }
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
@@ -215,17 +222,17 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "";
+            lblDisplay.Text = "0";
             number1 = "0";
             number2 = "0";
-            result ="0";
+            result = "0";
             Plus = false;
             Minus = false;
             Multi = false;
             Div = false;
             Equal = false;
             Dot = true;
-         }
+        }
         private void clearAll()
         {
             
