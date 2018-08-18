@@ -12,9 +12,12 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private int val = 0, temp = 0, sum = 0;
-   
-        
+        private int val = 0, temp = 0, sum = 0, temp2 = 0;
+        private bool plusval = false;
+        private bool minusval = false;
+        private bool multival = false;
+        private bool divideval = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -90,8 +93,9 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            temp = val;
+            temp = val;         
             val = 0;
+            plusval = true;
 
         }
 
@@ -102,10 +106,18 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            if(plusval == true)
+            {
+                sum = temp2 + temp + val;
+                temp2 = sum; 
+                lblDisplay.Text = sum.ToString();
+                plusval = false;
+            }
+         
 
-              
-            lblDisplay.Text = sum.ToString();
-           
+
+            //lblDisplay.Text = sum.ToString();
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -113,6 +125,7 @@ namespace CPE200Lab1
             sum = 0;
             val = 0;
             temp = 0;
+            temp2 = 0;
             shownum();
         }
     }
