@@ -26,8 +26,16 @@ namespace CPE200Lab1
 
         public void ConditionBtn(object sender, EventArgs e)
         {
+            bool CheckDobleOperation = false;
 
             Button btn = (Button)sender;
+            if((previousString == "+" || previousString == "-" || previousString == "X" || previousString == "÷" || previousString == "=") && 
+                (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "="))
+            {
+                //lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+                CheckDobleOperation = true;
+            }
+
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
@@ -36,10 +44,8 @@ namespace CPE200Lab1
             if (lblDisplay.Text.Length <= 8)
             {
 
-                if(previousString != "+" || previousString != "-" || previousString != "X" || previousString != "÷" || previousString != "=" )
-                {
-                    previousString = btn.Text;
 
+                System.Console.WriteLine(CheckDobleOperation);
                     if (btn.Text == "<")
                     {
                         if (lblDisplay.Text.Length > 1)
@@ -53,41 +59,47 @@ namespace CPE200Lab1
                     }
                     else
                     {
-                        if (operation == "+" || operation == "-" || operation == "X" || operation == "÷")
+                        if ((operation == "+" || operation == "-" || operation == "X" || operation == "÷") && CheckDobleOperation == false )
                         {
                             
-                            if (btn.Text == "=")
-                            {
-                                num1 = float.Parse(strNum1);
-                                num2 = float.Parse(strNum2);
-                                Operation(num1, num2, operation);
-                                strNum1 = result.ToString("");
-                                strNum2 = "";
-                                operation = "";
+                                if(btn.Text == "=")
+                                {
+                                    num1 = float.Parse(strNum1);
+                                    num2 = float.Parse(strNum2);
+                                    Operation(num1, num2, operation);
+                                    strNum1 = result.ToString("");
+                                    strNum2 = "";
+                                    operation = "";
 
 
 
 
-                            }
-                            else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
-                            {
-                                num1 = float.Parse(strNum1);
-                                num2 = float.Parse(strNum2);
-                                Operation(num1, num2, operation);
-                                lblDisplay.Text = lblDisplay.Text + btn.Text;
-                                strNum1 = result.ToString("");
-                                strNum2 = "";
-                                operation = btn.Text;
-                            }
+                                }
+                                else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                                {
+                                    num1 = float.Parse(strNum1);
+                                    num2 = float.Parse(strNum2);
+                                    Operation(num1, num2, operation);
+                                    lblDisplay.Text = lblDisplay.Text + btn.Text;
+                                    strNum1 = result.ToString("");
+                                    strNum2 = "";
+                                    operation = btn.Text;
+                                }
 
 
-                            else
-                            {
-                                strNum2 = strNum2 + btn.Text;
-                                lblDisplay.Text = lblDisplay.Text + btn.Text;
-                            }
+                                else
+                                {
+                                    
+                                        strNum2 = strNum2 + btn.Text;
+                                        lblDisplay.Text = lblDisplay.Text + btn.Text;
+                                    
+                                    
+                                }
+                            
+
+
                         }
-                        else
+                        else if(CheckDobleOperation == false)
                         {
                             if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
                             {
@@ -98,13 +110,14 @@ namespace CPE200Lab1
                             }
                             else
                             {
+                            
                                 strNum1 = strNum1 + btn.Text;
                                 lblDisplay.Text = lblDisplay.Text + btn.Text;
 
                             }
                         }
                     }
-                }
+                
 
 
 
@@ -138,7 +151,8 @@ namespace CPE200Lab1
                 //}
 
             }
-           
+            previousString = btn.Text;
+
         }
 
         public void Operation(float num1, float num2, string operation)
