@@ -13,6 +13,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         double FirstNumber;
+        double SecondNumber;
         String Operator;
         bool Check = true;
         public Form1()
@@ -81,7 +82,6 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             btnDot.Enabled = true;
-            double SecondNumber;
             double Result;
             Check = true;
             SecondNumber = Convert.ToDouble(lblDisplay.Text);
@@ -124,6 +124,15 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             Operator = "";
             btnDot.Enabled = true;
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            double PercentResult;
+            double PercentNum = Convert.ToDouble(lblDisplay.Text);
+            PercentResult = (FirstNumber * PercentNum)/100;
+            lblDisplay.Text = Convert.ToString(PercentResult);
+            SecondNumber = PercentResult;
         }
     }
 }
