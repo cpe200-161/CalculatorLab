@@ -20,7 +20,8 @@ namespace CPE200Lab1
         public string number2="0";
         public string result ;
         public bool Plus=false, Minus=false, Multi=false, Div=false,Equal = true,Dot = true;
-        public bool setFirstnumber = false, setSecoundnumber = false;
+        
+        public bool setNumber = false;
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -38,8 +39,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = "overflow";
                 clearAll();
                 }
-
-
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -77,14 +76,11 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-           
-            
-            if (lblDisplay.Text != "" && Plus == true)
+           if (lblDisplay.Text != "" && Plus == true)
             {
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) + float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-                
                 Plus = false;
             }
             
@@ -93,7 +89,6 @@ namespace CPE200Lab1
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) - float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-                
                 Minus = false;
             }
             
@@ -102,7 +97,6 @@ namespace CPE200Lab1
                 number2 = lblDisplay.Text;
                 result = (float.Parse(number1) * float.Parse(number2)).ToString();
                 lblDisplay.Text = result;
-                
                 Multi = false;
             }
             
@@ -113,111 +107,51 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
                 Div = false;
             }
-            
-            
-
-
-
-
-
-
-
-            }
+           }
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
             
-                if (btn.Text == "+")
+            if (btn.Text == "+" && lblDisplay.Text != "")
             {
-                if (lblDisplay.Text != "")
-                {
-
-                    number1 = lblDisplay.Text;
-                    lblDisplay.Text = "";
-
-                }
-                Plus = true;
-                Dot = true;
+            number1 = lblDisplay.Text;
+            lblDisplay.Text = "";
+            Plus = true;
+            Dot = true;
+            }
+            
+            if (btn.Text == "-" && lblDisplay.Text != "")
+            {
+              number1 = lblDisplay.Text;
+              lblDisplay.Text = "";
+              Minus = true;
+              Dot = true;
+            }
+            
+            if (btn.Text == "X" && lblDisplay.Text != "")
+            {
+               number1 = lblDisplay.Text;
+               lblDisplay.Text = "";
+               Multi = true;
+               Dot = true;
                 
             }
-            else
+            
+            if (btn.Text == "÷" && lblDisplay.Text != "")
             {
-                Plus = false;
-               
-            }
-            if (btn.Text == "-")
-            {
+               number1 = lblDisplay.Text;
+               lblDisplay.Text = "";
+               Div = true;
+               Dot = true;
                 
-              
-                if (lblDisplay.Text != "")
-                {
-
-                    number1 = lblDisplay.Text;
-                    lblDisplay.Text = "";
-
-                }
-                
-                Minus = true;
-                Dot = true;
-                
-
-            }
-            else
-            {
-                Minus = false;
-                
-            }
-            if (btn.Text == "X")
-            {
-                
-                if (lblDisplay.Text != "")
-                {
-
-                    number1 = lblDisplay.Text;
-                    lblDisplay.Text = "";
-
-                }
-                Multi = true;
-                Dot = true;
-                
-            }
-            else
-            {
-                Multi = false;
-                
-            }
-            if (btn.Text == "÷")
-            {
-                if (lblDisplay.Text != "")
-                {
-
-                    number1 = lblDisplay.Text;
-                    lblDisplay.Text = "";
-
-                }
-                Div = true;
-                Dot = true;
-                
-            }
-            else
-            {
-                Div = false;
-               
             }
             if (lblDisplay.Text.Length > 8)
             {
                 lblDisplay.Text = "overflow";
                 clearAll();
-
-            }
-
-
-
-
-
-
+             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
