@@ -241,6 +241,7 @@
             this.btnSign.TabIndex = 12;
             this.btnSign.Text = "±";
             this.btnSign.UseVisualStyleBackColor = true;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
             // 
             // btnDivide
             // 
@@ -264,6 +265,7 @@
             this.btnPercent.TabIndex = 17;
             this.btnPercent.Text = "%";
             this.btnPercent.UseVisualStyleBackColor = true;
+            this.btnPercent.Click += new System.EventHandler(this.btnPercent_Click);
             // 
             // btnClear
             // 
@@ -287,6 +289,7 @@
             this.btnBack.TabIndex = 19;
             this.btnBack.Text = "<";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblDisplay
             // 

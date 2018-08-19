@@ -15,6 +15,7 @@ namespace CPE200Lab1
         string operate = " ";
         float num1 = 0;
         float num2 = 1;
+        float sum = 0;
         string display = "0";
 
         public Form1()
@@ -36,12 +37,16 @@ namespace CPE200Lab1
         private void btnoperator(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if(btn.Text == "+")
+            if (operate == " ")
+            {
+                operate = btn.Text;
+            }
+            if (operate == "+")
             {
                 num1 += float.Parse(display);
                 operate = btn.Text;
             }
-            else if(btn.Text == "-")
+            else if(operate == "-")
             {
                 if (num1 == 0)
                 {
@@ -53,12 +58,12 @@ namespace CPE200Lab1
                 }
                 operate = btn.Text;
             }
-            else if(btn.Text == "X")
+            else if(operate == "X")
             {
                 num2 *= float.Parse(display);
                 operate = btn.Text;
             }
-            else if (btn.Text == "÷")
+            else if (operate == "÷")
             {
                 if (num2 == 1)
                 {
@@ -135,6 +140,36 @@ namespace CPE200Lab1
                 display = num1.ToString();
                 num1 = 0;
             }
+            else if(operate == "%")
+            {
+                float num = float.Parse(display);
+                num = (sum/100) * num;
+                lblDisplay.Text = " ";
+                lblDisplay.Text = num.ToString();
+                display = lblDisplay.Text;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            int longs = display.Length - 1;
+            //lblDisplay.Text = ;
+            display = lblDisplay.Text;
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            float num = float.Parse(display) * -1;
+            lblDisplay.Text = num.ToString();
+            display = lblDisplay.Text;
+       }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            sum = float.Parse(display);
+            operate = btn.Text;
+            display = "0";
         }
     }
 }
