@@ -30,6 +30,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
             if (lblDisplay.Text.Length <= 8)
             {
+                eq_Active = false;
                 operator_Active = false;
                 Button num = (Button)sender;
                 if(num.Text == ".")
