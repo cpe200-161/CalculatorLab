@@ -67,6 +67,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            if (mod_Active == true)
+            {
+                lblDisplay.Text = (num1*(0.01*Double.Parse(lblDisplay.Text))).ToString();
+            }
             num2 = Double.Parse(lblDisplay.Text);
             switch (operation)
             {
@@ -101,6 +105,7 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = "0";
             operator_Active = false;
+            eq_Active = false;
             operation = "";
             num1 = 0;
             num2 = 0;
@@ -109,6 +114,17 @@ namespace CPE200Lab1
         private void btnSign_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = ((-1)*Double.Parse(lblDisplay.Text)).ToString();
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            if (num1 != 0)
+            {
+                if (mod_Active == false)
+                {
+                    mod_Active = true;
+                }               
+            }
         }
     }
 }
