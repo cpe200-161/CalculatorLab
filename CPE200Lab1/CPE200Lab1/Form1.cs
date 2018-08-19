@@ -70,6 +70,7 @@ namespace CPE200Lab1
             if (mod_Active == true)
             {
                 lblDisplay.Text = (num1*(0.01*Double.Parse(lblDisplay.Text))).ToString();
+                mod_Active = false;
             }
             num2 = Double.Parse(lblDisplay.Text);
             switch (operation)
