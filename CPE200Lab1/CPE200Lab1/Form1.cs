@@ -18,13 +18,13 @@ namespace CPE200Lab1
             InitializeComponent();
 
         }
-        float x,y,ans=0;
-        int oper=0;
+        float num1,num2,ans=0;
+        int action=0;
 
         private void btnN_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0" || lblDisplay.Text == string.Format("{0:0}", x) || lblDisplay.Text == string.Format("{0:0}", ans))
+            if (lblDisplay.Text == "0" || lblDisplay.Text == string.Format("{0:0}", num1) || lblDisplay.Text == string.Format("{0:0}", ans))
             {
                 lblDisplay.Text = "";
             }
@@ -42,50 +42,50 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            x = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", x);
-            oper = 1;
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:0}", num1);
+            action = 1;
 
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            x = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", x);
-            oper = 4;
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:0}", num1);
+            action = 4;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            x = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", x);
-            oper = 2;
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:0}", num1);
+            action = 2;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            x = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", x);
-            oper = 3;
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:0}", num1);
+            action = 3;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            y = float.Parse(lblDisplay.Text);
-            y = x * (y / 100);
-            lblDisplay.Text = string.Format("{0:0}", y);
+            num2 = float.Parse(lblDisplay.Text);
+            num2 = num1 * (num2 / 100);
+            lblDisplay.Text = string.Format("{0:0}", num2);
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            y = float.Parse(lblDisplay.Text);
+            num2 = float.Parse(lblDisplay.Text);
             ans = 0;
-            lblDisplay.Text = string.Format("{0:0}", y);
+            lblDisplay.Text = string.Format("{0:0}", num2);
             
-            if (oper == 1) ans = x + y;
-            else if (oper == 2) ans = x - y;
-            else if (oper == 3) ans = x * y;
-            else if (oper == 4) ans = x / y;
+            if (action == 1) ans = num1 + num2;
+            else if (action == 2) ans = num1 - num2;
+            else if (action == 3) ans = num1 * num2;
+            else if (action == 4) ans = num1 / num2;
             
 
             lblDisplay.Text = string.Format("{0:0}",ans);
