@@ -53,23 +53,24 @@ namespace CPE200Lab1
         }
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (statnum == 1)
-            {
-                
-                num1 = double.Parse(firstinput) + double.Parse(lblDisplay.Text);
-                Operator = 1;
-                
-            }
             if (statnum == 0)
             {
                 firstinput = lblDisplay.Text;
                 num1 = double.Parse(lblDisplay.Text);
                 Operator = 1;
-                statnum = 1;
-                OpertorPressed = 1;
                 
+                OpertorPressed = 1;
+                lblDisplay.Text = num1.ToString();
+                statnum++;
             }
-            lblDisplay.Text = num1.ToString();
+            else
+            {
+                num1 = num1 + double.Parse(lblDisplay.Text);
+                Operator = 1;
+                OpertorPressed = 1;
+                lblDisplay.Text = lblDisplay.Text;
+            }
+            
 
             
         }
@@ -98,6 +99,21 @@ namespace CPE200Lab1
 
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if(lblDisplay.Text != "0")
+            {
+                int length = lblDisplay.Text.Length - 1;
+                string text= lblDisplay.Text;
+                lblDisplay.Text = "";
+                for(int i =0;i<length;i++)
+                {
+                    lblDisplay.Text = lblDisplay.Text + text[i];
+                }
+                if (lblDisplay.Text == "") lblDisplay.Text = "0";
+            }
+        }
+
         private void btnX_Click(object sender, EventArgs e)
         {
 
@@ -117,7 +133,7 @@ namespace CPE200Lab1
                 {
                     lblDisplay.Text = btn.Text;
                     OpertorPressed = 0;
-                    statnum = 0;
+                    
                 }
             }
 
