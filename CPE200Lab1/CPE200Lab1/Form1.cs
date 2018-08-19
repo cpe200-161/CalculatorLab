@@ -54,6 +54,7 @@ namespace CPE200Lab1
                 operation = operat.Text;
                 num1 = Double.Parse(lblDisplay.Text);
                 operator_Active = true;
+                show_Num.Text = num1.ToString() + " " + operation;
             }
             else
             {
@@ -62,6 +63,7 @@ namespace CPE200Lab1
                 num1 = Double.Parse(lblDisplay.Text);
                 lblDisplay.Text = "0";
                 operator_Active = true;
+                show_Num.Text = num1.ToString() + " " + operation;
             }
         }
 
@@ -90,20 +92,27 @@ namespace CPE200Lab1
                 default:
                     break;
             }
+            show_Num.Text = "";
             operator_Active = false;
             eq_Active = true;
             operation = "";
             num1 = 0;
             num2 = 0;
+            mod_Show.Text = "";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            mod_Show.Text = "";
             lblDisplay.Text = "0";
+            mod_Active = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            mod_Show.Text = "";
+            mod_Active = false;
+            show_Num.Text = "";
             lblDisplay.Text = "0";
             operator_Active = false;
             eq_Active = false;
@@ -124,6 +133,7 @@ namespace CPE200Lab1
                 if (mod_Active == false)
                 {
                     mod_Active = true;
+                    mod_Show.Text = "Mod active";
                 }               
             }
         }

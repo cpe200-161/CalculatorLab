@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn7 = new System.Windows.Forms.Button();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn9 = new System.Windows.Forms.Button();
@@ -49,6 +50,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
+            this.show_Num = new System.Windows.Forms.Label();
+            this.mod_Show = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn7
@@ -185,6 +188,11 @@
             // 
             // btn1
             // 
+            this.btn1.BackColor = System.Drawing.SystemColors.Control;
+            this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn1.FlatAppearance.BorderSize = 3;
+            this.btn1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.Location = new System.Drawing.Point(16, 441);
             this.btn1.Margin = new System.Windows.Forms.Padding(4);
@@ -192,7 +200,7 @@
             this.btn1.Size = new System.Drawing.Size(117, 79);
             this.btn1.TabIndex = 8;
             this.btn1.Text = "1";
-            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.UseVisualStyleBackColor = false;
             this.btn1.Click += new System.EventHandler(this.num_Button);
             // 
             // btnEqual
@@ -305,11 +313,31 @@
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // show_Num
+            // 
+            this.show_Num.AutoSize = true;
+            this.show_Num.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.show_Num.Location = new System.Drawing.Point(12, 49);
+            this.show_Num.Name = "show_Num";
+            this.show_Num.Size = new System.Drawing.Size(0, 29);
+            this.show_Num.TabIndex = 21;
+            // 
+            // mod_Show
+            // 
+            this.mod_Show.AutoSize = true;
+            this.mod_Show.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.mod_Show.Location = new System.Drawing.Point(445, 57);
+            this.mod_Show.Name = "mod_Show";
+            this.mod_Show.Size = new System.Drawing.Size(0, 17);
+            this.mod_Show.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 625);
+            this.Controls.Add(this.mod_Show);
+            this.Controls.Add(this.show_Num);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
@@ -331,6 +359,7 @@
             this.Controls.Add(this.btn9);
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Calculator";
@@ -362,6 +391,8 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
+        private System.Windows.Forms.Label show_Num;
+        private System.Windows.Forms.Label mod_Show;
     }
 }
 
