@@ -48,26 +48,28 @@ namespace CPE200Lab1
                 if (Symbol == "+")
                 {
                     sum = (float.Parse(first_data) + float.Parse(second_data)).ToString();
+                    first_data = sum;
                     lblDisplay.Text = sum;
                 }
                 else if (Symbol == "-")
                 {
                     sum = (float.Parse(first_data) - float.Parse(second_data)).ToString();
+                    first_data = sum;
                     lblDisplay.Text = sum;
                 }
                 else if (Symbol == "X")
                 {
                     sum = (float.Parse(first_data) * float.Parse(second_data)).ToString();
+                    first_data = sum;
                     lblDisplay.Text = sum;
                 }
                 else if (Symbol == "÷")
                 {
                     sum = (float.Parse(first_data) / float.Parse(second_data)).ToString();
+                    first_data = sum;
                     lblDisplay.Text = sum;
                 }
-                first_data = null;
                 second_data = null;
-                //lblDisplay.Text = "";
             }
 
         }
