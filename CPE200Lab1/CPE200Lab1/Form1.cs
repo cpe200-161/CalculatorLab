@@ -13,12 +13,12 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         String operation = "hi";
-        float num1, num2, result;
+        float num1, num2, result, percentNum;
         String strNum1 = "";
         String strNum2 = "";
         String previousString = "";
-
-
+        String strPercent = "";
+        bool checkPercent, canCalPercent;
         public Form1()
         {
             InitializeComponent();
@@ -29,8 +29,10 @@ namespace CPE200Lab1
             bool CheckDobleOperation = false;
 
             Button btn = (Button)sender;
-            if((previousString == "+" || previousString == "-" || previousString == "X" || previousString == "÷" || previousString == "=") && 
-                (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "="))
+            System.Console.WriteLine(btn.Text);
+            if ((previousString == "+" || previousString == "-" || previousString == "X" || previousString == "÷" || previousString == "="
+               ) && (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "="
+               )   )
             {
                 //lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
                 CheckDobleOperation = true;
@@ -46,77 +48,122 @@ namespace CPE200Lab1
 
 
                 System.Console.WriteLine(CheckDobleOperation);
-                    if (btn.Text == "<")
+                if (btn.Text == "<")
+                {
+                    if (lblDisplay.Text.Length > 1)
                     {
-                        if (lblDisplay.Text.Length > 1)
-                        {
-                            lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
-                        }
-                        else
-                        {
-                            lblDisplay.Text = "0";
-                        }
+                        lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
                     }
                     else
                     {
-                        if ((operation == "+" || operation == "-" || operation == "X" || operation == "÷") && CheckDobleOperation == false )
+                        lblDisplay.Text = "0";
+                    }
+                }
+                else
+                {
+                    if ((operation == "+" || operation == "-" || operation == "X" || operation == "÷" || operation == "%" || canCalPercent == true) && CheckDobleOperation == false )
+                    {
+
+                        if (btn.Text == "=")
                         {
-                            
-                                if(btn.Text == "=")
-                                {
-                                    num1 = float.Parse(strNum1);
-                                    num2 = float.Parse(strNum2);
-                                    Operation(num1, num2, operation);
-                                    strNum1 = result.ToString("");
-                                    strNum2 = "";
-                                    operation = "";
+                            num1 = float.Parse(strNum1);
+                            num2 = float.Parse(strNum2);
+                            Operation(num1, num2, operation);
+                            strNum1 = result.ToString("");
+                            strNum2 = "";
+                            operation = "";
 
 
-
-
-                                }
-                                else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
-                                {
-                                    num1 = float.Parse(strNum1);
-                                    num2 = float.Parse(strNum2);
-                                    Operation(num1, num2, operation);
-                                    lblDisplay.Text = lblDisplay.Text + btn.Text;
-                                    strNum1 = result.ToString("");
-                                    strNum2 = "";
-                                    operation = btn.Text;
-                                }
-
-
-                                else
-                                {
-                                    
-                                        strNum2 = strNum2 + btn.Text;
-                                        lblDisplay.Text = lblDisplay.Text + btn.Text;
-                                    
-                                    
-                                }
-                            
 
 
                         }
-                        else if(CheckDobleOperation == false)
+                        else if (btn.Text == "%")
                         {
-                            if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
-                            {
-                                operation = btn.Text;
-                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                            num1 = float.Parse(strNum1);
+                            num2 = float.Parse(strNum2);
 
+                            if (checkPercent)
+                            {
+                                result = num1 * percentNum / 100;
+                                lblDisplay.Text = result.ToString("");
+                                operation = "";
 
                             }
                             else
                             {
-                            
-                                strNum1 = strNum1 + btn.Text;
-                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                                
+                                num2 = num1 * num2 / 100;
+                                strPercent = num2.ToString("");
+                                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - strNum2.Length) + strPercent;
+                                percentNum = num2;
+                                strNum2 = strPercent;
+                                checkPercent = true;
+
 
                             }
                         }
+                        else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "%")
+                        {
+                            num1 = float.Parse(strNum1);
+                            num2 = float.Parse(strNum2);
+                            Operation(num1, num2, operation);
+                            lblDisplay.Text = lblDisplay.Text + btn.Text;
+                            strNum1 = result.ToString("");
+                            strNum2 = "";
+                            operation = btn.Text;
+                        }
+
+
+                        else
+                        {
+
+                            strNum2 = strNum2 + btn.Text;
+                            lblDisplay.Text = lblDisplay.Text + btn.Text;
+
+
+                        }
+                            
+
+
                     }
+                    else if(CheckDobleOperation == false)
+                    {
+                        if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                        {
+                            operation = btn.Text;
+                            lblDisplay.Text = lblDisplay.Text + btn.Text;
+
+
+                        }
+                        else if (btn.Text == "%")
+                        {
+                            if(result != 0)
+                            {
+                                result = result * percentNum / 100;
+                                lblDisplay.Text = result.ToString("");
+                                operation = "";
+                            }
+                            else
+                            {
+                                lblDisplay.Text = "0";
+                            }
+                        }
+                        else
+                        {
+                            
+                            strNum1 = strNum1 + btn.Text;
+                            if(strNum1 == "+" || strNum1 == "-" || strNum1 == "X" || strNum1 == "÷" || strNum1 == "%" || strNum1 == "=")
+                            {
+                                strNum1 = strNum1.Remove(strNum1.Length - 1);
+
+                            }
+                            else
+                            {
+                                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                            }
+                        }
+                    }
+                }
                 
 
 
@@ -174,6 +221,7 @@ namespace CPE200Lab1
             {
                 result = num1 / num2;
             }
+            
 
             lblDisplay.Text = result.ToString("");
 
@@ -190,6 +238,7 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             strNum1 = "";
             strNum2 = "";
+            checkPercent = false;
             
         }
 
