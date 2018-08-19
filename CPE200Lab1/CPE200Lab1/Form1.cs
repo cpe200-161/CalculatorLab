@@ -16,14 +16,24 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-		int total = 0;
+		int total = 0 , a = 0, b = 0 ;
 		int stage = 0;
+		string order = " ";
 
 		private void btnX_Click(object sender, EventArgs e)
 		{
 			Button btn = (Button)sender;
 			if (lblDisplay.Text == "0") lblDisplay.Text = "";
-			if (lblDisplay.Text.Length <= 8) lblDisplay.Text = lblDisplay.Text + btn.Text;
+
+			if (order == "clear")
+			{
+				lblDisplay.Text = "";
+				lblDisplay.Text = btn.Text;
+				order = " ";
+			} else if (lblDisplay.Text.Length <= 8)
+			{
+				lblDisplay.Text = lblDisplay.Text + btn.Text;
+			}
 		}
 
 
@@ -79,14 +89,28 @@ namespace CPE200Lab1
 
 		private void btnClear_Click(object sender, EventArgs e)
 		{
-
+			lblDisplay.Text = "0";
+			total = 0;
+			stage = 0;
+			a = b = 0;
 		}
 
 		private void btnPlus_Click(object sender, EventArgs e)
 		{
-			total = total + Int32.Parse(lblDisplay.Text);
-			lblDisplay.Text = "";
+			if (stage != 1)
+			{
+				a = Int32.Parse(lblDisplay.Text);
+			}
+			else if(stage == 1)
+			{
+				b = Int32.Parse(lblDisplay.Text);
+			}
+
+			order = "clear";
+			total = a + b;
+			a = total;
 			stage = 1;
+			lblDisplay.Text = total.ToString();
 			//lblDisplay.Text = lblDisplay.Text + "+";
 
 
@@ -96,11 +120,62 @@ namespace CPE200Lab1
 		{
 			if (stage == 1)
 			{
-				total = total + Int32.Parse(lblDisplay.Text);
-				lblDisplay.Text = total.ToString();
-				lblDisplay.Text = "";
-				total = 0;
+				b = Int32.Parse(lblDisplay.Text);
+				total = a + b; 
 			}
+			if (stage == 2)
+			{
+				b = Int32.Parse(lblDisplay.Text);
+				total = a - b;
+			}
+			if (stage == 3)
+			{
+
+				b = Int32.Parse(lblDisplay.Text);
+				total = a * b;
+			}
+
+			lblDisplay.Text = total.ToString();
+			stage = 0;
+			order = "clear";
+
+
+		}
+
+			private void btnMinus_Click(object sender, EventArgs e)
+		{
+			if (stage != 2)
+			{
+				a = Int32.Parse(lblDisplay.Text);
+			}
+			else if (stage == 2)
+			{
+				b = Int32.Parse(lblDisplay.Text);
+			}
+
+			order = "clear";
+			total = a - b;
+			a = total;
+			stage = 2;
+			lblDisplay.Text = total.ToString();
+		}
+
+		private void btnMultiply_Click(object sender, EventArgs e)
+		{
+			order = "puss";
+			if (stage == 0)
+			{
+				a = Int32.Parse(lblDisplay.Text);
+				b = 1;
+			}
+			else
+			{
+				b = Int32.Parse(lblDisplay.Text);
+			}
+			stage = 3;
+			total = a * b;
+			a = total;
+			lblDisplay.Text = total.ToString();
 		}
 	}
 }
