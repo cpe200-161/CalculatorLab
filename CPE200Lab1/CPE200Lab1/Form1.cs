@@ -13,13 +13,12 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
 
-        public string text = null;
+        string Input = string.Empty; 
+        string Num1 = string.Empty;
+        string Num2 = string.Empty;
+        char Operation;
 
-        private double num1 = 0;
-        private double num2 = 0;
-        private double result = 0;
-
-        private char opperater;
+        double Result = 0;
 
         public Form1()
         {
@@ -33,143 +32,178 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            num1 = 0;
-            num2 = 0;
-            result = 0;
-            this.lblDisplay.Text = "0";
-            text = null;
+
+            Result = 0;
+            Num1 = "";
+            Num2 = "";
+            
+           lblDisplay.Text = "0";
+
         }
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            text += 1;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 1;
+            lblDisplay.Text += Input;
+            
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            text += 2;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 2;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
-            text += 3;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 3;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            text += 4;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 4;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
-            text += 5;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 5;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
-            text += 6;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 6;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
-            text += 7;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 7;
+            lblDisplay.Text = Input;
+
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
-            text += 8;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 8;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
-            text += 9;
-            this.lblDisplay.Text = text;
+            lblDisplay.Text = "";
+            Input += 9;
+            lblDisplay.Text += Input;
+
         }
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            if(text != null)
+            if ((Input != string.Empty))
             {
-                text += 0;
-                this.lblDisplay.Text = text;
+                lblDisplay.Text = "";
+                Input += 0;
+                lblDisplay.Text += Input;
             }
             else
             {
-                this.lblDisplay.Text = "0";
+                Input = string.Empty;
+                lblDisplay.Text = Input;
             }
-            
+
+
+
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            num1 = Convert.ToDouble(text);
-            result += num1;
-            text = null;
-            opperater = '+';
+            Num1 = Input;
+            Operation = '+';
+            Input = string.Empty;
+            
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            num1 = Convert.ToDouble(text);
-            result += num1;
-            text = null;
-            opperater = '-';
+            Num1 = Input;
+            Operation = '-';
+            Input = string.Empty;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            num1 = Convert.ToDouble(text);
-            result = num1;
-            text = null;
-            opperater = '*';
+            Num1 = Input;
+            Operation = '*';
+            Input = string.Empty;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            num1 = Convert.ToDouble(text);
-            result /= num1;
-            text = null;
-            opperater = '/';
+            Num1 = Input;
+            Operation = '/';
+            Input = string.Empty;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            num2 = Convert.ToDouble(text);
-            text = null;
-            if(opperater == '+')
-            {
-                result += num2;
-                text = Convert.ToString(result);
-                opperater = ' ';
-            }
-            if (opperater == '-')
-            {
-                result -= num2;
-                text = Convert.ToString(result);
-                opperater = ' ';
-            }
-            if (opperater == '*')
-            {
-                result *= num2;
-                text = Convert.ToString(result);
-                opperater = ' ';
-            }
-            if (opperater == '/')
-            {
-                result /= num2;
-                text = Convert.ToString(result);
-                opperater = ' ';
-            }
-            this.lblDisplay.Text = text;
+            Num2 = Input;
+            double num1, num2;                  // make new object to change string to double
+            double.TryParse(Num1, out num1);    //double.TryPrase(string, out to double object)
+            double.TryParse(Num2, out num2);
 
+          switch (Operation)
+            {
+                case '+':
+                    lblDisplay.Text = (num1 + num2).ToString();
+                    break;
+
+
+               
+
+                lblDisplay.Text = Result.ToString();
+            }
+            /*else if (Operation == '-')
+            {
+                Result = num1 - num2;
+                lblDisplay.Text = Result.ToString();
+            }
+            else if (Operation == '*')
+            {
+                Result = num1 * num2;
+                lblDisplay.Text = Result.ToString();
+            }
+            else if (Operation == '/')
+            {
+                if (num2 != 0)
+                {
+                    Result = num1 / num2;
+                    num1 = Result;
+                    Result = 0;
+                    Num2 = string.Empty;
+                    lblDisplay.Text = Result.ToString();
+                }
+                else
+                {
+                   lblDisplay.Text = "null";    // not define in Mathmatics
+                }
+
+            }*/
         }
 
     }
