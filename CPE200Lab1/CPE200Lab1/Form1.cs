@@ -15,8 +15,10 @@ namespace CPE200Lab1
         string input = string.Empty;
         string num1 = string.Empty;
         string num2 = string.Empty;
-        char operation;
+        string operation = string.Empty;
         double result = 0.0;
+        bool flag_percent = false;
+        bool flag_equal = false;
         public Form1()
         {
             InitializeComponent();
@@ -24,62 +26,71 @@ namespace CPE200Lab1
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            this.lblDisplay.Text = "";
-            input += btn.Text;
-            this.lblDisplay.Text += input;
-        }
+            if (flag_equal == true)
+            {
+                input = string.Empty;
+                num1 = string.Empty;
+                num2 = string.Empty;
+                result = 0;
+                this.lblDisplay.Text = "0";
+            }
+            if (this.lblDisplay.Text == "0")
+            {
+                this.lblDisplay.Text = string.Empty;
+            }
+            if(btn.Text == ".")
+            {
+                if(!input.Contains(".") && !this.lblDisplay.Text.Contains("."))
+                {
+                    this.lblDisplay.Text += btn.Text;
+                    input += btn.Text;
+                }
 
-        private void btnPlus_Click(object sender, EventArgs e)
+            }
+            else
+            {
+                input += btn.Text;
+                this.lblDisplay.Text += btn.Text;
+            }  
+        }
+        private void btnOperator_Click(object sender, EventArgs e)
         {
+            this.lblDisplay.Text = string.Empty;
+            Button btn = (Button)sender;
             num1 = input;
-            operation = '+';
+            operation = btn.Text;
             input = string.Empty;
+            flag_equal = false;
         }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            num1 = input;
-            operation = '-';
-            input = string.Empty;
-
-        }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
-        {
-            num1 = input;
-            operation = '*';
-            input = string.Empty;
-        }
-
-        private void btnDivide_Click(object sender, EventArgs e)
-        {
-            num1 = input;
-            operation = '/';
-            input = string.Empty;
-        }
-        
         
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            num2 = input;
-            if (operation == '+')
+            if(flag_percent == false && flag_equal == false)
+            {
+                num2 = input;
+            }
+            
+            if (operation == "+")
             {
                 result = Convert.ToDouble(num1) + Convert.ToDouble(num2);
-            }else if (operation == '-')
+            }
+            else if (operation == "-")
             {
                 result = Convert.ToDouble(num1) - Convert.ToDouble(num2);
             }
-            else if (operation == '*')
+            else if (operation == "X")
             {
                 result = Convert.ToDouble(num1) * Convert.ToDouble(num2);
             }
-            else if (operation == '/')
+            else if (operation == "÷")
             {
                 result = Convert.ToDouble(num1) / Convert.ToDouble(num2);
             }
-            
-            input = string.Empty;
+            input = result.ToString();
+            num1 = result.ToString();
             this.lblDisplay.Text = result.ToString();
+            flag_equal = true;
+            flag_percent = false;
         }
 
 
@@ -91,6 +102,17 @@ namespace CPE200Lab1
             num2 = string.Empty;
             result = 0;
             this.lblDisplay.Text = "0";
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            flag_percent = true;
+            num2 = ((Convert.ToDouble(input) * Convert.ToDouble(num1)) / 100).ToString();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
