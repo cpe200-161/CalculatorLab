@@ -12,9 +12,49 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        string firstSet = null;
+        string secondSet = null;
+        bool check = false;
+       
+        
+
         public Form1()
         {
             InitializeComponent();
         }
+
+        private void btnx_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (check == true)
+            {
+                lblDisplay.Text = "";
+            }
+            if (lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = "";
+            }
+            
+            if (lblDisplay.Text.Length < 8)
+                {
+                    lblDisplay.Text = lblDisplay.Text + btn.Text;
+                }
+            
+            
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            firstSet = lblDisplay.Text;
+            check = true;
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            secondSet = lblDisplay.Text;
+            lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
+        }
+
+      
     }
 }
