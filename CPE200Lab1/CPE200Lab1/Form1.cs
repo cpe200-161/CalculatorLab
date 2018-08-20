@@ -15,13 +15,44 @@ namespace CPE200Lab1
         string firstOperand;
         string secondOperand;
 		string result;
+		int calNumber;
 		bool setFirstOperand = false;
         bool isStartSecondOperand = false;
 		bool setDot = false;
-		bool setPlus = false;
-		bool setMinus = false;
-		bool setMultiply = false;
-		bool setDivide = false;
+		void isEqual()
+		{
+			secondOperand = lblDisplay.Text;
+			if (calNumber == 1)
+			{
+				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+				lblDisplay.Text = result;
+			}
+			else if (calNumber == 2)
+			{
+				result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+				lblDisplay.Text = result;
+			}
+			else if (calNumber == 3)
+			{
+				result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+				lblDisplay.Text = result;
+			}
+			else if (calNumber == 4)
+			{
+				result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+				lblDisplay.Text = result;
+			}
+			else if (calNumber == 5)
+			{
+				result = ((float.Parse(firstOperand) * float.Parse(secondOperand) / 100)).ToString();
+				lblDisplay.Text = result;
+			}
+			calNumber = 0;
+			firstOperand = lblDisplay.Text;
+			setFirstOperand = true;
+			isStartSecondOperand = false;
+		}
+
         public Form1()
         {
             InitializeComponent();
@@ -29,47 +60,38 @@ namespace CPE200Lab1
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-			setDivide = true;
-			setPlus = false;
-			setMinus = false;
-			setMultiply = false;
-			firstOperand = lblDisplay.Text;
-			setFirstOperand = true;
+			if (isStartSecondOperand == true)
+			{
+				isEqual();
+				calNumber = 4;
+			}
+			else if (setFirstOperand == false || isStartSecondOperand == false)
+			{
+				calNumber = 4;
+				firstOperand = lblDisplay.Text;
+				setFirstOperand = true;
+			}
 		}
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-			setMultiply = true;
-			setPlus = false;
-			setMinus = false;
-			setDivide = false;
-			firstOperand = lblDisplay.Text;
-			setFirstOperand = true;
+			if (isStartSecondOperand == true)
+			{
+				isEqual();
+				calNumber = 3;
+			}
+			else if (setFirstOperand == false || isStartSecondOperand == false)
+			{
+				calNumber = 3;
+				firstOperand = lblDisplay.Text;
+				setFirstOperand = true;
+			}
 		}
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            secondOperand = lblDisplay.Text;
-			if (setPlus == true)
-			{
-				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (setMinus == true)
-			{
-				result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (setMultiply == true)
-			{
-				result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (setDivide == true)
-			{
-				result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
+			isEqual();
+			calNumber = 0;
         }
 
         private void btnX_Click(object sender, EventArgs e)
@@ -100,21 +122,14 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-			setPlus = true;
-			setMinus = false;
-			setMultiply = false;
-			setDivide = false;
-			if (setFirstOperand == true)
+			if (isStartSecondOperand == true )
 			{
-				secondOperand = lblDisplay.Text;
-				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-				firstOperand = lblDisplay.Text;
-				isStartSecondOperand = false;
-				setPlus = false;
+				isEqual();
+				calNumber = 1;
 			}
-			else if (setFirstOperand == false)
+			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
+				calNumber = 1;
 				firstOperand = lblDisplay.Text;
 				setFirstOperand = true;
 			}
@@ -125,30 +140,34 @@ namespace CPE200Lab1
 			lblDisplay.Text = "0";
 			setFirstOperand = false;
 			isStartSecondOperand = false;
-			setDot = false;
-			setPlus = false;
-			setMinus = false;
-			setMultiply = false;
-			setDivide = false;
+			calNumber = 0;
 		}
 
 		private void btnMinus_Click(object sender, EventArgs e)
 		{
-			setMinus = true;
-			setPlus = false;
-			setMultiply = false;
-			setDivide = false;
-			if (setFirstOperand == true)
+			if (isStartSecondOperand == true )
 			{
-				secondOperand = lblDisplay.Text;
-				result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-				firstOperand = lblDisplay.Text;
-				isStartSecondOperand = false;
-				setMinus = false;
+				isEqual();
+				calNumber = 2;
 			}
-			else if (setFirstOperand == false)
+			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
+				calNumber = 2;
+				firstOperand = lblDisplay.Text;
+				setFirstOperand = true;
+			}
+		}
+
+		private void btnPercent_Click(object sender, EventArgs e)
+		{
+			if (isStartSecondOperand == true)
+			{
+				isEqual();
+				calNumber = 5;
+			}
+			if (setFirstOperand == false || isStartSecondOperand == false)
+			{
+				calNumber = 5;
 				firstOperand = lblDisplay.Text;
 				setFirstOperand = true;
 			}
