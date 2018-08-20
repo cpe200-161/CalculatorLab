@@ -21,36 +21,39 @@ namespace CPE200Lab1
 		bool setDot = false;
 		void isEqual()
 		{
-			secondOperand = lblDisplay.Text;
-			if (calNumber == 1)
+			if (isStartSecondOperand == true)
 			{
-				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
+				secondOperand = lblDisplay.Text;
+				if (calNumber == 1)
+				{
+					result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+					lblDisplay.Text = result;
+				}
+				else if (calNumber == 2)
+				{
+					result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+					lblDisplay.Text = result;
+				}
+				else if (calNumber == 3)
+				{
+					result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+					lblDisplay.Text = result;
+				}
+				else if (calNumber == 4)
+				{
+					result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+					lblDisplay.Text = result;
+				}
+				else if (calNumber == 5)
+				{
+					result = ((float.Parse(firstOperand) * float.Parse(secondOperand) / 100)).ToString();
+					lblDisplay.Text = result;
+				}
+				calNumber = 0;
+				firstOperand = lblDisplay.Text;
+				setFirstOperand = true;
+				isStartSecondOperand = false;
 			}
-			else if (calNumber == 2)
-			{
-				result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (calNumber == 3)
-			{
-				result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (calNumber == 4)
-			{
-				result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-				lblDisplay.Text = result;
-			}
-			else if (calNumber == 5)
-			{
-				result = ((float.Parse(firstOperand) * float.Parse(secondOperand) / 100)).ToString();
-				lblDisplay.Text = result;
-			}
-			calNumber = 0;
-			firstOperand = lblDisplay.Text;
-			setFirstOperand = true;
-			isStartSecondOperand = false;
 		}
 
         public Form1()
@@ -101,6 +104,11 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
+			if (setFirstOperand == true && calNumber == 0)
+			{
+				lblDisplay.Text = "";
+				setFirstOperand = false;
+			}
             if(setFirstOperand == true && isStartSecondOperand == false)
             {
                 lblDisplay.Text = null;
