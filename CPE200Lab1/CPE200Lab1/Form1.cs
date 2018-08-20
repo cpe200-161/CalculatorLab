@@ -101,5 +101,15 @@ namespace CPE200Lab1
             BtnOperator_Clicked = false;
             BtnEqual_Clicked = false;
         }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+        }
+
+        private void BtnSign_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = (float.Parse(lblDisplay.Text) * -1).ToString();
+        }
     }
 }
