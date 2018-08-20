@@ -241,7 +241,7 @@
             this.btnSign.TabIndex = 12;
             this.btnSign.Text = "±";
             this.btnSign.UseVisualStyleBackColor = true;
-            this.btnSign.Click += new System.EventHandler(this.ConditionBtn);
+            this.btnSign.Click += new System.EventHandler(this.MPsignButton);
             // 
             // btnDivide
             // 

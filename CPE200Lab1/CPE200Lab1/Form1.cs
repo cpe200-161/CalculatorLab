@@ -18,7 +18,7 @@ namespace CPE200Lab1
         String strNum2 = "";
         String previousString = "";
         String strPercent = "";
-        bool checkPercent, canCalPercent;
+        bool checkPercent, canCalPercent, isMPsignOnNum1, isMPsignOnNum2;
         public Form1()
         {
             InitializeComponent();
@@ -50,9 +50,10 @@ namespace CPE200Lab1
                 System.Console.WriteLine(CheckDobleOperation);
                 if (btn.Text == "<")
                 {
-                    if (lblDisplay.Text.Length > 1)
+                    if (lblDisplay.Text.Length >= 1)
                     {
                         lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+                        
                     }
                     else
                     {
@@ -66,21 +67,19 @@ namespace CPE200Lab1
 
                         if (btn.Text == "=")
                         {
-                            num1 = float.Parse(strNum1);
-                            num2 = float.Parse(strNum2);
+                            ConvertToFloat();
                             Operation(num1, num2, operation);
                             strNum1 = result.ToString("");
                             strNum2 = "";
                             operation = "";
-
+                            System.Console.WriteLine(num1 + " " + num2);
 
 
 
                         }
                         else if (btn.Text == "%")
                         {
-                            num1 = float.Parse(strNum1);
-                            num2 = float.Parse(strNum2);
+                            ConvertToFloat();
 
                             if (checkPercent)
                             {
@@ -104,8 +103,7 @@ namespace CPE200Lab1
                         }
                         else if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "%")
                         {
-                            num1 = float.Parse(strNum1);
-                            num2 = float.Parse(strNum2);
+                            ConvertToFloat();
                             Operation(num1, num2, operation);
                             lblDisplay.Text = lblDisplay.Text + btn.Text;
                             strNum1 = result.ToString("");
@@ -239,9 +237,75 @@ namespace CPE200Lab1
             strNum1 = "";
             strNum2 = "";
             checkPercent = false;
-            
+            percentNum = 0;
+            previousString = "";
+            strPercent = "";
+            canCalPercent = false;
+            isMPsignOnNum1 = false;
+            isMPsignOnNum2 = false;
+            //String operation = "hi";
+            //float num1, num2, result, percentNum;
+            //String strNum1 = "";
+            //String strNum2 = "";
+            //String previousString = "";
+            //String strPercent = "";
+            //bool checkPercent, canCalPercent, isMPsignOnNum1, isMPsignOnNum2;
+
         }
 
+        public void MPsignButton(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            string oldNum;
+
+            if (btn.Text == "±")
+            {
+                if (strNum1 != "" && strNum2 != "")
+                {
+                    System.Console.WriteLine("on1");
+
+                    oldNum = strNum2;
+                    num2 = float.Parse(strNum2);
+                    num2 = num2 * -1;
+                    strNum2 = num2.ToString("");
+                    lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - oldNum.Length) + strNum2;
+                    isMPsignOnNum2 = true;
+
+
+                }
+                else if (strNum1 != "")
+                {
+                    System.Console.WriteLine("on2");
+
+                    oldNum = strNum1;
+                    num1 = float.Parse(strNum1);
+                    num1 = num1 * -1;
+                    strNum1 = num1.ToString("");
+                    lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - oldNum.Length) + strNum1;
+                    isMPsignOnNum1 = true;
+                }
+                
+            }
+        }
+
+        public void ConvertToFloat()
+        {
+            if(isMPsignOnNum1)
+            {
+                num2 = float.Parse(strNum2);
+            }
+            else if(isMPsignOnNum2)
+            {
+                num1 = float.Parse(strNum1);
+            }
+            else
+            {
+                System.Console.WriteLine("on3");
+                num1 = float.Parse(strNum1);
+                num2 = float.Parse(strNum2);
+            }
+        }
         //public void isMinus(String[] stringNum)
         //{
         //    if(stringNum.Length == 4)
