@@ -41,6 +41,19 @@ namespace CPE200Lab1
          
         }
 
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            number1 = null;
+            number2 = null;
+            lblDisplay.Text = "0";
+            x = 0;
+        }
+
         private void btnPlus_Click(object sender, EventArgs e)
         {
             number1 = lblDisplay.Text;
@@ -69,12 +82,16 @@ namespace CPE200Lab1
             x = 4;
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnPercent_Click(object sender, EventArgs e)
         {
-            number1 = null;
-            number2 = null;
-            lblDisplay.Text = "0";
-            x = 0;
+            if (x == 0 || x == 3 || x == 4)
+            {
+                lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+            }
+            else
+            {
+                lblDisplay.Text = ((float.Parse(number1) * float.Parse(lblDisplay.Text)) / 100).ToString();
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -97,23 +114,6 @@ namespace CPE200Lab1
                 result = (float.Parse(number1) / float.Parse(number2)).ToString();
             }
             lblDisplay.Text = result;
-        }
-
-        private void btnDot_Click(object sender, EventArgs e)
-        {
-            lblDisplay.Text = lblDisplay.Text + ".";
-        }
-
-        private void btnPercent_Click(object sender, EventArgs e)
-        {
-            if(x == 0 || x == 3 || x == 4)
-            {
-                lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
-            }
-            else
-            {
-                lblDisplay.Text = ((float.Parse(number1) * float.Parse(lblDisplay.Text)) / 100).ToString();
-            }
         }
     }
 }
