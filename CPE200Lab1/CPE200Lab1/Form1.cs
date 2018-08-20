@@ -14,12 +14,11 @@ namespace CPE200Lab1
     {
 		public void CalculateStage()
 		{
-
 			if (stage == 0)
 			{
 				a = Convert.ToDouble(lblDisplay.Text);
 			}
-			if (stage != 0)
+			if (stage != 0 && step != "chain")
 			{
 				b = Convert.ToDouble(lblDisplay.Text);
 			}
@@ -40,9 +39,7 @@ namespace CPE200Lab1
 				if (b == 0) lblDisplay.Text = "Error";
 				else lblDisplay.Text = (a / b).ToString();
 			}
-
 			if(lblDisplay.Text != "Error") a = Convert.ToDouble(lblDisplay.Text);
-
 			order = "clear";
 		}
 
@@ -53,7 +50,7 @@ namespace CPE200Lab1
         }
 		double a = 0, b = 0 ,c = 0;
 		int stage = 0;
-		string order = " ";
+		string order = " ",step = " ";
 
 		private void btnX_Click(object sender, EventArgs e)
 		{
@@ -81,35 +78,41 @@ namespace CPE200Lab1
 		private void btnEqual_Click(object sender, EventArgs e)
 		{
 			CalculateStage();
-
-			stage = 0;
-
+			step = "chain";
 
 		}
 	private void btnPlus_Click(object sender, EventArgs e)
-	{
-			CalculateStage();
+		{
+			if (step != "chain")
+			{
+				CalculateStage();
+			}
 			stage = 1;
+			step = " ";
 
-		/*if (stage != 1)
-		{
-			a = Int32.Parse(lblDisplay.Text);
-		}
-		else if (stage == 1)
-		{
-			b = Int32.Parse(lblDisplay.Text);
-			lblDisplay.Text = (a + b).ToString();
-		}
+			/*if (stage != 1)
+			{
+				a = Int32.Parse(lblDisplay.Text);
+			}
+			else if (stage == 1)
+			{
+				b = Int32.Parse(lblDisplay.Text);
+				lblDisplay.Text = (a + b).ToString();
+			}
 
-		order = "clear";
-		stage = 1;
-		//lblDisplay.Text = lblDisplay.Text + "+";*/
-	}
+			order = "clear";
+			stage = 1;
+			//lblDisplay.Text = lblDisplay.Text + "+";*/
+		}
 
 		private void btnDivide_Click(object sender, EventArgs e)
 		{
-			CalculateStage();
+			if (step != "chain")
+			{
+				CalculateStage();
+			}
 			stage = 4;
+			step = " ";
 		}
 
 		private void btnBack_Click(object sender, EventArgs e)
@@ -139,24 +142,34 @@ namespace CPE200Lab1
 			{
 			}
 
+			step = " ";
 			//CalculateStage();
 		}
 
 		private void btnSign_Click(object sender, EventArgs e)
 		{
 			lblDisplay.Text = ((-1) * Convert.ToDouble(lblDisplay.Text)).ToString();
+			step = " ";
 		}
 
 		private void btnMinus_Click(object sender, EventArgs e)
 		{
-			CalculateStage();
+			if (step != "chain")
+			{
+				CalculateStage();
+			}
+			step = " ";
 			stage = 2;
 		}
 
 		private void btnMultiply_Click(object sender, EventArgs e)
 		{
-			CalculateStage();
+			if (step != "chain")
+			{
+				CalculateStage();
+			}
 			stage = 3;
+			step = " ";
 		}
 	}
 }
