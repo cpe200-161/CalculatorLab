@@ -116,6 +116,16 @@ namespace CPE200Lab1
                     getNewNumber = false;
                     lblDisplay.Text = "0";
                     break;
+                case "±":
+                    if (!lblDisplay.Text.StartsWith("-") && lblDisplay.Text != "0")
+                    {
+                        lblDisplay.Text = "-" + lblDisplay.Text;
+                    }
+                    else
+                    {
+                        lblDisplay.Text = lblDisplay.Text.Substring(1);
+                    }
+                    break;
                 default:
                     Console.WriteLine("Unknown operation");
                     break;
