@@ -16,7 +16,6 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-
         string firstOp = null;
         string secondOp = null;
         string total = null;
