@@ -33,6 +33,7 @@ namespace CPE200Lab1
                 num2 = string.Empty;
                 result = 0;
                 this.lblDisplay.Text = "0";
+                flag_equal = false;
             }
             if (this.lblDisplay.Text == "0")
             {
@@ -55,12 +56,13 @@ namespace CPE200Lab1
         }
         private void btnOperator_Click(object sender, EventArgs e)
         {
-            this.lblDisplay.Text = string.Empty;
+            this.lblDisplay.Text = "0";
             Button btn = (Button)sender;
-            num1 = input;
             operation = btn.Text;
+            num1 = input;
             input = string.Empty;
             flag_equal = false;
+
         }
         
         private void btnEqual_Click(object sender, EventArgs e)
