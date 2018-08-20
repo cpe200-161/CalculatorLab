@@ -22,6 +22,26 @@ namespace CPE200Lab1
         bool checkdivide = false;
         bool checkper = false;
 
+        void checkall ( )
+        {
+            if (checkplus == true)
+            {
+                lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
+            }
+            if (checkminus == true)
+            {
+                lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
+            }
+            if (checkmulti == true)
+            {
+                lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
+            }
+            if (checkdivide == true)
+            {
+                lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
+            }
+        }
+
         void check (string x)
         {
             if( x == "+")
@@ -119,22 +139,7 @@ namespace CPE200Lab1
             {
                 
                     secondSet = lblDisplay.Text;
-                    if (checkplus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-                    }
-                    if (checkminus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-                    }
-                    if (checkmulti == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-                    }
-                    if (checkdivide == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-                    }
+                    checkall();
                     firstSet = lblDisplay.Text;
                     checkset = true;
                 
@@ -151,26 +156,10 @@ namespace CPE200Lab1
             }
             else
             {
-                
-                    secondSet = lblDisplay.Text;
-                    if (checkplus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-                    }
-                    if (checkminus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-                    }
-                    if (checkmulti == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-                    }
-                    if (checkdivide == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-                    }
-                    firstSet = lblDisplay.Text;
-                    checkset = true;
+                secondSet = lblDisplay.Text;
+                checkall();
+                firstSet = lblDisplay.Text;
+                checkset = true;
                 
             }
             check("-");
@@ -185,26 +174,11 @@ namespace CPE200Lab1
             }
             else
             {
-                
-                    secondSet = lblDisplay.Text;
-                    if (checkplus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-                    }
-                    if (checkminus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-                    }
-                    if (checkmulti == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-                    }
-                    if (checkdivide == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-                    }
-                    firstSet = lblDisplay.Text;
-                    checkset = true;
+
+                secondSet = lblDisplay.Text;
+                checkall();
+                firstSet = lblDisplay.Text;
+                checkset = true;
                 
             }
             check("*");
@@ -219,26 +193,10 @@ namespace CPE200Lab1
             }
             else
             {
-                
-                    secondSet = lblDisplay.Text;
-                    if (checkplus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-                    }
-                    if (checkminus == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-                    }
-                    if (checkmulti == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-                    }
-                    if (checkdivide == true)
-                    {
-                        lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-                    }
-                    firstSet = lblDisplay.Text;
-                    checkset = true;
+                secondSet = lblDisplay.Text;
+                checkall();
+                firstSet = lblDisplay.Text;
+                checkset = true;
                 
             }
             check("/");
@@ -274,23 +232,8 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             secondSet = lblDisplay.Text;
-            if (checkplus == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-            }
-           if (checkminus == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-            }
-           if (checkmulti == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-            }
-           if (checkdivide == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-            }
-           if (checkper == true)
+            checkall();
+            if (checkper == true)
             {
                 lblDisplay.Text = percent;  
             }
