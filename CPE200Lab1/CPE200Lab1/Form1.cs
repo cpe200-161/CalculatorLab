@@ -14,6 +14,7 @@ namespace CPE200Lab1
     {
         string firstOperand, secondOperand, format, result;
         bool setFirstOperand = false, setDot = false, setAns = false;
+        int setFormat = 0;
 
         public Form1()
         {
@@ -23,6 +24,18 @@ namespace CPE200Lab1
         private void btnSign_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = (float.Parse(lblDisplay.Text) * (-1)).ToString();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length-1);
+        }
+
+        private void btnPercent_Click_1(object sender, EventArgs e)
+        {
+            secondOperand = lblDisplay.Text;
+            result = (float.Parse(firstOperand) * (float.Parse(secondOperand) / 100)).ToString();
+            lblDisplay.Text = result;
         }
 
         private void btnx_Click(object sender, EventArgs e)
@@ -65,20 +78,54 @@ namespace CPE200Lab1
             setAns = false;
 
             Button btn = (Button)sender;
-            if (btn.Text == "+") format = "plus";
-            else if (btn.Text == "-") format = "minus";
-            else if (btn.Text == "X") format = "multi";
-            else if (btn.Text == "÷") format = "divide";
+
+                if (btn.Text == "+")
+                {
+                    format = "plus";
+                    setFormat += 1;
+                }
+                else if (btn.Text == "-")
+                {
+                    format = "minus";
+                    setFormat += 1;
+                }
+                else if (btn.Text == "X")
+                {
+                    format = "multi";
+                    setFormat += 1;
+                }
+                else if (btn.Text == "÷")
+                {
+                    format = "divide";
+                    setFormat += 1;
+                }
+            
         }
 
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
             secondOperand = lblDisplay.Text;
-            if (format == "plus") result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-            else if(format == "minus") result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-            else if (format == "multi") result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-            else if (format == "divide") result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+            if (format == "plus")
+            {
+                result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                
+            }
+            else if (format == "minus")
+            {
+                result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                
+            }
+            else if (format == "multi")
+            {
+                result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                
+            }
+            else if (format == "divide")
+            {
+                result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                
+            }
 
             lblDisplay.Text = result;
             setAns = true;
