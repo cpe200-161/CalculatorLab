@@ -51,7 +51,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.show_Num = new System.Windows.Forms.Label();
-            this.mod_Show = new System.Windows.Forms.Label();
+            this.percent_Show = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn7
@@ -322,21 +322,21 @@
             this.show_Num.Size = new System.Drawing.Size(0, 29);
             this.show_Num.TabIndex = 21;
             // 
-            // mod_Show
+            // percent_Show
             // 
-            this.mod_Show.AutoSize = true;
-            this.mod_Show.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.mod_Show.Location = new System.Drawing.Point(445, 57);
-            this.mod_Show.Name = "mod_Show";
-            this.mod_Show.Size = new System.Drawing.Size(0, 17);
-            this.mod_Show.TabIndex = 22;
+            this.percent_Show.AutoSize = true;
+            this.percent_Show.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.percent_Show.Location = new System.Drawing.Point(411, 57);
+            this.percent_Show.Name = "percent_Show";
+            this.percent_Show.Size = new System.Drawing.Size(0, 17);
+            this.percent_Show.TabIndex = 22;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 625);
-            this.Controls.Add(this.mod_Show);
+            this.Controls.Add(this.percent_Show);
             this.Controls.Add(this.show_Num);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -392,7 +392,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Label show_Num;
-        private System.Windows.Forms.Label mod_Show;
+        private System.Windows.Forms.Label percent_Show;
     }
 }
 

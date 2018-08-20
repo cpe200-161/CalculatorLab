@@ -16,7 +16,7 @@ namespace CPE200Lab1
         Double num1 = 0;
         Double num2 = 0;
         bool operator_Active = false;
-        bool mod_Active = false;
+        bool percent_Active = false;
         bool eq_Active = false;
 
         public Form1()
@@ -69,10 +69,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (mod_Active == true)
+            if (percent_Active == true)
             {
                 lblDisplay.Text = (num1*(0.01*Double.Parse(lblDisplay.Text))).ToString();
-                mod_Active = false;
+                percent_Active = false;
             }
             num2 = Double.Parse(lblDisplay.Text);
             switch (operation)
@@ -98,20 +98,20 @@ namespace CPE200Lab1
             operation = "";
             num1 = 0;
             num2 = 0;
-            mod_Show.Text = "";
+            percent_Show.Text = "";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            mod_Show.Text = "";
+            percent_Show.Text = "";
             lblDisplay.Text = "0";
-            mod_Active = false;
+            percent_Active = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            mod_Show.Text = "";
-            mod_Active = false;
+            percent_Show.Text = "";
+            percent_Active = false;
             show_Num.Text = "";
             lblDisplay.Text = "0";
             operator_Active = false;
@@ -130,10 +130,10 @@ namespace CPE200Lab1
         {
             if (num1 != 0)
             {
-                if (mod_Active == false)
+                if (percent_Active == false)
                 {
-                    mod_Active = true;
-                    mod_Show.Text = "Mod active";
+                    percent_Active = true;
+                    percent_Show.Text = "Percent active";
                 }               
             }
         }
