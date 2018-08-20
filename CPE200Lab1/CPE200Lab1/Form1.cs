@@ -16,7 +16,7 @@ namespace CPE200Lab1
 
         string firstNum = "";
         string seccondNum = "";
-        string operationRightNow = "=";
+        string lastestOperaton = "";
         bool getNewNumber = false;
         
         
@@ -25,12 +25,12 @@ namespace CPE200Lab1
             InitializeComponent();
         }
 
-        private void btnX_Click(object sender, EventArgs e)
+        private void btnXClick(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
 
-            if (!getNewNumber)
+            if (lblDisplay.Text == "0" || !getNewNumber)
             {
                 lblDisplay.Text = "";
                 
@@ -47,7 +47,7 @@ namespace CPE200Lab1
 
         }
 
-        private void btnCalculation_Click(object sender, EventArgs e)
+        private void btnCalculationClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
 
@@ -65,12 +65,12 @@ namespace CPE200Lab1
                     float num1 = float.Parse(firstNum);
                     float num2 = float.Parse(seccondNum);
 
-                    if (operationRightNow == "=")
+                    if (lastestOperaton == "=")
                     {
-                        operationRightNow = btn.Text;
+                        lastestOperaton = btn.Text;
                     }
 
-                    float result = CalculationProcess(num1, num2, operationRightNow);
+                    float result = CalculationProcess(num1, num2, lastestOperaton);
                     firstNum = result.ToString();
 
                 }
@@ -80,11 +80,53 @@ namespace CPE200Lab1
             }
 
 
-            operationRightNow = btn.Text;
+            lastestOperaton = btn.Text;
             lblDisplay.Text = firstNum;
 
 
         }
+
+        private void anotherButton(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            String specialOperation = btn.Text;
+
+            switch (specialOperation)
+            {
+                case "%":
+                    float num1 = (firstNum == "") ? 0 : float.Parse(firstNum);
+                    float currentNum = float.Parse(lblDisplay.Text);
+                    currentNum = (currentNum / 100) * num1;
+                    lblDisplay.Text = currentNum.ToString();
+                    break;
+                case "<":
+                    if (lblDisplay.Text.Length > 1)
+                    {
+                        lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+                    }
+                    else
+                    {
+                        lblDisplay.Text = "0";
+                    }
+                    break;
+                case "C":
+                    firstNum = "";
+                    seccondNum = "";
+                    lastestOperaton = "";
+                    getNewNumber = false;
+                    lblDisplay.Text = "0";
+                    break;
+                default:
+                    Console.WriteLine("Unknown operation");
+                    break;
+            }
+
+            
+            
+
+        }
+
+       
 
         private float CalculationProcess(float num1, float num2, string operation)
         {
