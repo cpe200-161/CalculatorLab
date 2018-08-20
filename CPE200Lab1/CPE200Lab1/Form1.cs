@@ -36,6 +36,7 @@ namespace CPE200Lab1
             Result = 0;
             Num1 = "";
             Num2 = "";
+            Input = string.Empty;
             
            lblDisplay.Text = "0";
 
@@ -124,7 +125,7 @@ namespace CPE200Lab1
             else
             {
                 Input = string.Empty;
-                lblDisplay.Text = Input;
+                lblDisplay.Text = "0";
             }
 
 
@@ -132,8 +133,8 @@ namespace CPE200Lab1
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
-        {
-            Num1 = Input;
+        {   if(Num1 == string.Empty) { 
+            Num1 = Input;}
             Operation = '+';
             Input = string.Empty;
             
@@ -141,7 +142,10 @@ namespace CPE200Lab1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            Num1 = Input;
+            if (Num1 == string.Empty) {
+            Num1 = Input;}
+                
+            
             Operation = '-';
             Input = string.Empty;
         }
@@ -167,20 +171,16 @@ namespace CPE200Lab1
             double.TryParse(Num1, out num1);    //double.TryPrase(string, out to double object)
             double.TryParse(Num2, out num2);
 
-          switch (Operation)
+            if(Operation == '+')
             {
-                case '+':
-                    lblDisplay.Text = (num1 + num2).ToString();
-                    break;
-
-
-               
+                Result = num1 + num2;
 
                 lblDisplay.Text = Result.ToString();
             }
-            /*else if (Operation == '-')
+            else if (Operation == '-')
             {
                 Result = num1 - num2;
+                
                 lblDisplay.Text = Result.ToString();
             }
             else if (Operation == '*')
@@ -203,7 +203,11 @@ namespace CPE200Lab1
                    lblDisplay.Text = "null";    // not define in Mathmatics
                 }
 
-            }*/
+                
+
+            }
+            Num1 = Result.ToString();
+            num1 = Result;
         }
 
     }
