@@ -40,6 +40,10 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
             }
+            if (checkper == true)
+            {
+                lblDisplay.Text = percent;
+            }
         }
 
         void check (string x)
@@ -147,10 +151,6 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
-                if (checkper == true)
-                {
-                    lblDisplay.Text = percent;
-                }
                 firstSet = lblDisplay.Text;
                     checkset = true;
             }
@@ -168,10 +168,6 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
-                if (checkper == true)
-                {
-                    lblDisplay.Text = percent;
-                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
             }
@@ -189,10 +185,6 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
-                if (checkper == true)
-                {
-                    lblDisplay.Text = percent;
-                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
             }
@@ -210,10 +202,6 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
-                if (checkper == true)
-                {
-                    lblDisplay.Text = percent;
-                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
             }
@@ -257,10 +245,6 @@ namespace CPE200Lab1
         {
             secondSet = lblDisplay.Text;
             checkall();
-           if (checkper == true)
-           {
-                lblDisplay.Text = percent;  
-           }
         }
     }
 }
