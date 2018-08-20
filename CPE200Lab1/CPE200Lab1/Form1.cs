@@ -18,7 +18,7 @@ namespace CPE200Lab1
         string Num2 = string.Empty;
         char Operation;
 
-        double Result = 0;
+        double Result = 0.0;
 
         public Form1()
         {
@@ -152,14 +152,20 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            Num1 = Input;
+            if (Num1 == string.Empty){
+            Num1 = Input;}
+                
+            
             Operation = '*';
             Input = string.Empty;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            Num1 = Input;
+            if (Num1 == string.Empty){
+            Num1 = Input;}
+                
+            
             Operation = '/';
             Input = string.Empty;
         }
@@ -171,7 +177,7 @@ namespace CPE200Lab1
             double.TryParse(Num1, out num1);    //double.TryPrase(string, out to double object)
             double.TryParse(Num2, out num2);
 
-            if(Operation == '+')
+            if (Operation == '+')
             {
                 Result = num1 + num2;
 
@@ -180,7 +186,7 @@ namespace CPE200Lab1
             else if (Operation == '-')
             {
                 Result = num1 - num2;
-                
+
                 lblDisplay.Text = Result.ToString();
             }
             else if (Operation == '*')
@@ -194,21 +200,37 @@ namespace CPE200Lab1
                 {
                     Result = num1 / num2;
                     num1 = Result;
+                    lblDisplay.Text = Result.ToString();
                     Result = 0;
                     Num2 = string.Empty;
-                    lblDisplay.Text = Result.ToString();
+
                 }
                 else
                 {
-                   lblDisplay.Text = "null";    // not define in Mathmatics
+                    lblDisplay.Text = "null";    // not define in Mathmatics
                 }
 
-                
+
+
+            }
+            else if (Operation == '%')
+            {
+                num2 = num1 * (num2 * 0.01);
+                Result = num1 + num2;
+                lblDisplay.Text = Result.ToString();
 
             }
             Num1 = Result.ToString();
             num1 = Result;
         }
 
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            if (Num1 == string.Empty){
+            Num1 = Input;}
+            Operation = '%';
+            Input = string.Empty;
+            
+        }
     }
 }
