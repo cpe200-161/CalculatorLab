@@ -110,7 +110,7 @@ namespace CPE200Lab1
             }  
         }
 
-         private void btnDot_Click(object sender, EventArgs e)
+        private void btnDot_Click(object sender, EventArgs e)
         {
             if (checkset)
             {
@@ -128,6 +128,14 @@ namespace CPE200Lab1
             }
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            firstSet = null;
+            secondSet = null;
+            checkset = false;
+            lblDisplay.Text = "0";
+        }
+
         private void btnplus_Click(object sender, EventArgs e)
         {
             if (firstSet == null)
@@ -137,12 +145,14 @@ namespace CPE200Lab1
             }
             else
             {
-                
-                    secondSet = lblDisplay.Text;
-                    checkall();
-                    firstSet = lblDisplay.Text;
+                secondSet = lblDisplay.Text;
+                checkall();
+                if (checkper == true)
+                {
+                    lblDisplay.Text = percent;
+                }
+                firstSet = lblDisplay.Text;
                     checkset = true;
-                
             }
             check("+");
         }
@@ -158,9 +168,12 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
+                if (checkper == true)
+                {
+                    lblDisplay.Text = percent;
+                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
-                
             }
             check("-");
         }
@@ -174,12 +187,14 @@ namespace CPE200Lab1
             }
             else
             {
-
                 secondSet = lblDisplay.Text;
                 checkall();
+                if (checkper == true)
+                {
+                    lblDisplay.Text = percent;
+                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
-                
             }
             check("*");
         }
@@ -195,9 +210,12 @@ namespace CPE200Lab1
             {
                 secondSet = lblDisplay.Text;
                 checkall();
+                if (checkper == true)
+                {
+                    lblDisplay.Text = percent;
+                }
                 firstSet = lblDisplay.Text;
                 checkset = true;
-                
             }
             check("/");
         }
@@ -207,36 +225,42 @@ namespace CPE200Lab1
             
             if (firstSet == null)
             {
-                
                 percent = (float.Parse(lblDisplay.Text) / 100).ToString();
                 firstSet = percent;
             }
             else
             {
-               
                 secondSet = (float.Parse(lblDisplay.Text) * float.Parse(firstSet) / 100).ToString();
-                percent= (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
+                checkall();
+                if (checkplus == true)
+                {
+                    percent = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
+                }
+                if (checkminus == true)
+                {
+                    percent = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
+                }
+                if (checkmulti == true)
+                {
+                    percent = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
+                }
+                if (checkdivide == true)
+                {
+                    percent = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
+                }
                 secondSet = percent;
-
             }
             check("%");
-        }
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            firstSet = null;
-            secondSet = null;
-            checkset = false;
-            lblDisplay.Text = "0";
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
             secondSet = lblDisplay.Text;
             checkall();
-            if (checkper == true)
-            {
+           if (checkper == true)
+           {
                 lblDisplay.Text = percent;  
-            }
+           }
         }
     }
 }
