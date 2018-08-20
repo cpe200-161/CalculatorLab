@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float FirstNumber;
+        float? FirstNumber;
         bool BtnOperator_Clicked = false;
         bool BtnEqual_Clicked = false;
         string Operator;
@@ -91,6 +91,15 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
             }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            Operator = null;
+            FirstNumber = null;
+            lblDisplay.Text = "0";
+            BtnOperator_Clicked = false;
+            BtnEqual_Clicked = false;
         }
     }
 }
