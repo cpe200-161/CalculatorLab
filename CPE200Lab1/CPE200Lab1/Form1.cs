@@ -17,6 +17,7 @@ namespace CPE200Lab1
         string Num1 = string.Empty;
         string Num2 = string.Empty;
         char Operation;
+        bool Stop_Equal = false;
 
         double Result = 0.0;
 
@@ -182,17 +183,23 @@ namespace CPE200Lab1
                 Result = num1 + num2;
 
                 lblDisplay.Text = Result.ToString();
+
+                Stop_Equal = true;
             }
             else if (Operation == '-')
             {
                 Result = num1 - num2;
 
                 lblDisplay.Text = Result.ToString();
+
+                Stop_Equal = true;
             }
             else if (Operation == '*')
             {
                 Result = num1 * num2;
                 lblDisplay.Text = Result.ToString();
+
+                Stop_Equal = true;
             }
             else if (Operation == '/')
             {
@@ -203,6 +210,8 @@ namespace CPE200Lab1
                     lblDisplay.Text = Result.ToString();
                     Result = 0;
                     Num2 = string.Empty;
+
+                    Stop_Equal = true;
 
                 }
                 else
@@ -218,10 +227,18 @@ namespace CPE200Lab1
                 num2 = num1 * (num2 * 0.01);
                 Result = num1 + num2;
                 lblDisplay.Text = Result.ToString();
-
+                
             }
+
+            if(Stop_Equal == false){ 
             Num1 = Result.ToString();
-            num1 = Result;
+            num1 = Result;}
+            if(Stop_Equal == true)
+            {
+             
+                    
+            }
+            
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -230,6 +247,18 @@ namespace CPE200Lab1
             Num1 = Input;}
             Operation = '%';
             Input = string.Empty;
+            
+            
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            if (!Input.Contains("."))
+            {
+              
+            Input += ".";
+            lblDisplay.Text += ".";
+            }
             
         }
     }
