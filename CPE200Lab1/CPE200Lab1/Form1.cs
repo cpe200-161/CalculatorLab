@@ -45,8 +45,8 @@ namespace CPE200Lab1
 
         private void operation_Button(object sender, EventArgs e)
         {
-            if (num1 != 0)
-            {
+            /*if (num1 != 0)
+            {*/
                 num2 = Double.Parse(lblDisplay.Text);
                 btnEqual.PerformClick();
                 operation = "";
@@ -55,7 +55,7 @@ namespace CPE200Lab1
                 num1 = Double.Parse(lblDisplay.Text);
                 operator_Active = true;
                 show_Num.Text = num1.ToString() + " " + operation;
-            }
+            /*}
             else
             {
                 Button operat = (Button)sender;
@@ -64,7 +64,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = "0";
                 operator_Active = true;
                 show_Num.Text = num1.ToString() + " " + operation;
-            }
+            }*/
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
