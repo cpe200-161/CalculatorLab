@@ -60,7 +60,7 @@ namespace CPE200Lab1
         
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = ((double.Parse(lblDisplay.Text)) / 100).ToString();
+            lblDisplay.Text = ((double.Parse(lblDisplay.Text))*firstNumber / 100).ToString();
         }
 
         private void Operand_Click(object sender, EventArgs e)
