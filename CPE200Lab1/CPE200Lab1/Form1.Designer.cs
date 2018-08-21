@@ -304,7 +304,7 @@
             this.lblDisplay.Size = new System.Drawing.Size(493, 91);
             this.lblDisplay.TabIndex = 20;
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
+           // this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
             // 
             // Form1
             // 
@@ -335,7 +335,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+//            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -16,15 +16,21 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-        public float firstNumber = 0;
-        public float secondNumber = 0;
-        public float result;
-        public bool Plus = false, Minus = false, Multi = false, Div = false, Equal = false, Dot = true;
-
+        float firstNumber = 0;
+        float secondNumber = 0;
+        float result, temp = 0;
+        bool setFirst = false;
+        bool Plus = false, Minus = false, Multi = false, Div = false, Dot = true;
         
+        
+        
+
+
+
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            
             if (lblDisplay.Text == "0")
             {
 
@@ -44,16 +50,14 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
+
             if (Dot == true)
             {
                 lblDisplay.Text += ".";
                 Dot = false;
             }
         }
-        private void lblDisplay_Click(object sender, EventArgs e)
-        {
 
-        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text != "")
@@ -61,33 +65,16 @@ namespace CPE200Lab1
         }
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            float perCent = float.Parse(lblDisplay.Text)/100;
-            if (lblDisplay.Text != "" )
-            {
-                if(Plus)
-                {
-                    lblDisplay.Text = (firstNumber + (firstNumber * perCent)).ToString();
-                    Plus = false;
-                }
-                if (Minus)
-                {
-                    lblDisplay.Text = (firstNumber - (firstNumber * perCent)).ToString();
-                    Minus = false;
-                }
-                if (Multi)
-                {
-                    lblDisplay.Text = (firstNumber * (firstNumber * perCent)).ToString();
-                    Multi = false;
-                }
-                if (Div)
-                {
-                    lblDisplay.Text = (firstNumber / (firstNumber * perCent)).ToString();
-                    Div = false;
-                }
-            }
-                
+            secondNumber = float.Parse(lblDisplay.Text);
+            float perCent = secondNumber / 100;
 
-            
+            if (lblDisplay.Text != "")
+            {
+                lblDisplay.Text = (firstNumber * perCent).ToString();
+            }
+
+
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -95,47 +82,63 @@ namespace CPE200Lab1
             lblDisplay.Text = (float.Parse(lblDisplay.Text) * -1).ToString();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEqual_Click(object sender, EventArgs e)
         {
             
-            if (lblDisplay.Text != "" && Plus == true )
+            if (temp == 0)
+            {
+                temp = float.Parse(lblDisplay.Text);
+            }
+
+            if (lblDisplay.Text != "" && Plus == true)
             {
                 secondNumber = float.Parse(lblDisplay.Text);
                 result = firstNumber + secondNumber;
                 lblDisplay.Text = result.ToString();
-                Plus = false;
-            }
-            
 
+            }
             if (lblDisplay.Text != "" && Minus == true)
             {
-                secondNumber = float.Parse(lblDisplay.Text);
-                result = firstNumber - secondNumber;
-                lblDisplay.Text = result.ToString();
-                Minus = false;
-            }
 
+                secondNumber = float.Parse(lblDisplay.Text);
+                if (setFirst == false)
+                {
+                    result = firstNumber - secondNumber;
+                    setFirst = true;
+                }
+                else
+                {
+                    result = secondNumber - firstNumber;
+                }
+                lblDisplay.Text = result.ToString();
+
+
+            }
             if (lblDisplay.Text != "" && Multi == true)
             {
                 secondNumber = float.Parse(lblDisplay.Text);
                 result = firstNumber * secondNumber;
                 lblDisplay.Text = result.ToString();
-                Multi = false;
-            }
 
+            }
             if (lblDisplay.Text != "" && Div == true)
             {
                 secondNumber = float.Parse(lblDisplay.Text);
-                result = firstNumber / secondNumber;
-                lblDisplay.Text = result.ToString();
-                Div = false;
-            }
+                if (setFirst == false)
+                {
+                    result = firstNumber / secondNumber;
+                    setFirst = true;
+                }
+                else
+                {
+                    result = secondNumber / firstNumber;
+                }
 
+                lblDisplay.Text = result.ToString();
+
+
+            }
+            firstNumber = temp;
 
         }
 
@@ -143,27 +146,37 @@ namespace CPE200Lab1
         {
 
             Button btn = (Button)sender;
+            temp = 0;
 
-            if (btn.Text == "+" && lblDisplay.Text != "")
+
+            if (btn.Text == "+")
             {
-                firstNumber = float.Parse(lblDisplay.Text);
-
-                lblDisplay.Text = "";
-                Plus = true;
-                Dot = true;
+                if (lblDisplay.Text != ""  )
+                {
+                    firstNumber = float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "";
+                    Plus = true;
+                    Dot = true;
+                    setFirst = false;
+                }
+                
             }
             else
             {
                 Plus = false;
             }
 
-            if (btn.Text == "-" && lblDisplay.Text != "")
+            if (btn.Text == "-")
             {
+                if (lblDisplay.Text != "")
+                {
+                    firstNumber = float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "";
+                    Minus = true;
+                    Dot = true;
+                    setFirst = false;
+                }
                 
-                firstNumber = float.Parse(lblDisplay.Text);
-                lblDisplay.Text = "";
-                Minus = true;
-                Dot = true;
             }
             else
             {
@@ -172,10 +185,14 @@ namespace CPE200Lab1
 
             if (btn.Text == "X" && lblDisplay.Text != "")
             {
-                firstNumber = float.Parse(lblDisplay.Text);
-                lblDisplay.Text = "";
-                Multi = true;
-                Dot = true;
+                if (lblDisplay.Text != "")
+                {
+                    firstNumber = float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "";
+                    Multi = true;
+                    Dot = true;
+                    setFirst = false;
+                }
 
             }
             else
@@ -185,10 +202,14 @@ namespace CPE200Lab1
 
             if (btn.Text == "÷" && lblDisplay.Text != "")
             {
-                firstNumber = float.Parse(lblDisplay.Text);
-                lblDisplay.Text = "";
-                Div = true;
-                Dot = true;
+                if (lblDisplay.Text != "")
+                {
+                    firstNumber = float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "";
+                    Div = true;
+                    Dot = true;
+                    setFirst = false;
+                }
 
             }
             else
@@ -200,6 +221,9 @@ namespace CPE200Lab1
                 lblDisplay.Text = "overflow";
                 clearAll();
             }
+            
+
+
 
         }
 
@@ -218,8 +242,8 @@ namespace CPE200Lab1
             Minus = false;
             Multi = false;
             Div = false;
-            Equal = false;
             Dot = true;
+            temp = 0;
         }
     }
 }
