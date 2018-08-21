@@ -15,7 +15,7 @@ namespace CPE200Lab1
         private int a;
         private double b;
         private char op = ' ';
-        private bool flag = true;
+        private bool flag = true; 
         public Form1()
         {
             InitializeComponent();
