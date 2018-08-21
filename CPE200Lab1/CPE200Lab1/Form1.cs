@@ -17,7 +17,7 @@ namespace CPE200Lab1
             InitializeComponent();
         }
 
-        double a, b;
+        double firstNumber, secondNumber;
         string oper;
         bool isDisplay = false;
 
@@ -25,83 +25,90 @@ namespace CPE200Lab1
         {
             if (oper == "+")
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = a + b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                double c = firstNumber + secondNumber;
+                DisplayResult(c);
             }
             else if (oper == "-")
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = a - b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                double c = firstNumber - secondNumber;
+                DisplayResult(c);
             }
             else if (oper == "*")
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = a * b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                double c = firstNumber * secondNumber;
+                DisplayResult(c);
             }
             else if (oper == "/")
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = a / b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                double c = firstNumber / secondNumber;
+                DisplayResult(c);
             }
             else if (oper == "%")
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = (a / b)*100;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                double c = (firstNumber / secondNumber) * 100;
+                DisplayResult(c);
             }
+        }
+        private void DisplayResult(double c)
+        {
+            string ans = c.ToString();
+            lblDisplay.Text = ans;
         }
 
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0" || isDisplay) lblDisplay.Text = "";
-            if (lblDisplay.Text.Length < 8) lblDisplay.Text += btn.Text;
+            if (lblDisplay.Text == "0" || isDisplay)
+            {
+                lblDisplay.Text = "";
+            }
+            if (lblDisplay.Text.Length < 8)
+            {
+                lblDisplay.Text += btn.Text;
+            }
             isDisplay = false;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
             oper = "-";
-            a = double.Parse(lblDisplay.Text);
-            isDisplay = true;
+            ConvertFirstNumber();
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             oper = "*";
-            a = double.Parse(lblDisplay.Text);
-            isDisplay = true;
+            ConvertFirstNumber();
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
             oper = "/";
-            a = double.Parse(lblDisplay.Text);
-            isDisplay = true;
+            ConvertFirstNumber();
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
             oper = "%";
-            a = double.Parse(lblDisplay.Text);
-            isDisplay = true;
+            ConvertFirstNumber();
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
             oper = "+";
-            a = double.Parse(lblDisplay.Text);
-            isDisplay = true;
+            ConvertFirstNumber();
 
+        }
+
+        private void ConvertFirstNumber()
+        {
+            firstNumber = double.Parse(lblDisplay.Text);
+            isDisplay = true;
         }
     }
 }
