@@ -16,8 +16,8 @@ namespace CPE200Lab1
         string secondOperand = null;
         bool reset = false;
         int operation;
-        int firstPercent = 1;
-        int secondPercent = 1;
+        int firstPercentDivide = 1;
+        int secondPercentDivide = 1;
         public Form1()
         {
             InitializeComponent();
@@ -86,31 +86,31 @@ namespace CPE200Lab1
 
             if (operation == 1)
             {
-                result1 = ((float.Parse(firstOperand)/firstPercent) + (float.Parse(secondOperand)/secondPercent)).ToString();
+                result1 = ((float.Parse(firstOperand)/firstPercentDivide) + (float.Parse(secondOperand)/secondPercentDivide)).ToString();
                 lblDisplay.Text = result1;
             }
             else if (operation == 2)
             {
-                result2 = ((float.Parse(firstOperand)/firstPercent) - (float.Parse(secondOperand)/secondPercent)).ToString();
+                result2 = ((float.Parse(firstOperand)/firstPercentDivide) - (float.Parse(secondOperand)/secondPercentDivide)).ToString();
                 lblDisplay.Text = result2;
             }
             else if (operation == 3)
             {
-                result3 = ((float.Parse(firstOperand)/firstPercent) * (float.Parse(secondOperand)/secondPercent)).ToString();
+                result3 = ((float.Parse(firstOperand)/firstPercentDivide) * (float.Parse(secondOperand)/secondPercentDivide)).ToString();
                 lblDisplay.Text = result3;
             }
             else if (operation == 4)
             {
-                result4 = ((float.Parse(firstOperand)/firstPercent) / (float.Parse(secondOperand)/secondPercent)).ToString();
+                result4 = ((float.Parse(firstOperand)/firstPercentDivide) / (float.Parse(secondOperand)/secondPercentDivide)).ToString();
                 lblDisplay.Text = result4;
             }
             else if (operation == 5)
             {
-                result5 = (float.Parse(secondOperand) / firstPercent).ToString();
+                result5 = (float.Parse(secondOperand) / firstPercentDivide).ToString();
                 lblDisplay.Text = result5;
             }
-            firstPercent = 1;
-            secondPercent = 1;
+            firstPercentDivide = 1;
+            secondPercentDivide = 1;
             firstOperand = null;
         }
 
@@ -118,12 +118,12 @@ namespace CPE200Lab1
         {
             if(firstOperand == null)
             {
-                firstPercent = 100;
+                firstPercentDivide = 100;
                 operation = 5;
             }
             else
             {
-                secondPercent = 100;
+                secondPercentDivide = 100;
             }
             reset = true;
         }
