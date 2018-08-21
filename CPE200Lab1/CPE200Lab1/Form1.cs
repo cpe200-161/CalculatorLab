@@ -18,6 +18,12 @@ namespace CPE200Lab1
         int operation;
         int firstPercentDivide = 1;
         int secondPercentDivide = 1;
+        string result1;
+        string result2;
+        string result3;
+        string result4;
+        string result5;
+
         public Form1()
         {
             InitializeComponent();
@@ -75,12 +81,6 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result1;
-            string result2;
-            string result3;
-            string result4;
-            string result5;
-
             secondOperand = lblDisplay.Text;
             reset = false;
 
