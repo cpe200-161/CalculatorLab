@@ -17,84 +17,60 @@ namespace CPE200Lab1
             InitializeComponent();
         }
 
-        double a, b;
-        string oper;
-        bool oper_active = false;
+        double firstNumber, secondNumber;
+        string operand;
+        bool operandStatus = false,typeNext=false;
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (oper == "+")
+            if (operandStatus)
             {
-                b = double.Parse(lblDisplay.Text);
-                double c = a + b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
+                secondNumber = double.Parse(lblDisplay.Text);
+                if (operand == "+")
+                {
+                    double answer = firstNumber + secondNumber;
+                    lblDisplay.Text = answer.ToString();
+                }
+                else if (operand == "-")
+                {
+                    double answer = firstNumber - secondNumber;
+                    lblDisplay.Text = answer.ToString();
+                }
+                else if (operand == "*")
+                {
+                    double answer = firstNumber * secondNumber;
+                    lblDisplay.Text = answer.ToString();
+                }
+                else if (operand == "/")
+                {
+                    double answer = firstNumber / secondNumber;
+                    lblDisplay.Text = answer.ToString();
+                }
             }
-            else if (oper == "-")
-            {
-                b = double.Parse(lblDisplay.Text);
-                double c = a - b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
-            }
-            else if (oper == "*")
-            {
-                b = double.Parse(lblDisplay.Text);
-                double c = a * b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
-            }
-            else if (oper == "/")
-            {
-                b = double.Parse(lblDisplay.Text);
-                double c = a / b;
-                string ans = c.ToString();
-                lblDisplay.Text = ans;
-            }
-            oper_active = false;
+            operandStatus = false;
         }
 
         private void num_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0" || oper_active) lblDisplay.Text = "";
+            if (lblDisplay.Text == "0"||typeNext) lblDisplay.Text = "";
             if (lblDisplay.Text.Length < 8) lblDisplay.Text += btn.Text;
-            oper_active = false;
+            typeNext = false;
         }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            oper = "-";
-            a = double.Parse(lblDisplay.Text);
-            oper_active = true;
-        }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
-        {
-            oper = "*";
-            a = double.Parse(lblDisplay.Text);
-            oper_active = true;
-        }
-
-        private void btnDivide_Click(object sender, EventArgs e)
-        {
-            oper = "/";
-            a = double.Parse(lblDisplay.Text);
-            oper_active = true;
-        }
-
+        
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            double p=double.Parse(lblDisplay.Text);
-            p /= 100;
-            lblDisplay.Text = p.ToString();
+            lblDisplay.Text = ((double.Parse(lblDisplay.Text)) / 100).ToString();
         }
 
-        private void btnPlus_Click(object sender, EventArgs e)
+        private void Operand_Click(object sender, EventArgs e)
         {
-            oper = "+";
-            a = double.Parse(lblDisplay.Text);
-            oper_active = true;
+            Button btn=(Button)sender;
+            operand = btn.Text;
+            firstNumber = double.Parse(lblDisplay.Text);
+            operandStatus = true;
+            typeNext = true;
         }
+        
     }
 }
