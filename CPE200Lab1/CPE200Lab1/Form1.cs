@@ -36,12 +36,12 @@ namespace CPE200Lab1
                     double answer = firstNumber - secondNumber;
                     lblDisplay.Text = answer.ToString();
                 }
-                else if (operand == "*")
+                else if (operand == "X")
                 {
                     double answer = firstNumber * secondNumber;
                     lblDisplay.Text = answer.ToString();
                 }
-                else if (operand == "/")
+                else if (operand == "÷")
                 {
                     double answer = firstNumber / secondNumber;
                     lblDisplay.Text = answer.ToString();
@@ -65,11 +65,14 @@ namespace CPE200Lab1
 
         private void Operand_Click(object sender, EventArgs e)
         {
-            Button btn=(Button)sender;
-            operand = btn.Text;
-            firstNumber = double.Parse(lblDisplay.Text);
-            operandStatus = true;
-            typeNext = true;
+            if (!operandStatus)
+            {
+                Button btn = (Button)sender;
+                operand = btn.Text;
+                firstNumber = double.Parse(lblDisplay.Text);
+                operandStatus = true;
+                typeNext = true;
+            }
         }
         
     }
