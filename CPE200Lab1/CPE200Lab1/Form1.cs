@@ -24,8 +24,11 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
+            if (lblDisplay.Text != "0")
+            {
                 number_collector = (float.Parse(number_collector) * -1).ToString();
                 lblDisplay.Text = number_collector.ToString();
+            }
         }
 
         private void btnDot_Click(object sender, EventArgs e)
