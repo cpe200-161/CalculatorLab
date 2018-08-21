@@ -61,6 +61,7 @@ namespace CPE200Lab1
                 ans1 = ans.ToString();
                 lblDisplay.Text = ans1;
                 ans = 0;
+                ans2 = "0";
             }
             else if (minus == true)
             {
@@ -68,6 +69,7 @@ namespace CPE200Lab1
                 ans1 = ans.ToString();
                 lblDisplay.Text = ans1;
                 ans = 0;
+                ans2 = "0";
             }
             else if (multiply == true)
             {
@@ -75,6 +77,7 @@ namespace CPE200Lab1
                 ans1 = ans.ToString();
                 lblDisplay.Text = ans1;
                 ans = 0;
+                ans2 = "0";
             }
             else if (divide == true)
             {
@@ -82,6 +85,7 @@ namespace CPE200Lab1
                 ans1 = ans.ToString();
                 lblDisplay.Text = ans1;
                 ans = 0;
+                ans2 = "0";
             }
             else if (percent == true)
             {
@@ -91,6 +95,7 @@ namespace CPE200Lab1
                     ans1 = ans.ToString();
                     lblDisplay.Text = ans1;
                     ans = 0;
+                    ans2 = "0";
                 }
                 else if (ans2 != "" || ans2 != null)
                 {
@@ -98,13 +103,14 @@ namespace CPE200Lab1
                     ans1 = ans.ToString();
                     lblDisplay.Text = ans1;
                     ans = 0;
+                    ans2 = "0";
                 }
-            }
+            }            
         }
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if(a >= 1)
-            {
+            {            
             btnAA_Click(sender, e);
             }
 
