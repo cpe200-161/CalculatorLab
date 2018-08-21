@@ -136,6 +136,7 @@ namespace CPE200Lab1
             this.lblDisplay.Text = result.ToString();
             flag_equal = true;
             flag_percent = false;
+            flag_operation = false;
         }
 
 
