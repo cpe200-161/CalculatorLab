@@ -28,7 +28,7 @@ namespace CPE200Lab1
         {
             if ((lblDisplay.Text == "0")||(operator_Active)||(eq_Active))
                 lblDisplay.Text = "";
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length <= 7)
             {
                 eq_Active = false;
                 operator_Active = false;
