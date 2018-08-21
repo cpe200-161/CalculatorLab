@@ -12,7 +12,6 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-
         string firstOperand = null;
         string secondOperand = null;
 
@@ -20,13 +19,43 @@ namespace CPE200Lab1
         bool isStartSecondOperand = false;
         bool plus = false;
         bool minus = false;
-        bool muti = false;
+        bool mutiple = false;
         bool divide = false;
         bool equal = false;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void calculator()
+        {
+            if (isStartSecondOperand == true)
+            {
+                secondOperand = lblDisplay.Text;
+                if (plus == true)
+                {
+                    firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                }
+                else if (minus == true)
+                {
+                    firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                }
+                else if (mutiple == true)
+                {
+                    firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                }
+                else if (divide == true)
+                {
+                    firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                }
+                lblDisplay.Text = firstOperand;
+            }
+            else
+            {
+                firstOperand = lblDisplay.Text;
+            }
+
         }
 
         private void btnx_Click(object sender, EventArgs e)
@@ -43,7 +72,6 @@ namespace CPE200Lab1
                 isStartSecondOperand = true;
                 setfirstOperand = false;
             }
-
             if (lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text += btn.Text;
@@ -52,41 +80,23 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (isStartSecondOperand == true)
-            {
-                secondOperand = lblDisplay.Text;
-                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = firstOperand;
-            }
-            else firstOperand = lblDisplay.Text;
+            calculator();
+
             lblDisplay.Text = firstOperand;
             setfirstOperand = true;
             plus = true;
             minus = false;
-            muti = false;
+            mutiple = false;
             divide = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-
-            if (isStartSecondOperand == false) firstOperand = lblDisplay.Text;
-            else
-            {
-                secondOperand = lblDisplay.Text;
-                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = firstOperand;
-            }
+            calculator();
 
             plus = false;
             minus = false;
-            muti = false;
+            mutiple = false;
             divide = false;
             firstOperand = null;
             secondOperand = null;
@@ -105,74 +115,50 @@ namespace CPE200Lab1
 
             plus = false;
             minus = false;
-            muti = false;
+            mutiple = false;
             divide = false;
             equal = false;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (isStartSecondOperand == true)
-            {
-                secondOperand = lblDisplay.Text;
-                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = firstOperand;
-            }
-            else firstOperand = lblDisplay.Text;
+            calculator();
+
             lblDisplay.Text = firstOperand;
             setfirstOperand = true;
             plus = false;
             minus = false;
-            muti = false;
+            mutiple = false;
             divide = true;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (isStartSecondOperand == true)
-            {
-                secondOperand = lblDisplay.Text;
-                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = firstOperand;
-            }
-            else firstOperand = lblDisplay.Text;
+            calculator();
+
             lblDisplay.Text = firstOperand;
             setfirstOperand = true;
             plus = false;
             minus = false;
-            muti = true;
+            mutiple = true;
             divide = false;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (isStartSecondOperand == true)
-            {
-                secondOperand = lblDisplay.Text;
-                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = firstOperand;
-            }
-            else firstOperand = lblDisplay.Text;
+            calculator();
+
             lblDisplay.Text = firstOperand;
             setfirstOperand = true;
             plus = false;
             minus = true;
-            muti = false;
+            mutiple = false;
             divide = false;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (float.Parse(firstOperand)*float.Parse(lblDisplay.Text)/100).ToString();
+            lblDisplay.Text = (float.Parse(firstOperand) * float.Parse(lblDisplay.Text) / 100).ToString();
         }
 
         private void btnSign_Click(object sender, EventArgs e)
