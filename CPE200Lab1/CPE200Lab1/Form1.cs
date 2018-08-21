@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float n1=0, n2=0;
+        float num1=0, num2=0;
         Boolean oper=false, plus=false, minus=false, mul=false, div=false, re_num=false, dot=false;
 
         public Form1()
@@ -29,7 +29,7 @@ namespace CPE200Lab1
                 re_num = false;
             }
             if(lblDisplay.Text.Length<8) lblDisplay.Text += bt.Text;
-            n1 = float.Parse(lblDisplay.Text);
+            num1 = float.Parse(lblDisplay.Text);
         }
 
         private void click_Operbutt(object sender, EventArgs e)
@@ -40,28 +40,28 @@ namespace CPE200Lab1
             {
                 if (plus == true)
                 {
-                    n2 += n1;
+                    num2 += num1;
                     plus = false;
                 }
                 else if (minus == true)
                 {
-                    n2 -= n1;
+                    num2 -= num1;
                     minus = false;
                 }
                 else if (mul == true)
                 {
-                    n2 *= n1;
+                    num2 *= num1;
                     mul = false;
                 }
                 else if (div == true)
                 {
-                    n2 /= n1;
+                    num2 /= num1;
                     div = false;
                 }
                 oper = false;
             }
-            else n2 = n1;
-            lblDisplay.Text = n2.ToString();
+            else num2 = num1;
+            lblDisplay.Text = num2.ToString();
             oper = true;
             if (bt.Text == "+") plus = true;
             else if (bt.Text == "-") minus = true;
@@ -71,8 +71,8 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            n1 = n1 * n2 / 100;
-            lblDisplay.Text = n1.ToString();
+            num1 = num1 * num2 / 100;
+            lblDisplay.Text = num1.ToString();
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -89,15 +89,15 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            n1 *= -1;
-            lblDisplay.Text = n1.ToString();
+            num1 *= -1;
+            lblDisplay.Text = num1.ToString();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            n1 = 0;
-            n2 = 0;
+            num1 = 0;
+            num2 = 0;
             oper = false;
         }
     }
