@@ -48,7 +48,8 @@ namespace CPE200Lab1
             }
             if (btn.Text == "." && dot == false)
             {
-                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                if(lblDisplay.Text == "") lblDisplay.Text = "0" + btn.Text;
+                else lblDisplay.Text = lblDisplay.Text + btn.Text;
                 dot = true;
             }
             change = true;
@@ -119,6 +120,8 @@ namespace CPE200Lab1
                 one = lblDisplay.Text;
             }
             change = false;
+            first = true;
+            firstTime = false;
             iType++;
         }
 
@@ -151,6 +154,7 @@ namespace CPE200Lab1
         private void btnBack_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+            if (lblDisplay.Text == "") lblDisplay.Text = "0";
         }
     }
 }
