@@ -27,6 +27,14 @@ namespace CPE200Lab1
             equal = true;
         }
 
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.IndexOf(".") == -1)
+            {
+                lblDisplay.Text += "."; 
+            }
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
 
@@ -34,16 +42,18 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            first = lblDisplay.Text;
+            second = lblDisplay.Text;
             if (first == "0")
             {
                 lblDisplay.Text = "0";
             }
+            
             else
             {
-                first = (float.Parse(first) / 100).ToString();
+                second = ((float.Parse(first))*((float.Parse(second) / 100))).ToString();
+                lblDisplay.Text = second;
             }
-            lblDisplay.Text = first;
+            
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
@@ -83,7 +93,7 @@ namespace CPE200Lab1
             }
             else if (per == true)
             {
-                second = ((float.Parse(second) / 100) * (float.Parse(first))).ToString();
+                sum = ((float.Parse(second) / 100) * (float.Parse(first))).ToString();
                 per = false;
             }
             lblDisplay.Text = sum;
