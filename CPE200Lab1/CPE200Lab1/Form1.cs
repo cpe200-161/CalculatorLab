@@ -37,15 +37,15 @@ namespace CPE200Lab1
 		{
 			if (isStartSecondOperand == true && lblDisplay.Text.Length <= 8)
 			{
-				if (setPercentage == true)
+				/*if (setPercentage == true)
 				{
 					result = ((float.Parse(firstOperand) * float.Parse(lblDisplay.Text)) / 100).ToString();
-					secondOperand = result;
+					//secondOperand = result;
 				}
 				else
 				{
 					secondOperand = lblDisplay.Text;
-				}
+				}*/
 				if (calNumber == 1)
 				{
 				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
@@ -181,6 +181,8 @@ namespace CPE200Lab1
 			if (isStartSecondOperand == true)
 			{
 				setPercentage = true;
+				lblDisplay.Text = ((float.Parse(firstOperand) * float.Parse(lblDisplay.Text)) / 100).ToString();
+				secondOperand = lblDisplay.Text;
 			}
 			if ((setFirstOperand == false || isStartSecondOperand == false)&&(lblDisplay.Text.Length <= 8))
 			{
