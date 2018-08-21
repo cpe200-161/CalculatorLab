@@ -12,15 +12,33 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        double frist;
+        double first;
         double second;
         int third;
         double sum;
-        double count;
-        string forth;
+        double percent;
         public Form1()
         {
             InitializeComponent();
+        }
+        public void calculate()
+        {
+            if (third == 1)
+            {
+                sum = first + second;
+            }
+            if (third == 2)
+            {
+                sum = first - second;
+            }
+            if (third == 3)
+            {
+                sum = first * second;
+            }
+            if (third == 4)
+            {
+                sum = first / second;
+            }
         }
         private void btnx_Click(object sender, EventArgs e)
         {
@@ -33,73 +51,85 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
+
         }
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            third  = 1;
-            forth = "a";
-            frist = Convert.ToDouble(lblDisplay.Text);
-            if (frist > 0)
+            third = 1;
+            first = Convert.ToDouble(lblDisplay.Text);
+            if (first > 0)
             {
                 lblDisplay.Text = "";
             }
-        }
-
-        private void btnEqual_Click(object sender, EventArgs e)
-        {
-            second = Convert.ToDouble(lblDisplay.Text);
-            switch (third)
-            {
-                case 1: sum = frist + second; break;
-                case 2: sum = frist - second; break;
-                case 3: sum = frist * second; break;
-                case 4: sum = frist / second; break;
-                default: break;
-            }
-            lblDisplay.Text = Convert.ToString(sum);
-
+            calculate();
         }
         private void btnMinus_Click(object sender, EventArgs e)
         {
             third = 2;
-            frist = Convert.ToDouble(lblDisplay.Text);
-            if (frist > 0)
+            first = Convert.ToDouble(lblDisplay.Text);
+            if (first > 0)
             {
                 lblDisplay.Text = "";
             }
+            calculate();
+
         }
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             third = 3;
-            frist = Convert.ToDouble(lblDisplay.Text);
-            if (frist > 0)
+            first = Convert.ToDouble(lblDisplay.Text);
+            if (first > 0)
             {
                 lblDisplay.Text = "";
             }
+            calculate();
+
         }
         private void btnDivide_Click(object sender, EventArgs e)
         {
             third = 4;
-            frist = Convert.ToDouble(lblDisplay.Text);
-            if (frist > 0)
+            first = Convert.ToDouble(lblDisplay.Text);
+            if (first > 0)
             {
                 lblDisplay.Text = "";
             }
+            calculate();
+
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
+            
+          
             second = Convert.ToDouble(lblDisplay.Text);
-            count = second / 100;
-            switch (forth)
+            switch (third)
             {
-                case "a": sum = frist + count;
-                case "b": sum = frist - count;
-                case "c": sum = frist * count;
-                case "d": sum = frist / count;
-                default break;
+                case 1: percent = first + (first * (second / 100)); break;
+                case 2: percent = first - (first * (second / 100)); break;
+                case 3: percent = first * (second/100); break;
+                case 4: percent = first / (second / 100); break;
+                default: break;
             }
-            lblDisplay.Text = Convert.ToString(count);
+            lblDisplay.Text = Convert.ToString(percent);
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            first = 0;
+            second = 0;
+            lblDisplay.Text = "0";
+
+        }
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            second = Convert.ToDouble(lblDisplay.Text);
+            calculate();
+            lblDisplay.Text = Convert.ToString(sum);
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
         }
     }
 }
