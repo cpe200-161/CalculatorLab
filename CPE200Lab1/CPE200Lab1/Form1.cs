@@ -72,12 +72,18 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            secondOperand = lblDisplay.Text;
-            if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-            else if(minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-            else if(muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-            else if(divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-            lblDisplay.Text = firstOperand;
+
+            if (isStartSecondOperand == false) firstOperand = lblDisplay.Text;
+            else
+            {
+                secondOperand = lblDisplay.Text;
+                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                lblDisplay.Text = firstOperand;
+            }
+
             plus = false;
             minus = false;
             muti = false;
