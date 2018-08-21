@@ -12,22 +12,22 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double val = 0, val1 = 0, val2 = 0;
+        private double val = 0, valbefore = 0, sum = 0;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void display()
+        private void display(double valText)
         {
-            lblDisplay.Text = val.ToString();
+            lblDisplay.Text = valText.ToString();
         }
 
-        private void numClik(int n)
+        private void numClik(int n, double m = 10)
         {
-            val = val * 10 + n;
-            display();
+            val = val * m + n;
+            display(val);
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -82,34 +82,34 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            val = val * (-1);
-            display();
+            numClik(0,-1);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            
+            valbefore = val;
+            val = 0;
+            sum = 1;
+            sum *= valbefore;
+            display(sum);
         }
         
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            val1 = val;
+            valbefore = val;
             val = 0;
-            val2 += val1;
-            lblDisplay.Text = val2.ToString();
+            sum += valbefore;
+            display(sum);
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            val1 = val;
-            val = 0;
-            val2 -= val1;
-            lblDisplay.Text = val2.ToString();
+            
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
@@ -130,15 +130,14 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             val = 0;
-            display();
+            valbefore = 0;
+            sum = 0;
+            display(val);
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            val1 = val;
-            val = 0;
-            val2 += val1;
-            lblDisplay.Text = val2.ToString();
+         
         }
     }
 }
