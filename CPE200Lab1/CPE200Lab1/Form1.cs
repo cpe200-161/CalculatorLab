@@ -124,16 +124,16 @@ namespace CPE200Lab1
         {
             value = float.Parse(number_collector);
             number_collector = "";
-            plusbtn = true;
             dotbtn = false;
+            plusbtn = true;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
             value = float.Parse(number_collector);
             number_collector = "";
-            minusbtn = true;
             dotbtn = false;
+            minusbtn = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -154,8 +154,8 @@ namespace CPE200Lab1
         {
             value = float.Parse(number_collector);
             number_collector = "";
-            multiplybtn = true;
             dotbtn = false;
+            multiplybtn = true;
         }
 
         private void Btn_S(object sender, EventArgs e)
@@ -167,12 +167,10 @@ namespace CPE200Lab1
         {
             value = float.Parse(number_collector);
             number_collector = "";
-            devidebtn = true;
             dotbtn = false;
+            devidebtn = true;
         }
-
-
-
+        
         private void btnX_click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -193,8 +191,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = number_collector;
             }
         }
-
-
+        
         private void btnPercent_Click(object sender, EventArgs e)
         {
             {
@@ -214,15 +211,6 @@ namespace CPE200Lab1
                 number_collector = (float.Parse(number_collector) / 10).ToString();
                 lblDisplay.Text = number_collector.ToString();
             }
-            else
-            {
-
-            }
-        }
-
-        private void lblDisplay_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
