@@ -15,7 +15,7 @@ namespace CPE200Lab1
         string firstoperand = null;
         string secondoperand = null;
         float result;
-        bool plus = false, minus = false, multiple = false, divide = false;
+        bool plus = false, minus = false, multiple = false, divide = false, dotpress = false;
         public Form1()
         {
             InitializeComponent();
@@ -36,7 +36,26 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
             }
 
+
             lblDisplay.Text += btn.Text;
+
+        }
+        private void btndot_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+
+
+            if (lblDisplay.Text == "")
+            {
+                lblDisplay.Text = "0";
+            }
+            if (!dotpress)
+            {
+
+                lblDisplay.Text += btn.Text;
+            }
+            dotpress = true;
 
         }
 
@@ -46,6 +65,7 @@ namespace CPE200Lab1
             minus = false;
             multiple = true;
             divide = false;
+            dotpress = false;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
 
@@ -57,6 +77,7 @@ namespace CPE200Lab1
             minus = false;
             multiple = false;
             divide = true;
+            dotpress = false;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
 
@@ -100,11 +121,16 @@ namespace CPE200Lab1
             minus = false;
             multiple = false;
             divide = false;
+            dotpress = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+
+
+
             lblDisplay.Text = "";
+            dotpress = false;
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -113,6 +139,7 @@ namespace CPE200Lab1
             minus = false;
             multiple = false;
             divide = false;
+            dotpress = false;
             firstoperand = lblDisplay.Text;
             lblDisplay.Text = "";
 
@@ -124,7 +151,9 @@ namespace CPE200Lab1
             minus = true;
             multiple = false;
             divide = false;
+            dotpress = false;
             firstoperand = lblDisplay.Text;
+
             lblDisplay.Text = "";
 
         }
@@ -148,12 +177,14 @@ namespace CPE200Lab1
             {
                 result = float.Parse(firstoperand) / float.Parse(secondoperand);
             }
+
             lblDisplay.Text = result.ToString();
             firstoperand = lblDisplay.Text;
             plus = false;
             minus = false;
             multiple = false;
             divide = false;
+            dotpress = false;
 
         }
         public void clear()
@@ -165,6 +196,7 @@ namespace CPE200Lab1
             minus = false;
             multiple = false;
             divide = false;
+            dotpress = false;
         }
     }
 }
