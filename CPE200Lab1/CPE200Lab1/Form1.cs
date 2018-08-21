@@ -17,7 +17,7 @@ namespace CPE200Lab1
             InitializeComponent();
         }
         string first, second;
-        bool setplus=false, setlob=false,setkon=false,sethan=false,setfirst=false,setsecond;
+        bool setplus = false, setlob = false, setkon = false, sethan = false, setfirst = false, setsecond;
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
@@ -32,12 +32,20 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            string per,tri;
+            string per, tri;
             tri = lblDisplay.Text;
             per = (float.Parse(first) * float.Parse(tri) / 100).ToString();
             lblDisplay.Text = per;
             setsecond = true;
         }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+
+            lblDisplay.Text = (float.Parse(lblDisplay.Text) * -1).ToString();
+        }
+
+        
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
@@ -69,16 +77,16 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             string sum;
-            if (setsecond == true) {
+            if (setsecond == true)
+            {
                 setfirst = false;
                 second = lblDisplay.Text;
-
             }
             if (setplus == true)
             {
                 sum = (float.Parse(first) + float.Parse(second)).ToString();
                 lblDisplay.Text = "";
-                lblDisplay.Text = sum ;
+                lblDisplay.Text = sum;
             }
             if (setlob == true)
             {
@@ -98,25 +106,34 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
                 lblDisplay.Text = sum;
             }
+            
         }
-
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
-                lblDisplay.Text = "";
+                if (btn.Text == ".")
+                {
+                 
+                }
+                else
+                {
+                    lblDisplay.Text = "";
+                }
             }
-            if( setfirst == true && setsecond ==false ) {
+            if (setfirst == true && setsecond == false)
+            {
                 lblDisplay.Text = "";
                 setsecond = true;
             }
             if (lblDisplay.Text.Length < 8)
             {
+                
                 lblDisplay.Text += btn.Text;
+               
             }
         }
-
         private void btnPlus_Click(object sender, EventArgs e)
         {
             first = lblDisplay.Text;
@@ -126,9 +143,7 @@ namespace CPE200Lab1
             setlob = false;
             setkon = false;
             sethan = false;
-
-
         }
-        
+
     }
 }
