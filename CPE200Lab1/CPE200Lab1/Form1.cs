@@ -13,7 +13,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         string firstOperand, secondOperand, format, result;
-        bool setFirstOperand = false, setDot = false, setAns = false;
+        bool setFirstOperand = false, setDot = false, setAns = false, setBackspace= false;
         int setFormat = 0;
 
         public Form1()
@@ -28,7 +28,14 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length-1);
+            if (lblDisplay.Text.Length == 1)
+            {
+                lblDisplay.Text = "0";
+            }
+            else
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+            }
         }
 
         private void btnPercent_Click_1(object sender, EventArgs e)
