@@ -30,16 +30,16 @@ namespace CPE200Lab1
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (!pressed) clear();
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }             
-            if (lblDisplay.Text.Length < 8)
-            {
+         
+           if (lblDisplay.Text == "0")
+           {
+               lblDisplay.Text = "";
+           }             
+          
+          
                     lblDisplay.Text += btn.Text;
 
-            }
+           
             
        
            
