@@ -94,9 +94,7 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            percent_Show.Text = "";
-            lblDisplay.Text = "0";
-            percent_Active = false;
+            lblDisplay.Text = lblDisplay.Text.Substring(0,lblDisplay.Text.Length - 1);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
