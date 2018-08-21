@@ -170,7 +170,9 @@ namespace CPE200Lab1
             dotbtn = false;
             devidebtn = true;
         }
-        
+
+
+
         private void btnX_click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -191,7 +193,8 @@ namespace CPE200Lab1
                 lblDisplay.Text = number_collector;
             }
         }
-        
+
+
         private void btnPercent_Click(object sender, EventArgs e)
         {
             {
@@ -208,9 +211,14 @@ namespace CPE200Lab1
         {
             if (float.Parse(number_collector) >= 0)
             {
-                number_collector = (float.Parse(number_collector) / 10).ToString();
+                number_collector = number_collector.Remove(number_collector.Length-1,1);
                 lblDisplay.Text = number_collector.ToString();
             }
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
