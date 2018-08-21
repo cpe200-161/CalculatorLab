@@ -18,8 +18,8 @@ namespace CPE200Lab1
         bool isStartSecondOperand = false;
         private int Ocheck = 0;
         string result;
-        bool unsign = false;
-        bool DOT = false;
+        bool Minus = false;
+        bool Dot = false;
 
         public Form1()
         {
@@ -28,7 +28,10 @@ namespace CPE200Lab1
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0") { lblDisplay.Text = ""; }
+            if (lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = "";
+            }
             if (setFirstOperand == true && isStartSecondOperand == false)
             {
                 lblDisplay.Text = "";
@@ -36,17 +39,26 @@ namespace CPE200Lab1
             }
             if (lblDisplay.Text.Length < 8)
             {
-                if (btn.TabIndex == 14 )//DOT
+                if (btn.TabIndex == 14)//DOT
                 {
-                    if (DOT == false)
-                    {   
-                        lblDisplay.Text += ".";
-                        DOT = true;
+                    if (Dot == false)
+                    {
+                        if (lblDisplay.Text == "")
+                        {
+                            lblDisplay.Text += "0.";
+                        }
+                        else
+                        {
+                            lblDisplay.Text += ".";
+                        }
+                        Dot = true;
                     }
-                       
+
                 }
                 else
+                {
                     lblDisplay.Text += btn.Text;
+                }
             }
         }
         private void btnClick()
@@ -59,14 +71,22 @@ namespace CPE200Lab1
             Button btn = (Button)sender;
             btnClick();
             if (btn.TabIndex == 11) //plus
+            {
                 Ocheck = 1;
+            }
             else if (btn.TabIndex == 7)//minus
+            {
                 Ocheck = 2;
+            }
             else if (btn.TabIndex == 3)//multiply
+            {
                 Ocheck = 3;
+            }
             else if (btn.TabIndex == 16)//divide
+            {
                 Ocheck = 4;
-            
+            }
+            Dot = false;
         }
         private void btnPercent_Click(object sender, EventArgs e)
         {
@@ -86,7 +106,7 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             setFirstOperand = false;
             isStartSecondOperand = false;
-            DOT = false;
+            Dot = false;
         }
 
 
@@ -104,20 +124,20 @@ namespace CPE200Lab1
                 lblDisplay.Text = "0";
                 Clear();
             }
-            
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (unsign)
+            if (Minus)
             {
                 lblDisplay.Text = lblDisplay.Text.Substring(1);
-                unsign = false;
+                Minus = false;
             }
             else
             {
                 lblDisplay.Text = lblDisplay.Text.Insert(0, "-");
-                unsign = true;
+                Minus = true;
             }
         }
 
@@ -126,20 +146,33 @@ namespace CPE200Lab1
             SecondOperand = lblDisplay.Text;
 
             if (Ocheck == 1)
+            {
                 result = (float.Parse(firstOperand) + float.Parse(SecondOperand)).ToString();
+            }
             else if (Ocheck == 2)
+            {
                 result = (float.Parse(firstOperand) - float.Parse(SecondOperand)).ToString();
+            }
             else if (Ocheck == 3)
+            {
                 result = (float.Parse(firstOperand) * float.Parse(SecondOperand)).ToString();
+            }
             else if (Ocheck == 4)
+            {
                 result = (float.Parse(firstOperand) / float.Parse(SecondOperand)).ToString();
-            else { }
+            }
+            else
+            {
+
+            }
             if (float.Parse(result) < 0)
-                unsign = true;
+            {
+                Minus = true;
+            }
             lblDisplay.Text = result;
             Ocheck = 0;
             isStartSecondOperand = false;
-        }  
+        }
     }
 }
 
