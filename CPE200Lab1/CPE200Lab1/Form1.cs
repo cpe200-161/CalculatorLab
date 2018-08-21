@@ -51,6 +51,13 @@ namespace CPE200Lab1
                 string ans = c.ToString();
                 lblDisplay.Text = ans;
             }
+            else if (oper == "%")
+            {
+                b = double.Parse(lblDisplay.Text);
+                double c = (a / b)*100;
+                string ans = c.ToString();
+                lblDisplay.Text = ans;
+            }
         }
 
         private void btnx_Click(object sender, EventArgs e)
@@ -78,6 +85,13 @@ namespace CPE200Lab1
         private void btnDivide_Click(object sender, EventArgs e)
         {
             oper = "/";
+            a = double.Parse(lblDisplay.Text);
+            isDisplay = true;
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            oper = "%";
             a = double.Parse(lblDisplay.Text);
             isDisplay = true;
         }
