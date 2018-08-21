@@ -36,34 +36,37 @@ namespace CPE200Lab1
                 this.lblDisplay.Text = "0";
                 flag_equal = false;
                 flag_percent = false;
-            }
-            if(flag_operation == true)
-            {
-                this.lblDisplay.Text = "0";
+                flag_operation = false;
             }
             if (this.lblDisplay.Text == "0")
             {
                 this.lblDisplay.Text = string.Empty;
             }
-            if(btn.Text == ".")
+            if ( input.Length < 8)
             {
-                if(!input.Contains(".") && !this.lblDisplay.Text.Contains("."))
+                if (btn.Text == ".")
                 {
-                    this.lblDisplay.Text += btn.Text;
-                    input += btn.Text;
-                }
+                    if (!input.Contains(".") && !this.lblDisplay.Text.Contains("."))
+                    {
+                        
+                        input += btn.Text;
+                        this.lblDisplay.Text = input;
+                    }
 
-            }
-            else
-            {
-                input += btn.Text;
-                this.lblDisplay.Text += btn.Text;
-            }  
+                }
+                else
+                {
+                    input += btn.Text;
+                    this.lblDisplay.Text = input;
+                }
+            } 
         }
         private void btnOperator_Click(object sender, EventArgs e)
         {
-            this.lblDisplay.Text = "0";
-            
+            if (flag_operation == true)
+            {
+                this.lblDisplay.Text = "0";
+            }
             if (flag_operation == false)
             {
                 Button btn = (Button)sender;
@@ -148,6 +151,9 @@ namespace CPE200Lab1
             num2 = string.Empty;
             result = 0;
             this.lblDisplay.Text = "0";
+            flag_equal = false;
+            flag_percent = false;
+            flag_operation = false;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
