@@ -129,15 +129,19 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (Minus)
+            if (lblDisplay.Text == "0")
             {
-                lblDisplay.Text = lblDisplay.Text.Substring(1);
-                Minus = false;
+
             }
-            else
+            else if(Minus==false)
             {
                 lblDisplay.Text = lblDisplay.Text.Insert(0, "-");
                 Minus = true;
+            }
+            else
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(1);
+                Minus = false;
             }
         }
 
