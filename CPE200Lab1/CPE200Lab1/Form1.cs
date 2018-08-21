@@ -32,11 +32,16 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (first == "0") lblDisplay.Text = "0";
+            first = lblDisplay.Text;
+            if (first == "0")
+            {
+                lblDisplay.Text = "0";
+            }
             else
             {
-                per = true;
+                first = (float.Parse(first) / 100).ToString();
             }
+            lblDisplay.Text = first;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
