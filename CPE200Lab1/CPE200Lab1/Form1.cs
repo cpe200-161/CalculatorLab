@@ -22,6 +22,7 @@ namespace CPE200Lab1
 
         private void btn_Click(object sender, EventArgs e)
         {
+            lblDisplay.Text = "";
             Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
