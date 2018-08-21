@@ -25,7 +25,7 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-        private void btnX_Click(object sender, EventArgs e)
+        private void btnNumber_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
@@ -66,7 +66,7 @@ namespace CPE200Lab1
             firstOperand = lblDisplay.Text;
             setFirstOperand = true;
         }
-        private void btnO_Click(object sender, EventArgs e)
+        private void btnOperation_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             btnClick();
