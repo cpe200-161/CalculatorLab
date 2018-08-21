@@ -17,7 +17,8 @@ namespace CPE200Lab1
         string Num1 = string.Empty;
         string Num2 = string.Empty;
         char Operation;
-        bool Stop_Equal = false;
+        bool Percent = false;
+        bool Plus = false;
 
         double Result = 0.0;
 
@@ -138,7 +139,9 @@ namespace CPE200Lab1
             Num1 = Input;}
             Operation = '+';
             Input = string.Empty;
-            
+            Percent = true;
+
+
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -149,6 +152,7 @@ namespace CPE200Lab1
             
             Operation = '-';
             Input = string.Empty;
+            Percent = true;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
@@ -159,6 +163,7 @@ namespace CPE200Lab1
             
             Operation = '*';
             Input = string.Empty;
+            Percent = true;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
@@ -169,6 +174,7 @@ namespace CPE200Lab1
             
             Operation = '/';
             Input = string.Empty;
+            Percent = true;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -177,14 +183,25 @@ namespace CPE200Lab1
             double num1, num2;                  // make new object to change string to double
             double.TryParse(Num1, out num1);    //double.TryPrase(string, out to double object)
             double.TryParse(Num2, out num2);
+            if (Percent == true)
+            {
+                num2 = double.Parse(Num1) * (double.Parse(Num2) * 0.01);
+                Percent = false;
+            }
+            else
+            {
+                Num2 = Input;
+            }
+            
+            
 
             if (Operation == '+')
             {
                 Result = num1 + num2;
 
                 lblDisplay.Text = Result.ToString();
-
-                Stop_Equal = true;
+                Plus = true;
+                Percent = true;
             }
             else if (Operation == '-')
             {
@@ -192,14 +209,14 @@ namespace CPE200Lab1
 
                 lblDisplay.Text = Result.ToString();
 
-                Stop_Equal = true;
+                Percent = true;
             }
             else if (Operation == '*')
             {
                 Result = num1 * num2;
                 lblDisplay.Text = Result.ToString();
 
-                Stop_Equal = true;
+                Percent =  true;
             }
             else if (Operation == '/')
             {
@@ -211,7 +228,7 @@ namespace CPE200Lab1
                     Result = 0;
                     Num2 = string.Empty;
 
-                    Stop_Equal = true;
+                    Percent =  true;
 
                 }
                 else
@@ -222,31 +239,29 @@ namespace CPE200Lab1
 
 
             }
-            else if (Operation == '%')
-            {
-                num2 = num1 * (num2 * 0.01);
-                Result = num1 + num2;
-                lblDisplay.Text = Result.ToString();
-                
-            }
+            
 
-            if(Stop_Equal == false){ 
+            
             Num1 = Result.ToString();
-            num1 = Result;}
-            if(Stop_Equal == true)
-            {
-             
-                    
-            }
+            num1 = Result;
+            
             
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (Num1 == string.Empty){
-            Num1 = Input;}
-            Operation = '%';
-            Input = string.Empty;
+            if (Num1 == string.Empty)
+            {
+                Num1 = string.Empty;
+                lblDisplay.Text = "0";
+                Input = string.Empty;
+             }       
+
+            else
+            { 
+                Percent = true;
+            }
+
             
             
         }
