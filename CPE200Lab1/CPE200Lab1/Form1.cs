@@ -41,7 +41,7 @@ namespace CPE200Lab1
             if (!flag_oper)
             {
                 Button btn = (Button)sender;
-                first_number = (double.Parse(lblDisplay.Text));
+                first_number = (double.Parse(lblDisplay.Text)); 
                 operand = btn.Text;
                 flag_oper = true;
                 flag_num = true;
