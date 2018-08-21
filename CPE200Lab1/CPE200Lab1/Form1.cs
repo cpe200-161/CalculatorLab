@@ -114,7 +114,12 @@ namespace CPE200Lab1
         }
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (prev_operand == "+" || prev_operand == "-")
+            if (prev_operand == "")
+            {
+                percent = (float.Parse(lblDisplay.Text) / 100);
+                lblDisplay.Text = percent.ToString();
+            }
+            else if (prev_operand == "+" || prev_operand == "-")
             {
                 percent = first * (float.Parse(lblDisplay.Text) / 100);
                 lblDisplay.Text = percent.ToString();
