@@ -13,7 +13,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         double Firstnum,Secondnum;
-
+         
         String Operation;
         private double val,val2;
         public Form1()
@@ -22,15 +22,15 @@ namespace CPE200Lab1
             InitializeComponent();
         }
 
-        private void display()
+        private void display(double show)
         {
-            lblDisplay.Text = val.ToString();
+            lblDisplay.Text = show.ToString();
         }
 
         private void numClick(int n)
         {
             val = val * 10 + n;
-            display();
+            display(val);
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -91,7 +91,9 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             val=0;
-            lblDisplay.Text = val.ToString();
+            Firstnum = 0;
+            Secondnum = 0;
+            display(val);
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -102,8 +104,8 @@ namespace CPE200Lab1
 
             Secondnum =  Firstnum-val;
 
-            lblDisplay.Text = Secondnum.ToString();
-           
+            display(Secondnum);
+
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
@@ -112,17 +114,17 @@ namespace CPE200Lab1
             val = 0;
             Secondnum =Firstnum*val;
 
-            lblDisplay.Text = Secondnum.ToString();
-            
+            display(Secondnum);
+
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
-        {
+        { 
             Firstnum = val;
             val = 0;
             Secondnum += Firstnum;
 
-            lblDisplay.Text = Secondnum.ToString();
+            display(Secondnum);
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -131,14 +133,14 @@ namespace CPE200Lab1
             val = 0;
             Secondnum += Firstnum ;
 
-            lblDisplay.Text = Secondnum.ToString();
-            
+            display(Secondnum);
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
             val = val * (-1);
-            lblDisplay.Text = val.ToString();
+            display(val);
         }
 
         
