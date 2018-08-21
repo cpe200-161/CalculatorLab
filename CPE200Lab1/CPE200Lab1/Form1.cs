@@ -19,11 +19,20 @@ namespace CPE200Lab1
 		bool setFirstOperand = false;
         bool isStartSecondOperand = false;
 		bool setDot = false;
+		bool setPercentage = false;
 		void isEqual()
 		{
 			if (isStartSecondOperand == true)
 			{
-				secondOperand = lblDisplay.Text;
+				if (setPercentage == true)
+				{
+					result = ((float.Parse(firstOperand) * float.Parse(lblDisplay.Text))/100).ToString();
+					secondOperand = result;
+				}
+				else
+				{
+					secondOperand = lblDisplay.Text;
+				}
 				if (calNumber == 1)
 				{
 					result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
@@ -44,15 +53,16 @@ namespace CPE200Lab1
 					result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
 					lblDisplay.Text = result;
 				}
-				else if (calNumber == 5)
+				/*else if (calNumber == 5)
 				{
 					result = ((float.Parse(firstOperand) * float.Parse(secondOperand) / 100)).ToString();
 					lblDisplay.Text = result;
-				}
+				}*/
 				calNumber = 0;
 				firstOperand = lblDisplay.Text;
 				setFirstOperand = true;
 				isStartSecondOperand = false;
+				setPercentage = false;
 			}
 		}
 
@@ -148,6 +158,7 @@ namespace CPE200Lab1
 			lblDisplay.Text = "0";
 			setFirstOperand = false;
 			isStartSecondOperand = false;
+			setPercentage = false;
 			calNumber = 0;
 		}
 
@@ -170,15 +181,25 @@ namespace CPE200Lab1
 		{
 			if (isStartSecondOperand == true)
 			{
-				isEqual();
-				calNumber = 5;
+				setPercentage = true;
 			}
 			if (setFirstOperand == false || isStartSecondOperand == false)
 			{
-				calNumber = 5;
+				firstOperand = lblDisplay.Text;
+				result = (float.Parse(firstOperand) * 0.01).ToString();
+				lblDisplay.Text = result;
+				calNumber = 0;
 				firstOperand = lblDisplay.Text;
 				setFirstOperand = true;
+				isStartSecondOperand = false;
+				setPercentage = false;
 			}
+		}
+
+		private void btnSign_Click(object sender, EventArgs e)
+		{
+			result = (float.Parse(lblDisplay.Text) * (-1)).ToString();
+			lblDisplay.Text = result;
 		}
 	}
 }
