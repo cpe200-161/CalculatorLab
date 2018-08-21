@@ -19,6 +19,7 @@ namespace CPE200Lab1
         double result = 0.0;
         bool flag_percent = false;
         bool flag_equal = false;
+        bool flag_operation = false;
         public Form1()
         {
             InitializeComponent();
@@ -34,6 +35,11 @@ namespace CPE200Lab1
                 result = 0;
                 this.lblDisplay.Text = "0";
                 flag_equal = false;
+                flag_percent = false;
+            }
+            if(flag_operation == true)
+            {
+                this.lblDisplay.Text = "0";
             }
             if (this.lblDisplay.Text == "0")
             {
@@ -57,17 +63,54 @@ namespace CPE200Lab1
         private void btnOperator_Click(object sender, EventArgs e)
         {
             this.lblDisplay.Text = "0";
-            Button btn = (Button)sender;
-            operation = btn.Text;
-            num1 = input;
-            input = string.Empty;
-            flag_equal = false;
+            
+            if (flag_operation == false)
+            {
+                Button btn = (Button)sender;
+                operation = btn.Text;
+                num1 = input;
+                input = string.Empty;
+                flag_equal = false;
+                flag_operation = true;
+            }
+            else
+            {
+                num2 = input;
+                
+                if (operation == "+")
+                {
+                    result = Convert.ToDouble(num1) + Convert.ToDouble(num2);
+                }
+                else if (operation == "-")
+                {
+                    result = Convert.ToDouble(num1) - Convert.ToDouble(num2);
+                }
+                else if (operation == "X")
+                {
+                    result = Convert.ToDouble(num1) * Convert.ToDouble(num2);
+                }
+                else if (operation == "÷")
+                {
+                    result = Convert.ToDouble(num1) / Convert.ToDouble(num2);
+                }
+                input = result.ToString();
+                num1 = result.ToString();
+                this.lblDisplay.Text = result.ToString();
+                input = string.Empty;
+                num2 = string.Empty;
+                Button btn = (Button)sender;
+                operation = btn.Text;
+            }
 
         }
         
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if(flag_percent == false && flag_equal == false)
+            if(flag_percent == true)
+            {
+                num2 = ((Convert.ToDouble(input) * Convert.ToDouble(num1)) / 100).ToString();
+            }
+            else if(flag_percent == false && flag_equal == false)
             {
                 num2 = input;
             }
@@ -108,8 +151,21 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            flag_percent = true;
-            num2 = ((Convert.ToDouble(input) * Convert.ToDouble(num1)) / 100).ToString();
+            
+            if(num1 == string.Empty)
+            {
+                input = string.Empty;
+                num1 = string.Empty;
+                num2 = string.Empty;
+                result = 0;
+                this.lblDisplay.Text = "0";
+                flag_percent = false;
+            }
+            else
+            {
+                flag_percent = true;
+            }
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
