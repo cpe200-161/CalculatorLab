@@ -12,22 +12,54 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double val = 0, valbefore = 0, sum = 0;
-
+        private double val = 0, valbefore = 0, sumA = 0, sumB = 1;
+        private int OperatorCalculator;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void display(double valText)
+        private void display(double valText, int i = 1)
         {
-            lblDisplay.Text = valText.ToString();
+            if (i == 0) lblDisplay.Text = valText.ToString() + '%';
+            else lblDisplay.Text = valText.ToString();
         }
 
         private void numClik(int n, double m = 10)
         {
             val = val * m + n;
             display(val);
+        }
+
+        private void Calculator(char Operator, double Number)
+        {
+            switch (Operator)
+            {
+                case '+' :
+                    val = 0;
+                    sumA += Number;
+                    display(sumA);
+                    sumB = sumA;
+                    break;
+
+                case '-' :
+                    break;
+
+                case '*' :
+                    val = 0;
+                    sumB *= Number;
+                    display(sumB);
+                    sumA = sumB;
+                    break;
+
+                case '/':
+                    break;
+
+                case '%':
+                    val /= 100;
+                    display(val);
+                    break;
+            } 
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -92,34 +124,32 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            valbefore = val;
-            val = 0;
-            sum = 1;
-            sum *= valbefore;
-            display(sum);
+            Calculator('*', val);
+            OperatorCalculator = 3;
         }
         
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            valbefore = val;
-            val = 0;
-            sum += valbefore;
-            display(sum);
+            Calculator('+', val);
+            OperatorCalculator = 1;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            
+            Calculator('-', val);
+            OperatorCalculator = 2;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-
+            Calculator('/', val);
+            OperatorCalculator = 4;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-
+            display(val, 0);
+            OperatorCalculator = 5;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -131,13 +161,36 @@ namespace CPE200Lab1
         {
             val = 0;
             valbefore = 0;
-            sum = 0;
+            sumA = 0;
+            sumB = 1;
             display(val);
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-         
+            switch (OperatorCalculator)
+            {
+                case 1:
+                    Calculator('+', val);
+                    break;
+
+                case 2:
+                    Calculator('-', val);
+                    break;
+
+                case 3:
+                    Calculator('*', val);
+                    break;
+
+                case 4:
+                    Calculator('/', val);
+                    break;
+
+                case 5:
+                    Calculator('%', val);
+                    break;
+            }
+                
         }
     }
 }
