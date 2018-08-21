@@ -18,7 +18,7 @@ namespace CPE200Lab1
         String strNum2 = "";
         String previousString = "";
         String strPercent = "";
-        bool checkPercent, canCalPercent, isMPsignOnNum1, isMPsignOnNum2;
+        bool checkPercent, canCalPercent, isMPsignOnNum1, isMPsignOnNum2, isCal;
         public Form1()
         {
             InitializeComponent();
@@ -52,8 +52,32 @@ namespace CPE200Lab1
                 {
                     if (lblDisplay.Text.Length >= 1)
                     {
+                        System.Console.WriteLine(strNum1 + " " + previousString);
                         lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
-                        
+                        System.Console.WriteLine(strNum1 + " " + previousString);
+                        if (strNum2 == "" && operation == "")
+                        {
+                            System.Console.WriteLine("delete strNum1");
+                            strNum1 = strNum1.Remove(strNum1.Length - 1);
+                            if(strNum1 == "")
+                            {
+                                lblDisplay.Text = "0";
+                            }
+
+                        }
+                        else if (previousString == operation || (strNum2 == "" && operation != ""))
+                        {
+                            operation = operation.Remove(operation.Length - 1);
+                        }
+                        else if(previousString == strNum2[strNum2.LastIndexOf('\0')+1].ToString())
+                        {
+                            System.Console.WriteLine();
+                            strNum2 = strNum2.Remove(strNum2.Length - 1);
+                            //System.Console.WriteLine(strNum2[strNum2.LastIndexOf('\0') + 1].ToString());
+
+                        }
+
+
                     }
                     else
                     {
@@ -72,6 +96,8 @@ namespace CPE200Lab1
                             strNum1 = result.ToString("");
                             strNum2 = "";
                             operation = "";
+                            CheckDobleOperation = false;
+                            isCal = true;
                             System.Console.WriteLine(num1 + " " + num2);
 
 
@@ -86,6 +112,8 @@ namespace CPE200Lab1
                                 result = num1 * percentNum / 100;
                                 lblDisplay.Text = result.ToString("");
                                 operation = "";
+                                CheckDobleOperation = false;
+
 
                             }
                             else
@@ -117,6 +145,7 @@ namespace CPE200Lab1
 
                             strNum2 = strNum2 + btn.Text;
                             lblDisplay.Text = lblDisplay.Text + btn.Text;
+                            CheckDobleOperation = true;
 
 
                         }
@@ -196,8 +225,10 @@ namespace CPE200Lab1
                 //}
 
             }
-            previousString = btn.Text;
-
+            if (!isCal && btn.Text != "<")
+            {
+                previousString = btn.Text;
+            }
         }
 
         public void Operation(float num1, float num2, string operation)
