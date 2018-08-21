@@ -63,7 +63,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (calculationState == SECOND_OPERAND) Calculator();           
+            if (calculationState == SECOND_OPERAND)
+            {
+                Calculator();
+            }
         }
     }
 }
