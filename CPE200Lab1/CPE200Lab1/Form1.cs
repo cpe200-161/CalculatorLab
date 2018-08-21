@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        String operation = "hi";
+        String operation = "";
         float num1, num2, result, percentNum;
         String strNum1 = "";
         String strNum2 = "";
@@ -29,7 +29,8 @@ namespace CPE200Lab1
             bool CheckDobleOperation = false;
 
             Button btn = (Button)sender;
-            System.Console.WriteLine(btn.Text);
+            
+
             if ((previousString == "+" || previousString == "-" || previousString == "X" || previousString == "÷" || previousString == "="
                ) && (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷" || btn.Text == "="
                )   )
@@ -47,7 +48,6 @@ namespace CPE200Lab1
             {
 
 
-                System.Console.WriteLine(CheckDobleOperation);
                 if (btn.Text == "<")
                 {
                     if (lblDisplay.Text.Length >= 1)
@@ -107,9 +107,10 @@ namespace CPE200Lab1
                         {
                             ConvertToFloat();
 
-                            if (checkPercent)
+                            if (checkPercent && isCal)
                             {
                                 result = num1 * percentNum / 100;
+                                strNum1 = result.ToString("");
                                 lblDisplay.Text = result.ToString("");
                                 operation = "";
                                 CheckDobleOperation = false;
@@ -155,7 +156,8 @@ namespace CPE200Lab1
                     }
                     else if(CheckDobleOperation == false)
                     {
-                        if (btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷")
+                        
+                        if ((btn.Text == "+" || btn.Text == "-" || btn.Text == "X" || btn.Text == "÷") && strNum1 != "")
                         {
                             operation = btn.Text;
                             lblDisplay.Text = lblDisplay.Text + btn.Text;
@@ -179,13 +181,20 @@ namespace CPE200Lab1
                         {
                             
                             strNum1 = strNum1 + btn.Text;
-                            if(strNum1 == "+" || strNum1 == "-" || strNum1 == "X" || strNum1 == "÷" || strNum1 == "%" || strNum1 == "=")
+                            if (strNum1 == "+" || strNum1 == "-" || strNum1 == "X" || strNum1 == "÷" || strNum1 == "%" || strNum1 == "=")
                             {
                                 strNum1 = strNum1.Remove(strNum1.Length - 1);
+                                lblDisplay.Text = "0";
 
+                            }
+                            else if (btn.Text == "=" && strNum1 != "") 
+                            {
+                                strNum1 = strNum1.Remove(strNum1.Length - 1);
+                                lblDisplay.Text = strNum1;
                             }
                             else
                             {
+                                System.Console.WriteLine("Problem =");
                                 lblDisplay.Text = lblDisplay.Text + btn.Text;
                             }
                         }
@@ -225,10 +234,15 @@ namespace CPE200Lab1
                 //}
 
             }
-            if (!isCal && btn.Text != "<")
+            if (btn.Text != "<")
             {
                 previousString = btn.Text;
             }
+            System.Console.WriteLine("btn.Text is " + btn.Text);
+            System.Console.WriteLine("previousString is " + previousString);
+            System.Console.WriteLine("operation is " + operation);
+            System.Console.WriteLine("strNum1 is " + strNum1);
+            System.Console.WriteLine("strNum2 is " + strNum2 + "\n");
         }
 
         public void Operation(float num1, float num2, string operation)
