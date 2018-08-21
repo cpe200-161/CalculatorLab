@@ -97,7 +97,7 @@ namespace CPE200Lab1
             }
         }
 
-        private void calculate()
+        private void setFunction()
         {
             if (firstSet == null)
             {
@@ -121,13 +121,6 @@ namespace CPE200Lab1
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (checkEqual)
-            {
-                lblDisplay.Text = "0";
-                firstSet = null;
-                secondSet = null;
-                checkEqual = false;
-            }
             if (checkSet)
             {
                 lblDisplay.Text = "";
@@ -173,28 +166,28 @@ namespace CPE200Lab1
 
         private void btnplus_Click(object sender, EventArgs e)
         {
-            calculate();
+            setFunction();
             checkMark("+");
             checkNumber = false;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            calculate();
+            setFunction();
             checkMark("-");
             checkNumber = false;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            calculate();
+            setFunction();
             checkMark("*");
             checkNumber = false;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            calculate();
+            setFunction();
             checkMark("/");
             checkNumber = false;
         }
@@ -234,15 +227,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (firstSet == null)
-            {
-                firstSet = lblDisplay.Text;
-            }
-            else
-            {
-                secondSet = lblDisplay.Text;
-                checkCode();
-            }
+            checkCode();
             checkSet = true;
             checkEqual = true;
             checkNumber = false;
