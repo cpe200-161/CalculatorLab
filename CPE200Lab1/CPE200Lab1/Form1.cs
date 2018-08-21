@@ -26,40 +26,24 @@ namespace CPE200Lab1
             if (oper == "+")
             {
                 secondNumber = double.Parse(lblDisplay.Text);
-                double c = firstNumber + secondNumber;
-                DisplayResult(c);
+                lblDisplay.Text = (firstNumber + secondNumber).ToString();
             }
             else if (oper == "-")
             {
                 secondNumber = double.Parse(lblDisplay.Text);
-                double c = firstNumber - secondNumber;
-                DisplayResult(c);
+                lblDisplay.Text = (firstNumber - secondNumber).ToString();
             }
             else if (oper == "*")
             {
                 secondNumber = double.Parse(lblDisplay.Text);
-                double c = firstNumber * secondNumber;
-                DisplayResult(c);
+                lblDisplay.Text = (firstNumber * secondNumber).ToString();
             }
             else if (oper == "/")
             {
                 secondNumber = double.Parse(lblDisplay.Text);
-                double c = firstNumber / secondNumber;
-                DisplayResult(c);
-            }
-            else if (oper == "%")
-            {
-                secondNumber = double.Parse(lblDisplay.Text);
-                double c = (firstNumber / secondNumber) * 100;
-                DisplayResult(c);
+                lblDisplay.Text = (firstNumber / secondNumber).ToString();
             }
         }
-        private void DisplayResult(double c)
-        {
-            string ans = c.ToString();
-            lblDisplay.Text = ans;
-        }
-
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -94,8 +78,7 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            oper = "%";
-            ConvertFirstNumber();
+            lblDisplay.Text = ((double.Parse(lblDisplay.Text)) * (firstNumber / 100)).ToString();
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -103,6 +86,12 @@ namespace CPE200Lab1
             oper = "+";
             ConvertFirstNumber();
 
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            isDisplay = true;
         }
 
         private void ConvertFirstNumber()
