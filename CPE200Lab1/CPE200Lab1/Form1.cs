@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string first = null, second = null, ans = null, func = null, temp = null;
+        string first = null, second = null, ans = null, func = null;
         bool isSecond = false, isDot = false, isTrigger = false, isAns = false, isRes = false;
 
         public Form1()
@@ -28,6 +28,16 @@ namespace CPE200Lab1
                 lblDisplay.Text = second;
                 isAns = true; isSecond = true;
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            char last = lblDisplay.Text[lblDisplay.Text.Length - 1];
+
+            if (last == '.') isDot = false;
+
+            if (lblDisplay.Text.Length <= 1) lblDisplay.Text = "0";
+            else lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
         }
 
         private void num_Click(object sender, EventArgs e)
@@ -82,7 +92,7 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if(!isDot) lblDisplay.Text += ".";            
+            if(!isDot) lblDisplay.Text += "."; 
             isDot = true; isAns = false;
         }
     }
