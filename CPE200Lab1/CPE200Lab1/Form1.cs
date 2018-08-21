@@ -15,6 +15,8 @@ namespace CPE200Lab1
         string operate = " ";
         float sum = 0;
         string display = "0";
+        bool oper = false;
+        bool dot = false;
 
         public Form1()
         {
@@ -23,7 +25,11 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text += btnDot.Text;
+            if(dot == false)
+            {
+                lblDisplay.Text += btnDot.Text;
+                dot = true;
+            }   
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -76,6 +82,7 @@ namespace CPE200Lab1
             lblDisplay.Text = " ";
             lblDisplay.Text = sum.ToString();
             operate = btn.Text;
+            oper = true;
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -85,14 +92,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = " ";
             }
-            if(sum != 0)
+            if (oper)
             {
                 lblDisplay.Text = " ";
-                display = " ";
+                oper = false;
             }
             lblDisplay.Text += btn.Text;
             display = lblDisplay.Text;
-
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -103,7 +109,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = " ";
                 lblDisplay.Text = sum.ToString();
                 display = sum.ToString();
-
             }
             else if(operate == "-")
             {
@@ -134,6 +139,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = num.ToString();
                 display = lblDisplay.Text;
             }
+            sum = 0;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
