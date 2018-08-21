@@ -152,7 +152,7 @@ namespace CPE200Lab1
                 secondSet = lblDisplay.Text;
                 checkall();
                 firstSet = lblDisplay.Text;
-                    checkset = true;
+                checkset = true;
             }
             check("+");
         }
@@ -219,7 +219,7 @@ namespace CPE200Lab1
             else
             {
                 secondSet = (float.Parse(lblDisplay.Text) * float.Parse(firstSet) / 100).ToString();
-                checkall();
+                
                 if (checkplus == true)
                 {
                     percent = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
@@ -230,11 +230,11 @@ namespace CPE200Lab1
                 }
                 if (checkmulti == true)
                 {
-                    percent = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
+                    percent = (float.Parse(firstSet) * (float.Parse(lblDisplay.Text) / 100)).ToString();
                 }
                 if (checkdivide == true)
                 {
-                    percent = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
+                    percent = (float.Parse(firstSet) / (float.Parse(lblDisplay.Text) / 100)).ToString();
                 }
                 secondSet = percent;
             }
