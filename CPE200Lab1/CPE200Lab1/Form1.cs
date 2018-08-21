@@ -17,6 +17,7 @@ namespace CPE200Lab1
         float setFp = 0;
         float setSp = 0;
         bool openSp = false;
+        int perCent = 0;
         public Form1()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace CPE200Lab1
             fp = lblDisplay.Text;
             setFp = float.Parse(fp);
             openSp = true;
-            if(Op == "±")
+            if (Op == "±")
             {
                 lblDisplay.Text = "";
                 lblDisplay.Text = (setFp * (-1)).ToString();
@@ -57,27 +58,31 @@ namespace CPE200Lab1
         {
             setSp = float.Parse(lblDisplay.Text);
             switch (Op)
-            {
+             {
                 case "+":
                     lblDisplay.Text = "";
                     lblDisplay.Text = (setFp + setSp).ToString();
+                    perCent = 0;
                 break;
 
                 case "-":
                     lblDisplay.Text = "";
                     lblDisplay.Text = (setFp - setSp).ToString();
+                    perCent = 0;
                 break;
 
                 case "X":
                     lblDisplay.Text = "";
                     lblDisplay.Text = (setFp * setSp).ToString();
+                    perCent = 0;
                 break;
 
                 case "÷":
                     lblDisplay.Text = "";
                     lblDisplay.Text = (setFp / setSp).ToString();
-                break;
-            }
+                    perCent = 0;
+                break;  
+             }
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -105,9 +110,13 @@ namespace CPE200Lab1
         }
         private void btnPerCent_Click(object sender, EventArgs e)
         {
-            float perC = 0;
-            perC = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = ((setFp * perC) / 100).ToString();
+            if(perCent == 0)
+            {
+                float perC = 0;
+                perC = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = ((setFp * perC) / 100).ToString();
+            }
+            perCent++;
         }
     }
 }
