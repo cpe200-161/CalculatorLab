@@ -51,6 +51,7 @@ namespace CPE200Lab1
                 string ans = c.ToString();
                 lblDisplay.Text = ans;
             }
+            oper_active = false;
         }
 
         private void num_Click(object sender, EventArgs e)
@@ -80,6 +81,13 @@ namespace CPE200Lab1
             oper = "/";
             a = double.Parse(lblDisplay.Text);
             oper_active = true;
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            double p=double.Parse(lblDisplay.Text);
+            p /= 100;
+            lblDisplay.Text = p.ToString();
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
