@@ -89,22 +89,9 @@ namespace CPE200Lab1
             }
             else if (percent == true)
             {
-                if (ans2 == "" || ans2 == null)
-                {
                     ans = float.Parse(ans1) / 100;
                     ans1 = ans.ToString();
-                    lblDisplay.Text = ans1;
                     ans = 0;
-                    ans2 = "0";
-                }
-                else if (ans2 != "" || ans2 != null)
-                {
-                    ans = (float.Parse(ans1) / 100) * float.Parse(ans2);
-                    ans1 = ans.ToString();
-                    lblDisplay.Text = ans1;
-                    ans = 0;
-                    ans2 = "0";
-                }
             }            
         }
         private void btnPlus_Click(object sender, EventArgs e)
