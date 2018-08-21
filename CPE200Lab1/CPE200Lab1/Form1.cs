@@ -23,10 +23,10 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-
-            //lblDisplay.Text = -= "null";
-            //lblDisplay.Text = (float.Parse(lblDisplay.Text)/ 10).ToString();
-            lblDisplay.Text = (Convert.ToInt32(lblDisplay.Text) / 10).ToString();
+            if (0<lblDisplay.Text.Length)
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+            }   
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -38,8 +38,10 @@ namespace CPE200Lab1
         private void btnPercent_Click(object sender, EventArgs e)
         {
             //this %
+            eq2 = float.Parse(lblDisplay.Text);
             resultstore = (eq1 * eq2) / 100;
             eq2 = resultstore;
+            lblDisplay.Text = eq2.ToString();
         }
 
         private void btnoperator_Click(object sender, EventArgs e)
@@ -63,7 +65,7 @@ namespace CPE200Lab1
                 {
                     divideflage = true;
                 }
-
+                Dotflage = true;
                 operatorflage = false;
             }
             
