@@ -40,7 +40,6 @@ namespace CPE200Lab1
             eqCheck = false;
         }
 
-
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn  = (Button)sender;
@@ -94,218 +93,52 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (firstOp == null)
-            {
-                firstOp = lblDisplay.Text;
-            }
-            else if(number)
-            {
-                if (eqCheck==false)
-                {
-                    if (percent==false)
-                    {
-                        secondOp = lblDisplay.Text;
-                    }
-                    if (plus)
-                    {
-                        total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
-                    }
-                    else if (minus)
-                    {
-                        total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
-                    }
-                    else if (multiply)
-                    {
-                        total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
-                    }
-                    else if (divide)
-                    {
-                        total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
-                    }
-                    
-                    firstOp = total;
-                    lblDisplay.Text = firstOp;
-                }
-                else
-                {
-                    lblDisplay.Text = firstOp;
-                }
-            }
-            checkFirst = true;
+            Calculator();
             minus = false;
             divide = false;
             plus = true;
             multiply = false;
             eqCheck = false;
             percent = false;
-            number = false;
+
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (firstOp == null)
-            {
-                firstOp = lblDisplay.Text;
-            }
-            else if(number)
-            {
-                if (eqCheck==false)
-                {
-                    if (percent==false)
-                    {
-                        secondOp = lblDisplay.Text;
-                    }
-                    if (plus)
-                    {
-                        total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
-                    }
-                    else if (minus)
-                    {
-                        total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
-                    }
-                    else if (multiply)
-                    {
-                        total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
-                    }
-                    else if (divide)
-                    {
-                        total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
-                    }
-                    firstOp = total;
-                    lblDisplay.Text = firstOp;
-                }
-                else
-                {
-                    lblDisplay.Text = firstOp;
-                }
-            }
-            checkFirst = true;
+            Calculator();
             minus = true;
             divide = false;
             plus = false;
             multiply = false;
             eqCheck = false;
             percent = false;
-            number = false;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (firstOp == null)
-            {
-                firstOp = lblDisplay.Text;
-            }
-            else if(number)
-            {
-                if (eqCheck==false)
-                {
-                    if (percent==false)
-                    {
-                        secondOp = lblDisplay.Text;
-                    }
-                    if (plus)
-                    {
-                        total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
-                    }
-                    else if (minus)
-                    {
-                        total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
-                    }
-                    else if (multiply)
-                    {
-                        total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
-                    }
-                    else if (divide)
-                    {
-                        total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
-                    }
-                    firstOp = total;
-                    lblDisplay.Text = firstOp;
-                }
-                else
-                {
-                    lblDisplay.Text = firstOp;
-                }
-            }
+            Calculator();
             multiply = true;
             divide = false;
             plus = false;
             minus = false;
             eqCheck = false;
             percent = false;
-            number = false;
-            checkFirst = true;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (firstOp == null)
-            {
-                firstOp = lblDisplay.Text;
-            }
-            else if(number)
-            {
-                if (eqCheck == false)
-                {
-                    if (percent == false)
-                    {
-                        secondOp = lblDisplay.Text;
-                    }
-                    if (plus)
-                    {
-                        total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
-                    }
-                    else if (minus)
-                    {
-                        total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
-                    }
-                    else if (multiply)
-                    {
-                        total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
-                    }
-                    else if (divide)
-                    {
-                        total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
-                    }
-                    firstOp = total;
-                    lblDisplay.Text = firstOp;
-                }
-                else
-                {
-                    lblDisplay.Text = firstOp;
-                }
-            }
-            checkFirst = true;
+            Calculator();
             divide = true;
             plus = false;
             minus = false;
             multiply = false;
             eqCheck = false;
             percent = false;
-            number = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (percent== false)
-            {
-                secondOp = lblDisplay.Text;
-            }
-            if (plus)
-            {
-                total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
-            }else if (minus)
-            {
-                total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
-            }
-            else if (multiply)
-            {
-                total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
-            }
-            else if (divide)
-            {
-                total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
-            }
+            Calculate();
             firstOp = total;
             lblDisplay.Text = total;
             eqCheck = true;
@@ -351,5 +184,51 @@ namespace CPE200Lab1
             number = false;
         }
 
+        private void Calculator()
+                {
+                    if (firstOp == null)
+                    {
+                        firstOp = lblDisplay.Text;
+                    }
+                    else if (number)
+                    {
+                        if (eqCheck == false)
+                        {
+                            Calculate;
+                            firstOp = total;
+                            lblDisplay.Text = firstOp;
+                        }
+                        else
+                        {
+                            lblDisplay.Text = firstOp;
+                        }
+                    }
+                    number = false;
+                    checkFirst = true;
+                }
+
+        private void Calculate()
+                {
+                    if (percent == false)
+                    {
+                        secondOp = lblDisplay.Text;
+                    }
+                    if (plus)
+                    {
+                        total = (float.Parse(firstOp) + float.Parse(secondOp)).ToString();
+                    }
+                    else if (minus)
+                    {
+                        total = (float.Parse(firstOp) - float.Parse(secondOp)).ToString();
+                    }
+                    else if (multiply)
+                    {
+                        total = (float.Parse(firstOp) * float.Parse(secondOp)).ToString();
+                    }
+                    else if (divide)
+                    {
+                        total = (float.Parse(firstOp) / float.Parse(secondOp)).ToString();
+                    }
+                }
     }
 }
