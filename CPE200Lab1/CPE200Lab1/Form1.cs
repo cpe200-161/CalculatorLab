@@ -13,8 +13,6 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         string operate = " ";
-        float num1 = 0;
-        float num2 = 1;
         float sum = 0;
         string display = "0";
 
@@ -31,7 +29,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = " ";
-            num1 = 0; num2 = 1; display = "0"; operate = " ";
+            sum = 0; display = "0"; operate = " ";
         }
 
         private void btnoperator(object sender, EventArgs e)
@@ -43,49 +41,41 @@ namespace CPE200Lab1
             }
             if (operate == "+")
             {
-                num1 += float.Parse(display);
-                operate = btn.Text;
+                sum += float.Parse(display);
             }
             else if(operate == "-")
             {
-                if (num1 == 0)
+                if (sum == 0)
                 {
-                    num1 += float.Parse(display);
+                    sum += float.Parse(display);
                 }
                 else
                 {
-                    num1 -= float.Parse(display);
+                    sum -= float.Parse(display);
                 }
-                operate = btn.Text;
             }
             else if(operate == "X")
             {
-                num2 *= float.Parse(display);
-                operate = btn.Text;
+                if(sum == 0)
+                {
+                    sum += 1;
+                }
+                sum *= float.Parse(display);
             }
             else if (operate == "÷")
             {
-                if (num2 == 1)
+                if (sum == 0)
                 {
-                    num2 = float.Parse(display)/num2;
+                    sum = float.Parse(display);
                 }
                 else
                 {
-                    num2 /= float.Parse(display);
+                    sum /= float.Parse(display);
                 }
-                operate = btn.Text;
             }
-
-            if(operate == "+" || operate == "-")
-            {
-                lblDisplay.Text = " ";
-                lblDisplay.Text = num1.ToString();
-            }
-            else if(operate == "X" || operate == "÷")
-            {
-                lblDisplay.Text = " ";
-                lblDisplay.Text = num2.ToString();
-            }
+            lblDisplay.Text = " ";
+            lblDisplay.Text = sum.ToString();
+            operate = btn.Text;
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -95,7 +85,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = " ";
             }
-            if(num1 != 0 || num2 != 1)
+            if(sum != 0)
             {
                 lblDisplay.Text = " ";
                 display = " ";
@@ -109,36 +99,32 @@ namespace CPE200Lab1
         {
             if(operate == "+")
             {
-                num1 += float.Parse(display);
+                sum += float.Parse(display);
                 lblDisplay.Text = " ";
-                lblDisplay.Text = num1.ToString();
-                display = num1.ToString();
-                num1 = 0;
+                lblDisplay.Text = sum.ToString();
+                display = sum.ToString();
 
             }
             else if(operate == "-")
             {
-                num1 -= float.Parse(display);
+                sum -= float.Parse(display);
                 lblDisplay.Text = " ";
-                lblDisplay.Text = num1.ToString();
-                display = num1.ToString();
-                num1 = 0;
+                lblDisplay.Text = sum.ToString();
+                display = sum.ToString();
             }
             else if (operate == "X")
             {
-                num2 *= float.Parse(display);
+                sum *= float.Parse(display);
                 lblDisplay.Text = " ";
-                lblDisplay.Text = num2.ToString();
-                display = num1.ToString();
-                num1 = 0;
+                lblDisplay.Text = sum.ToString();
+                display = sum.ToString();
             }
             else if (operate == "÷")
             {
-                num2 /= float.Parse(display);
+                sum /= float.Parse(display);
                 lblDisplay.Text = " ";
-                lblDisplay.Text = num2.ToString();
-                display = num1.ToString();
-                num1 = 0;
+                lblDisplay.Text = sum.ToString();
+                display = sum.ToString();
             }
             else if(operate == "%")
             {
