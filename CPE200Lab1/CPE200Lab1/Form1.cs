@@ -12,17 +12,17 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+
         string firstOperand = null;
         string secondOperand = null;
 
         bool setfirstOperand = false;
-        //bool isStartSecondOperand = false;
+        bool isStartSecondOperand = false;
         bool plus = false;
         bool minus = false;
         bool muti = false;
         bool divide = false;
-
-        string result = null;
+        bool equal = false;
 
         public Form1()
         {
@@ -32,14 +32,15 @@ namespace CPE200Lab1
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0")
+            if (lblDisplay.Text == "0" || equal == true)
             {
                 lblDisplay.Text = "";
+                equal = false;
             }
             if (setfirstOperand == true)
             {
                 lblDisplay.Text = "";
-            //    isStartSecondOperand = false;
+                isStartSecondOperand = true;
                 setfirstOperand = false;
             }
 
@@ -51,18 +52,18 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (firstOperand != null)
+            if (isStartSecondOperand == true)
             {
                 secondOperand = lblDisplay.Text;
-                result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-                lblDisplay.Text = result;
-                firstOperand = result;
+                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                lblDisplay.Text = firstOperand;
             }
-            else
-            {
-                firstOperand = lblDisplay.Text;
-                setfirstOperand = true;
-            }
+            else firstOperand = lblDisplay.Text;
+            lblDisplay.Text = firstOperand;
+            setfirstOperand = true;
             plus = true;
             minus = false;
             muti = false;
@@ -72,24 +73,20 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             secondOperand = lblDisplay.Text;
-            if (plus == true)
-            {
-                result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-            }
-            else if(minus == true)
-            {
-                result = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
-            }
-            else if(muti == true)
-            {
-                result = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
-            }
-            else if(divide == true)
-            {
-                result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
-            }
-            lblDisplay.Text = result;
-
+            if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+            else if(minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+            else if(muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+            else if(divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+            lblDisplay.Text = firstOperand;
+            plus = false;
+            minus = false;
+            muti = false;
+            divide = false;
+            firstOperand = null;
+            secondOperand = null;
+            setfirstOperand = false;
+            isStartSecondOperand = false;
+            equal = true;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -98,26 +95,29 @@ namespace CPE200Lab1
             firstOperand = null;
             secondOperand = null;
             setfirstOperand = false;
-            //    isStartsecondOperand = false;
+            isStartSecondOperand = false;
 
             plus = false;
             minus = false;
             muti = false;
             divide = false;
+            equal = false;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (setfirstOperand == true)
+            if (isStartSecondOperand == true)
             {
                 secondOperand = lblDisplay.Text;
-                firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                lblDisplay.Text = firstOperand;
             }
-            else
-            {
-                firstOperand = lblDisplay.Text;
-                setfirstOperand = true;
-            }
+            else firstOperand = lblDisplay.Text;
+            lblDisplay.Text = firstOperand;
+            setfirstOperand = true;
             plus = false;
             minus = false;
             muti = false;
@@ -126,16 +126,18 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (setfirstOperand == true)
+            if (isStartSecondOperand == true)
             {
                 secondOperand = lblDisplay.Text;
-                firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                lblDisplay.Text = firstOperand;
             }
-            else
-            {
-                firstOperand = lblDisplay.Text;
-                setfirstOperand = true;
-            }
+            else firstOperand = lblDisplay.Text;
+            lblDisplay.Text = firstOperand;
+            setfirstOperand = true;
             plus = false;
             minus = false;
             muti = true;
@@ -144,16 +146,18 @@ namespace CPE200Lab1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (setfirstOperand == true)
+            if (isStartSecondOperand == true)
             {
                 secondOperand = lblDisplay.Text;
-                firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                if (plus == true) firstOperand = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+                else if (minus == true) firstOperand = (float.Parse(firstOperand) - float.Parse(secondOperand)).ToString();
+                else if (muti == true) firstOperand = (float.Parse(firstOperand) * float.Parse(secondOperand)).ToString();
+                else if (divide == true) firstOperand = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
+                lblDisplay.Text = firstOperand;
             }
-            else
-            {
-                firstOperand = lblDisplay.Text;
-                setfirstOperand = true;
-            }
+            else firstOperand = lblDisplay.Text;
+            lblDisplay.Text = firstOperand;
+            setfirstOperand = true;
             plus = false;
             minus = true;
             muti = false;
@@ -162,7 +166,7 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (float.Parse(lblDisplay.Text)/100).ToString();
+            lblDisplay.Text = (float.Parse(firstOperand)*float.Parse(lblDisplay.Text)/100).ToString();
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -189,5 +193,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
             }
         }
+
     }
 }
