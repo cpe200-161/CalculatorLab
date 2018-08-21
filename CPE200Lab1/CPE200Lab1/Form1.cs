@@ -18,10 +18,12 @@ namespace CPE200Lab1
         const int FIRST_OPERAND = 0;
         const int SECOND_OPERAND = 1;
         const int OPERATOR = 2;
+
         public Form1()
         {
             InitializeComponent();
         }
+
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
