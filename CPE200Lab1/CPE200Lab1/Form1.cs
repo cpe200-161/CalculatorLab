@@ -105,6 +105,10 @@ namespace CPE200Lab1
         private void BtnBack_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+            if(lblDisplay.Text == "")
+            {
+                lblDisplay.Text = "0";
+            }
         }
 
         private void BtnSign_Click(object sender, EventArgs e)
