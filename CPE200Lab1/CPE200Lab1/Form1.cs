@@ -12,117 +12,93 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float n1, n2, n3;
+        float n1=0, n2=0;
+        Boolean oper=false, plus=false, minus=false, mul=false, div=false, re_num=false, dot=false;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void click_but(object sender, EventArgs e)
+        private void click_butt(object sender, EventArgs e)
         {
             Button bt = (Button)sender;
-            lblDisplay.Text += bt.Text;
-
+            if (lblDisplay.Text == "0" || re_num == true)
+            {
+                lblDisplay.Text = "";
+                re_num = false;
+            }
+            if(lblDisplay.Text.Length<8) lblDisplay.Text += bt.Text;
+            n1 = float.Parse(lblDisplay.Text);
         }
 
-        private void btn0_Click(object sender, EventArgs e)
+        private void click_Operbutt(object sender, EventArgs e)
         {
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDivide_Click(object sender, EventArgs e)
-        {
-
+            Button bt = (Button)sender;
+            re_num = true;
+            if(oper == true)
+            {
+                if (plus == true)
+                {
+                    n2 += n1;
+                    plus = false;
+                }
+                else if (minus == true)
+                {
+                    n2 -= n1;
+                    minus = false;
+                }
+                else if (mul == true)
+                {
+                    n2 *= n1;
+                    mul = false;
+                }
+                else if (div == true)
+                {
+                    n2 /= n1;
+                    div = false;
+                }
+                oper = false;
+            }
+            else n2 = n1;
+            lblDisplay.Text = n2.ToString();
+            oper = true;
+            if (bt.Text == "+") plus = true;
+            else if (bt.Text == "-") minus = true;
+            else if (bt.Text == "X") mul = true;
+            else if (bt.Text == "÷") div = true;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-
+            n1 = n1 * n2 / 100;
+            lblDisplay.Text = n1.ToString();
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-
+            if(dot == false && lblDisplay.Text.Length < 8) lblDisplay.Text += ".";
+            dot = true;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-
+            if (lblDisplay.Text.Length == 1) lblDisplay.Text = "0";
+            else lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length-1,1);
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-
+            n1 *= -1;
+            lblDisplay.Text = n1.ToString();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            lblDisplay.Text = "0";
+            n1 = 0;
+            n2 = 0;
+            oper = false;
         }
     }
 }
