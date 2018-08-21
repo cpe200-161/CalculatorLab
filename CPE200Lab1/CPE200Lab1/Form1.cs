@@ -22,11 +22,6 @@ namespace CPE200Lab1
         bool setFirst = false;
         bool Plus = false, Minus = false, Multi = false, Div = false, Dot = true;
         
-        
-        
-
-
-
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -50,7 +45,6 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-
             if (Dot == true)
             {
                 lblDisplay.Text += ".";
@@ -72,9 +66,6 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = (firstNumber * perCent).ToString();
             }
-
-
-
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -111,8 +102,6 @@ namespace CPE200Lab1
                     result = secondNumber - firstNumber;
                 }
                 lblDisplay.Text = result.ToString();
-
-
             }
             if (lblDisplay.Text != "" && Multi == true)
             {
@@ -234,7 +223,6 @@ namespace CPE200Lab1
         }
         private void clearAll()
         {
-
             firstNumber = 0;
             secondNumber = 0;
             result = 0;
