@@ -12,147 +12,73 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private int a;
-        private double b;
-        private char op = ' ';
-        private bool flag = true; 
+        private double first_number , result_number;
+        private string operand;
+        private bool flag_num = false , flag_oper = false; 
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void showDigit(int p)
+        private void btnx_Click(object sender, EventArgs e)
         {
-            if (checkDisplay()) lblDisplay.Text = p.ToString();
-            else lblDisplay.Text += p.ToString();
-        }
-
-        private void showDigit(string p)
-        {
-            if (lblDisplay.Text.Contains(".")) return;
-            else lblDisplay.Text += p;
-        }
-
-        private bool checkDisplay()
-        {
-            if (flag)
+            Button btn = (Button)sender;
+            if ( flag_num || lblDisplay.Text == "0")
             {
-                flag = false;
-                return true;
-            }else
-            {
-                return false;
+                lblDisplay.Text = "";
             }
-        }
 
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            showDigit(1);
-
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            showDigit(2);
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            showDigit(3);
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            showDigit(4);
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            showDigit(5);
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            showDigit(6);
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            showDigit(7);
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            showDigit(8);
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            showDigit(9);
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            showDigit(0);
-        }
-
-        private void btnDot_Click(object sender, EventArgs e)
-        {
-            showDigit(".");
-        }
-
-        private void Cal(double a)
-        {
-            switch (op)
+            if (lblDisplay.Text.Length < 8)
             {
-                case '+':
-                    b = (b + a);
-                    break;
-                case '-':
-                    b = (b - a);
-                    break;
-                case '*':
-                    b = (b * a);
-                    break;
-                case '/':
-                    b = (b / a);
-                    break;
-                case '%':
-                    b = (b % a);
-                    break;
-                default: b = a;
-                    break;
+                lblDisplay.Text += btn.Text;
             }
+            flag_num = false;
         }
 
-        private void setOperator(char p)
+        private void btnoper_Click(object sender, EventArgs e)
         {
-            Cal(double.Parse(lblDisplay.Text));
-            op = p;
-            lblDisplay.Text += lblDisplay.Text + p;
-            lblDisplay.Text = b.ToString();
-
-            flag = true;
-        }
-
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-            setOperator('+');
+            if (!flag_oper)
+            {
+                Button btn = (Button)sender;
+                first_number = (double.Parse(lblDisplay.Text));
+                operand = btn.Text;
+                flag_oper = true;
+                flag_num = true;
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            Cal(double.Parse(lblDisplay.Text));
-            lblDisplay.Text = b.ToString();
-            op = ' ';
-        }
+            if (flag_oper)
+            {
+                result_number = (double.Parse(lblDisplay.Text));
+                if(operand == "+")
+                {
+                    double ans = (result_number + first_number);
+                    lblDisplay.Text = ans.ToString();
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            lblDisplay.Text = "0";
-            op = ' ';
-            flag = true;
-            b = 0.00;
+                }
+                else if (operand == "-")
+                {
+                    double ans = (first_number - result_number);
+                    lblDisplay.Text = ans.ToString();
+
+                }
+                else if (operand == "X")
+                {
+                    double ans = (result_number * first_number);
+                    lblDisplay.Text = ans.ToString();
+
+                }
+                else if (operand == "÷")
+                {
+                    double ans = (first_number / result_number);
+                    lblDisplay.Text = ans.ToString();
+
+                }
+                flag_oper = false;
+            }
             
         }
 
@@ -168,38 +94,11 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            /*
-            if (lblDisplay.Text == "0")
-            {
-               lblDisplay.Text = "0";
-            }
-            else
-            {
-               lblDisplay.Text = lblDisplay.Text.Substring(lblDisplay.Text.Length);
-             }
-             */
-        }
-
-        private void btnDivide_Click(object sender, EventArgs e)
-        {
-            setOperator('/');
-        }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
-        {
-            setOperator('*');
-        }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            setOperator('-');
-        }
-
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            setOperator('%');
+            lblDisplay.Text = ((double.Parse(lblDisplay.Text) * first_number / 100).ToString());
         }
+
+       
     }
 }
