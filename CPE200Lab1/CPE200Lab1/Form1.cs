@@ -17,16 +17,29 @@ namespace CPE200Lab1
 		string result;
 		int calNumber;
 		bool setFirstOperand = false;
-        bool isStartSecondOperand = false;
-		bool setDot = false;
+		bool isStartSecondOperand = false;
 		bool setPercentage = false;
+
+		void saveFirstOperand()
+		{
+			firstOperand = lblDisplay.Text;
+			setFirstOperand = true;
+		}
+		void isClear()
+		{
+			calNumber = 0;
+			setFirstOperand = false;
+			isStartSecondOperand = false;
+			setPercentage = false;
+		}
+
 		void isEqual()
 		{
-			if (isStartSecondOperand == true)
+			if (isStartSecondOperand == true && lblDisplay.Text.Length <= 8)
 			{
 				if (setPercentage == true)
 				{
-					result = ((float.Parse(firstOperand) * float.Parse(lblDisplay.Text))/100).ToString();
+					result = ((float.Parse(firstOperand) * float.Parse(lblDisplay.Text)) / 100).ToString();
 					secondOperand = result;
 				}
 				else
@@ -35,8 +48,8 @@ namespace CPE200Lab1
 				}
 				if (calNumber == 1)
 				{
-					result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
-					lblDisplay.Text = result;
+				result = (float.Parse(firstOperand) + float.Parse(secondOperand)).ToString();
+				lblDisplay.Text = result;
 				}
 				else if (calNumber == 2)
 				{
@@ -53,16 +66,9 @@ namespace CPE200Lab1
 					result = (float.Parse(firstOperand) / float.Parse(secondOperand)).ToString();
 					lblDisplay.Text = result;
 				}
-				/*else if (calNumber == 5)
-				{
-					result = ((float.Parse(firstOperand) * float.Parse(secondOperand) / 100)).ToString();
-					lblDisplay.Text = result;
-				}*/
-				calNumber = 0;
 				firstOperand = lblDisplay.Text;
+				isClear();
 				setFirstOperand = true;
-				isStartSecondOperand = false;
-				setPercentage = false;
 			}
 		}
 
@@ -81,8 +87,7 @@ namespace CPE200Lab1
 			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
 				calNumber = 4;
-				firstOperand = lblDisplay.Text;
-				setFirstOperand = true;
+				saveFirstOperand();
 			}
 		}
 
@@ -96,8 +101,7 @@ namespace CPE200Lab1
 			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
 				calNumber = 3;
-				firstOperand = lblDisplay.Text;
-				setFirstOperand = true;
+				saveFirstOperand();
 			}
 		}
 
@@ -132,7 +136,7 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-			if (setDot == false)
+			if (lblDisplay.Text.IndexOf(".") == -1)
 			{
 				lblDisplay.Text += ".";
 			}
@@ -140,7 +144,7 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-			if (isStartSecondOperand == true )
+			if (isStartSecondOperand == true)
 			{
 				isEqual();
 				calNumber = 1;
@@ -148,23 +152,19 @@ namespace CPE200Lab1
 			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
 				calNumber = 1;
-				firstOperand = lblDisplay.Text;
-				setFirstOperand = true;
+				saveFirstOperand();
 			}
         }
 
 		private void btnClear_Click(object sender, EventArgs e)
 		{
 			lblDisplay.Text = "0";
-			setFirstOperand = false;
-			isStartSecondOperand = false;
-			setPercentage = false;
-			calNumber = 0;
+			isClear();
 		}
 
 		private void btnMinus_Click(object sender, EventArgs e)
 		{
-			if (isStartSecondOperand == true )
+			if (isStartSecondOperand == true)
 			{
 				isEqual();
 				calNumber = 2;
@@ -172,8 +172,7 @@ namespace CPE200Lab1
 			else if (setFirstOperand == false || isStartSecondOperand == false)
 			{
 				calNumber = 2;
-				firstOperand = lblDisplay.Text;
-				setFirstOperand = true;
+				saveFirstOperand();
 			}
 		}
 
@@ -183,16 +182,13 @@ namespace CPE200Lab1
 			{
 				setPercentage = true;
 			}
-			if (setFirstOperand == false || isStartSecondOperand == false)
+			if ((setFirstOperand == false || isStartSecondOperand == false)&&(lblDisplay.Text.Length <= 8))
 			{
 				firstOperand = lblDisplay.Text;
-				result = (float.Parse(firstOperand) * 0.01).ToString();
+				result = (float.Parse(firstOperand)/100).ToString();
 				lblDisplay.Text = result;
-				calNumber = 0;
 				firstOperand = lblDisplay.Text;
-				setFirstOperand = true;
-				isStartSecondOperand = false;
-				setPercentage = false;
+				isClear();
 			}
 		}
 
@@ -200,6 +196,18 @@ namespace CPE200Lab1
 		{
 			result = (float.Parse(lblDisplay.Text) * (-1)).ToString();
 			lblDisplay.Text = result;
+		}
+
+		private void btnBack_Click(object sender, EventArgs e)
+		{
+			if (lblDisplay.Text != "0")
+			{
+				lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+				if (lblDisplay.Text == "" || lblDisplay.Text == "-")
+				{
+					lblDisplay.Text = "0";
+				}
+			}
 		}
 	}
 }
