@@ -15,34 +15,41 @@ namespace CPE200Lab1
         string firstSet = null;
         string secondSet = null;
         string percent = null;
-        bool checkset = false;
-        bool checkplus = false;
-        bool checkminus = false;
-        bool checkmulti = false;
-        bool checkdivide = false;
-        bool checkper = false;
+        bool checkSet = false;
+        bool checkPlus = false;
+        bool checkMinus = false;
+        bool checkMultiply = false;
+        bool checkDivide = false;
+        bool checkPercent = false;
+        bool checkEqual = false;
+        bool checkNumber = false;
+
 
         void checkall ( )
         {
-            if (checkplus == true)
+            if (checkNumber)
             {
-                lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
-            }
-            if (checkminus == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
-            }
-            if (checkmulti == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
-            }
-            if (checkdivide == true)
-            {
-                lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
-            }
-            if (checkper == true)
-            {
-                lblDisplay.Text = percent;
+                if (checkPlus)
+                {
+                    lblDisplay.Text = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
+                }
+                else if (checkMinus)
+                {
+                    lblDisplay.Text = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
+                }
+                else if (checkMultiply)
+                {
+                    lblDisplay.Text = (float.Parse(firstSet) * float.Parse(secondSet)).ToString();
+                }
+                else if (checkDivide)
+                {
+                    lblDisplay.Text = (float.Parse(firstSet) / float.Parse(secondSet)).ToString();
+                }
+                else if (checkPercent)
+                {
+                    lblDisplay.Text = percent;
+                }
+                firstSet = lblDisplay.Text;
             }
         }
 
@@ -50,43 +57,43 @@ namespace CPE200Lab1
         {
             if( x == "+")
             {
-                checkplus = true;
-                checkminus = false;
-                checkmulti = false;
-                checkdivide = false;
-                checkper = false;
+                checkPlus = true;
+                checkMinus = false;
+                checkMultiply = false;
+                checkDivide = false;
+                checkPercent = false;
             }
            else if (x == "-")
             {
-                checkminus = true;
-                checkplus = false;
-                checkmulti = false;
-                checkdivide = false;
-                checkper = false;
+                checkMinus = true;
+                checkPlus = false;
+                checkMultiply = false;
+                checkDivide = false;
+                checkPercent = false;
             }
             else if (x == "*")
             {
-                checkmulti = true;
-                checkminus = false;
-                checkplus = false;
-                checkdivide = false;
-                checkper = false;
+                checkMultiply = true;
+                checkMinus = false;
+                checkPlus = false;
+                checkDivide = false;
+                checkPercent = false;
             }
             else if (x == "/")
             {
-                checkdivide = true;
-                checkminus = false;
-                checkmulti = false;
-                checkplus = false;
-                checkper = false;
+                checkDivide = true;
+                checkMinus = false;
+                checkMultiply = false;
+                checkPlus = false;
+                checkPercent = false;
             }
             else if (x == "%")
             {
-                checkper = true;
-                checkminus = false;
-                checkmulti = false;
-                checkdivide = false;
-                checkplus = false;
+                checkPercent = true;
+                checkMinus = false;
+                checkMultiply = false;
+                checkDivide = false;
+                checkPlus = false;
             }
         }
 
@@ -98,10 +105,17 @@ namespace CPE200Lab1
         private void btnx_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (checkset)
+            if(checkEqual)
+            {
+                lblDisplay.Text = "0";
+                firstSet = null;
+                secondSet = null;
+                checkEqual = false;
+            }
+            if (checkSet)
             {
                 lblDisplay.Text = "";
-                checkset = false;
+                checkSet = false;
             }
             if (lblDisplay.Text == "0")
             {
@@ -111,19 +125,20 @@ namespace CPE200Lab1
             if (lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
-            }  
+            }
+            checkNumber = true;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if (checkset)
+            if (checkSet)
             {
                 lblDisplay.Text = "";
-                checkset = false;
+                checkSet = false;
             }
             if (lblDisplay.Text == "0")
             {
-                lblDisplay.Text = "";
+                lblDisplay.Text = "0";
             }
 
             if (lblDisplay.Text.Length < 8)
@@ -136,7 +151,7 @@ namespace CPE200Lab1
         {
             firstSet = null;
             secondSet = null;
-            checkset = false;
+            checkSet = false;
             lblDisplay.Text = "0";
         }
 
@@ -145,16 +160,17 @@ namespace CPE200Lab1
             if (firstSet == null)
             {
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             else
             {
                 secondSet = lblDisplay.Text;
                 checkall();
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             check("+");
+            checkNumber = false;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -162,16 +178,17 @@ namespace CPE200Lab1
             if (firstSet == null)
             {
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             else
             {
                 secondSet = lblDisplay.Text;
                 checkall();
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             check("-");
+            checkNumber = false;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
@@ -179,16 +196,17 @@ namespace CPE200Lab1
             if (firstSet == null)
             {
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             else
             {
                 secondSet = lblDisplay.Text;
                 checkall();
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             check("*");
+            checkNumber = false;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
@@ -196,16 +214,17 @@ namespace CPE200Lab1
             if (firstSet == null)
             {
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             else
             {
                 secondSet = lblDisplay.Text;
                 checkall();
                 firstSet = lblDisplay.Text;
-                checkset = true;
+                checkSet = true;
             }
             check("/");
+            checkNumber = false;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -220,19 +239,19 @@ namespace CPE200Lab1
             {
                 secondSet = (float.Parse(lblDisplay.Text) * float.Parse(firstSet) / 100).ToString();
                 
-                if (checkplus == true)
+                if (checkPlus)
                 {
                     percent = (float.Parse(firstSet) + float.Parse(secondSet)).ToString();
                 }
-                if (checkminus == true)
+                if (checkMinus)
                 {
                     percent = (float.Parse(firstSet) - float.Parse(secondSet)).ToString();
                 }
-                if (checkmulti == true)
+                if (checkMultiply)
                 {
                     percent = (float.Parse(firstSet) * (float.Parse(lblDisplay.Text) / 100)).ToString();
                 }
-                if (checkdivide == true)
+                if (checkDivide)
                 {
                     percent = (float.Parse(firstSet) / (float.Parse(lblDisplay.Text) / 100)).ToString();
                 }
@@ -243,8 +262,20 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            secondSet = lblDisplay.Text;
-            checkall();
+            if (firstSet == null)
+            {
+                firstSet = lblDisplay.Text;
+                checkSet = true;
+            }
+            else
+            {
+                secondSet = lblDisplay.Text;
+                checkall();
+                firstSet = lblDisplay.Text;
+                checkSet = true;
+            }
+            checkEqual = true;
+            checkNumber = false;
         }
     }
 }
