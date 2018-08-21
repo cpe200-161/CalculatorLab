@@ -86,22 +86,22 @@ namespace CPE200Lab1
 
             if (operation == 1)
             {
-                result1 = ((float.Parse(firstOperand)/firstPercentDivide) + (float.Parse(secondOperand)/secondPercentDivide)).ToString();
+                result1 = ((float.Parse(firstOperand) / firstPercentDivide) + (float.Parse(secondOperand) / secondPercentDivide)).ToString();
                 lblDisplay.Text = result1;
             }
             else if (operation == 2)
             {
-                result2 = ((float.Parse(firstOperand)/firstPercentDivide) - (float.Parse(secondOperand)/secondPercentDivide)).ToString();
+                result2 = ((float.Parse(firstOperand) / firstPercentDivide) - (float.Parse(secondOperand) / secondPercentDivide)).ToString();
                 lblDisplay.Text = result2;
             }
             else if (operation == 3)
             {
-                result3 = ((float.Parse(firstOperand)/firstPercentDivide) * (float.Parse(secondOperand)/secondPercentDivide)).ToString();
+                result3 = ((float.Parse(firstOperand) / firstPercentDivide) * (float.Parse(secondOperand) / secondPercentDivide)).ToString();
                 lblDisplay.Text = result3;
             }
             else if (operation == 4)
             {
-                result4 = ((float.Parse(firstOperand)/firstPercentDivide) / (float.Parse(secondOperand)/secondPercentDivide)).ToString();
+                result4 = ((float.Parse(firstOperand) / firstPercentDivide) / (float.Parse(secondOperand) / secondPercentDivide)).ToString();
                 lblDisplay.Text = result4;
             }
             else if (operation == 5)
