@@ -87,6 +87,7 @@ namespace CPE200Lab1
             oper = "+";
             a = double.Parse(lblDisplay.Text);
             isDisplay = true;
+
         }
     }
 }
