@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +12,8 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string first_data, second_data, Symbol, percent_num, sum,temp;
-        float n=1;
-        bool flag_multinumber=true;
+        string first_data, second_data, Symbol, percent_num, sum;
+        bool flag_dot=true;
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +21,7 @@ namespace CPE200Lab1
 
         private void btn_Click(object sender, EventArgs e)
         {
-            
+
             Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
@@ -32,6 +31,26 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += btn.Text;
             }
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            if(flag_dot == true)
+            {
+                lblDisplay.Text += ".";
+                flag_dot = false;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text.Substring(0,lblDisplay.Text.Length - 1);
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+
+                lblDisplay.Text = (-1 * float.Parse(lblDisplay.Text)).ToString();
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -50,7 +69,7 @@ namespace CPE200Lab1
                 if (Symbol == "+")
                 {
                     sum = (float.Parse(first_data) + float.Parse(second_data)).ToString();
-                    
+
                 }
                 else if (Symbol == "-")
                 {
@@ -66,7 +85,7 @@ namespace CPE200Lab1
                 }
                 lblDisplay.Text = sum;
             }
-            
+
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
@@ -74,24 +93,7 @@ namespace CPE200Lab1
             Button btn = (Button)sender;
             Symbol = btn.Text;
             first_data = lblDisplay.Text;
-            lblDisplay.Text = "";/*
-            if (n>1)
-            {
-                if (Symbol == "+")
-                {
-                    sum = (float.Parse(first_data) + float.Parse(temp)).ToString();
-                    lblDisplay.Text = sum;
-                    temp = sum;
-                }
-            }
-            if (n == 1)
-            {
-                temp = first_data;
-            }
-            n += 1;
-
-            */
-
+            lblDisplay.Text = "";
 
         }
 
@@ -100,8 +102,8 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             first_data = "";
             second_data = "";
-            //temp = "";
             sum = "";
+            flag_dot = true;
         }
     }
 }
