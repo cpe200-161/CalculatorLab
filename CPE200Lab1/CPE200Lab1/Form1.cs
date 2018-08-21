@@ -12,16 +12,15 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string ans1;
-        string ans2;
-        float ans;
-        bool plus = false;
-        bool minus = false;
-        bool multiply = false;
-        bool divide = false;
-        bool percent = false;
-        int a = 0;
-        int b = 0;
+        string anS1;
+        string anS2;
+        float anS;
+        bool plusCess = false;
+        bool minusCess = false;
+        bool multiplyCess = false;
+        bool divideCess = false;
+        bool percentCess = false;
+        int rE = 0;
 
         public Form1()
         {
@@ -36,167 +35,169 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
             }
 
-            if (plus == false && minus == false && multiply == false && divide == false && percent == false && lblDisplay.Text.Length < 8)
+            if (plusCess == false && minusCess == false && multiplyCess == false && divideCess == false && percentCess == false && lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text += btn.Text;
-                ans1 = lblDisplay.Text;
+                anS1 = lblDisplay.Text;
             }
-            else if (plus == true || minus == true || multiply == true || divide == true || percent == true && lblDisplay.Text.Length < 8)
+            else if (plusCess == true || minusCess == true || multiplyCess == true || divideCess == true || percentCess == true && lblDisplay.Text.Length < 8)
             {
-                if (b == 0) {
+                if (rE == 0)
+                {
                     lblDisplay.Text = "";
-                    b++;
-                }                
+                    rE++;
+                }
                 lblDisplay.Text += btn.Text;
-                ans2 = lblDisplay.Text;
+                anS2 = lblDisplay.Text;
             }
         }
 
-        private void btnAA_Click(object sender, EventArgs e)
+        private void btnProcess()
         {
-            lblDisplay.Text = ans1;
-            if (plus == true)
+            lblDisplay.Text = anS1;
+
+            if (plusCess == true)
             {
-                ans = float.Parse(ans1) + float.Parse(ans2);
-                ans1 = ans.ToString();
-                lblDisplay.Text = ans1;
-                ans = 0;
-                ans2 = "0";
+                anS = float.Parse(anS1) + float.Parse(anS2);
+                anS1 = anS.ToString();
+                lblDisplay.Text = anS1;
+                minusCess = false;
+                multiplyCess = false;
+                divideCess = false;
             }
-            else if (minus == true)
+
+            if (minusCess == true)
             {
-                ans = float.Parse(ans1) - float.Parse(ans2);
-                ans1 = ans.ToString();
-                lblDisplay.Text = ans1;
-                ans = 0;
-                ans2 = "0";
+                anS = float.Parse(anS1) - float.Parse(anS2);
+                anS1 = anS.ToString();
+                lblDisplay.Text = anS1;
+                multiplyCess = false;
+                divideCess = false;
+                plusCess = false;
             }
-            else if (multiply == true)
+
+            if (multiplyCess == true)
             {
-                ans = float.Parse(ans1) * float.Parse(ans2);
-                ans1 = ans.ToString();
-                lblDisplay.Text = ans1;
-                ans = 0;
-                ans2 = "0";
+                anS = float.Parse(anS1) * float.Parse(anS2);
+                anS1 = anS.ToString();
+                lblDisplay.Text = anS1;
+                minusCess = false;
+                divideCess = false;
+                plusCess = false;
             }
-            else if (divide == true)
+
+            if (divideCess == true)
             {
-                ans = float.Parse(ans1) / float.Parse(ans2);
-                ans1 = ans.ToString();
-                lblDisplay.Text = ans1;
-                ans = 0;
-                ans2 = "0";
+                anS = float.Parse(anS1) / float.Parse(anS2);
+                anS1 = anS.ToString();
+                lblDisplay.Text = anS1;
+                minusCess = false;
+                multiplyCess = false;
+                plusCess = false;
             }
-            else if (percent == true)
-            {
-                    ans = float.Parse(ans1) / 100;
-                    ans1 = ans.ToString();
-                    ans = 0;
-            }            
+            rE = 0;
+            anS = 0;
+            anS2 = "0";
         }
+
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if(a >= 1)
-            {            
-            btnAA_Click(sender, e);
-            }
+            plusCess = true;
 
-            if (minus == true || multiply == true || divide == true || percent == true)
+            if (percentCess == false || minusCess == true || multiplyCess == true || divideCess == true)
             {
-                minus = false;
-                multiply = false;
-                divide = false;
-                percent = false;
+                minusCess = false;
+                multiplyCess = false;
+                divideCess = false;
             }
-            plus = true;
-            a++;
-            b = 0;
+            if (anS2 != null && anS2 != "" && rE != 0)
+            {
+                btnProcess();
+            }
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (a >= 1)
+            minusCess = true;
+            if (percentCess == false || divideCess == true || multiplyCess == true || plusCess == true)
             {
-            btnAA_Click(sender, e);
+                multiplyCess = false;
+                divideCess = false;
+                plusCess = false;
             }
-
-            if (plus == true || multiply == true || divide == true || percent == true)
+            if (anS2 != null && anS2 != "" && rE != 0)
             {
-                plus = false;
-                multiply = false;
-                divide = false;
-                percent = false;
+                btnProcess();
             }
-            minus = true;
-            a++;
-            b = 0;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (a >= 1)
+            multiplyCess = true;
+            if (percentCess == false || minusCess == true || divideCess == true || plusCess == true)
             {
-            btnAA_Click(sender, e);
+                minusCess = false;
+                divideCess = false;
+                plusCess = false;
             }
-
-            if (minus == true || plus == true || divide == true || percent == true)
+            if (anS2 != null && anS2 != "" && rE != 0)
             {
-                minus = false;
-                plus = false;
-                divide = false;
-                percent = false;
+                btnProcess();
             }
-            multiply = true;
-            a++;
-            b = 0;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (a >= 1)
+            divideCess = true;
+            if (percentCess == false || minusCess == true || multiplyCess == true || plusCess == true)
             {
-            btnAA_Click(sender, e);
+                minusCess = false;
+                multiplyCess = false;
+                plusCess = false;
             }
-
-            if (minus == true || multiply == true || plus == true || percent == true)
+            if (anS2 != null && anS2 != "" && rE != 0)
             {
-                minus = false;
-                multiply = false;
-                plus = false;
-                percent = false;
+                btnProcess();
             }
-            divide = true;
-            a++;
-            b = 0;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (a >= 1)
+            percentCess = true;
+
+            percentProcess();
+
+        }
+
+        private void percentProcess()
+        {
+            if (anS2 == null || anS2 == "")
             {
-            btnAA_Click(sender, e);
+                anS = float.Parse(anS1) / 100;
+                anS1 = anS.ToString();
+                lblDisplay.Text = anS1;
+                anS = 0;
+                minusCess = false;
+                multiplyCess = false;
+                percentCess = false;
+                plusCess = false;
+                divideCess = false;
             }
 
-            if (plus == true || minus == true || multiply == true || divide == true)
+            if (anS2 != null && anS2 != "")
             {
-                plus = false;
-                minus = false;
-                multiply = false;
-                divide = false;
+                anS = (float.Parse(anS2) / 100) * float.Parse(anS1);
+                anS2 = anS.ToString();
+                anS = 0;
+                btnProcess();
+                percentCess = false;
             }
-            percent = true;
-            a++;
-            b = 0;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            btnAA_Click(sender, e);
-            plus = false;
-            minus = false;
-            multiply = false;
-            divide = false;
-            percent = false;
+            btnProcess();
+            rE = 0;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -213,15 +214,15 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ans1 = "";
-            ans2 = "";
-            plus = false;
-            minus = false;
-            multiply = false;
-            divide = false;
-            percent = false;
+            anS1 = "";
+            anS2 = "";
+            plusCess = false;
+            minusCess = false;
+            multiplyCess = false;
+            divideCess = false;
+            percentCess = false;
             lblDisplay.Text = "0";
-            a = 0;
+            rE = 0;
         }
     }
 }
