@@ -16,29 +16,30 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-        public string number1="0";
-        public string number2="0";
-        public string result ;
-        public bool Plus=false, Minus=false, Multi=false, Div=false,Equal = true,Dot = true;
+        public float firstNumber = 0;
+        public float secondNumber = 0;
+        public float result;
+        public bool Plus = false, Minus = false, Multi = false, Div = false, Equal = false, Dot = true;
+
         
-        public bool setNumber = false;
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-                if (lblDisplay.Text == "0" ) {
-                
+            if (lblDisplay.Text == "0")
+            {
+
                 lblDisplay.Text = "";
-                }
-                if (lblDisplay.Text.Length < 8)
-                {
-                    lblDisplay.Text += btn.Text;
-                    
-                }
-                else
-                {
+            }
+            if (lblDisplay.Text.Length < 8)
+            {
+                lblDisplay.Text += btn.Text;
+
+            }
+            else
+            {
                 lblDisplay.Text = "overflow";
                 clearAll();
-                }
+            }
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -48,20 +49,45 @@ namespace CPE200Lab1
                 lblDisplay.Text += ".";
                 Dot = false;
             }
-         }
+        }
         private void lblDisplay_Click(object sender, EventArgs e)
         {
-            
+
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text != "")
-            lblDisplay.Text = lblDisplay.Text.Substring(0,lblDisplay.Text.Length-1);
+            if (lblDisplay.Text != "")
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
         }
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text != "")
-            lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+            float perCent = float.Parse(lblDisplay.Text)/100;
+            if (lblDisplay.Text != "" )
+            {
+                if(Plus)
+                {
+                    lblDisplay.Text = (firstNumber + (firstNumber * perCent)).ToString();
+                    Plus = false;
+                }
+                if (Minus)
+                {
+                    lblDisplay.Text = (firstNumber - (firstNumber * perCent)).ToString();
+                    Minus = false;
+                }
+                if (Multi)
+                {
+                    lblDisplay.Text = (firstNumber * (firstNumber * perCent)).ToString();
+                    Multi = false;
+                }
+                if (Div)
+                {
+                    lblDisplay.Text = (firstNumber / (firstNumber * perCent)).ToString();
+                    Div = false;
+                }
+            }
+                
+
+            
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -76,103 +102,118 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-           if (lblDisplay.Text != "" && Plus == true)
+            
+            if (lblDisplay.Text != "" && Plus == true )
             {
-                number2 = lblDisplay.Text;
-                result = (float.Parse(number1) + float.Parse(number2)).ToString();
-                lblDisplay.Text = result;
+                secondNumber = float.Parse(lblDisplay.Text);
+                result = firstNumber + secondNumber;
+                lblDisplay.Text = result.ToString();
                 Plus = false;
             }
             
+
             if (lblDisplay.Text != "" && Minus == true)
             {
-                number2 = lblDisplay.Text;
-                result = (float.Parse(number1) - float.Parse(number2)).ToString();
-                lblDisplay.Text = result;
+                secondNumber = float.Parse(lblDisplay.Text);
+                result = firstNumber - secondNumber;
+                lblDisplay.Text = result.ToString();
                 Minus = false;
             }
-            
+
             if (lblDisplay.Text != "" && Multi == true)
             {
-                number2 = lblDisplay.Text;
-                result = (float.Parse(number1) * float.Parse(number2)).ToString();
-                lblDisplay.Text = result;
+                secondNumber = float.Parse(lblDisplay.Text);
+                result = firstNumber * secondNumber;
+                lblDisplay.Text = result.ToString();
                 Multi = false;
             }
-            
+
             if (lblDisplay.Text != "" && Div == true)
             {
-                number2 = lblDisplay.Text;
-                result = (float.Parse(number1) / float.Parse(number2)).ToString();
-                lblDisplay.Text = result;
+                secondNumber = float.Parse(lblDisplay.Text);
+                result = firstNumber / secondNumber;
+                lblDisplay.Text = result.ToString();
                 Div = false;
             }
-           }
+
+
+        }
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
-            
+
             if (btn.Text == "+" && lblDisplay.Text != "")
             {
-            number1 = lblDisplay.Text;
-            lblDisplay.Text = "";
-            Plus = true;
-            Dot = true;
+                firstNumber = float.Parse(lblDisplay.Text);
+
+                lblDisplay.Text = "";
+                Plus = true;
+                Dot = true;
             }
-            
+            else
+            {
+                Plus = false;
+            }
+
             if (btn.Text == "-" && lblDisplay.Text != "")
             {
-              number1 = lblDisplay.Text;
-              lblDisplay.Text = "";
-              Minus = true;
-              Dot = true;
+                
+                firstNumber = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = "";
+                Minus = true;
+                Dot = true;
             }
-            
+            else
+            {
+                Minus = false;
+            }
+
             if (btn.Text == "X" && lblDisplay.Text != "")
             {
-               number1 = lblDisplay.Text;
-               lblDisplay.Text = "";
-               Multi = true;
-               Dot = true;
-                
+                firstNumber = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = "";
+                Multi = true;
+                Dot = true;
+
             }
-            
+            else
+            {
+                Multi = false;
+            }
+
             if (btn.Text == "÷" && lblDisplay.Text != "")
             {
-               number1 = lblDisplay.Text;
-               lblDisplay.Text = "";
-               Div = true;
-               Dot = true;
-                
+                firstNumber = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = "";
+                Div = true;
+                Dot = true;
+
+            }
+            else
+            {
+                Div = false;
             }
             if (lblDisplay.Text.Length > 8)
             {
                 lblDisplay.Text = "overflow";
                 clearAll();
-             }
+            }
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            number1 = "0";
-            number2 = "0";
-            result = "0";
-            Plus = false;
-            Minus = false;
-            Multi = false;
-            Div = false;
-            Equal = false;
-            Dot = true;
+            clearAll();
         }
         private void clearAll()
         {
-            
-            number1 = "0";
-            number2 = "0";
-            result = "0";
+
+            firstNumber = 0;
+            secondNumber = 0;
+            result = 0;
             Plus = false;
             Minus = false;
             Multi = false;
