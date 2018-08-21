@@ -73,7 +73,7 @@
             this.btn8.TabIndex = 1;
             this.btn8.Text = "8";
             this.btn8.UseVisualStyleBackColor = true;
-            //this.btn8.Click += new System.EventHandler(this.btn8_Click);
+            this.btn8.Click += new System.EventHandler(this.btnx_Click);
             // 
             // btnMultiply
             // 
@@ -198,7 +198,7 @@
             // btnDot
             // 
             this.btnDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDot.Location = new System.Drawing.Point(267, 527);
+            this.btnDot.Location = new System.Drawing.Point(266, 528);
             this.btnDot.Margin = new System.Windows.Forms.Padding(4);
             this.btnDot.Name = "btnDot";
             this.btnDot.Size = new System.Drawing.Size(117, 79);
