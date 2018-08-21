@@ -138,8 +138,14 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            int longs = display.Length - 1;
-            //lblDisplay.Text = ;
+            if(lblDisplay.Text != "")
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length -1);
+            }
+            else if(lblDisplay.Text == "")
+            {
+                lblDisplay.Text = "0";
+            }
             display = lblDisplay.Text;
         }
 
