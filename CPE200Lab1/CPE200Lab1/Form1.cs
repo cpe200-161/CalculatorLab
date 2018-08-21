@@ -17,17 +17,19 @@ namespace CPE200Lab1
             InitializeComponent();
 
         }
-        private string first = "0",second,sum;
-        private bool plus, minus, muli, divide, setfirstop,per;
+        private string first = "0", second, sum;
+        private bool plus, minus, muli, divide, setfirstop, per,equal=false;
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+            sum = null;
+            equal = true;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -54,9 +56,14 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             second = lblDisplay.Text;
-            if(plus == true)
+            if (equal==true)
             {
-                sum = (float.Parse(second)+float.Parse(first)).ToString();
+                sum = lblDisplay.Text;
+                equal = false;
+            }
+            else if (plus == true)
+            {
+                sum = (float.Parse(second) + float.Parse(first)).ToString();
                 plus = false;
             }
             else if (minus == true)
@@ -118,10 +125,10 @@ namespace CPE200Lab1
             if (lblDisplay.Text.Length <= 8)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
-                
+
             }
         }
 
-        
+
     }
 }
