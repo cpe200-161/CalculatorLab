@@ -85,6 +85,7 @@
             this.btnMultiply.TabIndex = 3;
             this.btnMultiply.Text = "X";
             this.btnMultiply.UseVisualStyleBackColor = true;
+            this.btnMultiply.AutoSizeChanged += new System.EventHandler(this.Btn_S);
             this.btnMultiply.Click += new System.EventHandler(this.btnMultiply_Click);
             // 
             // btnMinus
@@ -97,6 +98,7 @@
             this.btnMinus.TabIndex = 7;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.AutoSizeChanged += new System.EventHandler(this.Btn_S);
             this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
             // 
             // btn6
@@ -145,6 +147,7 @@
             this.btnPlus.TabIndex = 11;
             this.btnPlus.Text = "+";
             this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.AutoSizeChanged += new System.EventHandler(this.Btn_S);
             this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
             // 
             // btn3
@@ -186,7 +189,7 @@
             // btnEqual
             // 
             this.btnEqual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEqual.Location = new System.Drawing.Point(392, 527);
+            this.btnEqual.Location = new System.Drawing.Point(395, 527);
             this.btnEqual.Margin = new System.Windows.Forms.Padding(4);
             this.btnEqual.Name = "btnEqual";
             this.btnEqual.Size = new System.Drawing.Size(117, 79);
@@ -241,6 +244,7 @@
             this.btnDivide.TabIndex = 16;
             this.btnDivide.Text = "÷";
             this.btnDivide.UseVisualStyleBackColor = true;
+            this.btnDivide.AutoSizeChanged += new System.EventHandler(this.Btn_S);
             this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
             // 
             // btnPercent
