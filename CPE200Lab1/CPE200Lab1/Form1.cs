@@ -26,12 +26,13 @@ namespace CPE200Lab1
         private bool check_minus = false;
         private bool check_time = false;
         private bool check_divide = false;
-        private bool check_percent = false;
 
         private bool text_is_Max = false;
         private int text_Max_Limit = 8;
 
         private bool already_dot = false;
+
+		private bool already_press_zero_at_start = false;
 
         private bool is_text_max(string TEXT) {
             if (TEXT.Length == text_Max_Limit)
@@ -81,7 +82,7 @@ namespace CPE200Lab1
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            text += 4; if (!text_is_Max)
+            if (!text_is_Max)
             {
                 text += 4;
             }
@@ -154,12 +155,12 @@ namespace CPE200Lab1
 
                 lblDisplay.Text = text;
             }
-            else
+            else if(!already_press_zero_at_start)
             {
                 text = "0";
-                result = 0;
                 lblDisplay.Text = text;
-                text = string.Empty;
+				already_press_zero_at_start = true;
+                //text = string.Empty;
             }
             
             
@@ -167,8 +168,7 @@ namespace CPE200Lab1
 
         private void lblDisplay_Click(object sender, EventArgs e)
         {
-            text += 1;
-            lblDisplay.Text = text;
+            
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -187,10 +187,11 @@ namespace CPE200Lab1
             check_minus = false;
             check_time = false;
             check_divide = false;
-            check_percent = false;
 
             already_dot = false;
-    }
+
+			already_press_zero_at_start = false;
+		}
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
@@ -209,10 +210,11 @@ namespace CPE200Lab1
             check_plus = false;
             check_time = false;
             check_divide = false;
-            check_percent = false;
 
             already_dot = false;
-        }
+
+			already_press_zero_at_start = false;
+		}
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
@@ -231,10 +233,11 @@ namespace CPE200Lab1
             check_plus = false;
             check_minus = false;
             check_divide = false;
-            check_percent = false;
 
             already_dot = false;
-        }
+
+			already_press_zero_at_start = false;
+		}
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
@@ -253,25 +256,21 @@ namespace CPE200Lab1
             check_plus = false;
             check_time = false;
             check_minus = false;
-            check_percent = false;
 
             already_dot = false;
-        }
+
+			already_press_zero_at_start = false;
+		}
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (check_op) AddToResult();
-            else
-            {
-                result += Convert.ToDouble(text);
-            }
-            lblDisplay.Text += '%';
-            text = string.Empty;
+			result += result * Convert.ToDouble(text) / 100;
+            
+			text = string.Empty;
             text_is_Max = is_text_max(text);
             reset_text_max();
 
             check_op = true;
-            check_percent = true;
 
             check_plus = false;
             check_time = false;
@@ -279,7 +278,9 @@ namespace CPE200Lab1
             check_divide = false;
 
             already_dot = false;
-        }
+
+			already_press_zero_at_start = false;
+		}
 
         private void AddToResult() {
             if (check_plus)
@@ -298,17 +299,20 @@ namespace CPE200Lab1
             {
                 result /= Convert.ToDouble(text);
             }
-            else if (check_percent) {
-                result = result / 100;
-            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
             AddToResult();
-            text = string.Empty;
+			if (Convert.ToString(result).Length > text_Max_Limit)
+			{
+				text = Convert.ToString(result).Substring(0, text_Max_Limit);
+				result = Convert.ToDouble(text);
+			}
+			text = "0";
             text_is_Max = is_text_max(text);
             reset_text_max();
+			
             lblDisplay.Text = Convert.ToString(result);
      
             check_op = false;
@@ -316,10 +320,11 @@ namespace CPE200Lab1
             check_minus = false;
             check_time = false;
             check_divide = false;
-            check_percent = false;
 
             already_dot = false;
-        }
+
+			already_press_zero_at_start = false;
+		}
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -369,7 +374,6 @@ namespace CPE200Lab1
             text = text.Substring(0, text.Length-1);
             lblDisplay.Text = text;
         }
-
         
     }
 }
