@@ -111,5 +111,14 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = (float.Parse(lblDisplay.Text) * -1).ToString();
         }
+
+        private void BtnDot_Click(object sender,EventArgs e)
+        {
+            if (lblDisplay.Text.IndexOf(".") == -1)
+            {
+
+                lblDisplay.Text += ".";
+            }
+        }
     }
 }

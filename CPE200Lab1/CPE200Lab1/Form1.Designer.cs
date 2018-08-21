@@ -217,7 +217,7 @@
             this.btnDot.TabIndex = 14;
             this.btnDot.Text = ".";
             this.btnDot.UseVisualStyleBackColor = true;
-            this.btnDot.Click += new System.EventHandler(this.BtnNumber_Click);
+            this.btnDot.Click += new System.EventHandler(this.BtnDot_Click);
             // 
             // btn0
             // 
