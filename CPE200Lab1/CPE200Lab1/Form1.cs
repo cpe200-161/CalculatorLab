@@ -21,14 +21,14 @@ namespace CPE200Lab1
         }
        
  
-        private void display(){
-            lblDisplay.Text = val.ToString();
+        private void display(double show){
+            lblDisplay.Text = show.ToString();
         }
 
-        private void numclick(int n)
+        private void numclick(int n,double m=10)
         {
-            val = val * 10 + n;
-            display();
+            val = val * m + n;
+            display(val);
         }
         
         private void btn1_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace CPE200Lab1
         private void btnSign_Click(object sender, EventArgs e)
         {
             val = (val * (-1));
-            lblDisplay.Text = val.ToString();
+
         }
        
         private void btnPlus_Click(object sender, EventArgs e)
@@ -92,8 +92,8 @@ namespace CPE200Lab1
              //val = je2 ไม่จำเป็น;
              val = 0;
              je2 += je1;
-             lblDisplay.Text = je2.ToString();
-             
+            display(je2);
+
         }
         private void btnDot_Click(object sender, EventArgs e)
             {
@@ -102,8 +102,11 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            val = 0;
-            lblDisplay.Text = val.ToString();
+            val = 0 ;
+            je1 = 0;
+            je2 = 0;
+            display(val);
+
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
