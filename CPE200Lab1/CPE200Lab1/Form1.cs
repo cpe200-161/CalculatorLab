@@ -243,8 +243,8 @@ namespace CPE200Lab1
                 secondSet = lblDisplay.Text;
                 checkCode();
             }
-            checkEqual = true;
             checkSet = true;
+            checkEqual = true;
             checkNumber = false;
         }
     }
