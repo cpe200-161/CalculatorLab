@@ -85,6 +85,8 @@ namespace CPE200Lab1
             statnum2 = 0;
             statnum3 = 0;
             statnum4 = 0;
+            num1 = 0;
+            num2 = 0;
             firstinput = null;
             nextinput = null;
         }
@@ -175,9 +177,17 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
+            if (statnum1 == 0 && statnum2 == 0 && statnum3 == 0 && statnum4 == 0)
+            {
             num1 = float.Parse(lblDisplay.Text);
             num1 = num1 / 100f;
             lblDisplay.Text = num1.ToString();
+            }
+            if(statnum1 != 0 || statnum2 != 0 || statnum3 != 0 || statnum4 != 0)
+            {
+                num2 = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = (num1*(num2)/100f).ToString();
+            }
         }
 
         private void btnX_Click(object sender, EventArgs e)
