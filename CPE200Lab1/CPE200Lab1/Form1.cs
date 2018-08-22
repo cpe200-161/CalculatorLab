@@ -51,7 +51,7 @@ namespace CPE200Lab1
         {
             if (operation == "+")
             {
-                if (percent = true)
+                if (percent == true)
                 {
                     result = firstnum + firstper;
                     percent = false;
@@ -65,7 +65,7 @@ namespace CPE200Lab1
 
             if(operation == "-")
             {
-                if (percent = true)
+                if (percent == true)
                 {
                     result = firstnum - firstper;
                     percent = false;
@@ -78,7 +78,7 @@ namespace CPE200Lab1
             }
             if (operation == "*")
             {
-                if (percent = true)
+                if (percent == true)
                 {
                     result = firstnum * firstper;
                     percent = false;
@@ -91,7 +91,7 @@ namespace CPE200Lab1
             }
             if (operation == "/")
             {
-                if(percent = true)
+                if (percent == true)
                 {
                     result = firstnum / firstper;
                     percent = false;
@@ -101,10 +101,7 @@ namespace CPE200Lab1
                     secnum = double.Parse(lblDisplay.Text);
                     result = firstnum / secnum;
                 }
-                
             }
-            
-           
             sum = Convert.ToString(result);
             lblDisplay.Text = sum;
             firstnum = 0;
