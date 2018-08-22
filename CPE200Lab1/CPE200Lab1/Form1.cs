@@ -12,128 +12,172 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        private string numOperand = null;
+        private float total = 0;
+        private float Num = 0;
+        private char status;
+        private char percent;
+        bool flag = false;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnX_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                lblDisplay.Text = lblDisplay.Text + "1";
-            }
+                if (btn.Text == ".")
+                {
+                    if (!lblDisplay.Text.Contains("."))
+                        lblDisplay.Text = lblDisplay.Text + btn.Text;
+                }
+                else
+                {
+                    lblDisplay.Text = lblDisplay.Text + btn.Text;
+                }    
+            }  
         }
 
-        private void btn2_Click(object sender, EventArgs e)
+        private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "2";
-            }
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand);
+            lblDisplay.Text = "";
+            total = Num + total;
+            status = '1';
+            percent = '1';
+            flag = true;
         }
 
-        private void btn3_Click(object sender, EventArgs e)
+        private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            switch (status)
             {
-                lblDisplay.Text = "";
+                case '1':
+                    total = Num + float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "" + total ;
+                    break;
+
+                case '2':
+                    total = Num - float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "" + total;
+                    break;
+
+                case '3':
+                    total = Num * float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "" + total;
+                    break;
+
+                case '4':
+                    total = Num / float.Parse(lblDisplay.Text);
+                    lblDisplay.Text = "" + total;
+                    break;
+
+                case '5':
+                    lblDisplay.Text = "" + total;
+                    break;
             }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "3";
-            }
+            
         }
 
-        private void btn4_Click(object sender, EventArgs e)
+        private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "4";
-            }
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand);
+            lblDisplay.Text = "";
+            total = Num - total;
+            status = '2';
+            percent = '2';
+            flag = true;
         }
 
-        private void btn5_Click(object sender, EventArgs e)
+        private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "5";
-            }
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand);
+            lblDisplay.Text = "";
+            total = Num;
+            status = '3';
+            percent = '3';
+            flag = true;
         }
 
-        private void btn6_Click(object sender, EventArgs e)
+        private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "6";
-            }
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand);
+            lblDisplay.Text = "";
+            total = Num;
+            status = '4';
+            percent = '4';
+            flag = true;
         }
 
-        private void btn7_Click(object sender, EventArgs e)
+        private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand);
+            if (flag == true)
             {
-                lblDisplay.Text = "";
+                switch (percent)
+                {
+
+                    case '1':
+                        total = total + ((total * Num) / 100);
+                        break;
+
+                    case '2':
+                        total = total - ((total * Num) / 100);
+                        break;
+
+                    case '3':
+                        total = (total * Num) / 100;
+                        break;
+
+                    case '4':
+                        total = (total * (100 / Num)) ;
+                        break;       
+                }
             }
-            if (lblDisplay.Text.Length <= 8)
+            else
             {
-                lblDisplay.Text = lblDisplay.Text + "7";
+                total = Num /100;
             }
+            
+            status = '5';
         }
 
-        private void btn8_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "8";
-            }
+            lblDisplay.Text = "0";
+            total = 0;
+            Num = 0;
         }
 
-        private void btn9_Click(object sender, EventArgs e)
+        private void btnSign_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (lblDisplay.Text.Length <= 8)
-            {
-                lblDisplay.Text = lblDisplay.Text + "9";
-            }
+            numOperand = lblDisplay.Text;
+            Num = float.Parse(numOperand) * -1 ;
+            string text = Convert.ToString(Num);
+            lblDisplay.Text = text;
         }
 
-        private void btn0_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            if (lblDisplay.Text.Length > 0)
             {
-                lblDisplay.Text = "";
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1, 1);
             }
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text == "")
             {
-                lblDisplay.Text = lblDisplay.Text + "0";
+                lblDisplay.Text = "0";
             }
         }
     }
