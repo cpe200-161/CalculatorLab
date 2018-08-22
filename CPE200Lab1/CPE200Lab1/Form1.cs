@@ -18,13 +18,13 @@ namespace CPE200Lab1
             InitializeComponent();
 
         }
-        float num1,num2,ans=0;
+        double num1,num2,ans=0;
         int action=0;
 
         private void btnN_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0" || lblDisplay.Text == string.Format("{0:0}", num1) || lblDisplay.Text == string.Format("{0:0}", ans))
+            if (lblDisplay.Text == "0" || lblDisplay.Text == string.Format("{0:G}", num1) || lblDisplay.Text == string.Format("{0:G}", ans))
             {
                 lblDisplay.Text = "";
             }
@@ -38,57 +38,87 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+            num1 = 0; num2 = 0; ans = 0; action = 0;
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            num1 = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", num1);
+            num1 = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:G}", num1);
             action = 1;
 
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            num1 = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", num1);
+            num1 = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:G}", num1);
             action = 4;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            num1 = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", num1);
+            num1 = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:G}", num1);
             action = 2;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            num1 = float.Parse(lblDisplay.Text);
-            lblDisplay.Text = string.Format("{0:0}", num1);
+            num1 = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = string.Format("{0:G}", num1);
             action = 3;
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            num2 = float.Parse(lblDisplay.Text);
-            num2 = num1 * (num2 / 100);
-            lblDisplay.Text = string.Format("{0:0}", num2);
+            if (num1 != 0)
+            {
+                num2 = double.Parse(lblDisplay.Text);
+                num2 = num1 * (num2 / 100);
+                lblDisplay.Text = string.Format("{0:G}", num2);
+            }
+            else
+            {
+                num1 = double.Parse(lblDisplay.Text);
+                num1 = num1 / 100.00;
+                lblDisplay.Text = string.Format("{0:G}", num1);
+                
+            }
+            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
             num2 = float.Parse(lblDisplay.Text);
             ans = 0;
-            lblDisplay.Text = string.Format("{0:0}", num2);
-            
+            lblDisplay.Text = string.Format("{0:G}", num2);
+
             if (action == 1) ans = num1 + num2;
             else if (action == 2) ans = num1 - num2;
             else if (action == 3) ans = num1 * num2;
-            else if (action == 4) ans = num1 / num2;
+            else if (action == 4)
+            {
+                if (num2 != 0)
+                {
+                    ans = num1 / num2;
+                }
+                else
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+               
+            }
             
 
-            lblDisplay.Text = string.Format("{0:0}",ans);
+            lblDisplay.Text = string.Format("{0:G}",ans);
+
         }
     }
 }
