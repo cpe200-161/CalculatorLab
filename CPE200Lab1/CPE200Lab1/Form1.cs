@@ -16,6 +16,9 @@ namespace CPE200Lab1
         private double secnum = 0;
         private double result = 0;
         private string sum = null;
+        private string operation = null;
+        private double firstper = 0;
+        private bool percent = false;
 
         public Form1()
         {
@@ -41,15 +44,106 @@ namespace CPE200Lab1
         {
             firstnum = double.Parse(lblDisplay.Text);
             lblDisplay.Text = "0";
-
+            operation = "+";
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            secnum = double.Parse(lblDisplay.Text);
-            result = firstnum + secnum;
+            if (operation == "+")
+            {
+                if (percent = true)
+                {
+                    result = firstnum + firstper;
+                    percent = false;
+                }
+                else
+                {
+                    secnum = double.Parse(lblDisplay.Text);
+                    result = firstnum + secnum;
+                }
+            }
+
+            if(operation == "-")
+            {
+                if (percent = true)
+                {
+                    result = firstnum - firstper;
+                    percent = false;
+                }
+                else
+                {
+                    secnum = double.Parse(lblDisplay.Text);
+                    result = firstnum - secnum;
+                }
+            }
+            if (operation == "*")
+            {
+                if (percent = true)
+                {
+                    result = firstnum * firstper;
+                    percent = false;
+                }
+                else
+                {
+                    secnum = double.Parse(lblDisplay.Text);
+                    result = firstnum * secnum;
+                }
+            }
+            if (operation == "/")
+            {
+                if(percent = true)
+                {
+                    result = firstnum / firstper;
+                    percent = false;
+                }
+                else
+                {
+                    secnum = double.Parse(lblDisplay.Text);
+                    result = firstnum / secnum;
+                }
+                
+            }
+            
            
+            sum = Convert.ToString(result);
             lblDisplay.Text = sum;
+            firstnum = 0;
+            secnum = 0;
+            firstper = 0;
+        }
+
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            firstnum = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            operation = "-";
+        }
+
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            firstnum = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            operation = "*";
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            firstnum = double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            operation = "/";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            firstnum = 0;
+            secnum = 0;
+            lblDisplay.Text = "0";
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            percent = true;
+            firstper = firstnum * double.Parse(lblDisplay.Text) / 100;
         }
     }
 }
