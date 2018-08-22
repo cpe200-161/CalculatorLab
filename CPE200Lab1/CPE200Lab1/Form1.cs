@@ -12,11 +12,12 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string input = string.Empty;
-        string num1 = string.Empty;
-        string num2 = string.Empty;
+        string input;
+        double num1;
+        double num2;
         char operation;
-        float sum = 0.0;
+        double sum;
+        string show;
         public Form1()
         {
             InitializeComponent();
@@ -32,8 +33,10 @@ namespace CPE200Lab1
             if (lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
+                if(operation != null) 
             }
-            input = btn.Text; 
+            if (input != null) input = input + btn.Text;
+            else input = btn.Text;            
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -88,7 +91,32 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+
+
+            operation = '+';
             
+            if (num1 == 0)
+            {
+                num1 = Convert.ToDouble(input);
+                sum = num1;
+            }
+            else
+            {
+
+                num2 = Convert.ToDouble(input);
+                if(sum == 0) sum = num1 + num2;
+                else sum = sum + num2;
+                show = Convert.ToString(sum);
+                lblDisplay.Text = show;
+                num1 = 0;
+                num2 = 0;
+            }
+            input = string.Empty;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
