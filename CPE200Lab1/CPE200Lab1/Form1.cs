@@ -99,8 +99,6 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            
-          
             second = Convert.ToDouble(lblDisplay.Text);
             switch (third)
             {
@@ -108,7 +106,7 @@ namespace CPE200Lab1
                 case 2: percent = first - (first * (second / 100)); break;
                 case 3: percent = first * (second/100); break;
                 case 4: percent = first / (second / 100); break;
-                default: break;
+                default: percent = second / 100; break;
             }
             lblDisplay.Text = Convert.ToString(percent);
         }
