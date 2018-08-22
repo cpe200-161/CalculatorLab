@@ -73,6 +73,7 @@ namespace CPE200Lab1
         private void btnDot_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = lblDisplay.Text + ".";
+            //god damn dot
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
