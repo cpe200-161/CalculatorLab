@@ -29,7 +29,7 @@ namespace CPE200Lab1
 				lblDisplay.Text = "";
                 pressed = false;
             }
-			if (lblDisplay.Text.Length <= 8)
+			if (lblDisplay.Text.Length < 8)
 			{
 				lblDisplay.Text = lblDisplay.Text + btn.Text;
 			}
@@ -45,7 +45,14 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "0";
+            if(lblDisplay.Text.Length == 1)
+            {
+                lblDisplay.Text = "0";
+            }
+            else if(lblDisplay.Text.Length >1)
+            {
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1, 1);
+            }
         }
 
         private void btnOpr_Click(object sender, EventArgs e)
