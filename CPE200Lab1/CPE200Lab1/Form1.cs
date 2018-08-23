@@ -10,73 +10,142 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
+
     public partial class Form1 : Form
     {
+        bool check1 = true;
+        bool percent = false;
+        float num1, num2, num3;
+        string opera;
         private int val = 0;
         public Form1()
+
         {
             InitializeComponent();
         }
-        private void display()
+
+        private void btnX_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = val.ToString();
-        }
-        private void numClick(int n)
-        {
-            val = val * 10 + n;
-            lblDisplay.Text = val.ToString;
+            Button btnX = (Button)sender;
+            if (check1 || lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = btnX.Text;
+                check1 = false;
+            }
+            else
+            {
+                if (lblDisplay.Text.Length < 8)
+                {
+                    lblDisplay.Text = lblDisplay.Text + btnX.Text;
+                }
+
+            }
         }
 
-        private void btn4_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            numClick(4);
+            lblDisplay.Text = "0";
+            check1 = true;
+        }
+
+        private void opera_click(object sender, EventArgs e)
+        {
+            Button btnX = (Button)sender;
+            opera = btnX.Text;
+            num1 = float.Parse(lblDisplay.Text);
+            check1 = true;
 
         }
 
-        private void btn5_Click(object sender, EventArgs e)
+        private void btnPercent_Click(object sender, EventArgs e)
         {
-            numClick(5);
+            percent = true;
         }
 
-        private void btn6_Click(object sender, EventArgs e)
+        private void btnEqual_Click(object sender, EventArgs e)
         {
-            numClick(6);
+            num2 = float.Parse(lblDisplay.Text);
+            if (percent)
+            {
+                if (opera == "+")
+                {
+                    num3 = num1 + (num2 * num1 / 100);
+                }
+                else if (opera == "-")
+                {
+                    num3 = num1 - (num2 * num1 / 100);
+                }
+                else if (opera == "X")
+                {
+                    num3 = num1 * (num2 * num1 / 100);
+                }
+                else if (opera == "÷")
+                {
+                    if (num2 == 0)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        num3 = num1 / (num2 * num1 / 100);
+                    }
+                }
+                percent = false;
+            }
+            else
+            {
+                if (opera == "+")
+                {
+                    num3 = num1 + num2;
+                }
+                else if (opera == "-")
+                {
+                    num3 = num1 - num2;
+                }
+                else if (opera == "X")
+                {
+
+                    num3 = num1 * num2;
+                }
+                else if (opera == "÷")
+                {
+                    if (num2 == 0)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        num3 = num1 / num2;
+                    }
+                }
+                if (lblDisplay.Text != "Error")
+                {
+                    lblDisplay.Text = num3.ToString();
+                }
+                check1 = true;
+            }
         }
 
-        private void btn7_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            numClick(7);
+            if (lblDisplay.Text.Length > 0)
+            {
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1, 1);
+            }
+            if (lblDisplay.Text.Length == 0)
+            {
+                lblDisplay.Text = "0";
+            }
         }
 
-        private void btn8_Click(object sender, EventArgs e)
+        private void btnDot_Click(object sender, EventArgs e)
         {
-            numClick(8);
+            if (!lblDisplay.Text.Contains("."))
+            {
+                lblDisplay.Text = lblDisplay.Text + ".";
+            }
+
         }
 
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            numClick(9);
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            numClick(1);
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            numClick(2);
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            numClick(3);
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            numClick(0);
-        }
     }
- }
-
+}
