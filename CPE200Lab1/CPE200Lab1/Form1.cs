@@ -40,6 +40,12 @@ namespace CPE200Lab1
 
             if (lblDisplay.Text.Length <= 8)
             {
+
+                if (btn.Text == "." && lblDisplay.Text.IndexOf(".") != -1)
+                {
+                    return;
+                }
+
                 lblDisplay.Text += btn.Text;
             }
 
@@ -125,6 +131,8 @@ namespace CPE200Lab1
                     {
                         lblDisplay.Text = lblDisplay.Text.Substring(1);
                     }
+
+                    getNewNumber = true;
                     break;
                 default:
                     Console.WriteLine("Unknown operation");
