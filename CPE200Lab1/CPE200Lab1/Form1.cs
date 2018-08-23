@@ -56,7 +56,6 @@ namespace CPE200Lab1
             check1 = true;
 
         }
-
         private void btnPercent_Click(object sender, EventArgs e)
         {
             percent = true;
@@ -65,65 +64,62 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             num2 = float.Parse(lblDisplay.Text);
-            if (percent)
+            if (opera == "+")
             {
-                if (opera == "+")
+                if (percent)
                 {
                     num3 = num1 + (num2 * num1 / 100);
                 }
-                else if (opera == "-")
-                {
-                    num3 = num1 - (num2 * num1 / 100);
-                }
-                else if (opera == "X")
-                {
-                    num3 = num1 * (num2 * num1 / 100);
-                }
-                else if (opera == "÷")
-                {
-                    if (num2 == 0)
-                    {
-                        lblDisplay.Text = "Error";
-                    }
-                    else
-                    {
-                        num3 = num1 / (num2 * num1 / 100);
-                    }
-                }
-                percent = false;
-            }
-            else
-            {
-                if (opera == "+")
+                else
                 {
                     num3 = num1 + num2;
                 }
-                else if (opera == "-")
+            }
+            else if (opera == "-")
+            {
+                if (percent)
+                {
+                    num3 = num1 - (num2 * num1 / 100);
+                }
+                else
                 {
                     num3 = num1 - num2;
                 }
-                else if (opera == "X")
-                {
+            }
+            else if (opera == "X")
+            {
 
+                if (percent)
+                {
+                    num3 = num1 * (num2 * num1 / 100);
+                }
+                else
+                {
                     num3 = num1 * num2;
                 }
-                else if (opera == "÷")
-                {
-                    if (num2 == 0)
-                    {
-                        lblDisplay.Text = "Error";
-                    }
-                    else
-                    {
-                        num3 = num1 / num2;
-                    }
-                }
-                if (lblDisplay.Text != "Error")
-                {
-                    lblDisplay.Text = num3.ToString();
-                }
-                check1 = true;
             }
+            else if (opera == "÷")
+            {
+                if (num2 == 0)
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else if (percent)
+                {
+
+                    num3 = num1 + (num2 * num1 / 100);
+                }
+                else
+                {
+                    num3 = num1 + num2;
+                }
+            }
+            if (lblDisplay.Text != "Error")
+            {
+                lblDisplay.Text = num3.ToString();
+            }
+            check1 = true;
+            percent = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
