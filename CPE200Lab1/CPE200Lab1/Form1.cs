@@ -17,8 +17,10 @@ namespace CPE200Lab1
         double num2;
         string operation = null;
         double sum = 0;
+        double sum2;
         string show;
         bool check;
+        bool check2 = true;
         public Form1()
         {
             InitializeComponent();
@@ -91,28 +93,54 @@ namespace CPE200Lab1
 
         }
 
-        private void btnPlus_Click(object sender, EventArgs e)
+        private void btnOpe_Click(object sender, EventArgs e)
         {
-            if (operation == null)
+            num2 = Convert.ToDouble(input);
+            Button ope = (Button)sender;
+            operation = ope.Text;
+
+            
+            if (operation == "+" )
+            {
+                sum = sum + num2;
+            }
+            
+            if (operation == "-" )
+            {
+
+                sum = sum - num2;
+            }
+            if (operation == "*" )
+            {
+
+                sum = sum * num2;
+            }
+            if (operation == "/")
+            {
+
+                sum = sum / num2;
+            }
+            /*if (num1 == 0) 
             {
                 num1 = Convert.ToDouble(input);
-                sum = num1;
+
+
+                input = null;
             }
             else
             {
+            
+                
+                check2 = false;
 
-                num2 = Convert.ToDouble(input);
-                sum = sum + num2;
-                show = Convert.ToString(sum);
-                lblDisplay.Text = show;
-                num1 = 0;
+            }*/
+            show = Convert.ToString(sum);
+            lblDisplay.Text = show;
 
-            }
+            
             check = true;
-            operation = "+";
-            input = null ;
+            input = null;
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
            
