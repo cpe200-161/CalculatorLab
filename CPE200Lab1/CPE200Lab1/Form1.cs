@@ -30,12 +30,7 @@ namespace CPE200Lab1
             }
             oparetion_pressed = false;
 
-            if (btn.Text == ".")
-            {
-                if (!lblDisplay.Text.Contains("."))
-                    lblDisplay.Text = lblDisplay.Text + btn.Text;
-            }
-            else if (lblDisplay.Text.Length <= 7)
+            if (lblDisplay.Text.Length <= 7)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
@@ -100,6 +95,15 @@ namespace CPE200Lab1
             if(lblDisplay.Text.Length > 0)
             {
                 lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1, 1);
+            }
+        }
+
+        private void btnDot_click(object sender, EventArgs e)
+        {
+            if (!lblDisplay.Text.Contains("."))
+            {
+                lblDisplay.Text = lblDisplay.Text + ".";
+
             }
         }
     }
