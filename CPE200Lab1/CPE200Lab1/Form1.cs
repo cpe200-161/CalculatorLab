@@ -10,136 +10,138 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+	public partial class Form1 : Form
+	{
+		float Sum = 0;
+		float R = 0;
+		int count = 0;
+		string X = "";
+		bool check1 = false;
+		bool check2 = false;
 
-		private void btn1_Click(object sender, EventArgs e)
+		public Form1()
 		{
+			InitializeComponent();
+		}
+
+		private void btnx_Click(object sender, EventArgs e)
+		{
+			Button btn = (Button)sender;
+			if (count == 2)
+			{
+				lblDisplay.Text = string.Empty;
+				count = 1;
+			}
 			if (lblDisplay.Text == "0")
 			{
 				lblDisplay.Text = "";
 			}
 			if (lblDisplay.Text.Length <= 8)
 			{
-				lblDisplay.Text = lblDisplay.Text + "1";
+				lblDisplay.Text = lblDisplay.Text + btn.Text;
+			}
+			check2 = true;
+		}
+
+		
+
+		/*-ต้องเซฟตัวแรกไว้ให้ได้ก่อน
+		-ถ้ามีตัวแรก*/
+
+		
+		private void btnEqual_Click(object sender, EventArgs e)
+		{
+			Button btn = (Button)sender;
+			switch (X)
+			{
+				case "+":
+					if (count == 1)
+					{
+						Sum = Sum + float.Parse(lblDisplay.Text);
+						lblDisplay.Text = Sum.ToString();
+					}
+					break;
+				case "-":
+					if (count == 1) {
+						Sum = Sum - float.Parse(lblDisplay.Text);
+						lblDisplay.Text = Sum.ToString();
+					}
+					break;
+				case "/":
+					if (count == 1)
+					{
+						Sum = Sum / float.Parse(lblDisplay.Text);
+						lblDisplay.Text = Sum.ToString();
+					}
+					break;
+				case "X":
+					if (count == 1)
+					{
+						Sum = Sum * float.Parse(lblDisplay.Text);
+						lblDisplay.Text = Sum.ToString();
+					}
+					break;
+				case "%":
+				  if (count == 1 )
+				  {
+				 		Sum = Sum + ((float.Parse(lblDisplay.Text) /100)*Sum);
+				 		lblDisplay.Text = Sum.ToString();
+				  }
+					break;
+			}
+
+			Sum = float.Parse(lblDisplay.Text);
+			if (Sum % 2 != 0)
+			{
+				check1 = true;
+			}
+			X = btn.Text;
+			count = 2;
+			check2 = false;
+		}
+
+		private void btndot_Click(object sender, EventArgs e)
+		{
+			if (check1 == false)
+			{
+				lblDisplay.Text = lblDisplay.Text + "."; 
+				check1 = true;
 			}
 		}
 
-		private void btn2_Click(object sender, EventArgs e)
+		private void btnSign_Click(object sender, EventArgs e)
 		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "2";
-			}
+			R = -float.Parse(lblDisplay.Text);
+			lblDisplay.Text = R.ToString();
 		}
 
-		private void btn3_Click(object sender, EventArgs e)
+		private void btnClear_Click(object sender, EventArgs e)
 		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "3";
-			}
+			lblDisplay.Text = string.Empty;
+			lblDisplay.Text = "0";
+			Sum = 0;
+			R = 0;
+			count = 0;
+			X = "";
+			check1 = false;
+			check2 = false;
 		}
 
-		private void btn4_Click(object sender, EventArgs e)
+		private void btnBack_Click(object sender, EventArgs e)
 		{
-			if (lblDisplay.Text == "0")
+			if (check2 == true)
 			{
-				lblDisplay.Text = "";
+				if (lblDisplay.Text.Length > 1)
+				{
+					lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+				}
+				else
+				{
+					lblDisplay.Text = "0";
+				}
 			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "4";
-			}
-		}
-
-		private void btn5_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "5";
-			}
-		}
-
-		private void btn6_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "6";
-			}
-		}
-
-		private void btn7_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "7";
-			}
-		}
-
-		private void btn8_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "8";
-			}
-		}
-
-		private void btn9_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "9";
-			}
-		}
-
-		private void btn0_Click(object sender, EventArgs e)
-		{
-			if (lblDisplay.Text == "0")
-			{
-				lblDisplay.Text = "";
-			}
-			if (lblDisplay.Text.Length <= 8)
-			{
-				lblDisplay.Text = lblDisplay.Text + "0";
-			}
-		}
-
-		private void btnMinus_Click(object sender, EventArgs e)
-		{
-			lblDisplay.Text = lblDisplay.Text  "";
 		}
 	}
-}
+	}
+
+ 
