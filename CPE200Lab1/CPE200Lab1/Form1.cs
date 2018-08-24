@@ -27,14 +27,11 @@ namespace CPE200Lab1
 
         private void btnX_Click(object sender, EventArgs e)
         {
-
-             Button btn = (Button)sender;
-           
+            Button btn = (Button)sender;
             if (lblDisplay.Text == "0" || check)
             {
                 lblDisplay.Text = "";
                 check = false;
-                
             }
             if (lblDisplay.Text.Length < 8)
             {
@@ -59,7 +56,6 @@ namespace CPE200Lab1
             {
                 case "+":
                     a = a + b;
-                    
                     result = Convert.ToString(a);
                     lblDisplay.Text = result;
                     break;
@@ -79,7 +75,6 @@ namespace CPE200Lab1
                     lblDisplay.Text = result;
                     break;
             }
-           
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -115,8 +110,6 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            
-            
             if (!check2)
             {
                 a = Convert.ToDouble(lblDisplay.Text);
@@ -129,10 +122,32 @@ namespace CPE200Lab1
                 {
                     b = Convert.ToDouble(lblDisplay.Text);
                     System.Console.WriteLine("b in check3 is " + b);
-                    b = (b / 100) * a;
-                    lblDisplay.Text = Convert.ToString(b);
-                    b = Convert.ToDouble(lblDisplay.Text);
-                    Cal();
+                    switch (operate)
+                    {
+                        case "+":
+                            b = (b / 100) * a;
+                            a = a + b;
+                            result = Convert.ToString(a);
+                            lblDisplay.Text = result;
+                            break;
+                        case "-":
+                            b = (b / 100) * a;
+                            a = a - b;
+                            result = Convert.ToString(a);
+                            lblDisplay.Text = result;
+                            break;
+                        case "X":
+                            a = a * b/100;
+                            result = Convert.ToString(a);
+                            System.Console.WriteLine("b in X " + a);
+                            lblDisplay.Text = result;
+                            break;
+                        case "÷":
+                            a = a / b/100;
+                            result = Convert.ToString(a);
+                            lblDisplay.Text = result;
+                            break;
+                    }
                 }      
             }
             check = true;
@@ -149,7 +164,6 @@ namespace CPE200Lab1
             operate = "";
             check = false;
             check2 = false;
-
         }
     }
 }
