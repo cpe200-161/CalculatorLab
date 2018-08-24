@@ -14,7 +14,7 @@ namespace CPE200Lab1
     {
         float first, second, sum;
         int plus = 0, minus = 0, multiply = 0, divide = 0;
-        int clearb = 0, stat = 0, dotnub = 0;
+        int clearb = 0, stat = 0, dotnub = 0;//stat=checkequal
         public Form1()
         {
             InitializeComponent();
@@ -24,10 +24,15 @@ namespace CPE200Lab1
         private void btnX_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (lblDisplay.Text == "0")
+            if (lblDisplay.Text == "0"||clearb==1)
             {
                 lblDisplay.Text = "";
+                if (dotnub == 1)
+                    lblDisplay.Text = "0.";
+                clearb = 0;
+                dotnub = 0;
             }
+            
             if (stat == 1)
             {
                 first = 0;
@@ -40,8 +45,6 @@ namespace CPE200Lab1
             }
             if (lblDisplay.Text.Length < 8)
             {
-                if (clearb == 1) { lblDisplay.Text = ""; clearb = 0; dotnub = 0; }
-
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
         }
@@ -89,9 +92,9 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            first = float.Parse(lblDisplay.Text);
-            first *= -1;
-            lblDisplay.Text = Convert.ToString(first);
+            second = float.Parse(lblDisplay.Text);
+            second *= -1;
+            lblDisplay.Text = Convert.ToString(second);
 
         }
 
@@ -99,6 +102,7 @@ namespace CPE200Lab1
         {
             if (dotnub == 0)
             {
+               
 
                 dotnub++;
                 lblDisplay.Text = lblDisplay.Text + ".";
@@ -107,76 +111,82 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            if (stat == 1) plus = 0;
-             if (multiply == 1 || minus == 1 || divide == 1)
+            if (stat == 1) { plus = 0;minus = 0;divide = 0;multiply = 0; }
+            if (clearb == 0 || stat == 1)
             {
-                second = float.Parse(lblDisplay.Text);
-                if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
-                else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
-                else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
-                minus = 0;
-                plus = 1;
-                multiply = 0;
-                divide = 0;
-                clearb = 1;
-                first = float.Parse(lblDisplay.Text);
-                stat = 0;
-            }
-            else if (plus == 0)
-            {
-                first = float.Parse(lblDisplay.Text);
-                plus = 1;
-                minus = 0;
-                clearb = 1;
-                stat = 0;
-            }
-            else if (plus == 1)
-            {
-                if (lblDisplay.Text == "" || clearb == 1) { }
-                else
+                if (multiply == 1 || minus == 1 || divide == 1)
                 {
                     second = float.Parse(lblDisplay.Text);
-                    lblDisplay.Text = Convert.ToString(first + second);
+                    if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
+                    else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
+                    else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
+                    minus = 0;
+                    plus = 1;
+                    multiply = 0;
+                    divide = 0;
                     clearb = 1;
                     first = float.Parse(lblDisplay.Text);
                     stat = 0;
+                }
+                else if (plus == 0)
+                {
+                    first = float.Parse(lblDisplay.Text);
+                    plus = 1;
+                    minus = 0;
+                    clearb = 1;
+                    stat = 0;
+                }
+                else if (plus == 1)
+                {
+                    if (lblDisplay.Text == "" || clearb == 1) { }
+                    else
+                    {
+                        second = float.Parse(lblDisplay.Text);
+                        lblDisplay.Text = Convert.ToString(first + second);
+                        clearb = 1;
+                        first = float.Parse(lblDisplay.Text);
+                        stat = 0;
+                    }
                 }
             }
         }
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            if (stat == 1) minus = 0;
-             if (multiply == 1 || plus == 1 || divide == 1)
+            if (stat == 1) { plus = 0; minus = 0; divide = 0; multiply = 0; }
+            if (clearb== 0 || stat == 1)
             {
-                second = float.Parse(lblDisplay.Text);
-                if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
-                else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
-                else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
-                minus = 1;
-                plus = 0;
-                multiply = 0;
-                divide = 0;
-                clearb = 1;
-                first = float.Parse(lblDisplay.Text);
-                stat = 0;
-            }
-            else if (minus == 0)
-            {
-                first = float.Parse(lblDisplay.Text);
-                minus = 1;
-                clearb = 1;
-                stat = 0;
-            }
-            else if (minus == 1)
-            {
-                if (lblDisplay.Text == "" || clearb == 1) { }
-                else
+                if (multiply == 1 || plus == 1 || divide == 1)
                 {
                     second = float.Parse(lblDisplay.Text);
-                    lblDisplay.Text = Convert.ToString(first - second);
+                    if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
+                    else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
+                    else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
+                    minus = 1;
+                    plus = 0;
+                    multiply = 0;
+                    divide = 0;
                     clearb = 1;
                     first = float.Parse(lblDisplay.Text);
                     stat = 0;
+                }
+                else if (minus == 0)
+                {
+                    first = float.Parse(lblDisplay.Text);
+                    minus = 1;
+                    clearb = 1;
+                    stat = 0;
+                }
+                else if (minus == 1)
+                {
+                    if (lblDisplay.Text == "" || clearb == 1) { }
+                    else
+                    {
+                        second = float.Parse(lblDisplay.Text);
+                        lblDisplay.Text = Convert.ToString(first - second);
+                        clearb = 1;
+                        first = float.Parse(lblDisplay.Text);
+                        stat = 0;
+                    }
                 }
             }
         }
@@ -197,41 +207,44 @@ namespace CPE200Lab1
         }
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (stat == 1) multiply = 0;
-             if (plus == 1 || minus == 1 || divide == 1)
+            if (stat == 1) { plus = 0; minus = 0; divide = 0; multiply = 0; }
+            if (clearb == 0 || stat == 1)
             {
-                second = float.Parse(lblDisplay.Text);
-                if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
-                else if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
-                else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
-                minus = 0;
-                plus = 0;
-                divide = 0;
-                multiply = 1;
-                clearb = 1;
-                first = float.Parse(lblDisplay.Text);
-                stat = 0;
-            }
-            else if (multiply == 0)
-            {
-                first = float.Parse(lblDisplay.Text);
-                multiply = 1;
-                minus = 0;
-                plus = 0;
-                divide = 0;
-                clearb = 1;
-                stat = 0;
-            }
-            else if (multiply == 1)
-            {
-                if (lblDisplay.Text == "" || clearb == 1) { }
-                else
+                if (plus == 1 || minus == 1 || divide == 1)
                 {
                     second = float.Parse(lblDisplay.Text);
-                    lblDisplay.Text = Convert.ToString(first * second);
+                    if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
+                    else if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
+                    else if (divide == 1) lblDisplay.Text = Convert.ToString(first / second);
+                    minus = 0;
+                    plus = 0;
+                    divide = 0;
+                    multiply = 1;
                     clearb = 1;
                     first = float.Parse(lblDisplay.Text);
                     stat = 0;
+                }
+                else if (multiply == 0)
+                {
+                    first = float.Parse(lblDisplay.Text);
+                    multiply = 1;
+                    minus = 0;
+                    plus = 0;
+                    divide = 0;
+                    clearb = 1;
+                    stat = 0;
+                }
+                else if (multiply == 1)
+                {
+                    if (lblDisplay.Text == "" || clearb == 1) { }
+                    else
+                    {
+                        second = float.Parse(lblDisplay.Text);
+                        lblDisplay.Text = Convert.ToString(first * second);
+                        clearb = 1;
+                        first = float.Parse(lblDisplay.Text);
+                        stat = 0;
+                    }
                 }
             }
         }
@@ -239,44 +252,47 @@ namespace CPE200Lab1
         private void btnDivide_Click(object sender, EventArgs e)
         {
 
-            if (stat == 1) divide = 0;
-            if (multiply == 1 || minus == 1 || plus == 1)
+            if (stat == 1) {plus = 0; minus = 0; divide = 0; multiply = 0; }
+            if (clearb == 0||stat==1)
             {
-                second = float.Parse(lblDisplay.Text);
-                if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
-                else if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
-                else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
-                minus = 0;
-                plus = 0;
-                multiply = 0;
-                divide = 1;
-                clearb = 1;
-                first = float.Parse(lblDisplay.Text);
-                stat = 0;
-            }
-            else if (divide == 0)
-            {
-                first = float.Parse(lblDisplay.Text);
-                multiply = 0;
-                minus = 0;
-                plus = 0;
-                divide = 1;
-                clearb = 1;
-                stat = 0;
-            }
-            else if (divide == 1)
-            {
-                if (lblDisplay.Text == "" || clearb == 1) { }
-                else
+                if (multiply == 1 || minus == 1 || plus == 1)
                 {
                     second = float.Parse(lblDisplay.Text);
-                    lblDisplay.Text = Convert.ToString(first / second);
+                    if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
+                    else if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
+                    else if (multiply == 1) lblDisplay.Text = Convert.ToString(first * second);
+                    minus = 0;
+                    plus = 0;
+                    multiply = 0;
+                    divide = 1;
                     clearb = 1;
                     first = float.Parse(lblDisplay.Text);
                     stat = 0;
                 }
-            }
+                else if (divide == 0)
+                {
+                    first = float.Parse(lblDisplay.Text);
+                    multiply = 0;
+                    minus = 0;
+                    plus = 0;
+                    divide = 1;
+                    clearb = 1;
+                    stat = 0;
+                }
+                else if (divide == 1)
+                {
+                    if (lblDisplay.Text == "" || clearb == 1) { }
+                    else
+                    {
+                        second = float.Parse(lblDisplay.Text);
+                        lblDisplay.Text = Convert.ToString(first / second);
+                        clearb = 1;
+                        first = float.Parse(lblDisplay.Text);
+                        stat = 0;
+                    }
+                }
 
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
