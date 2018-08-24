@@ -42,7 +42,7 @@ namespace CPE200Lab1
         
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text.Length < 8)
+            if (lblDisplay.Text.Length < 2)
             {
                 lblDisplay.Text = lblDisplay.Text + ".";
                 check3 = true;
