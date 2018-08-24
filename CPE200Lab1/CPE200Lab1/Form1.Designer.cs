@@ -63,7 +63,8 @@ namespace CPE200Lab1
             this.btn7.TabIndex = 0;
             this.btn7.Text = "7";
             this.btn7.UseVisualStyleBackColor = true;
-            this.btn7.Click += new System.EventHandler(this.btn7_Click);
+            this.btn7.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn7.Click += new System.EventHandler(this.Button_click);
             // 
             // btn8
             // 
@@ -75,7 +76,8 @@ namespace CPE200Lab1
             this.btn8.TabIndex = 1;
             this.btn8.Text = "8";
             this.btn8.UseVisualStyleBackColor = true;
-            this.btn8.Click += new System.EventHandler(this.btn8_Click);
+            this.btn8.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn8.Click += new System.EventHandler(this.Button_click);
             // 
             // btn9
             // 
@@ -87,7 +89,8 @@ namespace CPE200Lab1
             this.btn9.TabIndex = 2;
             this.btn9.Text = "9";
             this.btn9.UseVisualStyleBackColor = true;
-            this.btn9.Click += new System.EventHandler(this.btn9_Click);
+            this.btn9.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn9.Click += new System.EventHandler(this.Button_click);
             // 
             // btnMultiply
             // 
@@ -123,7 +126,8 @@ namespace CPE200Lab1
             this.btn6.TabIndex = 6;
             this.btn6.Text = "6";
             this.btn6.UseVisualStyleBackColor = true;
-            this.btn6.Click += new System.EventHandler(this.btn6_Click);
+            this.btn6.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn6.Click += new System.EventHandler(this.Button_click);
             // 
             // btn5
             // 
@@ -135,7 +139,8 @@ namespace CPE200Lab1
             this.btn5.TabIndex = 5;
             this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = true;
-            this.btn5.Click += new System.EventHandler(this.btn5_Click);
+            this.btn5.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn5.Click += new System.EventHandler(this.Button_click);
             // 
             // btn4
             // 
@@ -147,7 +152,8 @@ namespace CPE200Lab1
             this.btn4.TabIndex = 4;
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
-            this.btn4.Click += new System.EventHandler(this.btn4_Click);
+            this.btn4.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn4.Click += new System.EventHandler(this.Button_click);
             // 
             // btnPlus
             // 
@@ -171,7 +177,8 @@ namespace CPE200Lab1
             this.btn3.TabIndex = 10;
             this.btn3.Text = "3";
             this.btn3.UseVisualStyleBackColor = true;
-            this.btn3.Click += new System.EventHandler(this.btn3_Click);
+            this.btn3.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn3.Click += new System.EventHandler(this.Button_click);
             // 
             // btn2
             // 
@@ -183,7 +190,8 @@ namespace CPE200Lab1
             this.btn2.TabIndex = 9;
             this.btn2.Text = "2";
             this.btn2.UseVisualStyleBackColor = true;
-            this.btn2.Click += new System.EventHandler(this.btn2_Click);
+            this.btn2.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn2.Click += new System.EventHandler(this.Button_click);
             // 
             // btn1
             // 
@@ -195,7 +203,8 @@ namespace CPE200Lab1
             this.btn1.TabIndex = 8;
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn1_Click);
+            this.btn1.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn1.Click += new System.EventHandler(this.Button_click);
             // 
             // btnEqual
             // 
@@ -219,7 +228,8 @@ namespace CPE200Lab1
             this.btnDot.TabIndex = 14;
             this.btnDot.Text = ".";
             this.btnDot.UseVisualStyleBackColor = true;
-            this.btnDot.Click += new System.EventHandler(this.btnDot_Click);
+            this.btnDot.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btnDot.Click += new System.EventHandler(this.Button_click);
             // 
             // btn0
             // 
@@ -231,7 +241,8 @@ namespace CPE200Lab1
             this.btn0.TabIndex = 13;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
-            this.btn0.Click += new System.EventHandler(this.btn0_Click);
+            this.btn0.AutoSizeChanged += new System.EventHandler(this.Button_click);
+            this.btn0.Click += new System.EventHandler(this.Button_click);
             // 
             // btnSign
             // 
