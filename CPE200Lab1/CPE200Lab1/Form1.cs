@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        string operation;// + - * /
+        string operation;
         int check = 0;
         float number1;
         float number2;
@@ -303,37 +303,7 @@ namespace CPE200Lab1
             else if (check == 3)
             {
                 number2 = float.Parse(lblDisplay.Text);
-                if (operation == "+")
-                {
-                    result = number1 + number1 * number2 /100;
-                }
-                else if (operation == "-")
-                {
-                    result = number1 - number1 * number2 / 100;
-                }
-                else if (operation == "*")
-                {
-                    result = number1 * number1 * number2 / 100;
-                }
-                else if (operation == "/")
-                {
-                    result = number1 / number1 * number2 / 100;
-                }
-
-                if (operation == "/" && number1 * number2 / 100 == 0)
-                {
-                    lblDisplay.Text = "Undefined";
-                    number1 = 0;
-                    number2 = 0;
-                    check = 0;
-                }
-                else
-                {
-                    lblDisplay.Text = Convert.ToString(result);
-                    number1 = result;
-                    check = 2;
-                }
-                operation = null;
+                lblDisplay.Text = Convert.ToString(number1 * number2 / 100);
             }
         }
 
@@ -356,7 +326,6 @@ namespace CPE200Lab1
             {
                 number2 = float.Parse(lblDisplay.Text);
             }
-
         }
     }
 }
