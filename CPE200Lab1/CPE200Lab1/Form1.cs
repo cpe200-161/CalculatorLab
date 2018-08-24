@@ -18,8 +18,9 @@ namespace CPE200Lab1
         string seccondNum = "";
         string lastestOperaton = "";
         bool getNewNumber = false;
-        
-        
+        bool isMaximum = false;
+
+       
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,6 @@ namespace CPE200Lab1
 
         private void btnXClick(object sender, EventArgs e)
         {
-
             Button btn = (Button)sender;
 
             if (lblDisplay.Text == "0" || !getNewNumber)
@@ -35,10 +35,11 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
                 
                 getNewNumber = true;
+                
 
             }
 
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length < 8 && !isMaximum)
             {
 
                 if (btn.Text == "." && lblDisplay.Text.IndexOf(".") != -1)
@@ -76,7 +77,7 @@ namespace CPE200Lab1
                         lastestOperaton = btn.Text;
                     }
 
-                    float result = CalculationProcess(num1, num2, lastestOperaton);
+                    double result = (double)CalculationProcess(num1, num2, lastestOperaton);
                     firstNum = result.ToString();
 
                 }
@@ -87,7 +88,17 @@ namespace CPE200Lab1
 
 
             lastestOperaton = btn.Text;
-            lblDisplay.Text = firstNum;
+
+
+            if (isMaximum)
+            {
+                lblDisplay.Text = "max";
+            }
+            else
+            {
+                lblDisplay.Text = firstNum;
+            }
+            
 
 
         }
@@ -106,7 +117,7 @@ namespace CPE200Lab1
                     lblDisplay.Text = currentNum.ToString();
                     break;
                 case "<":
-                    if (lblDisplay.Text.Length > 1)
+                    if (lblDisplay.Text.Length > 1 && lblDisplay.Text != "max")
                     {
                         lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
                     }
@@ -121,6 +132,7 @@ namespace CPE200Lab1
                     lastestOperaton = "";
                     getNewNumber = false;
                     lblDisplay.Text = "0";
+                    isMaximum = false;
                     break;
                 case "±":
                     if (!lblDisplay.Text.StartsWith("-") && lblDisplay.Text != "0")
@@ -170,6 +182,12 @@ namespace CPE200Lab1
                     Console.WriteLine("Unknown sign");
                     break;
 
+            }
+
+            if(result > 99999999)
+            {
+                result = 0;
+                isMaximum = true;
             }
 
             return result;
