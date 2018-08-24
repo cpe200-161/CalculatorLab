@@ -16,7 +16,6 @@ namespace CPE200Lab1
         private float total = 0;
         private float Num = 0;
         private char status;
-        private char percent;
         bool flag = false;
 
         public Form1()
@@ -52,7 +51,6 @@ namespace CPE200Lab1
             lblDisplay.Text = "";
             total = Num + total;
             status = '1';
-            percent = '1';
             flag = true;
         }
 
@@ -94,7 +92,6 @@ namespace CPE200Lab1
             lblDisplay.Text = "";
             total = Num - total;
             status = '2';
-            percent = '2';
             flag = true;
         }
 
@@ -105,7 +102,6 @@ namespace CPE200Lab1
             lblDisplay.Text = "";
             total = Num;
             status = '3';
-            percent = '3';
             flag = true;
         }
 
@@ -116,7 +112,6 @@ namespace CPE200Lab1
             lblDisplay.Text = "";
             total = Num;
             status = '4';
-            percent = '4';
             flag = true;
         }
 
@@ -126,7 +121,7 @@ namespace CPE200Lab1
             Num = float.Parse(numOperand);
             if (flag == true)
             {
-                switch (percent)
+                switch (status)
                 {
 
                     case '1':
