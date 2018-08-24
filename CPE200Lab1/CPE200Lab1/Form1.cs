@@ -12,9 +12,11 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        Double value = 0;
+        float value = 0;
         String opr = "";
-        private bool pressed = false;
+        bool opPressed = false;
+        bool pcPresed = false;
+
 
         public Form1()
         {
@@ -24,10 +26,10 @@ namespace CPE200Lab1
 		private void btnX_Click(object sender, EventArgs e)
 		{
 			Button btn = (Button)sender;
-			if ((lblDisplay.Text == "0") || (pressed))
+			if ((lblDisplay.Text == "0") || (opPressed))
 			{
 				lblDisplay.Text = "";
-                pressed = false;
+                opPressed = false;
             }
 			if (lblDisplay.Text.Length < 8)
 			{
@@ -59,26 +61,28 @@ namespace CPE200Lab1
         {
             Button btn = (Button)sender;
             opr = btn.Text;
-            value = Double.Parse(lblDisplay.Text);
-            pressed = true;
+            value = float.Parse(lblDisplay.Text);
+            opPressed = true;
+            pcPresed = true;
 
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+
             switch (opr)
             {
                 case "+":
-                    lblDisplay.Text = (value + Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value + float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "-":
-                    lblDisplay.Text = (value - Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value - float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "X":
-                    lblDisplay.Text = (value * Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value * float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "÷":
-                    lblDisplay.Text = (value / Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value / float.Parse(lblDisplay.Text)).ToString();
                     break;
                 default:
                     break;
@@ -94,12 +98,35 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (value * (Double.Parse(lblDisplay.Text) / 100)).ToString();
+            if (pcPresed == true)
+            {
+                switch (opr)
+                {
+                    case "+":
+                        lblDisplay.Text = (value * (float.Parse(lblDisplay.Text) / 100)).ToString();
+                        break;
+                    case "-":
+                        lblDisplay.Text = (value * (float.Parse(lblDisplay.Text) / 100)).ToString();
+                        break;
+                    case "X":
+                        lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                        break;
+                    case "÷":
+                        lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                        break;
+                }
+
+            }
+            else
+            {
+                lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+            }
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-                lblDisplay.Text = (Double.Parse(lblDisplay.Text) * (-1)).ToString();
+                lblDisplay.Text = (float.Parse(lblDisplay.Text) * (-1)).ToString();
         }
     }
 }
