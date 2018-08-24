@@ -44,7 +44,6 @@ namespace CPE200Lab1
 
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
-
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -88,6 +87,14 @@ namespace CPE200Lab1
                 lblDisplay.Text = "0";
         }
 
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            first = float.Parse(lblDisplay.Text);
+            first *= -1;
+            lblDisplay.Text = Convert.ToString(first);
+
+        }
+
         private void btnDot_Click(object sender, EventArgs e)
         {
             if (dotnub == 0)
@@ -101,8 +108,7 @@ namespace CPE200Lab1
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if (stat == 1) plus = 0;
-            if (lblDisplay.Text == "" || clearb == 1) { }
-            else if (multiply == 1 || minus == 1 || divide == 1)
+             if (multiply == 1 || minus == 1 || divide == 1)
             {
                 second = float.Parse(lblDisplay.Text);
                 if (minus == 1) lblDisplay.Text = Convert.ToString(first - second);
@@ -136,15 +142,11 @@ namespace CPE200Lab1
                     stat = 0;
                 }
             }
-
-
         }
-
         private void btnMinus_Click(object sender, EventArgs e)
         {
             if (stat == 1) minus = 0;
-            if (lblDisplay.Text == "" || clearb == 1) { }
-            else if (multiply == 1 || plus == 1 || divide == 1)
+             if (multiply == 1 || plus == 1 || divide == 1)
             {
                 second = float.Parse(lblDisplay.Text);
                 if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
@@ -177,8 +179,6 @@ namespace CPE200Lab1
                     stat = 0;
                 }
             }
-
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -195,13 +195,10 @@ namespace CPE200Lab1
             clearb = 0;
             dotnub = 0;
         }
-
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             if (stat == 1) multiply = 0;
-            if (lblDisplay.Text == "" || clearb == 1) { }
-
-            else if (plus == 1 || minus == 1 || divide == 1)
+             if (plus == 1 || minus == 1 || divide == 1)
             {
                 second = float.Parse(lblDisplay.Text);
                 if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
@@ -237,16 +234,13 @@ namespace CPE200Lab1
                     stat = 0;
                 }
             }
-
-
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
 
             if (stat == 1) divide = 0;
-            if (lblDisplay.Text == "" || clearb == 1) { }
-            else if (multiply == 1 || minus == 1 || plus == 1)
+            if (multiply == 1 || minus == 1 || plus == 1)
             {
                 second = float.Parse(lblDisplay.Text);
                 if (plus == 1) lblDisplay.Text = Convert.ToString(first + second);
@@ -332,10 +326,6 @@ namespace CPE200Lab1
                 stat = 1;
                 first = float.Parse(lblDisplay.Text);
             }
-
-
-
-
         }
     }
 }
