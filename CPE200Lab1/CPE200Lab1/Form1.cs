@@ -14,8 +14,8 @@ namespace CPE200Lab1
     {
         float value = 0;
         String opr = "";
-        bool opPressed = false;
-        bool pcPresed = false;
+        bool operatorPressed = false;
+        bool percentPressed = false;
 
 
         public Form1()
@@ -26,10 +26,10 @@ namespace CPE200Lab1
 		private void btnX_Click(object sender, EventArgs e)
 		{
 			Button btn = (Button)sender;
-			if ((lblDisplay.Text == "0") || (opPressed))
+			if ((lblDisplay.Text == "0") || (operatorPressed))
 			{
 				lblDisplay.Text = "";
-                opPressed = false;
+                operatorPressed = false;
             }
 			if (lblDisplay.Text.Length < 8)
 			{
@@ -62,8 +62,8 @@ namespace CPE200Lab1
             Button btn = (Button)sender;
             opr = btn.Text;
             value = float.Parse(lblDisplay.Text);
-            opPressed = true;
-            pcPresed = true;
+            operatorPressed = true;
+            percentPressed = true;
 
         }
 
@@ -98,7 +98,7 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (pcPresed == true)
+            if (percentPressed == true)
             {
                 switch (opr)
                 {
