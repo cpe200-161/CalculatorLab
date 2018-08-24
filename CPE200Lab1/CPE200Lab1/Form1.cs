@@ -45,7 +45,7 @@ namespace CPE200Lab1
                 check = 3;
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length < 8)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
@@ -99,7 +99,6 @@ namespace CPE200Lab1
                 }
                 check = 2;
             }
-            //lblDisplay.Text = Convert.ToString(number1) + "+";
             operation = "+";
         }
 
@@ -143,7 +142,6 @@ namespace CPE200Lab1
                 }
                 check = 2;
             }
-            //lblDisplay.Text = Convert.ToString(number1) + "-";
             operation = "-";
         }
 
@@ -187,7 +185,6 @@ namespace CPE200Lab1
                 }
                 check = 2;
             }
-            //lblDisplay.Text = Convert.ToString(number1) + "*";
             operation = "*";
         }
     
@@ -231,7 +228,6 @@ namespace CPE200Lab1
                 }
                 check = 2;
             }
-            //lblDisplay.Text = Convert.ToString(number1) + "/";
             operation = "/";
         }
 
@@ -239,7 +235,7 @@ namespace CPE200Lab1
         {
             if (lblDisplay.Text.Length > 1)
             {
-                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length -1, 1);
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length -1);
             }
             else
             {
