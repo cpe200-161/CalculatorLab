@@ -13,8 +13,8 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         float num1 = 0, num2 = 0;
-        string firstinput = null;
-        string nextinput = null;
+
+
         int Operator = 0;
         int OpertorPressed = 0;
         int statnum1 = 0;
@@ -35,23 +35,40 @@ namespace CPE200Lab1
                     num2 = num1 + float.Parse(lblDisplay.Text);
                     lblDisplay.Text = num2.ToString();
                     statnum1 = 0;
+                    Operator = 0;
                     break;
                 case 2:
 
                     num2 = num1 - float.Parse(lblDisplay.Text);
                     lblDisplay.Text = num2.ToString();
                     statnum2 = 0;
+                    Operator = 0;
                     break;
                 case 3:
 
                     num2 = num1 * float.Parse(lblDisplay.Text);
                     lblDisplay.Text = num2.ToString();
                     statnum3 = 0;
+                    Operator = 0;
                     break;
                 case 4:
+                    float x = float.Parse(lblDisplay.Text);
+                    if (num1 == 0)
+                    {
+                        if (x == 0) lblDisplay.Text = "Unknown";
 
-                    num2 = num1 / float.Parse(lblDisplay.Text);
-                    lblDisplay.Text = num2.ToString();
+                    }
+                    else if (num1 != 0 && x == 0)
+                    {
+                        lblDisplay.Text = "Can't divide by zero";
+                    }
+                    else
+                    {
+                        num2 = num1 / float.Parse(lblDisplay.Text);
+                        statnum4 = 0;
+                        Operator = 0;
+                        lblDisplay.Text = num2.ToString();
+                    }
                     break;
                 default:
                     break;
@@ -87,8 +104,8 @@ namespace CPE200Lab1
             statnum4 = 0;
             num1 = 0;
             num2 = 0;
-            firstinput = null;
-            nextinput = null;
+
+
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -170,7 +187,8 @@ namespace CPE200Lab1
             {
                 num1 = num1 * float.Parse(lblDisplay.Text);
                 lblDisplay.Text = lblDisplay.Text;
-            } if (Operator == 1 || Operator == 2 || Operator ==3) lblDisplay.Text = "Can't calculate.";
+            }
+            if (Operator == 1 || Operator == 2 || Operator == 3) lblDisplay.Text = "Can't calculate.";
             Operator = 4;
             OpertorPressed = 1;
         }
@@ -179,14 +197,14 @@ namespace CPE200Lab1
         {
             if (statnum1 == 0 && statnum2 == 0 && statnum3 == 0 && statnum4 == 0)
             {
-            num1 = float.Parse(lblDisplay.Text);
-            num1 = num1 / 100f;
-            lblDisplay.Text = num1.ToString();
+                num1 = float.Parse(lblDisplay.Text);
+                num1 = num1 / 100f;
+                lblDisplay.Text = num1.ToString();
             }
-            if(statnum1 != 0 || statnum2 != 0 || statnum3 != 0 || statnum4 != 0)
+            if (statnum1 != 0 || statnum2 != 0 || statnum3 != 0 || statnum4 != 0)
             {
                 num2 = float.Parse(lblDisplay.Text);
-                lblDisplay.Text = (num1*(num2)/100f).ToString();
+                lblDisplay.Text = (num1 * (num2) / 100f).ToString();
             }
         }
 
