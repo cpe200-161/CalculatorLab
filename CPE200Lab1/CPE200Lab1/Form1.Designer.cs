@@ -246,6 +246,7 @@
             this.btnDot.TabIndex = 14;
             this.btnDot.Text = ".";
             this.btnDot.UseVisualStyleBackColor = false;
+            this.btnDot.Click += new System.EventHandler(this.btnDot_Click);
             // 
             // btn0
             // 
@@ -352,7 +353,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Impact", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(9, 18);
+            this.label1.Location = new System.Drawing.Point(8, 18);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label1.Size = new System.Drawing.Size(496, 46);

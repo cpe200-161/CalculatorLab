@@ -18,6 +18,7 @@ namespace CPE200Lab1
         double SecondNumber;
         double Result;
         int BottonCheck;
+        int DotCheck=1;
 
         public Form1()
         {
@@ -38,6 +39,8 @@ namespace CPE200Lab1
                     {
                         lblDisplay.Text = "";
                         BottonCheck = 2;
+                        
+                        DotCheck = 1;
                     }
                 }
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
@@ -137,7 +140,7 @@ namespace CPE200Lab1
             if (Operation == "*")
             {
                 Result = (FirstNumber * SecondNumber);
-                lblDisplay.Text = Convert.ToString(Result);
+                lblDisplay.Text = Result.ToString("G8");
                 FirstNumber = Result;
             }
             if (Operation == "/")
@@ -351,67 +354,32 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             Operation = "";
             BottonCheck = 1;
+            DotCheck = 1;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            if (Operation == "*")
+            if(FirstNumber == 0)
             {
-                SecondNumber = Convert.ToDouble(lblDisplay.Text);
-                Result = (FirstNumber * SecondNumber);
-                lblDisplay.Text = Convert.ToString(Result);
-                FirstNumber = Result;
-            }
-
-            if (Operation == "-")
-            {
-                SecondNumber = Convert.ToDouble(lblDisplay.Text);
-                Result = (FirstNumber - SecondNumber);
-                lblDisplay.Text = Convert.ToString(Result);
-                FirstNumber = Result;
-            }
-            if (Operation == "+")
-            {
-                SecondNumber = Convert.ToDouble(lblDisplay.Text);
-                Result = (FirstNumber + SecondNumber);
-                lblDisplay.Text = Convert.ToString(Result);
-                FirstNumber = Result;
-            }
-            if (Operation == "/")
-            {
-                SecondNumber = Convert.ToDouble(lblDisplay.Text);
-                if (SecondNumber == 0)
-                {
-                    lblDisplay.Text = "Cannot divide by zero";
-
-                }
-                else
-                {
-                    Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1)  
-                    {
-                        lblDisplay.Text = Result.ToString("G8");
-                    }
-                    else
-                    {
-                        lblDisplay.Text = Result.ToString("G7");
-                    }
-                    FirstNumber = Result;
-                }
-            }
-            if (Operation == "%")
-            {
-                SecondNumber = Convert.ToDouble(lblDisplay.Text);
-                Result = ((FirstNumber * SecondNumber) / 100);
-                lblDisplay.Text = Convert.ToString(Result);
-                FirstNumber = Result;
+                FirstNumber = 1;
+                double PercentResult;
+                double Percent = Convert.ToDouble(lblDisplay.Text);
+                PercentResult = ((FirstNumber * Percent) / 100);
+                lblDisplay.Text = Convert.ToString(PercentResult);
+                SecondNumber = PercentResult;
             }
             else
             {
-                FirstNumber = Convert.ToDouble(lblDisplay.Text);
+                double PercentResult;
+                double Percent = Convert.ToDouble(lblDisplay.Text);
+                PercentResult = ((FirstNumber * Percent) / 100);
+                lblDisplay.Text = Convert.ToString(PercentResult);
+                SecondNumber = PercentResult;
             }
+            
+            
             BottonCheck = 1;
-            Operation = "%";
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -434,6 +402,16 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            if(DotCheck == 1)
+            {
+                lblDisplay.Text = lblDisplay.Text + ".";
+                DotCheck = 2;
+            }
+            
         }
     }
     }
