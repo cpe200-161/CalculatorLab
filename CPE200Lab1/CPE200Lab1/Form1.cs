@@ -12,6 +12,12 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        double num1 = 0;
+        
+        double ans;
+        bool btnPlus_Parse = false;
+        bool check = false;
+        string operation = "";
         public Form1()
         {
             InitializeComponent();
@@ -19,59 +25,132 @@ namespace CPE200Lab1
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "0")
+            Button btn = (Button)sender;
+
+            if ((lblDisplay.Text == "0" )|| (btnPlus_Parse))
             {
                 lblDisplay.Text = "";
+                btnPlus_Parse = false;
             }
             if (lblDisplay.Text.Length < 8) 
-            lblDisplay.Text = lblDisplay.Text + "1";
+            lblDisplay.Text = lblDisplay.Text + btn.Text;
         }
 
-        private void btn2_Click(object sender, EventArgs e)
+        private void btnPlus_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "2";
-          
-        }
-           
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            lblDisplay.Text = "3";
+            Button btn = (Button)sender;
+            num1 = double.Parse(lblDisplay.Text);
+            operation = btn.Text;
+            btnPlus_Parse = true;
         }
 
-        private void btn4_Click(object sender, EventArgs e)
+        private void btnEqual_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "4";
+            
+            switch (operation)
+            {
+                case "+":
+                    {
+                        ans = num1 + double.Parse(lblDisplay.Text);
+                        lblDisplay.Text = ans.ToString();
+                    break;
+                    }
+                case "-":
+                    {
+                        ans = num1 - double.Parse(lblDisplay.Text);
+                        lblDisplay.Text = ans.ToString();
+                        break;
+                    }
+                case "X":
+                    {
+                        
+                        ans = num1 * double.Parse(lblDisplay.Text);
+                        lblDisplay.Text = ans.ToString();
+                        break;
+                    }
+                case "÷":
+                    {
+                        if (double.Parse(lblDisplay.Text) == 0)
+                        {
+                            lblDisplay.Text = "error";
+                        }
+                        else
+                        {
+                            ans = num1 / double.Parse(lblDisplay.Text);
+                            lblDisplay.Text = ans.ToString();
+                            
+                        }
+                        break;
+                    }
+                   
+               
+            }
         }
 
-        private void btn5_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "5";
+            num1 = 0;
+            ans = 0;
+            lblDisplay.Text = "0";
+            operation = "";
         }
 
-        private void btn6_Click(object sender, EventArgs e)
+        private void btnMinus_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "6";
+            Button btn = (Button)sender;
+            num1 = double.Parse(lblDisplay.Text);
+            operation = btn.Text;
+            btnPlus_Parse = true;
         }
 
-        private void btn7_Click(object sender, EventArgs e)
+        private void btnMultiply_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "7";
+            Button btn = (Button)sender;
+            num1 = double.Parse(lblDisplay.Text);
+            operation = btn.Text;
+            btnPlus_Parse = true;
         }
 
-        private void btn8_Click(object sender, EventArgs e)
+        private void btnDivide_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "8";
+            Button btn = (Button)sender;
+            num1 = double.Parse(lblDisplay.Text);
+            operation = btn.Text;
+            btnPlus_Parse = true;
         }
 
-        private void btn9_Click(object sender, EventArgs e)
+        private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "9";
+            if(operation == "" || operation == "X" || operation == "÷")
+            {
+                ans = double.Parse(lblDisplay.Text) / 100;
+                lblDisplay.Text = ans.ToString();
+            }else if( operation == "+" || operation == "-")
+            {
+                ans = (num1 * double.Parse(lblDisplay.Text)) / 100;
+                lblDisplay.Text = ans.ToString();
+            }
         }
 
-        private void lblDisplay_Click(object sender, EventArgs e)
+        private void btnDot_Click(object sender, EventArgs e)
         {
-          
+            Button btn = (Button)sender;
+            if(!check)
+            {
+                lblDisplay.Text = lblDisplay.Text + btn.Text;
+                check = true;
+            }
+            else if(lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = "0" + btn.Text;
+            }
+            
+            
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
