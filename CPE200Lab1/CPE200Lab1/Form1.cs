@@ -16,15 +16,15 @@ namespace CPE200Lab1
 		{
 			if (stage == 0)
 			{
-				a = Convert.ToDouble(lblDisplay.Text);
+				a = float.Parse(lblDisplay.Text);
 			}
 			if (stage != 0 && step != "chain")
 			{
-				b = Convert.ToDouble(lblDisplay.Text);
+				b = float.Parse(lblDisplay.Text);
 			}
 			if (stage == 1)
 			{
-				lblDisplay.Text = (a + b).ToString();
+				lblDisplay.Text = Convert.ToString(a + b);
 			}
 			if (stage == 2)
 			{
@@ -39,8 +39,7 @@ namespace CPE200Lab1
 				if (b == 0) lblDisplay.Text = "Error";
 				else lblDisplay.Text = (a / b).ToString();
 			}
-			if(lblDisplay.Text != "Error") a = Convert.ToDouble(lblDisplay.Text);
-			order = "clear";
+			if(lblDisplay.Text != "Error") a = float.Parse(lblDisplay.Text);
 		}
 
 
@@ -48,21 +47,24 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-		double a = 0, b = 0 ,c = 0;
+		float a = 0, b = 0 ,c = 0;
 		int stage = 0;
 		string order = " ",step = " ";
+		bool check = false;
 
 		private void btnX_Click(object sender, EventArgs e)
 		{
 			Button btn = (Button)sender;
-			if (lblDisplay.Text == "0") lblDisplay.Text = "";
-
+			if (lblDisplay.Text == "0" && btn.Text != ".")
+			{
+				lblDisplay.Text = "";
+			}
 			if (order == "clear")
 			{
 				lblDisplay.Text = "";
 				lblDisplay.Text = btn.Text;
 				order = " ";
-			} else if (lblDisplay.Text.Length <= 8)
+			} else if (lblDisplay.Text.Length < 8)
 			{
 				lblDisplay.Text = lblDisplay.Text + btn.Text;
 			}
@@ -83,10 +85,11 @@ namespace CPE200Lab1
 		}
 	private void btnPlus_Click(object sender, EventArgs e)
 		{
-			if (step != "chain")
+			if (step != "chain" && order != "clear")//add order to protect change mind;
 			{
 				CalculateStage();
 			}
+			order = "clear";
 			stage = 1;
 			step = " ";
 
@@ -107,17 +110,18 @@ namespace CPE200Lab1
 
 		private void btnDivide_Click(object sender, EventArgs e)
 		{
-			if (step != "chain")
+			if (step != "chain" && order != "clear")//add order to protect change mind;
 			{
 				CalculateStage();
 			}
+			order = "clear";
 			stage = 4;
 			step = " ";
 		}
 
 		private void btnBack_Click(object sender, EventArgs e)
 		{
-			if (Convert.ToDouble(lblDisplay.Text) > -10 && Convert.ToDouble(lblDisplay.Text) < 10)
+			if (float.Parse(lblDisplay.Text) > -10 && float.Parse(lblDisplay.Text) < 10)
 			{
 				lblDisplay.Text = "0";
 			}
@@ -130,7 +134,7 @@ namespace CPE200Lab1
 
 		private void btnPercent_Click(object sender, EventArgs e)
 		{
-			b = Convert.ToDouble(lblDisplay.Text) / 100;
+			b = float.Parse(lblDisplay.Text) / 100;
 			lblDisplay.Text = b.ToString();
 
 			if (stage == 1 || stage == 2)
@@ -148,26 +152,28 @@ namespace CPE200Lab1
 
 		private void btnSign_Click(object sender, EventArgs e)
 		{
-			lblDisplay.Text = ((-1) * Convert.ToDouble(lblDisplay.Text)).ToString();
+			lblDisplay.Text = ((-1) * float.Parse(lblDisplay.Text)).ToString();
 			step = " ";
 		}
 
 		private void btnMinus_Click(object sender, EventArgs e)
 		{
-			if (step != "chain")
+			if(step != "chain" && order != "clear")//add order to protect change mind;
 			{
 				CalculateStage();
 			}
+			order = "clear";
 			step = " ";
 			stage = 2;
 		}
 
 		private void btnMultiply_Click(object sender, EventArgs e)
 		{
-			if (step != "chain")
+			if(step != "chain" && order != "clear")//add order to protect change mind;
 			{
 				CalculateStage();
 			}
+			order = "clear";
 			stage = 3;
 			step = " ";
 		}
