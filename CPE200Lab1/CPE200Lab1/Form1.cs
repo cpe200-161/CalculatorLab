@@ -16,5 +16,112 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
+
+        //add Eq
+        float eq1, eq2, resultshow, resultstore;
+        Boolean Dotflage = true, operatorflage = true, plusflage = false, minusflage = false, multiplyflage = false, divideflage = false;
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (0<lblDisplay.Text.Length)
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+            }   
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            lblDisplay.Text = (-1 * float.Parse(lblDisplay.Text)).ToString();
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            //this %
+            eq2 = float.Parse(lblDisplay.Text);
+            resultstore = (eq1 * eq2) / 100;
+            eq2 = resultstore;
+            lblDisplay.Text = eq2.ToString();
+        }
+
+        private void btnoperator_Click(object sender, EventArgs e)
+        {
+            eq1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = "";
+            Button btn = (Button)sender;
+
+            if (operatorflage)
+            {
+                if (btn.Text == "+")
+                {   
+                    plusflage = true;
+                } else if (btn.Text == "-")
+                {
+                    minusflage = true;
+                } else if (btn.Text == "X")
+                {
+                    multiplyflage = true;
+                } else if (btn.Text == "÷")
+                {
+                    divideflage = true;
+                }
+                Dotflage = true;
+                operatorflage = false;
+            }
+            
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            //this =
+            eq2 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = "";
+            if (plusflage)
+            {
+                resultshow = eq1 + eq2;
+            }else if (minusflage)
+            {
+                resultshow = eq1 - eq2;
+            }else if (multiplyflage)
+            {
+                resultshow = eq1 * eq2;
+            }else if (divideflage)
+            {
+                resultshow = eq1 / eq2;
+            }
+
+            eq1 = resultshow;
+            lblDisplay.Text = resultshow.ToString();
+            Dotflage = operatorflage = true;
+            plusflage = minusflage = multiplyflage = divideflage = false;
+
+        }
+
+        private void bntDot_Click(object sender,EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (Dotflage)
+            {
+                lblDisplay.Text += btn.Text;
+                Dotflage = false;
+            }
+        }
+
+        private void btnnum_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button) sender;
+            if (lblDisplay.Text.Length < 8)
+            {
+                lblDisplay.Text += btn.Text;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "";
+            eq1 = eq2 = resultshow = resultstore = 0;
+            Dotflage = operatorflage = true;
+            plusflage = minusflage = multiplyflage = divideflage = false;
+        }
     }
 }
