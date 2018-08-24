@@ -12,9 +12,10 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        Double value = 0;
+        float value = 0;
         string oparetion = "";
         bool oparetion_pressed = false;
+        bool percent_pressed = false;
 
         public Form1()
         {
@@ -47,8 +48,9 @@ namespace CPE200Lab1
         {
             Button btn = (Button)sender;
             oparetion = btn.Text;
-            value = Double.Parse(lblDisplay.Text);
+            value = float.Parse(lblDisplay.Text);
             oparetion_pressed = true;
+            percent_pressed = true;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -56,26 +58,44 @@ namespace CPE200Lab1
             switch (oparetion)
             {
                 case "+":
-                    lblDisplay.Text = (value + Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value + float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "-":
-                    lblDisplay.Text = (value - Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value - float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "X":
-                    lblDisplay.Text = (value * Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value * float.Parse(lblDisplay.Text)).ToString();
                     break;
                 case "÷":
-                    lblDisplay.Text = (value / Double.Parse(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = (value / float.Parse(lblDisplay.Text)).ToString();
                     break;
                 default:
                     break;
             }
-            oparetion_pressed = false;
+          
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (value * (Double.Parse(lblDisplay.Text) / 100)).ToString();
+            if(percent_pressed == true)
+            switch (oparetion)
+            {
+                case "+":
+                    lblDisplay.Text = (value * (float.Parse(lblDisplay.Text) / 100)).ToString();
+                    break;
+                case "-":
+                    lblDisplay.Text = (value * (float.Parse(lblDisplay.Text) / 100)).ToString();
+                    break;
+                case "X":
+                    lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                    break;
+                case "÷":
+                    lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                    break;
+                default:
+                    break;
+            }else
+                lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
         }
 
         private void btnSign_Click(object sender, EventArgs e)
