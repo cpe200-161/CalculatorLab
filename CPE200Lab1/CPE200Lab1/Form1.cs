@@ -33,117 +33,88 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if (operation != null && check == true) lblDisplay.Text = ""; check = false;
-            if (lblDisplay.Text.Length < 8 )
+              if (lblDisplay.Text.Length < 8 )
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
                 
             }
-            if (input != null) input = input + btn.Text;
-            else input = btn.Text;
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
+        private void cal()
+        {
+            if (operation == "+")
+            {
+                sum = num1 + num2;
+            }
+            if (operation == "-")
+            {
+                sum = num1 - num2;
+            }
+            if (operation == "*")
+            {
+                sum = num1 * num2;
+            }
+            if (operation == "÷")
+            {
+                sum = num1 / num2;
+            }
+        }
         private void btnOpe_Click(object sender, EventArgs e)
         {
-            num2 = Convert.ToDouble(input);
             Button ope = (Button)sender;
             operation = ope.Text;
-
-            
-            if (operation == "+" )
-            {
-                sum = sum + num2;
-            }
-            
-            if (operation == "-" )
-            {
-
-                sum = sum - num2;
-            }
-            if (operation == "*" )
-            {
-
-                sum = sum * num2;
-            }
-            if (operation == "/")
-            {
-
-                sum = sum / num2;
-            }
-            /*if (num1 == 0) 
-            {
-                num1 = Convert.ToDouble(input);
-
-
-                input = null;
-            }
-            else
-            {
-            
-                
-                check2 = false;
-
-            }*/
-            show = Convert.ToString(sum);
-            lblDisplay.Text = show;
-
-            
-            check = true;
-            input = null;
+            num1 = Convert.ToDouble(lblDisplay.Text);
+            if (num1 > 0) lblDisplay.Text = "";
+            cal();
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
-           
+            num1 = 0;
+            num2 = 0;
+            lblDisplay.Text = "";
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
+        }
+        
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            num2 = Convert.ToDouble(lblDisplay.Text);
+            cal();
+            lblDisplay.Text = sum.ToString();
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            num2 = Convert.ToDouble(lblDisplay.Text);
+            if(operation == "+")
+            {
+                sum = num1 + (num1 * (num2 / 100));
+            }
+            if(operation == "-")
+            {
+                sum = num1 - (num1 * (num2 / 100));
+            }
+            if(operation == "*")
+            {
+                sum = num1 * (num2 / 100);
+            }
+            if(operation == "/")
+            {
+                sum = num1 / (num2 / 100);
+            }
+            lblDisplay.Text = Convert.ToString(sum);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
         }
     }
 }
