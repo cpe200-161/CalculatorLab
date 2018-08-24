@@ -65,6 +65,20 @@ namespace CPE200Lab1
             }
             check = false;
         }
+        void percent(object sender, EventArgs e)
+        {
+            num2 = float.Parse(lblDisplay.Text);
+            if (signcal=="+"||signcal=="-")
+            {
+                num2 = num1 * (num2 / 100);
+            }
+            else if(signcal=="X"||signcal=="/")
+            {
+                num2 = num2 / 100;
+            }
+            lblDisplay.Text = Convert.ToString(num2);
+        }
+
         void calcal(object sender, EventArgs e)
         {
                Button btn = (Button)sender;
@@ -86,22 +100,20 @@ namespace CPE200Lab1
                     case "÷":
                         num1 /= num2;
                         break;
-                    case "%":
-                        num1 = (num1 / 100) * num2;
-                        break;
+                   
                 }
                 
+       
             }
+
+            
             
             if (btn.Text == "=")
             {
                 if(!check)
                 {
                     lblDisplay.Text = num1.ToString();
-                    if(lblDisplay.Text.Length > 9)
-                    {
-                        lblDisplay.Text = "Error";
-                    }
+                    
                 }
                 
             }
@@ -113,5 +125,6 @@ namespace CPE200Lab1
             check = true;
 
         }
+        
     }
 }
