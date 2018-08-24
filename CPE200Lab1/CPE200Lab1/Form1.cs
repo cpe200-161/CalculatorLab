@@ -22,6 +22,7 @@ namespace CPE200Lab1
         int statnum3 = 0;
         int statnum4 = 0;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -55,7 +56,7 @@ namespace CPE200Lab1
                     float x = float.Parse(lblDisplay.Text);
                     if (num1 == 0)
                     {
-                        if (x == 0) lblDisplay.Text = "Unknown";
+                        if (x == 0) lblDisplay.Text = "Error";
 
                     }
                     else if (num1 != 0 && x == 0)
@@ -65,11 +66,29 @@ namespace CPE200Lab1
                     else
                     {
                         num2 = num1 / float.Parse(lblDisplay.Text);
+                        string num2_str = num2.ToString();
                         statnum4 = 0;
                         Operator = 0;
-                        lblDisplay.Text = num2.ToString();
+                        if (num2 % 1 == 0)
+                        {
+                            lblDisplay.Text = String.Format("{0:0}", num2);
+                        }
+                        else if (num2_str.Length >= 6)
+                        {
+
+                            lblDisplay.Text = String.Format("{0:F6}", num2);
+                        }
+                        else
+                        {
+                            lblDisplay.Text = String.Format("{0:G}", num2);
+                        }
                     }
                     break;
+                
+                   
+
+                    
+
                 default:
                     break;
             }
@@ -201,6 +220,7 @@ namespace CPE200Lab1
                 num1 = num1 / 100f;
                 lblDisplay.Text = num1.ToString();
             }
+            
             if (statnum1 != 0 || statnum2 != 0 || statnum3 != 0 || statnum4 != 0)
             {
                 num2 = float.Parse(lblDisplay.Text);
@@ -216,7 +236,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length < 8)
+            if (lblDisplay.Text.Length < 8 || OpertorPressed == 1)
             {
                 if (OpertorPressed == 0)
                 {
@@ -230,7 +250,6 @@ namespace CPE200Lab1
 
                 }
             }
-
         }
 
 
