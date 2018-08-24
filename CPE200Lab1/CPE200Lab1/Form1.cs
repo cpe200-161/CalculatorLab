@@ -15,7 +15,7 @@ namespace CPE200Lab1
         double FirstNumber;
         double SecondNumber;
         String Operator;
-        bool Check = true;
+        bool CheckDot = true;
         public Form1()
         {
             InitializeComponent();
@@ -28,12 +28,12 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length <= 7)
             {
-                if ((Operator == "+" || Operator == "-" || Operator == "*" || Operator == "/") && Check == true)
+                if ((Operator == "+" || Operator == "-" || Operator == "*" || Operator == "/") && CheckDot == true)
                 {
                     lblDisplay.Text = btn.Text;
-                    Check = false;
+                    CheckDot = false;
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace CPE200Lab1
         {
             btnDot.Enabled = true;
             double Result;
-            Check = true;
+            CheckDot = true;
             SecondNumber = Convert.ToDouble(lblDisplay.Text);
             if (Operator == "+")
             {
@@ -120,7 +120,7 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            Check = true;
+            CheckDot = true;
             lblDisplay.Text = "0";
             Operator = "";
             btnDot.Enabled = true;
