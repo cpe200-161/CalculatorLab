@@ -142,5 +142,10 @@ namespace CPE200Lab1
             percent = true;
             firstper = firstnum * double.Parse(lblDisplay.Text) / 100;
         }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
+        }
     }
 }
