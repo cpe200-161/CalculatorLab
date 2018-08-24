@@ -28,7 +28,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length <= 7)
+            if (lblDisplay.Text.Length <= 8)
             {
                 if ((Operator == "+" || Operator == "-" || Operator == "*" || Operator == "/") && CheckDot == true)
                 {
@@ -100,19 +100,31 @@ namespace CPE200Lab1
             else if (Operator == "*")
             {
                 Result = (FirstNumber * SecondNumber);
-                lblDisplay.Text = Convert.ToString(Result);
+                lblDisplay.Text = Result.ToString("G8");
                 FirstNumber = Result;
             }
             else if (Operator == "/")
             {
                 if (SecondNumber == 0)
                 {
-                    lblDisplay.Text = "หาร 0 ไม่ได้";
+                    lblDisplay.Text = "Error";
                 }
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    lblDisplay.Text = Convert.ToString(Result);
+                    string ResultCheck = String.Format("{0:G}", Result);
+                    if (Result % 1 == 0)
+                    {
+                        lblDisplay.Text = String.Format("{0:0}", Result);
+                    }
+                    else if(ResultCheck.Length >= 6)
+                    {
+                        lblDisplay.Text = String.Format("{0:F6}", Result);
+                    }
+                    else
+                    {
+                        lblDisplay.Text = String.Format("{0:G}", Result);
+                    }
                     FirstNumber = Result;
                 }
             }
@@ -130,7 +142,14 @@ namespace CPE200Lab1
         {
             double PercentResult;
             double PercentNum = Convert.ToDouble(lblDisplay.Text);
-            PercentResult = (FirstNumber * PercentNum)/100;
+            if(FirstNumber == 0)
+            {
+                PercentResult = PercentNum/ 100;
+            }
+            else
+            {
+                PercentResult = (FirstNumber * PercentNum) / 100;
+            }
             lblDisplay.Text = Convert.ToString(PercentResult);
             SecondNumber = PercentResult;
         }
