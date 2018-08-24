@@ -14,6 +14,7 @@ namespace CPE200Lab1
 	{
 		float Sum = 0;
 		float R = 0;
+		float H = 0;
 		int count = 0;
 		string X = "";
 		bool check1 = false;
@@ -43,12 +44,12 @@ namespace CPE200Lab1
 			check2 = true;
 		}
 
-		
+
 
 		/*-ต้องเซฟตัวแรกไว้ให้ได้ก่อน
 		-ถ้ามีตัวแรก*/
 
-		
+
 		private void btnEqual_Click(object sender, EventArgs e)
 		{
 			Button btn = (Button)sender;
@@ -81,15 +82,7 @@ namespace CPE200Lab1
 						lblDisplay.Text = Sum.ToString();
 					}
 					break;
-				case "%":
-				  if (count == 1 )
-				  {
-				 		Sum = Sum + ((float.Parse(lblDisplay.Text) /100)*Sum);
-				 		lblDisplay.Text = Sum.ToString();
-				  }
-					break;
 			}
-
 			Sum = float.Parse(lblDisplay.Text);
 			if (Sum % 2 != 0)
 			{
@@ -98,13 +91,18 @@ namespace CPE200Lab1
 			X = btn.Text;
 			count = 2;
 			check2 = false;
+			check1 = false;
 		}
 
 		private void btndot_Click(object sender, EventArgs e)
 		{
-			if (check1 == false)
+			if (check1 == false && count == 2)
 			{
-				lblDisplay.Text = lblDisplay.Text + "."; 
+				lblDisplay.Text = "0" + ".";
+				check1 = true;
+			} else if (check1 == false)
+			{
+				lblDisplay.Text = lblDisplay.Text + ".";
 				check1 = true;
 			}
 		}
@@ -140,6 +138,29 @@ namespace CPE200Lab1
 					lblDisplay.Text = "0";
 				}
 			}
+		}
+
+		private void btnpercent_Click(object sender, EventArgs e)
+		{
+			H = float.Parse(lblDisplay.Text);
+			switch (X)
+			{
+				case "+":
+					Sum = Sum + (Sum*(H / 100));
+					break;
+				case "-":
+					Sum = Sum - (Sum * (H / 100));
+					break;
+				case "X":
+					Sum = (Sum * (H / 100));
+					break;
+				case "/":
+					Sum = (Sum / (H / 100));  
+					break;
+			}
+			lblDisplay.Text = Sum.ToString();
+			Sum = float.Parse(lblDisplay.Text);
+			X = "";
 		}
 	}
 	}
