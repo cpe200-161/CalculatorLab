@@ -43,6 +43,10 @@ namespace CPE200Lab1
                     break;
 
                 case '-' :
+                    val = 0;
+                    sumB -= Number;
+                    display(sumB);
+                    sumA = sumB;
                     break;
 
                 case '*' :
@@ -53,6 +57,10 @@ namespace CPE200Lab1
                     break;
 
                 case '/':
+                    val = 0;
+                    //sumB /= Number;
+                    display(sumB);
+                    sumA = sumB;
                     break;
 
                 case '%':
@@ -172,22 +180,27 @@ namespace CPE200Lab1
             {
                 case 1:
                     Calculator('+', val);
+                    val = sumA;
                     break;
 
                 case 2:
                     Calculator('-', val);
+                    val = sumA;
                     break;
 
                 case 3:
                     Calculator('*', val);
+                    val = sumA;
                     break;
 
                 case 4:
                     Calculator('/', val);
+                    val = sumA;
                     break;
 
                 case 5:
                     Calculator('%', val);
+                    val = sumA;
                     break;
             }
                 
