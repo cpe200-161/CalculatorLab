@@ -12,106 +12,268 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float  value = 0, value2=0;
-        string previousoper = "+";
-        bool re = false;
-    
+        float  x2, x1;
+        int plus = 0;
+        int minus = 0;
+        int mul = 0;
+        int div = 0;
+        int dot = 0;
+
+        bool check = false,clear=false;
+       
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnX_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if(lblDisplay.Text != "")
-            lblDisplay.Text = lblDisplay.Text.Substring(0,lblDisplay.Text.Length - 1);
-            if (lblDisplay.Text == "")
-                lblDisplay.Text = "0";
-
-        }   
-
-        private void btnSign_Click(object sender, EventArgs e)
-        {
-             value = float.Parse(lblDisplay.Text);
-            value *= -1;
-            lblDisplay.Text = value.ToString();
-
+            Button btn = (Button)sender;
+            if(clear==true|| lblDisplay.Text == "0"||check==true||dot==1)
+            {
+                lblDisplay.Text = ""; 
+                clear = false;
+                check = false;
+            }
+            if (dot == 1)
+            {
+                lblDisplay.Text = "0.";
+                dot = 0;
+            }
+            if (lblDisplay.Text.Length <= 7)
+                lblDisplay.Text = lblDisplay.Text + btn.Text;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            previousoper = "+";
-            value = 0;
-            value2 = 0;
-            re = false;
+            x1 = 0;
+            x2 = 0;
+            div = 0;
+            plus = 0;
+            minus = 0;
+            mul = 0;
+            dot = 0;
+            check = false;
+            clear = false;
+
         }
 
-        void clickbut(object sender, EventArgs e)
+        private void btnMinus_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            if ((lblDisplay.Text == "0" || re)&& btn.Text != ".")
+            if (check == true) { plus = 0; minus = 0;mul = 0;div = 0; }
+            if (clear == false || check == true)
             {
-                lblDisplay.Text = "";
-            }
-                if (lblDisplay.Text.Length <9)
-            {
-                lblDisplay.Text += btn.Text;
-            }
-            re = false;
-        }
-        void clickoper(object sender, EventArgs e)
-        {
-               Button btn = (Button)sender;
-            if(!re)
-            {
-                value2 = float.Parse(lblDisplay.Text);
-                if (previousoper == "+")
+                if (plus == 1 || div == 1 || mul == 1)
                 {
-                    value += value2;
+                    x2 = float.Parse(lblDisplay.Text);
+                    if (plus == 1) x1 = x1 + x2;
+                    else if (div == 1) x1 = x1 / x2;
+                    else if (mul == 1) x1 = x1 * x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true;
+                    plus = 0;
+                    div = 0;
+                    mul = 0;
+                    minus = 1;
                 }
-                else if (previousoper == "-")
+                else if (minus == 0)
                 {
-                    value -= value2;
+                    x1 = float.Parse(lblDisplay.Text);
+                    minus = 1;
+                    clear = true;
                 }
-                else if (previousoper == "X")
+                else if (minus == 1)
                 {
-                    value *= value2;
-                }
-                else if (previousoper == "÷")
-                {
-                    value /= value2;
-                }
-                else if (previousoper == "%")
-                {
-                    value = (value / 100) * value2;
-                }
-            }
-            
-            if (btn.Text == "=")
-            {
-                if(!re)
-                {
-                    lblDisplay.Text = value.ToString();
-                    if(lblDisplay.Text.Length > 9)
-                    {
-                        lblDisplay.Text = "Error";
-                    }
-                }
-                
-            }
-            else
-            {
-                lblDisplay.Text = value.ToString();
-                previousoper = btn.Text;
-            }
-            re = true;
 
+                    x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 - x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true;
+                }
+            }
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (check == true) { plus = 0; minus = 0; mul = 0; div = 0; }
+            if (minus == 1 || div == 1 || mul == 1)
+            {
+                x2 = float.Parse(lblDisplay.Text);
+                if (minus == 1) x1 = x1 - x2;
+                else if (div == 1) x1 = x1 / x2;
+                else if (mul == 1) x1 = x1 * x2;
+                lblDisplay.Text = Convert.ToString(x1);
+                x1 = float.Parse(lblDisplay.Text);
+                clear = true;
+                minus = 0;
+                div = 0;
+                mul = 0;
+                plus = 1;
+            }
+            else if(clear == false || check == true)
+            {
+                if (plus == 0)
+                {
+                    x1 = float.Parse(lblDisplay.Text);
+                    plus = 1;
+                    clear = true;
+                }
+                else if(plus==1)
+                {
+                    
+                    x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 + x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true;
+                }
+            }
+        }
+
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            if (check == true) { plus = 0; minus = 0; mul = 0; div = 0; }
+            if (plus == 1 || div == 1 || minus == 1)
+            {
+                x2 = float.Parse(lblDisplay.Text);
+                if (minus == 1) x1 = x1 - x2;
+                else if (div == 1) x1 = x1 / x2;
+                else if (plus == 1) x1 = x1 + x2;
+                lblDisplay.Text = Convert.ToString(x1);
+                x1 = float.Parse(lblDisplay.Text);
+                clear = true;
+                plus = 0;
+                div = 0;
+                minus = 0;
+                mul = 1;
+            }
+            else if(clear == false || check == true)
+            {
+                if (mul == 0)
+                {
+                    x1 = float.Parse(lblDisplay.Text);
+                    mul = 1;
+                    clear = true;
+                }
+                else if (mul == 1)
+                {
+
+                    x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 * x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true;
+                }
+            }
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (check == true) { plus = 0; minus = 0; mul = 0; div = 0; }
+            if (plus == 1 || minus == 1 || mul == 1)
+            {
+                x2 = float.Parse(lblDisplay.Text);
+                if (minus == 1) x1 = x1 - x2;
+                else if (plus == 1) x1 = x1 + x2;
+                else if (mul == 1) x1 = x1 * x2;
+                lblDisplay.Text = Convert.ToString(x1);
+                x1 = float.Parse(lblDisplay.Text);
+                clear = true;
+                plus = 0;
+                minus = 0;
+                mul = 0;
+                div = 1;
+            }
+            else if(clear == false || check == true)
+            {
+                if (div == 0)
+                {
+                    x1 = float.Parse(lblDisplay.Text);
+                    div = 1;
+                    clear = true;
+                }
+                else if (div == 1)
+                {
+
+                    x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 / x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true;
+                }
+            }
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            if (minus == 1 || plus == 1)
+            {
+                x2 = float.Parse(lblDisplay.Text);
+                x2 = x1 * x2 / 100;
+                lblDisplay.Text = Convert.ToString(x2);
+            }
+            else if (div == 1 || mul == 1)
+            {
+                x2 = float.Parse(lblDisplay.Text);
+                x2 =  x2 / 100;
+                lblDisplay.Text = Convert.ToString(x2);
+            }
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {   
+            if (dot == 0)
+            {   
+                if(lblDisplay.Text != "0")lblDisplay.Text = lblDisplay.Text + ".";
+                lblDisplay.Text = "0.";
+                dot = 1;
+            }
+        }
+        
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            if (clear==false||check==true) {
+                if (plus == 1)
+                { if (check == false)
+                        x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 + x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true; check = true;
+                }
+                else if (minus == 1)
+                {
+                    if (check == false)
+                    x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 - x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true; check = true;
+                }
+                else if (mul == 1)
+                {
+                    if (check == false)
+                        x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 * x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true; check = true;
+                }
+                else if (div == 1)
+                {
+                    if (check == false)
+                        x2 = float.Parse(lblDisplay.Text);
+                    x1 = x1 / x2;
+                    lblDisplay.Text = Convert.ToString(x1);
+                    x1 = float.Parse(lblDisplay.Text);
+                    clear = true; check = true;
+                }
+
+            }
         }
     }
 }
