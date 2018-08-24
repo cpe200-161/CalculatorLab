@@ -28,7 +28,17 @@ namespace CPE200Lab1
           
         private void btn0_Click(object sender, EventArgs e)
         {
-           
+            if (lblDisplay.Text.Length < 8)
+            {
+                if (lblDisplay.Text == "0" && lblDisplay.Text != null)
+                {
+                    lblDisplay.Text = "0";
+                }
+                else
+                {
+                    lblDisplay.Text = lblDisplay.Text + "0";
+                }
+            }
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -185,4 +195,4 @@ namespace CPE200Lab1
             }
         }
     }
-}
+
