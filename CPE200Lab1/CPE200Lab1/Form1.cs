@@ -12,9 +12,9 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        double N1 = 0;
-        double N2 = 0;
-        double Forwhat;
+        float N1 = 0;
+        float N2 = 0;
+        float Forwhat;
         bool haveN1= false;
         bool finishyet = false;
         bool havedot = false;
@@ -50,7 +50,7 @@ namespace CPE200Lab1
             Button btn = (Button)sender;
             if(Operator != "0")
             {
-                N2 = Convert.ToDouble(lblDisplay.Text);
+                N2 = float.Parse(lblDisplay.Text);
                 if (Operator == "+")
                 {
                     lblDisplay.Text = Convert.ToString(N1 + N2);
@@ -68,7 +68,7 @@ namespace CPE200Lab1
                     lblDisplay.Text = Convert.ToString(N1 / N2);
                 }
             }
-            N1 = double.Parse(lblDisplay.Text);
+            N1 = float.Parse(lblDisplay.Text);
             haveN1 = true;
             havedot = false;
             Operator = (btn.Text);
@@ -78,7 +78,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            N2 = Convert.ToDouble(lblDisplay.Text);
+            N2 = float.Parse(lblDisplay.Text);
             if(Operator == "+")
             {
                 lblDisplay.Text = Convert.ToString(N1 + N2);
@@ -109,6 +109,10 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
+            if(haveN1 == true && lblDisplay.Text !="")
+            {
+                lblDisplay.Text = "0";
+            }
             if(havedot != true)
             {
                 lblDisplay.Text = lblDisplay.Text + ".";
@@ -121,16 +125,14 @@ namespace CPE200Lab1
             
             if (Operator == "+" || Operator =="-")
             {
-                N2 = Convert.ToDouble(lblDisplay.Text);
+                N2 = float.Parse(lblDisplay.Text);
                 Forwhat = (N1 * N2) / 100;
                 lblDisplay.Text = Convert.ToString(Forwhat);
                 finishyet = true;
-                N1 = 0;
-                N2 = 0;
-                Operator = "";
+                
                 
             }
-            else Forwhat = Convert.ToDouble(lblDisplay.Text) / 100;
+            else Forwhat = float.Parse(lblDisplay.Text) / 100;
                  lblDisplay.Text = Convert.ToString(Forwhat);
         }
     }
