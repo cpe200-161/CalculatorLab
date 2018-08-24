@@ -25,7 +25,6 @@ namespace CPE200Lab1
         string one = null;
         string two = null;
         string type = null;
-        int iNum = 0;
         int iType = 0;
 
         private void btnX_Click(object sender, EventArgs e)
