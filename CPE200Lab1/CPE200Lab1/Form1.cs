@@ -13,11 +13,11 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
        
-        double value1 = 0;
-        double value2 = 0;
-        double frist = 0;
-        double value3 = 0;
-        double percent;
+        float value1 = 0;
+        float value2 = 0;
+        float frist = 0;
+        float value3 = 0;
+        float percent;
         string oper = "";
         string oper2;
         bool oper_check = false;
@@ -103,7 +103,7 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    value1 = double.Parse(lblDisplay.Text);
+                    value1 = float.Parse(lblDisplay.Text);
                     oper_check = true;
                     oper = "+";
                 }
@@ -125,7 +125,7 @@ namespace CPE200Lab1
             else
             {
                 
-                value1 = double.Parse(lblDisplay.Text);
+                value1 = float.Parse(lblDisplay.Text);
                 oper_check = true;
                 oper = "-";
             }
@@ -144,7 +144,7 @@ namespace CPE200Lab1
             else
             {
                
-                value1 = double.Parse(lblDisplay.Text);
+                value1 = float.Parse(lblDisplay.Text);
                 oper_check = true;
                 oper = "*";
             }
@@ -163,7 +163,7 @@ namespace CPE200Lab1
             else
             {
                 
-                value1 = double.Parse(lblDisplay.Text);
+                value1 = float.Parse(lblDisplay.Text);
                 oper_check = true;
                 oper = "/";
             }
@@ -180,7 +180,7 @@ namespace CPE200Lab1
                 case "+":
                     if (checkplus)
                     {
-                        lblDisplay.Text = (value1 + double.Parse(lblDisplay.Text)).ToString();
+                        lblDisplay.Text = (value1 + float.Parse(lblDisplay.Text)).ToString();
                         checkplus = false;
                         checkminus = false;
                         checkmulti = false;
@@ -190,7 +190,7 @@ namespace CPE200Lab1
                 case "-":
                     if (checkminus)
                     {
-                        lblDisplay.Text = (value1 - double.Parse(lblDisplay.Text)).ToString();
+                        lblDisplay.Text = (value1 - float.Parse(lblDisplay.Text)).ToString();
                         checkplus = false;
                         checkminus = false;
                         checkmulti = false;
@@ -200,7 +200,7 @@ namespace CPE200Lab1
                 case "*":
                     if (checkmulti)
                     {
-                        lblDisplay.Text = (value1 * double.Parse(lblDisplay.Text)).ToString();
+                        lblDisplay.Text = (value1 * float.Parse(lblDisplay.Text)).ToString();
                         checkplus = false;
                         checkminus = false;
                         checkmulti = false;
@@ -210,7 +210,7 @@ namespace CPE200Lab1
                 case "/":
                     if (checkdivide)
                     {
-                        lblDisplay.Text = (value1 / double.Parse(lblDisplay.Text)).ToString();
+                        lblDisplay.Text = (value1 / float.Parse(lblDisplay.Text)).ToString();
                         checkplus = false;
                         checkminus = false;
                         checkmulti = false;
@@ -228,7 +228,7 @@ namespace CPE200Lab1
             checkclick = true;
             equalcheck = true;
             checkoperator = false;
-            value1 = double.Parse(lblDisplay.Text);
+            value1 = float.Parse(lblDisplay.Text);
             
         }
 
@@ -241,7 +241,7 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            value2 = double.Parse(lblDisplay.Text);
+            value2 = float.Parse(lblDisplay.Text);
           //  percent = (value2 * value1 / 100);
             value3 = (value1 / 100);
             switch (oper) {
@@ -259,11 +259,7 @@ namespace CPE200Lab1
                     percent = (value1 * (value2  / 100));
                     break;
             }
-            
-            
-        
-
-  
+           
             oper_check = true;
             oper = "%";
             percentcheck = true;
