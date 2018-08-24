@@ -18,7 +18,7 @@ namespace CPE200Lab1
         string seccondNum = "";
         string lastestOperaton = "";
         bool getNewNumber = false;
-        bool isMaximum = false;
+        
 
        
         public Form1()
@@ -30,7 +30,7 @@ namespace CPE200Lab1
         {
             Button btn = (Button)sender;
 
-            if (lblDisplay.Text == "0" || !getNewNumber)
+            if ((btn.Text != "." && lblDisplay.Text == "0")|| !getNewNumber)
             {
                 lblDisplay.Text = "";
                 
@@ -39,7 +39,7 @@ namespace CPE200Lab1
 
             }
 
-            if (lblDisplay.Text.Length < 8 && !isMaximum)
+            if (lblDisplay.Text.Length < 8)
             {
 
                 if (btn.Text == "." && lblDisplay.Text.IndexOf(".") != -1)
@@ -77,7 +77,7 @@ namespace CPE200Lab1
                         lastestOperaton = btn.Text;
                     }
 
-                    double result = (double)CalculationProcess(num1, num2, lastestOperaton);
+                    float result = CalculationProcess(num1, num2, lastestOperaton);
                     firstNum = result.ToString();
 
                 }
@@ -88,16 +88,8 @@ namespace CPE200Lab1
 
 
             lastestOperaton = btn.Text;
-
-
-            if (isMaximum)
-            {
-                lblDisplay.Text = "max";
-            }
-            else
-            {
-                lblDisplay.Text = firstNum;
-            }
+            lblDisplay.Text = firstNum;
+            
             
 
 
@@ -132,7 +124,7 @@ namespace CPE200Lab1
                     lastestOperaton = "";
                     getNewNumber = false;
                     lblDisplay.Text = "0";
-                    isMaximum = false;
+                    
                     break;
                 case "±":
                     if (!lblDisplay.Text.StartsWith("-") && lblDisplay.Text != "0")
@@ -182,12 +174,6 @@ namespace CPE200Lab1
                     Console.WriteLine("Unknown sign");
                     break;
 
-            }
-
-            if(result > 99999999)
-            {
-                result = 0;
-                isMaximum = true;
             }
 
             return result;
