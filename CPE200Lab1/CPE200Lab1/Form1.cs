@@ -44,8 +44,8 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
             }
 
-            if (lblDisplay.Text.Length < 8)
-            {
+            //if (lblDisplay.Text.Length < 8)
+            //{
 
 
                 if (btn.Text == "<")
@@ -233,7 +233,7 @@ namespace CPE200Lab1
                 //    ////lblDisplay.Text = stringNum[0];
                 //}
 
-            }
+            //}
             if (btn.Text != "<")
             {
                 previousString = btn.Text;
