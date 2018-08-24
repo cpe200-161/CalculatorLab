@@ -103,7 +103,7 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
             btnDot.Enabled = true;
-            num1 = double.Parse(lblDisplay.Text);
+            
             num2 = double.Parse(lblDisplay.Text);
             ans = 0;
             lblDisplay.Text = string.Format("{0:G}", num2);
@@ -126,12 +126,12 @@ namespace CPE200Lab1
             }
             else if (action == 0)
             {
-                lblDisplay.Text = string.Format("{0:G}", (double)num1);
+                lblDisplay.Text = string.Format("{0:G}", (double)num2);
                 return;
             }
 
 
-            lblDisplay.Text = string.Format("{0:G}", ans);
+            lblDisplay.Text = string.Format("{0:G}", (double)ans);
 
         }
     }
