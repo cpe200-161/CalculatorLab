@@ -54,10 +54,10 @@
             // 
             // btn7
             // 
-            this.btn7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btn7.BackColor = System.Drawing.Color.DimGray;
             this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn7.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn7.Location = new System.Drawing.Point(16, 268);
+            this.btn7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn7.Location = new System.Drawing.Point(19, 280);
             this.btn7.Margin = new System.Windows.Forms.Padding(4);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(117, 79);
@@ -68,10 +68,10 @@
             // 
             // btn8
             // 
-            this.btn8.BackColor = System.Drawing.Color.Navy;
+            this.btn8.BackColor = System.Drawing.Color.DimGray;
             this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn8.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn8.Location = new System.Drawing.Point(141, 268);
+            this.btn8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn8.Location = new System.Drawing.Point(144, 268);
             this.btn8.Margin = new System.Windows.Forms.Padding(4);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(117, 79);
@@ -82,10 +82,10 @@
             // 
             // btn9
             // 
-            this.btn9.BackColor = System.Drawing.Color.Green;
+            this.btn9.BackColor = System.Drawing.Color.DimGray;
             this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn9.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn9.Location = new System.Drawing.Point(267, 268);
+            this.btn9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn9.Location = new System.Drawing.Point(270, 280);
             this.btn9.Margin = new System.Windows.Forms.Padding(4);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(117, 79);
@@ -96,10 +96,10 @@
             // 
             // btnMultiply
             // 
-            this.btnMultiply.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnMultiply.BackColor = System.Drawing.Color.DimGray;
             this.btnMultiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMultiply.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnMultiply.Location = new System.Drawing.Point(392, 268);
+            this.btnMultiply.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMultiply.Location = new System.Drawing.Point(395, 268);
             this.btnMultiply.Margin = new System.Windows.Forms.Padding(4);
             this.btnMultiply.Name = "btnMultiply";
             this.btnMultiply.Size = new System.Drawing.Size(117, 79);
@@ -110,10 +110,10 @@
             // 
             // btnMinus
             // 
-            this.btnMinus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnMinus.BackColor = System.Drawing.Color.DimGray;
             this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinus.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnMinus.Location = new System.Drawing.Point(392, 354);
+            this.btnMinus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMinus.Location = new System.Drawing.Point(384, 354);
             this.btnMinus.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(117, 79);
@@ -124,10 +124,10 @@
             // 
             // btn6
             // 
-            this.btn6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn6.BackColor = System.Drawing.Color.DimGray;
             this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn6.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn6.Location = new System.Drawing.Point(267, 354);
+            this.btn6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn6.Location = new System.Drawing.Point(259, 366);
             this.btn6.Margin = new System.Windows.Forms.Padding(4);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(117, 79);
@@ -138,10 +138,10 @@
             // 
             // btn5
             // 
-            this.btn5.BackColor = System.Drawing.Color.Green;
+            this.btn5.BackColor = System.Drawing.Color.DimGray;
             this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn5.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn5.Location = new System.Drawing.Point(141, 354);
+            this.btn5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn5.Location = new System.Drawing.Point(133, 354);
             this.btn5.Margin = new System.Windows.Forms.Padding(4);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(117, 79);
@@ -152,10 +152,10 @@
             // 
             // btn4
             // 
-            this.btn4.BackColor = System.Drawing.Color.Navy;
+            this.btn4.BackColor = System.Drawing.Color.DimGray;
             this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn4.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn4.Location = new System.Drawing.Point(16, 354);
+            this.btn4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn4.Location = new System.Drawing.Point(8, 366);
             this.btn4.Margin = new System.Windows.Forms.Padding(4);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(117, 79);
@@ -166,10 +166,10 @@
             // 
             // btnPlus
             // 
-            this.btnPlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnPlus.BackColor = System.Drawing.Color.DimGray;
             this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnPlus.Location = new System.Drawing.Point(392, 441);
+            this.btnPlus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPlus.Location = new System.Drawing.Point(395, 441);
             this.btnPlus.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(117, 79);
@@ -180,10 +180,10 @@
             // 
             // btn3
             // 
-            this.btn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn3.BackColor = System.Drawing.Color.DimGray;
             this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn3.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn3.Location = new System.Drawing.Point(267, 441);
+            this.btn3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn3.Location = new System.Drawing.Point(270, 453);
             this.btn3.Margin = new System.Windows.Forms.Padding(4);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(117, 79);
@@ -194,10 +194,10 @@
             // 
             // btn2
             // 
-            this.btn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn2.BackColor = System.Drawing.Color.DimGray;
             this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn2.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn2.Location = new System.Drawing.Point(141, 441);
+            this.btn2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn2.Location = new System.Drawing.Point(144, 441);
             this.btn2.Margin = new System.Windows.Forms.Padding(4);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(117, 79);
@@ -208,10 +208,10 @@
             // 
             // btn1
             // 
-            this.btn1.BackColor = System.Drawing.Color.Green;
+            this.btn1.BackColor = System.Drawing.Color.DimGray;
             this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn1.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn1.Location = new System.Drawing.Point(16, 441);
+            this.btn1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn1.Location = new System.Drawing.Point(19, 453);
             this.btn1.Margin = new System.Windows.Forms.Padding(4);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(117, 79);
@@ -222,10 +222,10 @@
             // 
             // btnEqual
             // 
-            this.btnEqual.BackColor = System.Drawing.Color.White;
+            this.btnEqual.BackColor = System.Drawing.Color.DimGray;
             this.btnEqual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEqual.ForeColor = System.Drawing.Color.Black;
-            this.btnEqual.Location = new System.Drawing.Point(392, 527);
+            this.btnEqual.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEqual.Location = new System.Drawing.Point(384, 527);
             this.btnEqual.Margin = new System.Windows.Forms.Padding(4);
             this.btnEqual.Name = "btnEqual";
             this.btnEqual.Size = new System.Drawing.Size(117, 79);
@@ -236,10 +236,10 @@
             // 
             // btnDot
             // 
-            this.btnDot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDot.BackColor = System.Drawing.Color.DimGray;
             this.btnDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDot.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnDot.Location = new System.Drawing.Point(267, 527);
+            this.btnDot.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDot.Location = new System.Drawing.Point(259, 539);
             this.btnDot.Margin = new System.Windows.Forms.Padding(4);
             this.btnDot.Name = "btnDot";
             this.btnDot.Size = new System.Drawing.Size(117, 79);
@@ -249,10 +249,10 @@
             // 
             // btn0
             // 
-            this.btn0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn0.BackColor = System.Drawing.Color.DimGray;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.ForeColor = System.Drawing.Color.Honeydew;
-            this.btn0.Location = new System.Drawing.Point(141, 527);
+            this.btn0.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn0.Location = new System.Drawing.Point(133, 527);
             this.btn0.Margin = new System.Windows.Forms.Padding(4);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(117, 79);
@@ -263,10 +263,10 @@
             // 
             // btnSign
             // 
-            this.btnSign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSign.BackColor = System.Drawing.Color.DimGray;
             this.btnSign.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSign.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnSign.Location = new System.Drawing.Point(16, 527);
+            this.btnSign.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSign.Location = new System.Drawing.Point(8, 539);
             this.btnSign.Margin = new System.Windows.Forms.Padding(4);
             this.btnSign.Name = "btnSign";
             this.btnSign.Size = new System.Drawing.Size(117, 79);
@@ -276,10 +276,10 @@
             // 
             // btnDivide
             // 
-            this.btnDivide.BackColor = System.Drawing.Color.Green;
+            this.btnDivide.BackColor = System.Drawing.Color.DimGray;
             this.btnDivide.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDivide.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnDivide.Location = new System.Drawing.Point(392, 182);
+            this.btnDivide.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDivide.Location = new System.Drawing.Point(384, 182);
             this.btnDivide.Margin = new System.Windows.Forms.Padding(4);
             this.btnDivide.Name = "btnDivide";
             this.btnDivide.Size = new System.Drawing.Size(117, 79);
@@ -290,10 +290,10 @@
             // 
             // btnPercent
             // 
-            this.btnPercent.BackColor = System.Drawing.Color.Navy;
+            this.btnPercent.BackColor = System.Drawing.Color.DimGray;
             this.btnPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPercent.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnPercent.Location = new System.Drawing.Point(267, 182);
+            this.btnPercent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPercent.Location = new System.Drawing.Point(259, 194);
             this.btnPercent.Margin = new System.Windows.Forms.Padding(4);
             this.btnPercent.Name = "btnPercent";
             this.btnPercent.Size = new System.Drawing.Size(117, 79);
@@ -304,10 +304,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.BackColor = System.Drawing.Color.Purple;
+            this.btnClear.BackColor = System.Drawing.Color.DimGray;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnClear.Location = new System.Drawing.Point(16, 182);
+            this.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClear.Location = new System.Drawing.Point(8, 194);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(117, 79);
@@ -318,24 +318,25 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnBack.BackColor = System.Drawing.Color.DimGray;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnBack.Location = new System.Drawing.Point(141, 182);
+            this.btnBack.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBack.Location = new System.Drawing.Point(133, 182);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(117, 79);
             this.btnBack.TabIndex = 19;
             this.btnBack.Text = "<";
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblDisplay
             // 
             this.lblDisplay.AutoSize = true;
-            this.lblDisplay.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblDisplay.BackColor = System.Drawing.Color.DarkGray;
             this.lblDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblDisplay.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplay.ForeColor = System.Drawing.Color.Red;
+            this.lblDisplay.ForeColor = System.Drawing.Color.DimGray;
             this.lblDisplay.Location = new System.Drawing.Point(16, 78);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDisplay.MinimumSize = new System.Drawing.Size(493, 0);
@@ -350,20 +351,21 @@
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Impact", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.LimeGreen;
-            this.label1.Location = new System.Drawing.Point(146, 17);
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(240, 46);
+            this.label1.Size = new System.Drawing.Size(496, 46);
             this.label1.TabIndex = 21;
-            this.label1.Text = "| CaLCulATor |";
+            this.label1.Text = "|                  CaLCulATor                |";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Snow;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(525, 625);
             this.Controls.Add(this.label1);

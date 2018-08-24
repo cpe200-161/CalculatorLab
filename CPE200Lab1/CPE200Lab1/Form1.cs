@@ -17,7 +17,7 @@ namespace CPE200Lab1
         string Operation;
         double SecondNumber;
         double Result;
-        int push;
+        int BottonCheck;
 
         public Form1()
         {
@@ -32,22 +32,15 @@ namespace CPE200Lab1
             }
             if (lblDisplay.Text.Length <= 8)
             {
-                if (Operation == "+" || Operation == "-" || Operation == "*" || Operation == "/" || Operation == "%")
+                if (Operation == "+" || Operation == "-" || Operation == "*" || Operation == "/" || Operation == "%" )
                 {
-                    if(push == 1)
+                    if(BottonCheck == 1)
                     {
                         lblDisplay.Text = "";
-                        push = 2;
+                        BottonCheck = 2;
                     }
-                    
-                    
-
-
                 }
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
-
-
-
             }
         }
 
@@ -84,13 +77,13 @@ namespace CPE200Lab1
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)  
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7");
                     }
 
                     FirstNumber = Result;
@@ -114,7 +107,7 @@ namespace CPE200Lab1
             {
                 FirstNumber = Convert.ToDouble(lblDisplay.Text);
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "+";
 
         }
@@ -152,24 +145,22 @@ namespace CPE200Lab1
                 if (SecondNumber == 0)
                 {
                     lblDisplay.Text = "Cannot divide by zero";
-
                 }
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)   
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7");
                     }
-
                     FirstNumber = Result;
                 }
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "";
         }
 
@@ -200,15 +191,14 @@ namespace CPE200Lab1
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)  
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7"); 
                     }
-
                     FirstNumber = Result;
                 }
             }
@@ -231,7 +221,7 @@ namespace CPE200Lab1
             {
                 FirstNumber = Convert.ToDouble(lblDisplay.Text);
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "-";
         }
 
@@ -255,15 +245,14 @@ namespace CPE200Lab1
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)  
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7"); 
                     }
-
                     FirstNumber = Result;
                 }
             }
@@ -292,7 +281,7 @@ namespace CPE200Lab1
             {
                 FirstNumber = Convert.ToDouble(lblDisplay.Text);
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "*";
         }
 
@@ -333,20 +322,18 @@ namespace CPE200Lab1
                 if (SecondNumber == 0)
                 {
                     lblDisplay.Text = "Cannot divide by zero";
-
                 }
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)   
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7"); 
                     }
-
                     FirstNumber = Result;
                 }
             }
@@ -354,7 +341,7 @@ namespace CPE200Lab1
             {
                 FirstNumber = Convert.ToDouble(lblDisplay.Text);
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "/";
         }
 
@@ -363,7 +350,7 @@ namespace CPE200Lab1
             FirstNumber = 0;
             lblDisplay.Text = "0";
             Operation = "";
-            push = 1;
+            BottonCheck = 1;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
@@ -401,15 +388,14 @@ namespace CPE200Lab1
                 else
                 {
                     Result = (FirstNumber / SecondNumber);
-                    if (Result >= 1 || Result <= -1) // "Gn" มันจะนับตั้งแต่เลขที่มีค่า  
+                    if (Result >= 1 || Result <= -1)  
                     {
-                        lblDisplay.Text = Result.ToString("G8");//ถ้ามากว่า 1 หรือ น้อยกว่า 1 ให้แสดงเลข 8 ตัว
+                        lblDisplay.Text = Result.ToString("G8");
                     }
                     else
                     {
-                        lblDisplay.Text = Result.ToString("G7");//แสดงเลข 7 ตัว เพราะ มี 0.xxxx 
+                        lblDisplay.Text = Result.ToString("G7");
                     }
-
                     FirstNumber = Result;
                 }
             }
@@ -424,13 +410,30 @@ namespace CPE200Lab1
             {
                 FirstNumber = Convert.ToDouble(lblDisplay.Text);
             }
-            push = 1;
+            BottonCheck = 1;
             Operation = "%";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length > 1)
+            {
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+            }
+            else
+            {
+                lblDisplay.Text = "0";
+            }
         }
     }
     }
