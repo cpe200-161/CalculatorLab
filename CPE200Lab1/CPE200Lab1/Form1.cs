@@ -13,11 +13,11 @@ namespace CPE200Lab1
   
     public partial class Form1 : Form
     {
-        double x;
-        double y;
+        float x;
+        float y;
         int method;
-        double sum;
-        double per;
+        float sum;
+        float per;
         public Form1()
         {
             InitializeComponent();
@@ -75,7 +75,7 @@ namespace CPE200Lab1
         private void btnPlus_Click(object sender, EventArgs e)
         {
             method = 1;
-            x = Convert.ToDouble(lblDisplay.Text);
+            x = float.Parse(lblDisplay.Text);
             if(x > 0)
             {
                 lblDisplay.Text = "";
@@ -85,7 +85,7 @@ namespace CPE200Lab1
         private void btnMinus_Click(object sender, EventArgs e)
         {
             method = 2;
-            x = Convert.ToDouble(lblDisplay.Text);
+            x = float.Parse(lblDisplay.Text);
             if (x > 0)
             {
                 lblDisplay.Text = "";
@@ -95,7 +95,7 @@ namespace CPE200Lab1
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             method = 3;
-            x = Convert.ToDouble(lblDisplay.Text);
+            x = float.Parse(lblDisplay.Text);
             if (x > 0)
             {
                 lblDisplay.Text = "";
@@ -105,7 +105,7 @@ namespace CPE200Lab1
         private void btnDivide_Click(object sender, EventArgs e)
         {
             method = 4;
-            x = Convert.ToDouble(lblDisplay.Text);
+            x = float.Parse(lblDisplay.Text);
             if (x > 0)
             {
                 lblDisplay.Text = "";
@@ -119,7 +119,7 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            y = Convert.ToDouble(lblDisplay.Text);
+            y = float.Parse(lblDisplay.Text);
             switch(method)
             {
                 case 1 : per = x + (x * y / 100); break;
@@ -133,7 +133,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            y = Convert.ToDouble(lblDisplay.Text);
+            y = float.Parse(lblDisplay.Text);
             cal();
             lblDisplay.Text = Convert.ToString(sum);
         }
