@@ -14,6 +14,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         bool check1 = true;
+        bool sigh_check = true;
         bool percent = false;
         float num1, num2, num3;
         string opera;
@@ -120,6 +121,14 @@ namespace CPE200Lab1
             }
             check1 = true;
             percent = false;
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            if (sigh_check == false)
+            {
+
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
