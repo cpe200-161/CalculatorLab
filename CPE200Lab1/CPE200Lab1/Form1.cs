@@ -40,7 +40,7 @@ namespace CPE200Lab1
             {
                 if (!lblDisplay.Text.Contains(".")) lblDisplay.Text = lblDisplay.Text + ".";
             }
-            else if (lblDisplay.Text.Length <= 8)
+            else if (lblDisplay.Text.Length <= 7)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
