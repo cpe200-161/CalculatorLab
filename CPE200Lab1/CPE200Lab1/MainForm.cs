@@ -42,7 +42,7 @@ namespace CPE200Lab1
                 return;
             }
             string op = ((Button)sender).Text;
-            engine.Digit(op);
+           
             engine.Num_Click(op);
             lblDisplay.Text = engine.Display();
         }
@@ -56,7 +56,7 @@ namespace CPE200Lab1
                 return;
             }
             string R_Operate = ((Button)sender).Text;
-            engine.Digit(R_Operate);
+           
             engine.Operator_Click(R_Operate);
             lblDisplay.Text = engine.Display();
         }

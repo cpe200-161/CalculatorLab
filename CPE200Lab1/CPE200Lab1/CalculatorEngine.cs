@@ -15,7 +15,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-        string digit;
+
 
         public CalculatorEngine()
         {
@@ -26,13 +26,10 @@ namespace CPE200Lab1
 
         public string Display()
         {
-            return display = "0";
+            return display;
         }
         
-        public void Digit(string op)
-        {
-            digit = op;
-        }
+
      
       
 
@@ -139,7 +136,7 @@ namespace CPE200Lab1
                 return;
             }
 
-            operate = digit;
+            operate = R_Operate;
         
             switch (operate)
             {
