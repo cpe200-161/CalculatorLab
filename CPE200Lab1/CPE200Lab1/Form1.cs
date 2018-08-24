@@ -45,8 +45,8 @@ namespace CPE200Lab1
             numClickchk = true;
 
             if (reCheck)
-                {
-                    lblDisplay.Text = "";
+            {
+                    lblDisplay.Text = "0";
                     reCheck = false;
             }
 
@@ -87,17 +87,23 @@ namespace CPE200Lab1
             Button btn = (Button)sender;
             if (!dotCheck)
             {
-                if (lblDisplay.Text.Length <= 8)
+                if (reCheck)
+                {
+                    lblDisplay.Text = "0";
+                    reCheck = false;
+                }
+                if (lblDisplay.Text.Length < 8)
                 {
                     mem1 = float.Parse(lblDisplay.Text + btn.Text);
                     lblDisplay.Text = lblDisplay.Text + btn.Text;
                 }
                 dotCheck = true;
+                reCheck = false;
             }
         }
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length < 8)
             {
                 if (lblDisplay.Text.First() == '-')
                 {
