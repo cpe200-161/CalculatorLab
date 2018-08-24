@@ -49,15 +49,12 @@ namespace CPE200Lab1
                     lblDisplay.Text = "";
                     reCheck = false;
             }
-            //if (cur_operand == "=")
-            //{
-            //    lblDisplay.Text = "";
-            //}
+
             if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length < 8)
             {
                 mem1 = float.Parse(lblDisplay.Text + btn.Text);
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
@@ -212,8 +209,7 @@ namespace CPE200Lab1
                 }
                 else if (operandcheck == 1)
                 {
-                    ShowResult(prev_operand);
-                    
+                    ShowResult(prev_operand);                   
                 }               
             }
             prev_operand = cur_operand; // This line for CHANGE OPERATOR
@@ -229,9 +225,7 @@ namespace CPE200Lab1
             else
             {
                 second = float.Parse(lblDisplay.Text);
-
-
-
+                
                 if (cur_operand == "=")
                 {
 
