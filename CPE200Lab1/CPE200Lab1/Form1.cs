@@ -134,5 +134,17 @@ namespace CPE200Lab1
             lblDisplay.Text = Convert.ToString(PercentResult);
             SecondNumber = PercentResult;
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if(lblDisplay.Text.Length > 1)
+            {
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+            }
+            else
+            {
+                lblDisplay.Text = "0";
+            }
+        }
     }
 }
