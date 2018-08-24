@@ -44,7 +44,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = "";
             }
 
-            if (lblDisplay.Text.Length <= 8)
+            if (lblDisplay.Text.Length < 8)
             {
 
 
