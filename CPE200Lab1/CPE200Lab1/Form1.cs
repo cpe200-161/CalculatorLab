@@ -184,7 +184,6 @@ namespace CPE200Lab1
         {
             calculating();
             stage = 3;
-            operation = 0;
             dotTime = 0;
         }
 
