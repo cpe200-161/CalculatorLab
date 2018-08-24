@@ -107,14 +107,16 @@ namespace CPE200Lab1
             val = 0;
             display();
         }
-
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            
-           
-            
-         }
+            double p = val % 10;
+            val = (val - p) / 10;
+            display();
+
+
+        }
         private double old = 0;
         private void btnPlus_Click(object sender, EventArgs e)
         {
@@ -135,8 +137,26 @@ namespace CPE200Lab1
 
         }
 
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            old = val;
+            val = 0;
+            x = 2;
+        }
 
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            old = val;
+            val = 0;
+            x = 3;
+        }
 
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            old = val;
+            val = 0;
+            x = 4;
+        }
     }  
     
 }
