@@ -18,8 +18,8 @@ namespace CPE200Lab1
             InitializeComponent();
 
         }
-        double num1,num2,ans=0;
-        int action=0;
+        double num1, num2, ans = 0;
+        int action = 0;
 
         private void btnN_Click(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            if (lblDisplay.Text.Length <= 8 )
+            if (lblDisplay.Text.Length <= 8)
             {
                 lblDisplay.Text = lblDisplay.Text + btn.Text;
             }
@@ -39,10 +39,12 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = "0";
             num1 = 0; num2 = 0; ans = 0; action = 0;
+            btnDot.Enabled = true;
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             num1 = double.Parse(lblDisplay.Text);
             lblDisplay.Text = string.Format("{0:G}", num1);
             action = 1;
@@ -51,6 +53,7 @@ namespace CPE200Lab1
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             num1 = double.Parse(lblDisplay.Text);
             lblDisplay.Text = string.Format("{0:G}", num1);
             action = 4;
@@ -58,6 +61,7 @@ namespace CPE200Lab1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             num1 = double.Parse(lblDisplay.Text);
             lblDisplay.Text = string.Format("{0:G}", num1);
             action = 2;
@@ -65,6 +69,7 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             num1 = double.Parse(lblDisplay.Text);
             lblDisplay.Text = string.Format("{0:G}", num1);
             action = 3;
@@ -73,11 +78,12 @@ namespace CPE200Lab1
         private void btnDot_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = lblDisplay.Text + ".";
-            //god damn dot
+            btnDot.Enabled = false;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
+            btnDot.Enabled = true;
             if (num1 != 0)
             {
                 num2 = double.Parse(lblDisplay.Text);
@@ -87,22 +93,24 @@ namespace CPE200Lab1
             else
             {
                 num1 = double.Parse(lblDisplay.Text);
-                num1 = num1 / 100.00;
+                num1 = num1 / 100;
                 lblDisplay.Text = string.Format("{0:G}", num1);
-                
+
             }
-            
+
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            num2 = float.Parse(lblDisplay.Text);
+            btnDot.Enabled = true;
+            num1 = double.Parse(lblDisplay.Text);
+            num2 = double.Parse(lblDisplay.Text);
             ans = 0;
             lblDisplay.Text = string.Format("{0:G}", num2);
 
             if (action == 1) ans = num1 + num2;
             else if (action == 2) ans = num1 - num2;
-            else if (action == 3) ans = num1 * num2;
+            else if (action == 3) ans = num1 * num2; 
             else if (action == 4)
             {
                 if (num2 != 0)
@@ -114,11 +122,16 @@ namespace CPE200Lab1
                     lblDisplay.Text = "Error";
                     return;
                 }
-               
-            }
-            
 
-            lblDisplay.Text = string.Format("{0:G}",ans);
+            }
+            else if (action == 0)
+            {
+                lblDisplay.Text = string.Format("{0:G}", (double)num1);
+                return;
+            }
+
+
+            lblDisplay.Text = string.Format("{0:G}", ans);
 
         }
     }
