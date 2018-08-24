@@ -229,6 +229,7 @@
             this.btn0.TabIndex = 13;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
+            this.btn0.Click += new System.EventHandler(this.btn0_Click);
             // 
             // btnSign
             // 
@@ -252,6 +253,7 @@
             this.btnDivide.TabIndex = 16;
             this.btnDivide.Text = "÷";
             this.btnDivide.UseVisualStyleBackColor = true;
+            this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
             // 
             // btnPercent
             // 

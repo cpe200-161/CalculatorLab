@@ -14,7 +14,9 @@ namespace CPE200Lab1
     {
         private double  val = 0;
         private double je1,je2;
-        
+        private string before = "";
+        private int P =0;
+        private double W = 0;
         public Form1()
         {
             InitializeComponent();
@@ -74,6 +76,10 @@ namespace CPE200Lab1
         {
             numclick(9);
         }
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            numclick(0);
+        }
 
         private void lblDisplay_Click(object sender, EventArgs e)
         {
@@ -83,18 +89,11 @@ namespace CPE200Lab1
         private void btnSign_Click(object sender, EventArgs e)
         {
             val = (val * (-1));
+            display(val);
 
         }
        
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-             je1 = val;//จำ
-             //val = je2 ไม่จำเป็น;
-             val = 0;
-             je2 += je1;
-            display(je2);
-
-        }
+        
         private void btnDot_Click(object sender, EventArgs e)
             {
             
@@ -111,20 +110,82 @@ namespace CPE200Lab1
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-
+            P = 3;
+          
+            je1 = val;
+            val = 0;
         }
 
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            P = 4;
+            je1 = val;
+            val = 0;
+        }
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            je1 = val;//จำ
+            P = 2;
+            je1 = val;
             val = 0;
-            je2 -= je1;
-            lblDisplay.Text = je2.ToString();
-            
+            je2 = je1 - val;
+            display(je2);
+            val = je2;
+                      //val = je2 ไม่จำเป็น;
+            je2 = 0;
+            val = 0;
+            //je2 -= je1;
+            // lblDisplay.Text = je2.ToString();
+
         }
+        private void btnPlus_Click(object sender, EventArgs e)
+        {   P = 1;
+             je2 =   je1 + val;
+             display(je2);
+             val = je2;
+             je1 = val;//จำ
+                       //val = je2 ไม่จำเป็น;
+            je2 = 0;
+             val = 0;
+           
+ 
+
+        }
+
+       
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            switch (P)
+            {
+                case 1:
+                    je2 = je1+val;
+                    display(je2);
+                    val = je2;
+                    je2 = 0;
+                    break;
+                case 2:
+                    je2 = je1 - val;
+                    display(je2);
+                    val = je2;
+                    je2 = 0;
+                    break;
+                case 3:
+                    je2 = je1 * val;
+                    display(je2);
+                    val = je2;
+                    je2 = 0;
+                    break;
+                case 4:
+                    je2 = je1 / val;
+                    display(je2);
+                    val = je2;
+                    je2 = 0;
+                    break;
+            }
            
+
         }
+            
+            
+        
     }
 }
