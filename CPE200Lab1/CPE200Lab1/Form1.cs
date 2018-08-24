@@ -70,5 +70,21 @@ namespace CPE200Lab1
                 Calculator();
             }
         }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (calculationState == FIRST_OPERAND)
+            {
+                Operand = lblDisplay.Text;
+                calculationState = OPERATOR;
+            }
+            else if (calculationState == SECOND_OPERAND)
+            {
+                if (secondOperand != "0")
+                {
+                    Calculator();
+                }
+            }
+        }
     }
 }
