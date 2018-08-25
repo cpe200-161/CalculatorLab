@@ -15,6 +15,7 @@ namespace CPE200Lab1
         float Sum = 0;
         float R = 0;
         float value1 = 0;
+        float value2 = 0;
         int count = 0;
         string X = "";
         bool check1 = false;
@@ -79,8 +80,14 @@ namespace CPE200Lab1
                         lblDisplay.Text = Sum.ToString();
                     }
                     break;
-
-
+                /*case "%":
+                    if (count == 1)
+                    {
+                        lblDisplay.Text = percent.ToString();
+                    }
+                    break;*/
+                default:
+                    break;
             }
 
             Sum = float.Parse(lblDisplay.Text);
@@ -136,24 +143,24 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
+            value2 = float.Parse(lblDisplay.Text); 
             switch (X) {
                 case "+":
-                    Sum = Sum + (value1 * (float.Parse(lblDisplay.Text) / 100));
+                    percent = value1 + (value2 * value1 / 100);
                     break; 
                 case "-":
-                    lblDisplay.Text = (value1 * (float.Parse(lblDisplay.Text) / 100)).ToString();
+                    percent = value1 - (value2 * value1 / 100);
                     break;
                 case "X":
-                    lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                    percent = (value2 * (value1 / 100));
                     break;
                 case "÷":
-                    lblDisplay.Text = (float.Parse(lblDisplay.Text) / 100).ToString();
+                    percent = (value2 / (value1 / 100));
                     break;
-
             }
-            lblDisplay.Text = Sum.ToString();
-
-
-    }
+            
+            lblDisplay.Text = percent.ToString();
+                 
+        }
     }
 }
