@@ -80,14 +80,6 @@ namespace CPE200Lab1
                         lblDisplay.Text = Sum.ToString();
                     }
                     break;
-                /*case "%":
-                    if (count == 1)
-                    {
-                        lblDisplay.Text = percent.ToString();
-                    }
-                    break;*/
-                default:
-                    break;
             }
 
             Sum = float.Parse(lblDisplay.Text);
