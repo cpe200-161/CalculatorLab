@@ -49,7 +49,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn7
@@ -204,6 +203,7 @@
             this.btnDot.TabIndex = 14;
             this.btnDot.Text = ".";
             this.btnDot.UseVisualStyleBackColor = true;
+            this.btnDot.Click += new System.EventHandler(this.btnDot_Click);
             // 
             // btn0
             // 
@@ -225,6 +225,7 @@
             this.btnSign.TabIndex = 12;
             this.btnSign.Text = "±";
             this.btnSign.UseVisualStyleBackColor = true;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
             // 
             // btnDivide
             // 
@@ -246,6 +247,7 @@
             this.btnPercent.TabIndex = 17;
             this.btnPercent.Text = "%";
             this.btnPercent.UseVisualStyleBackColor = true;
+            this.btnPercent.Click += new System.EventHandler(this.btnPercent_Click);
             // 
             // btnClear
             // 
@@ -267,6 +269,7 @@
             this.btnBack.TabIndex = 19;
             this.btnBack.Text = "<";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblDisplay
             // 
@@ -281,26 +284,11 @@
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(12, 30);
-            this.label1.MinimumSize = new System.Drawing.Size(370, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(370, 33);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 508);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
@@ -352,7 +340,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
-        private System.Windows.Forms.Label label1;
     }
 }
 

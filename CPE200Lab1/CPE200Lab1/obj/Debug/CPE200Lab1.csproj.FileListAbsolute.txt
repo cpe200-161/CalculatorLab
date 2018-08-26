@@ -1,0 +1,10 @@
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csprojAssemblyReference.cache
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.Form1.resources
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.Properties.Resources.resources
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csproj.GenerateResource.cache
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.exe.config
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.exe
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.pdb
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.exe
+C:\Users\ASUS\Source\Repos\CalculatorLab\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.pdb
