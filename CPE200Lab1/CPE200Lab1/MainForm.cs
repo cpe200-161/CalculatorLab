@@ -89,8 +89,11 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-                    string ans = engine.percent(firstOperand, lblDisplay.Text);
-                    lblDisplay.Text = ans;
+                    if (firstOperand != null)
+                    {
+                        lblDisplay.Text = engine.percent(firstOperand, lblDisplay.Text);
+                    }
+                    
                     break;
             }
             isAllowBack = false;
