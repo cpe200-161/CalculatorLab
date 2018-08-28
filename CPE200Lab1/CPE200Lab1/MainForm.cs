@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate, operateBefore;
         public CalculatorEngine engine;
+        private double valueSave = 0;
 
         private void resetAll()
         {
@@ -198,40 +199,42 @@ namespace CPE200Lab1
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Sqrt(object sender, EventArgs e)
         {
             lblDisplay.Text = ((double)Math.Sqrt(Convert.ToDouble(lblDisplay.Text))).ToString();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void modeM(object sender, EventArgs e)
         {
-
+            Button btn = (Button)sender;
+            if(btn.Text =="MC" && valueSave != 0)
+            {
+                valueSave = 0;
+                lblDisplay.Text = valueSave.ToString();
+                
+            }
+            else if(btn.Text == "MR" && valueSave!=0)
+            {
+                lblDisplay.Text = valueSave.ToString();
+            }
+            else if(btn.Text == "M+")
+            {
+                valueSave += (double.Parse(lblDisplay.Text));
+            }
+            else if(btn.Text == "M-")
+            {
+                
+                valueSave -= (double.Parse(lblDisplay.Text));
+            }
+            else if(btn.Text == "MS")
+            {
+                valueSave = Convert.ToDouble(lblDisplay.Text);
+            }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void oneOverX(object sender, EventArgs e)
         {
