@@ -121,10 +121,19 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            value = float.Parse(number_collector);
-            number_collector = "";
+            if (value == 0)
+            {
+                value = float.Parse(number_collector);
+                number_collector = "";
+                plusbtn = true;
+            }
+            else
+            {
+                value += float.Parse(lblDisplay.Text) ;
+                lblDisplay.Text = "";
+                lblDisplay.Text = value.ToString();
+            }
             dotbtn = false;
-            plusbtn = true;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
