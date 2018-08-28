@@ -48,5 +48,18 @@ namespace CPE200Lab1
             }
             return "E";
         }
+
+        public string calculateSqrt(string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            if (secondOperand == null)
+            {
+                return Math.Round((Math.Sqrt(Convert.ToDouble(firstOperand))), 4, MidpointRounding.AwayFromZero).ToString();
+            }
+            else
+            {
+                return Math.Round((Math.Sqrt(Convert.ToDouble(secondOperand))), 4, MidpointRounding.AwayFromZero).ToString();
+            }
+            
+        }
     }
 }

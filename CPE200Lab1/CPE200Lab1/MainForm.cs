@@ -209,6 +209,23 @@ namespace CPE200Lab1
             {
                 return;
             }
+            if (lblDisplay.Text == null)
+            {
+                firstOperand = lblDisplay.Text;
+            }
+            else
+            {
+                secondOperand = lblDisplay.Text;
+            }
+            string resultSqrt = engine.calculateSqrt(firstOperand, secondOperand);
+            if (resultSqrt is "E" || resultSqrt.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = resultSqrt;
+            }
         }
 
         private void btnOneOverX(object sender, EventArgs e)
