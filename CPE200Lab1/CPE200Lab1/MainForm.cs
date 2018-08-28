@@ -17,9 +17,8 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string operate;
+        private string operate, oldOperator, mFunction, dataStorage = "0";
         public CalculatorEngine engine;
-        private string oldOperator;
 
         private void resetAll()
         {
@@ -208,6 +207,36 @@ namespace CPE200Lab1
         {
             firstOperand = engine.oneOverX(lblDisplay.Text);
             lblDisplay.Text = firstOperand;
+        }
+
+        private void mFunction_Click(object sender, EventArgs e)
+        {
+            mFunction = ((Button)sender).Text;
+
+            if (mFunction == "M+")
+            {
+                dataStorage = (float.Parse(dataStorage) + float.Parse(lblDisplay.Text)).ToString();
+            }
+
+            else if (mFunction == "M-")
+            {
+                dataStorage = (float.Parse(dataStorage) - float.Parse(lblDisplay.Text)).ToString();
+            }
+
+            else if (mFunction == "MS")
+            {
+                dataStorage = lblDisplay.Text;
+            }
+
+            else if (mFunction == "MC")
+            {
+                dataStorage = "0";
+            }
+
+            else if (mFunction == "MR")
+            {
+                lblDisplay.Text = dataStorage;
+            }
         }
 
     }

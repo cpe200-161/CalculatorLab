@@ -278,7 +278,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(138, 272);
+            this.btnClear.Location = new System.Drawing.Point(264, 272);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(117, 79);
@@ -340,7 +340,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(264, 272);
+            this.button3.Location = new System.Drawing.Point(138, 272);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 79);
@@ -358,6 +358,7 @@
             this.button4.TabIndex = 25;
             this.button4.Text = "MC";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.mFunction_Click);
             // 
             // button5
             // 
@@ -369,6 +370,7 @@
             this.button5.TabIndex = 26;
             this.button5.Text = "MR";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.mFunction_Click);
             // 
             // button6
             // 
@@ -380,6 +382,7 @@
             this.button6.TabIndex = 27;
             this.button6.Text = "MS";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.mFunction_Click);
             // 
             // button7
             // 
@@ -391,6 +394,7 @@
             this.button7.TabIndex = 28;
             this.button7.Text = "M+";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.mFunction_Click);
             // 
             // button8
             // 
@@ -402,6 +406,7 @@
             this.button8.TabIndex = 29;
             this.button8.Text = "M-";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.mFunction_Click);
             // 
             // MainForm
             // 
