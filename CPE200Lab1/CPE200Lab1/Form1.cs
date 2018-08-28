@@ -63,6 +63,7 @@ namespace CPE200Lab1
             else num2 = num1;
             lblDisplay.Text = num2.ToString();
             oper = true;
+            dot = false;
             if (bt.Text == "+") plus = true;
             else if (bt.Text == "-") minus = true;
             else if (bt.Text == "X") mul = true;
