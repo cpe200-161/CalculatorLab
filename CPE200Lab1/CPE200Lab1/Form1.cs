@@ -12,8 +12,9 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double val = 0, valbefore = 0, sumA = 0, sumB = 1;
+        private double val = 0, valbefore = 0, answer = 0;
         private int OperatorCalculator;
+
         public Form1()
         {
             InitializeComponent();
@@ -21,14 +22,25 @@ namespace CPE200Lab1
 
         private void display(double valText, int i = 1)
         {
-            if (i == 0) lblDisplay.Text = valText.ToString() + '%';
-            else lblDisplay.Text = valText.ToString();
+            //if (i == 0) lblDisplay.Text = valText.ToString() + '%';
+            lblDisplay.Text = valText.ToString();
         }
 
         private void numClik(int n, double m = 10)
         {
-            val = val * m + n;
-            display(val);
+            int i = 1;
+            if(i == 1)
+            {
+                val = val * m + n;
+                display(val);
+                i++;
+            }
+            else
+            {
+                valbefore = valbefore * m + n;
+                display(valbefore);
+                i--;
+            }
         }
 
         private void Calculator(char Operator, double Number)
@@ -37,31 +49,31 @@ namespace CPE200Lab1
             {
                 case '+' :
                     val = 0;
-                    sumA += Number;
-                    display(sumA);
-                    sumB = sumA;
+                    //sumA += Number;
+                    //display(sumA);
+                    //sumB = sumA;
                     break;
 
-                case '-' 
+                case '-' :
                     val = 0;
                     //sumB -= Number;
-                    sumA = val - valbefore;
-                    display(sumB);
-                    sumA = sumB;
+                    //sumA = Number - valbefore;
+                    //display(sumA);
+                    //sumA = sumB;
                     break;
 
                 case '*' :
                     val = 0;
-                    sumB *= Number;
-                    display(sumB);
-                    sumA = sumB;
+                    //sumB *= Number;
+                    //display(sumB);
+                    //sumA = sumB;
                     break;
 
                 case '/':
                     val = 0;
                     //sumB /= Number;
-                    display(sumB);
-                    sumA = sumB;
+                    //display(sumB);
+                    //sumA = sumB;
                     break;
 
                 case '%':
@@ -158,6 +170,7 @@ namespace CPE200Lab1
         private void btnPercent_Click(object sender, EventArgs e)
         {
             display(val, 0);
+            Calculator('%', val);
             OperatorCalculator = 5;
         }
 
@@ -170,8 +183,7 @@ namespace CPE200Lab1
         {
             val = 0;
             valbefore = 0;
-            sumA = 0;
-            sumB = 1;
+            answer = 0;
             display(val);
         }
 
@@ -181,27 +193,27 @@ namespace CPE200Lab1
             {
                 case 1:
                     Calculator('+', val);
-                    val = sumA;
+                    //val = sumA;
                     break;
 
                 case 2:
                     Calculator('-', val);
-                    val = sumA;
+                    //val = sumA;
                     break;
 
                 case 3:
                     Calculator('*', val);
-                    val = sumA;
+                    //val = sumA;
                     break;
 
                 case 4:
                     Calculator('/', val);
-                    val = sumA;
+                    //val = sumA;
                     break;
 
                 case 5:
                     Calculator('%', val);
-                    val = sumA;
+                    //val = sumA;
                     break;
             }
                 
