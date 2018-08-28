@@ -135,6 +135,7 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
+
             plus = true;
             minus = false;
             multiple = false;
