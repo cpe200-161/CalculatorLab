@@ -43,6 +43,7 @@ namespace CPE200Lab1
                     {
                         double result;
                         string[] parts;
+                        int remainLength;
 
                         result = (1 / Convert.ToDouble(firstOperand));
 
@@ -52,8 +53,10 @@ namespace CPE200Lab1
                         {
                             return "E";
                         }
-                      
-                        return firstOperand = result.ToString();
+
+                        remainLength = maxOutputSize - parts[0].Length - 1;
+
+                        return firstOperand = result.ToString("N" + remainLength);
                     }
                 case "÷":
                     // Not allow devide be zero
