@@ -8,12 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        int OperateBeforePercen;
-
         public string calculate(string operate1, string firstOperand, string secondOperand, string operate2,int maxOutputSize = 8)
         {
-            
-            switch (operate1)
+            if(operate1 == "%")
+            {
+                secondOperand = ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand)).ToString();
+            }
+            switch (operate2)
             {
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
@@ -43,27 +44,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-                case "%":
-                    if (firstOperand != null)
-                    {
-                        if(OperateBeforePercen == 1)
-                        {
-                            return (Convert.ToDouble(firstOperand) + ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand))).ToString();
-                        }
-                        if (OperateBeforePercen == 2)
-                        {
-                            return (Convert.ToDouble(firstOperand) - ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand))).ToString();
-                        }
-                        if (OperateBeforePercen == 3)
-                        {
-                            return (Convert.ToDouble(firstOperand) * ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand))).ToString();
-                        }
-                        if (OperateBeforePercen == 4)
-                        {
-                            return (Convert.ToDouble(firstOperand) / ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand))).ToString();
-                        }
-                    }
-                    break;
+                
             }
             return "E";
         }
