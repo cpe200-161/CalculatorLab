@@ -140,7 +140,7 @@ namespace CPE200Lab1
 				case "√":
 					firstOperand = lblDisplay.Text;
 					engine.calculate(operate, firstOperand, secondOperand);
-					firstOperand = lblDisplay.Text;
+					//firstOperand = lblDisplay.Text;
 					break;
 				case "1/X":
 					firstOperand = lblDisplay.Text;
