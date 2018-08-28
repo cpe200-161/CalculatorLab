@@ -19,7 +19,9 @@ namespace CPE200Lab1
         private string firstOperand;
         private string secondOperand;
         private string operate;
+        private string x;
         public CalculatorEngine engine;
+
 
         private void resetAll()
         {
@@ -36,7 +38,7 @@ namespace CPE200Lab1
             
             resetAll();
             engine = new CalculatorEngine();
-            engine.calculate(operate, firstOperand, secondOperand, 8);
+            engine.calculate(operate, firstOperand, secondOperand, x);
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -86,11 +88,17 @@ namespace CPE200Lab1
                 case "÷":
                 case "√":
                 case "1/x":
-                case "%":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    x = operate;
+
                     break;
-                    // your code here
+                // your code here
+                case "%":
+                    
+                    lblDisplay.Text = engine.Percent(firstOperand, lblDisplay.Text);
+
+                    break;
             }
             isAllowBack = false;
         }
@@ -102,7 +110,7 @@ namespace CPE200Lab1
                 return;
             }
             secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand, x);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

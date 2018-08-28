@@ -8,21 +8,53 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        
-        public string calculate(string operate, string firstOperand = "0", string secondOperand ="0", int maxOutputSize = 8)
-        {
+
+        public string calculate(string operate, string firstOperand, string secondOperand, string x, int maxOutputSize = 8) {
+
             switch(operate)
             {
                 case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                    return firstOperand = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                    return firstOperand = (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                    return firstOperand = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "√":
-                    return Math.Sqrt(Convert.ToDouble(firstOperand)).ToString();
+                    {
+                        double result;
+                        string[] parts;
+                        int remainLength;
+
+                        result = Math.Sqrt(Convert.ToDouble(firstOperand));
+                        
+                        parts = result.ToString().Split('.');
+                        
+                        if (parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        
+                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        
+                        return firstOperand = result.ToString("N" + remainLength);
+                    }
+
                 case "1/x":
-                    return (1 / Convert.ToDouble(firstOperand)).ToString();
+                    {
+                        double result;
+                        string[] parts;
+
+                        result = (1 / Convert.ToDouble(firstOperand));
+
+                        parts = result.ToString().Split('.');
+
+                        if (parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                      
+                        return firstOperand = result.ToString();
+                    }
                 case "÷":
                     // Not allow devide be zero
                     if(secondOperand != "0")
@@ -50,26 +82,31 @@ namespace CPE200Lab1
 
                         // trim the fractional part gracefully. =
 
-                        return result.ToString("N" + remainLength);
+                        return firstOperand = result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
-                    //your code here
-                    if (secondOperand != "0")
+                    if (x == "+")
                     {
-                        return ((Convert.ToDouble(firstOperand) /100)*Convert.ToDouble(secondOperand)).ToString();
-                        
-                    }
-                    else if (secondOperand == "0")
-                    {
-                        return (Convert.ToDouble(firstOperand) / 100).ToString();
+                        return firstOperand = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                     }
                     break;
+                    //your code here
+                    
 
 
             }
             return "E";
         }
+        public string Percent(string firstOperand, string secondOperand)
+        {
 
+            {
+                double result = (Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand);
+                return result.ToString();
+
+            }
+        }
     }
+
 }
