@@ -42,9 +42,10 @@ namespace CPE200Lab1
                     sumB = sumA;
                     break;
 
-                case '-' :
+                case '-' 
                     val = 0;
-                    sumB -= Number;
+                    //sumB -= Number;
+                    sumA = val - valbefore;
                     display(sumB);
                     sumA = sumB;
                     break;
