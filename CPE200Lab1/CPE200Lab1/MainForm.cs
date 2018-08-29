@@ -209,7 +209,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (lblDisplay.Text == null)
+            if (firstOperand == null)
             {
                 firstOperand = lblDisplay.Text;
             }
@@ -230,7 +230,27 @@ namespace CPE200Lab1
 
         private void btnOneOverX(object sender, EventArgs e)
         {
-
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (firstOperand == null)
+            {
+                firstOperand = lblDisplay.Text;
+            }
+            else
+            {
+                secondOperand = lblDisplay.Text;
+            }
+            string resultOverX = engine.calculateOverX(firstOperand, secondOperand);
+            if (resultOverX is "E" || resultOverX.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = resultOverX;
+            }
         }
     }
 }

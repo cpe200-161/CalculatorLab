@@ -61,5 +61,18 @@ namespace CPE200Lab1
             }
             
         }
+
+        public string calculateOverX(string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            if (secondOperand == null)
+            {
+                return Math.Round(1 / (Convert.ToDouble(firstOperand)), 4, MidpointRounding.AwayFromZero).ToString();
+            }
+            else
+            {
+                return Math.Round(1 / (Convert.ToDouble(secondOperand)), 4, MidpointRounding.AwayFromZero).ToString();
+            }
+
+        }
     }
 }
