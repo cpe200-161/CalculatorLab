@@ -74,5 +74,17 @@ namespace CPE200Lab1
             }
 
         }
+
+        public string calculateMemory(string memoryOperand, string newOperand, string oprateM, int maxOutputSize = 8)
+        {
+            if (oprateM == "M+")
+            {
+                return (Convert.ToDouble(memoryOperand) + Convert.ToDouble(newOperand)).ToString();
+            }
+            if (oprateM == "M-")
+            {
+                return (Convert.ToDouble(memoryOperand) - Convert.ToDouble(newOperand)).ToString();
+            }
+        }
     }
 }
