@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
-        private string gobalReturn = "0";
+        
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -302,10 +302,7 @@ namespace CPE200Lab1
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
 
