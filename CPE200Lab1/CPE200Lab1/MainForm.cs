@@ -264,11 +264,11 @@ namespace CPE200Lab1
                     memoryOperand = lblDisplay.Text;
                     break;
                 case "M+":
-                    string resultMemory1 = engine.calculateMemory(memoryOperand, lblDisplay.Text, operateM);
+                    string resultMemory1 = engine.calculateMemory(operateM, memoryOperand, lblDisplay.Text);
                     memoryOperand = resultMemory1;
                     break;
                 case "M-":
-                    string resultMemory2 = engine.calculateMemory(memoryOperand, lblDisplay.Text, operateM);
+                    string resultMemory2 = engine.calculateMemory(operateM, memoryOperand, lblDisplay.Text);
                     memoryOperand = resultMemory2;
                     break;
                 case "MR":
