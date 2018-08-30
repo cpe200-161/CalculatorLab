@@ -46,7 +46,6 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
                     break;
                 case "√":
-                    
                     result = Math.Sqrt(Convert.ToDouble(firstOperand));
                     // split between integer part and fractional part
                     parts = result.ToString().Split('.');
