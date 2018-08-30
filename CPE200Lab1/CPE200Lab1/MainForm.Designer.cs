@@ -311,7 +311,7 @@
             this.button5.TabIndex = 16;
             this.button5.Text = "√";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.btnSqrt_Click);
             // 
             // button6
             // 
@@ -322,7 +322,7 @@
             this.button6.TabIndex = 16;
             this.button6.Text = "M+";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.btnOperator_Click);
+            this.button6.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button7
             // 
@@ -333,7 +333,7 @@
             this.button7.TabIndex = 16;
             this.button7.Text = "M-";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.btnOperator_Click);
+            this.button7.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button8
             // 
@@ -344,7 +344,6 @@
             this.button8.TabIndex = 17;
             this.button8.Text = "MS";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button9
             // 
@@ -355,7 +354,7 @@
             this.button9.TabIndex = 18;
             this.button9.Text = "MC";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.btnClear_Click);
+            this.button9.Click += new System.EventHandler(this.memoryClear_Click);
             // 
             // button10
             // 
@@ -366,7 +365,7 @@
             this.button10.TabIndex = 19;
             this.button10.Text = "MR";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.btnBack_Click);
+            this.button10.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // MainForm
             // 

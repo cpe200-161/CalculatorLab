@@ -20,6 +20,8 @@ namespace CPE200Lab1
         private string operate ;
         public string operateBefore;
         public CalculaterEngine engine;
+        private double memorize = 0; 
+        private string funcMemory;
 
         private void resetAll()
         {
@@ -29,9 +31,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
         
-
         public MainForm()
         {
             InitializeComponent();
@@ -200,11 +200,32 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = (1 / Convert.ToDouble(lblDisplay.Text)).ToString();
         }
-
-        private void button5_Click(object sender, EventArgs e)
+       
+        private void btnSqrt_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
+        }
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            funcMemory = ((Button)sender).Text;
+            switch (funcMemory)
+            {
+                case "M+":
+                    memorize += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    memorize -= Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "MR":
+                    lblDisplay.Text = memorize.ToString();
+                    break;
+            }
 
+        }
+
+        private void memoryClear_Click(object sender, EventArgs e)
+        {
+            memorize = 0;
         }
     }
 }
