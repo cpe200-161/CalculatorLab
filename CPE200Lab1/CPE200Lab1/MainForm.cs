@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CPE200Lab1
-{
+{   
     public partial class MainForm : Form
     {
         private bool hasDot;
@@ -18,7 +18,11 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-
+        private string operateNew;
+        public CalculatorEngine engine;
+        private string secondOperand;
+        double M;
+        
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -27,51 +31,15 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
-
         public MainForm()
         {
             InitializeComponent();
 
             resetAll();
+
+            engine = new CalculatorEngine();
+            engine.calculate(operate, firstOperand, secondOperand,8);
+          
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -113,17 +81,24 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            if (operate != "%")
+            {
+                operateNew = ((Button)sender).Text;
+            }
             switch (operate)
             {
                 case "+":
                 case "-":
                 case "X":
+                case "√":
+                case "1/X":
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
                     // your code here
+
                     break;
             }
             isAllowBack = false;
@@ -135,8 +110,8 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            secondOperand = lblDisplay.Text;
+            string result = engine.calculate(operateNew, firstOperand, secondOperand,8);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -227,5 +202,38 @@ namespace CPE200Lab1
                 }
             }
         }
+
+        private void btnMPlus_Click(object sender, EventArgs e)
+        {
+            M += Convert.ToDouble(lblDisplay.Text);
+            lblDisplay.Text = "0";
+        }
+
+        private void btnMMinus_Click(object sender, EventArgs e)
+        {
+            M -= Convert.ToDouble(lblDisplay.Text);
+            lblDisplay.Text = "0";
+        }
+
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            M = 0;
+        }
+
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = M.ToString();
+        }
+
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+        }
+
     }
 }
