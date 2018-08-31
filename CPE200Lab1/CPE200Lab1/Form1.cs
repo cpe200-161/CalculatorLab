@@ -16,7 +16,9 @@ namespace CPE200Lab1
         private bool minussign = false;
         private bool timesign = false;
         private bool dividesign = false;
+        private bool dotsign = true;
         private float num1=0,result=0;
+        
         
 
         public Form1()
@@ -251,13 +253,37 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-           
+            if (lblDisplay.Text.Length!=1) {
+                lblDisplay.Text = lblDisplay.Text.Remove(lblDisplay.Text.Length - 1);
+
+            }else
+                lblDisplay.Text = "0";
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
             float temp2 = float.Parse(lblDisplay.Text) * -1;
             lblDisplay.Text = temp2.ToString();
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            int len = lblDisplay.Text.Length;
+           
+                if (lblDisplay.Text[len-1] == '.')
+                {
+                    dotsign = false;               
+                }
+            else { 
+                    dotsign = true;
+            }
+
+            if (dotsign = true)
+            {
+                lblDisplay.Text += '.';
+                dotsign = false;
+            } 
+            
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -268,6 +294,7 @@ namespace CPE200Lab1
             minussign = false;
             timesign = false;
             dividesign = false;
+            dotsign = true;
             }
         }
     }
