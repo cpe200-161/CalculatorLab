@@ -93,17 +93,17 @@ namespace CPE200Lab1
                 case "%":
 
                     lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
-                    isAfterOperater = true;
+                    
                     operate = preOperate;
                     // your code here
                     break;
                 case "√":
                     firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
+                    
                     break;
                 case "1/x":
                     firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
+                    
                     break;
             }
             isAllowBack = false;
