@@ -81,7 +81,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
+                         
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -169,6 +169,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    firstOperand = display;
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
