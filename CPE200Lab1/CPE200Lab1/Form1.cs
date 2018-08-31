@@ -12,68 +12,47 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double val = 0, valbefore = 0, answer = 0;
-        private int OperatorCalculator;
+        private double number = 0, val = 0, answer = 0;
+        private int OperatorCalculator = 0, i = 0;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void display(double valText, int i = 1)
+        private void display(double valText)
         {
-            //if (i == 0) lblDisplay.Text = valText.ToString() + '%';
             lblDisplay.Text = valText.ToString();
         }
 
         private void numClik(int n, double m = 10)
         {
-            int i = 1;
-            if(i == 1)
-            {
-                val = val * m + n;
-                display(val);
-                i++;
-            }
-            else
-            {
-                valbefore = valbefore * m + n;
-                display(valbefore);
-                i--;
-            }
+            number = number * m + n;
+            display(number);
         }
-
-        private void Calculator(char Operator, double Number)
+ 
+        private void Calculator(char Operator, double val, double valbefore)
         {
             switch (Operator)
             {
                 case '+' :
-                    val = 0;
-                    //sumA += Number;
-                    //display(sumA);
-                    //sumB = sumA;
+                    answer = val + valbefore;
+                    display(answer);
                     break;
 
                 case '-' :
-                    val = 0;
-                    //sumB -= Number;
-                    //sumA = Number - valbefore;
-                    //display(sumA);
-                    //sumA = sumB;
+                    answer = val - valbefore;
+                    display(answer);
                     break;
 
                 case '*' :
-                    val = 0;
-                    //sumB *= Number;
-                    //display(sumB);
-                    //sumA = sumB;
+                    answer = val * valbefore;
+                    display(answer);
                     break;
 
                 case '/':
-                    val = 0;
-                    //sumB /= Number;
-                    //display(sumB);
-                    //sumA = sumB;
+                    answer = val / valbefore;
+                    display(answer);
                     break;
 
                 case '%':
@@ -85,7 +64,8 @@ namespace CPE200Lab1
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            numClik(0);      
+            numClik(0);
+            
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -140,37 +120,62 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-
+            
         }
-
-        private void btnMultiply_Click(object sender, EventArgs e)
-        {
-            Calculator('*', val);
-            OperatorCalculator = 3;
-        }
-        
+      
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            Calculator('+', val);
+            val = number;
+            number = 0;
             OperatorCalculator = 1;
+            i = 1;
+            if (i != 0)
+            {
+
+                Calculator('+', answer, val);       
+            } 
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            Calculator('-', val);
+            val = number;
+            number = 0;
             OperatorCalculator = 2;
+            i = 1;
+            if (answer != 0)
+            {
+                Calculator('-', answer, val);  
+            } 
+        }
+
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            val = number;
+            number = 0;
+            OperatorCalculator = 3;
+            i = 1;
+            if (answer != 0)
+            {
+                Calculator('*', answer, val); 
+            } 
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            Calculator('/', val);
+            val = number;
+            number = 0;
             OperatorCalculator = 4;
+            i = 1;
+            if (answer != 0)
+            {
+                Calculator('/', answer, val);
+            }   
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            display(val, 0);
-            Calculator('%', val);
+            val = number;
+            number = 0;
             OperatorCalculator = 5;
         }
 
@@ -181,10 +186,12 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            number = 0;
             val = 0;
-            valbefore = 0;
             answer = 0;
-            display(val);
+            OperatorCalculator = 0;
+            i = 0;
+            display(answer);
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -192,28 +199,23 @@ namespace CPE200Lab1
             switch (OperatorCalculator)
             {
                 case 1:
-                    Calculator('+', val);
-                    //val = sumA;
+                    Calculator('+', val, number);
                     break;
 
                 case 2:
-                    Calculator('-', val);
-                    //val = sumA;
+                    Calculator('-', val, number);
                     break;
 
                 case 3:
-                    Calculator('*', val);
-                    //val = sumA;
+                    Calculator('*', val, number);
                     break;
 
                 case 4:
-                    Calculator('/', val);
-                    //val = sumA;
+                    Calculator('/', val, number);
                     break;
 
                 case 5:
-                    Calculator('%', val);
-                    //val = sumA;
+                    Calculator('%', val, number);
                     break;
             }
                 
