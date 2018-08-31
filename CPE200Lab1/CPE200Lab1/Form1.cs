@@ -12,6 +12,11 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
+        private bool plussign = false;
+        private bool minussign = false;
+        private bool timesign = false;
+        private bool dividesign = false;
+        private float num1=0,result=0;
         
 
         public Form1()
@@ -23,9 +28,7 @@ namespace CPE200Lab1
         {
 
         }
-        
 
-          
         private void btn0_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text.Length < 8)
@@ -174,24 +177,97 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnPlus_Click(object sender, EventArgs e)
-        {         
-
+        private void btnPlus_Click(object sender, EventArgs e) //OK
+        {
+            {       
+                num1 = float.Parse(lblDisplay.Text);
+                lblDisplay.Text = "0";
+                plussign = true;
+               
+            }                   
         }
 
-        private void lblDisplay_Click(object sender, EventArgs e)
+        private void btnMinus_Click(object sender, EventArgs e) //OK
+        {
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            minussign = true;
+        }
+
+        private void btnMultiply_Click(object sender, EventArgs e) //OK
+        {
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            timesign = true;
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e) //OK
+        {
+            num1 = float.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            dividesign = true;
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e) //NOPE
         {
 
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+         private void btnEqual_Click(object sender, EventArgs e)  //DOING
         {
-             
+            if (plussign == true)
+             {
+                result = num1+float.Parse(lblDisplay.Text);
+                string temp = Convert.ToString(result);
+                lblDisplay.Text = temp;
+                plussign = false;
+            }
+
+            if (minussign == true)
+            {
+                result = num1 - float.Parse(lblDisplay.Text);
+                string temp = Convert.ToString(result);
+                lblDisplay.Text = temp;
+                minussign = false;
+            }
+
+            if (timesign == true)
+            {
+                result = num1 * float.Parse(lblDisplay.Text);
+                string temp = Convert.ToString(result);
+                lblDisplay.Text = temp;
+                timesign = false;
+            }
+
+
+            if (dividesign == true)
+            {
+                result = num1 / float.Parse(lblDisplay.Text);
+                string temp = Convert.ToString(result);
+                lblDisplay.Text = temp;
+                dividesign = false;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            float temp2 = float.Parse(lblDisplay.Text) * -1;
+            lblDisplay.Text = temp2.ToString();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "";
+            lblDisplay.Text = "0";
+            result = 0;
+            plussign = false;
+            minussign = false;
+            timesign = false;
+            dividesign = false;
             }
         }
     }
