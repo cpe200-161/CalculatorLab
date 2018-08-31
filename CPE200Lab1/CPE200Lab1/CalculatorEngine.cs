@@ -9,6 +9,9 @@ namespace CPE200Lab1
     //all calculation process belong here
     public class CalculatorEngine
     {
+        double memoryNum;
+        bool isMemorySet;
+
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -17,7 +20,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
+                case "*":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
@@ -62,6 +65,42 @@ namespace CPE200Lab1
 
             }
             return "E";
+        }
+
+        public string memoryCalculate(string operrand, string memoryOperator)
+        {
+            switch (memoryOperator)
+            {
+                case "MS":
+                    memoryNum = Convert.ToDouble(operrand);
+                    isMemorySet = true;
+                    Console.WriteLine("memory number : " + memoryNum);
+                    break;
+                case "MC":
+                    memoryNum = 0;
+                    isMemorySet = false;
+                    break;
+                case "MR":
+                    if (isMemorySet)
+                    {
+                        return memoryNum.ToString();   
+                    }
+                    break;
+                case "M+":
+                    if (isMemorySet)
+                    {
+                        memoryNum += Convert.ToDouble(operrand);
+                    }
+                    break;
+                case "M-":
+                    if (isMemorySet)
+                    {
+                        memoryNum -= Convert.ToDouble(operrand);
+                    }
+                    break;
+            }
+
+            return "";
         }
 
     }

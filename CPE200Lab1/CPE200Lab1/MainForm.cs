@@ -83,13 +83,12 @@ namespace CPE200Lab1
             {
                 case "+":
                 case "-":
-                case "X":
+                case "*":
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
                     lblDisplay.Text = engine.calculate(pendingOperator, firstOperand, lblDisplay.Text);
                     pendingOperator = lastOperate;
                     break;
@@ -117,6 +116,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+            
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -199,5 +199,23 @@ namespace CPE200Lab1
             }
         }
 
+        private void MemeoryBtn_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+
+            string memoryOperator = ((Button)sender).Text;
+            Console.WriteLine("memory operator: " + memoryOperator);
+
+            string memory = engine.memoryCalculate(lblDisplay.Text, memoryOperator);
+
+            if(memory != "")
+            {
+                lblDisplay.Text = memory;
+            }
+
+        }
     }
 }

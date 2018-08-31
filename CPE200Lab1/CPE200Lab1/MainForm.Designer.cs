@@ -51,6 +51,11 @@
             this.lblDisplay = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.squareRoot = new System.Windows.Forms.Button();
+            this.MCbtn = new System.Windows.Forms.Button();
+            this.MRbtn = new System.Windows.Forms.Button();
+            this.MSbtn = new System.Windows.Forms.Button();
+            this.Mplusbtn = new System.Windows.Forms.Button();
+            this.Mminusbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -331,11 +336,76 @@
             this.squareRoot.UseVisualStyleBackColor = true;
             this.squareRoot.Click += new System.EventHandler(this.btnOperator_Click);
             // 
+            // MCbtn
+            // 
+            this.MCbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MCbtn.Location = new System.Drawing.Point(16, 125);
+            this.MCbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.MCbtn.Name = "MCbtn";
+            this.MCbtn.Size = new System.Drawing.Size(100, 49);
+            this.MCbtn.TabIndex = 23;
+            this.MCbtn.Text = "MC";
+            this.MCbtn.UseVisualStyleBackColor = true;
+            this.MCbtn.Click += new System.EventHandler(this.MemeoryBtn_Click);
+            // 
+            // MRbtn
+            // 
+            this.MRbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MRbtn.Location = new System.Drawing.Point(124, 125);
+            this.MRbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.MRbtn.Name = "MRbtn";
+            this.MRbtn.Size = new System.Drawing.Size(89, 49);
+            this.MRbtn.TabIndex = 24;
+            this.MRbtn.Text = "MR";
+            this.MRbtn.UseVisualStyleBackColor = true;
+            this.MRbtn.Click += new System.EventHandler(this.MemeoryBtn_Click);
+            // 
+            // MSbtn
+            // 
+            this.MSbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MSbtn.Location = new System.Drawing.Point(221, 125);
+            this.MSbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.MSbtn.Name = "MSbtn";
+            this.MSbtn.Size = new System.Drawing.Size(89, 49);
+            this.MSbtn.TabIndex = 25;
+            this.MSbtn.Text = "MS";
+            this.MSbtn.UseVisualStyleBackColor = true;
+            this.MSbtn.Click += new System.EventHandler(this.MemeoryBtn_Click);
+            // 
+            // Mplusbtn
+            // 
+            this.Mplusbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mplusbtn.Location = new System.Drawing.Point(318, 125);
+            this.Mplusbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.Mplusbtn.Name = "Mplusbtn";
+            this.Mplusbtn.Size = new System.Drawing.Size(93, 49);
+            this.Mplusbtn.TabIndex = 26;
+            this.Mplusbtn.Text = "M+";
+            this.Mplusbtn.UseVisualStyleBackColor = true;
+            this.Mplusbtn.Click += new System.EventHandler(this.MemeoryBtn_Click);
+            // 
+            // Mminusbtn
+            // 
+            this.Mminusbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mminusbtn.Location = new System.Drawing.Point(419, 125);
+            this.Mminusbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.Mminusbtn.Name = "Mminusbtn";
+            this.Mminusbtn.Size = new System.Drawing.Size(95, 49);
+            this.Mminusbtn.TabIndex = 27;
+            this.Mminusbtn.Text = "M-";
+            this.Mminusbtn.UseVisualStyleBackColor = true;
+            this.Mminusbtn.Click += new System.EventHandler(this.MemeoryBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 619);
+            this.Controls.Add(this.Mminusbtn);
+            this.Controls.Add(this.Mplusbtn);
+            this.Controls.Add(this.MSbtn);
+            this.Controls.Add(this.MRbtn);
+            this.Controls.Add(this.MCbtn);
             this.Controls.Add(this.squareRoot);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDisplay);
@@ -392,6 +462,11 @@
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button squareRoot;
+        private System.Windows.Forms.Button MCbtn;
+        private System.Windows.Forms.Button MRbtn;
+        private System.Windows.Forms.Button MSbtn;
+        private System.Windows.Forms.Button Mplusbtn;
+        private System.Windows.Forms.Button Mminusbtn;
     }
 }
 
