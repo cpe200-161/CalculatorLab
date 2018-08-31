@@ -45,6 +45,7 @@ namespace CPE200Lab1
                     break;
                 case "√":
                     return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString().Substring(0,8);
+                    break;
             }
             return "E";
         }

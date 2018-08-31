@@ -89,7 +89,7 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
+                //case "%":
                     // your code here.
                     // my code in new functions.
             }
