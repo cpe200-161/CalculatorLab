@@ -8,7 +8,12 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
-        private bool isNumber(string str)
+		private bool isNumberPart = false;
+		private bool isContainDot = false;
+		private bool isSpaceAllowed = false;
+		public string lblDisplay = "0";
+
+		private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -124,5 +129,27 @@ namespace CPE200Lab1
             }
             return "E";
         }
+
+		public void amount_click()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (lblDisplay is "0")
+			{
+				lblDisplay = "";
+			}
+			if (!isNumberPart)
+			{
+				isNumberPart = true;
+				isContainDot = false;
+			}
+			isSpaceAllowed = true;
+		}
+		public String screen()
+		{
+			return lblDisplay;
+		}
     }
 }
