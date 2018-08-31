@@ -28,9 +28,11 @@ namespace CPE200Lab1
             return engine.isOperator2(ch.ToString());
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void btnNumber_Click(object sender, EventArgs e) //DOING
         {
-            btnNumber_Click2();
+            String Butt = ((Button)sender).Text;
+            engine.btnNumber_Click2(Butt);
+            
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)

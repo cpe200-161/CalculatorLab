@@ -8,6 +8,16 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+        private string display = "0";
+
+        public string Display()
+        {
+            return display;
+        }
+
         private bool isNumber(string str)
         {
             double retNum;
@@ -26,23 +36,24 @@ namespace CPE200Lab1
             return false;
         }
 
-        public void btnNumber_Click2()
+        public void btnNumber_Click2(String Buttt)
         {
-            if (lblDisplay.Text is "Error")
+            if (display is "Error")
             {
                 return;
             }
-            if (lblDisplay.Text is "0")
+            if (display is "0")
             {
-                lblDisplay.Text = "";
+                display = "";
             }
             if (!isNumberPart)
             {
                 isNumberPart = true;
                 isContainDot = false;
             }
-            lblDisplay.Text += ((Button)sender).Text;
+            display += Buttt;
             isSpaceAllowed = true;
+            
         }
 
 
