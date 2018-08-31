@@ -17,6 +17,16 @@ namespace CPE200Lab1
 
         
 
+        private string display = "0";
+
+        public string Display()
+        {
+            return display;
+        }
+
+        
+        
+
 
 
 
