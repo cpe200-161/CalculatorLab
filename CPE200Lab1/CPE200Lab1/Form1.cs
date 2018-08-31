@@ -122,8 +122,23 @@ namespace CPE200Lab1
             je1 = val;
             val = 0;
         }
+        
+        private void btnPlus_Click(object sender, EventArgs e)
+        {   P = 1;
+             je2 =   je1 + val;
+             display(je2);
+             val = je2;
+             je1 = val;//จำ
+                       //val = je2 ไม่จำเป็น;
+            je2 = 0;
+            val = 0;
+           
+ 
+
+        }
+
         private void btnMinus_Click(object sender, EventArgs e)
-        {
+         {
             P = 2;
             je1 = val;
             val = 0;
@@ -136,22 +151,7 @@ namespace CPE200Lab1
             //je2 -= je1;
             // lblDisplay.Text = je2.ToString();
 
-        }
-        private void btnPlus_Click(object sender, EventArgs e)
-        {   P = 1;
-             je2 =   je1 + val;
-             display(je2);
-             val = je2;
-             je1 = val;//จำ
-                       //val = je2 ไม่จำเป็น;
-            je2 = 0;
-             val = 0;
-           
- 
-
-        }
-
-       
+         }
         private void btnEqual_Click(object sender, EventArgs e)
         {
             switch (P)
