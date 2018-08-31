@@ -8,13 +8,147 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+
+        private string display = "0";
+
+        public string Display()
+        {
+            return display;
+        }
+
+        public void handleNumber(string n)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += n;
+            isSpaceAllowed = true;
+        }
+
+        public void handleBinary(string n)
+        {
+
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+            {
+                display += " " + n + " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void handleBack()
+        {
+            // check if the last one is operator
+            string current = display;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is "")
+            {
+                display = "0";
+            }
+        }
+
+        public void handleClear()
+        {
+            display = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
+        public void handleEqual()
+        {
+            string result =Process(display);
+            if (result is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+               display = result;
+            }
+        }
+
+        public void handleSign()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                display = current.Substring(0, current.Length - 1);
+                if (display is "")
+                {
+                    display = "0";
+                }
+            }
+            else
+            {
+                display = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+
+        public void handleDot()
+        {
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void handleSpace()
+        {
+            if (isSpaceAllowed)
+            {
+               display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
         private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
