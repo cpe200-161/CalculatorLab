@@ -42,6 +42,7 @@ namespace CPE200Lab1
                 num1 = Convert.ToString(Convert.ToSingle(num1) / Convert.ToSingle(num2));
             }
             lblDisplay.Text = num1;
+            dotTime = 0;
             stage = 1;
         }
 
