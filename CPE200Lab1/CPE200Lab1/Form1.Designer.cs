@@ -279,6 +279,7 @@
             this.lblDisplay.TabIndex = 20;
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
             // 
             // Form1
             // 

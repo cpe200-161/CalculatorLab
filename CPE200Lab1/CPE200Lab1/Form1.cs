@@ -12,10 +12,11 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        double Firstnum,Secondnum;
+        private double Firstnum,Secondnum, One = 1, Zero=0,ans=0;
          
         String Operation;
         private double val,val2;
+        private char Operator;
         public Form1()
         
         {
@@ -98,42 +99,55 @@ namespace CPE200Lab1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            Firstnum = val;
+            /* Firstnum = val;
              val = 0;
-            val = Secondnum;
+             val = Secondnum;
 
-            Secondnum =  Firstnum-val;
+             Secondnum =  Firstnum-val;
 
-            display(Secondnum);
+             display(Secondnum);*/
+
+            Operator = '-';
 
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            Firstnum = val;
+            /*Firstnum = val;
             val = 0;
             Secondnum =Firstnum*val;
 
-            display(Secondnum);
+            display(Secondnum);*/
+
+            Operator = '*';
 
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         { 
-            Firstnum = val;
+           /* Firstnum = val;
             val = 0;
             Secondnum += Firstnum;
 
-            display(Secondnum);
+            display(Secondnum);*/
+
+           
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            Firstnum = val;
+            
+            /*Firstnum = val;
             val = 0;
             Secondnum += Firstnum ;
 
-            display(Secondnum);
+            display(Secondnum);*/
+            Operator = '+';
 
         }
 
@@ -143,6 +157,30 @@ namespace CPE200Lab1
             display(val);
         }
 
+        private void Calculator(char Operator, double ans)
+        {
+            switch (Operator)
+            {
+                case '+':
+                    ans = Firstnum + Secondnum;
+                    display(ans);
+                    break;
+
+                case '-':
+                    ans = Firstnum - Secondnum;
+                    display(ans);
+                    break;
+
+                case '*':
+                    ans = Firstnum * Secondnum;
+                    display(ans);
+                    break;
+                case '/':
+                    ans = Firstnum / Secondnum;
+                    display(ans);
+                    break;
+            }
+        }
         
     }
 }
