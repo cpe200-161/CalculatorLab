@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string lastoperate;
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -27,6 +28,8 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            firstOperand = "";
+            operate = "";
         }
 
 
@@ -86,11 +89,20 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "1/X":
+                case "√":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    lastoperate = operate;
                     break;
                 case "%":
-                    // your code here
+                    if(isAfterEqual == true)
+                    {
+                        firstOperand = "";
+                    }
+                    string secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
+                    operate = lastoperate;
                     break;
             }
             isAllowBack = false;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                case "√":
+                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
+                case "1/X":
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
                     if (secondOperand != "0")
@@ -41,15 +46,15 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    if(operate == "")
+                    if(firstOperand == "")
                     {
-                        return (Convert.ToDouble(secondOperand) / 100).ToString();
+                        return (Convert.ToDouble(secondOperand)/100).ToString();
                     }
                     else
                     {
-                        return (Convert.ToDouble(firstOperand)*(Convert.ToDouble(secondOperand) / 100)).ToString();
+                        return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand)/100)).ToString();
                     }
+                  
             }
             return "E";
         }
