@@ -359,6 +359,7 @@
             this.button1.TabIndex = 24;
             this.button1.Text = "M-";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnMFunction_Click);
             // 
             // button2
             // 
@@ -370,6 +371,7 @@
             this.button2.TabIndex = 25;
             this.button2.Text = "M+";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnMFunction_Click);
             // 
             // button3
             // 
@@ -381,6 +383,7 @@
             this.button3.TabIndex = 26;
             this.button3.Text = "MS";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnMFunction_Click);
             // 
             // button4
             // 
@@ -392,6 +395,7 @@
             this.button4.TabIndex = 27;
             this.button4.Text = "MR";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnMFunction_Click);
             // 
             // btnMC
             // 
@@ -403,6 +407,7 @@
             this.btnMC.TabIndex = 28;
             this.btnMC.Text = "MC";
             this.btnMC.UseVisualStyleBackColor = true;
+            this.btnMC.Click += new System.EventHandler(this.btnMFunction_Click);
             // 
             // MainForm
             // 

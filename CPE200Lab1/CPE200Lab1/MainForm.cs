@@ -22,6 +22,7 @@ namespace CPE200Lab1
         private string operateSimple;
         string result;
         public CalculatorEngine engine;
+        double memory = 0;
 
         private void resetAll()
         {
@@ -81,7 +82,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
-            if(operate!="%"&& operate != "1/X" )
+            if(operate!="%" )
             {
                 operateSimple = ((Button)sender).Text;
             }
@@ -102,16 +103,15 @@ namespace CPE200Lab1
                     secondOperand = lblDisplay.Text;
                     result = engine.calculate(operate, firstOperand, secondOperand);
                     lblDisplay.Text = result;
-                    isAfterOperater = true;
                     break;
                 case "1/X":
-                    firstOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
                     result = engine.calculate(operate, firstOperand, secondOperand);
                     lblDisplay.Text = result;
-                    isAfterEqual = true;
                     break;
             }
             isAllowBack = false;
+            hasDot = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -216,6 +216,18 @@ namespace CPE200Lab1
         private void btnCE_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+        }
+
+        private void btnMFunction_Click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            firstOperand = lblDisplay.Text;
+            memory=engine.CalculateMFunc(operate, firstOperand, memory);
+            if (operate == "MR")
+            {
+                lblDisplay.Text = (memory).ToString();
+            }
+            isAfterOperater = true;
         }
     }
 }

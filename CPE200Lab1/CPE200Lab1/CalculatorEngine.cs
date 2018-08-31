@@ -19,13 +19,12 @@ namespace CPE200Lab1
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
+                    double result;
+                    string[] parts;
+                    int remainLength;
                     // Not allow devide be zero
                     if (secondOperand != "0")
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -43,31 +42,49 @@ namespace CPE200Lab1
                 case "%":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
                 case "√":
-                    double result1;
-                    string[] parts1;
-                    int remainLength1;
-                    result1 = (Math.Sqrt(Convert.ToDouble(firstOperand)));
-                    parts1 = result1.ToString().Split('.');
-                    if (parts1[0].Length > maxOutputSize)
+                    result = (Math.Sqrt(Convert.ToDouble(firstOperand)));
+                    parts = result.ToString().Split('.');
+                    if (parts[0].Length > maxOutputSize)
                     {
                         return "E";
                     }
-                    remainLength1 = maxOutputSize - parts1[0].Length - 1;
-                    return result1.ToString("N" + remainLength1);
+                    remainLength = maxOutputSize - parts[0].Length - 1;
+                    return result.ToString("N" + remainLength);
                 case "1/X":
-                    /*double result2;
-                    string[] parts2;
-                    int remainLength2;*/
-                    result1 = (1 / float.Parse(firstOperand));
-                    parts1 = result1.ToString().Split('.');
-                    if (parts1[0].Length > maxOutputSize)
+                    result = (1 / Convert.ToDouble(secondOperand));
+                    parts = result.ToString().Split('.');
+                    if (parts[0].Length > maxOutputSize)
                     {
                         return "E";
                     }
-                    remainLength1 = maxOutputSize - parts1[0].Length - 1;
-                    return result1.ToString("N" + remainLength1);
+                    remainLength = maxOutputSize - parts[0].Length - 1;
+                    return result.ToString("N" + remainLength);
             }
             return "E";
+        }
+
+        public double CalculateMFunc(string operate, string firstOperand,double memory,int maxOutputSize = 8)
+        {
+            switch (operate)
+            {
+                case "M-":
+                    memory -= Convert.ToDouble(firstOperand);
+                    return memory;
+                    break;
+                case "M+":
+                    memory += Convert.ToDouble(firstOperand);
+                    return memory;
+                    break;
+                case "MS":
+                    memory = Convert.ToDouble(firstOperand);
+                    return memory;
+                case "MR":
+                    return memory;
+                case "MC":
+                    memory = 0;
+                    return memory;
+            }
+            return 0;
         }
     }
 }
