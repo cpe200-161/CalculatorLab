@@ -16,151 +16,214 @@ namespace CPE200Lab1
         {
             InitializeComponent();
         }
-        private float val = 0;
-        
 
-        public void  Number(int n)
+        
+        private double sum;
+        private int i;
+        private double x;
+        private double y;
+        private double d = 0;
+
+        public void clearZero()
         {
-            val = val * 10 + n;
-            lblDisplay.Text = val.ToString();
+            if (lblDisplay.Text is "0")
+            {
+                lblDisplay.Text = "";
+            }
         }
-    
+
+
+
         private void btn1_Click(object sender, EventArgs e)
         {
-           Number(1);
+            clearZero();
+            lblDisplay.Text += "1";
             
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            Number(2);
+            clearZero();
+            lblDisplay.Text += "2";
             
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
-            Number(3);
-            
+            clearZero();
+            lblDisplay.Text += "3";
+
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            Number(4);
-            
+            clearZero();
+            lblDisplay.Text += "4";
+
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
-            Number(5);
-            
+            clearZero();
+            lblDisplay.Text += "5";
+
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
-            Number(6);
-            
+            clearZero();
+            lblDisplay.Text += "6";
+
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
-            Number(7);
-            
+            clearZero();
+            lblDisplay.Text += "7";
+
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
-            Number(8);
-            
+            clearZero();
+            lblDisplay.Text += "8";
+
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
-            Number(9);
-            
+            clearZero();
+            lblDisplay.Text += "9";
+
         }
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            Number(0);
-            
+            clearZero();
+            lblDisplay.Text += "0";
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            val = val * 0;
-            lblDisplay.Text = val.ToString();
+            lblDisplay.Text = "0";
         }
 
-        float x;
-        int num = 0;
         
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            x = val;
-            val = 0;
-            num = 1;
-            
-            lblDisplay.Text = val.ToString();
+            sum = Double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            i = 1;
+
+
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            x = val;
-            val = 0;
-            num = 2;
+            sum = Double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            i = 2;
+            
+
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            x = val;
-            val = 0;
-            num = 3;
+            sum = Double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            i = 3;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            x = val;
-            val = 0;
-           
+            sum = Double.Parse(lblDisplay.Text);
+            lblDisplay.Text = "0";
+            i = 4;
+
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            x = val;
-            val = 0;
-            num = 4;
+            y = Double.Parse(lblDisplay.Text);
+            if (sum == 0)
+            {
+                y = y / 100;
+            }
+            else
+            {
+                y = (y / 100) * sum;
+            }
+            if (y % 1 == 0)
+            {
+                d = 0;
+
+            }
+            else d = 1;
+                lblDisplay.Text = y.ToString();
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            if (num == 0) val = x / val;
-            else if (num == 1) val = x + val;
-            else if (num == 2) val = x - val;
-            else if (num == 3) val = x * val;
-            else if (num == 4) val = x / 100;
-            lblDisplay.Text = val.ToString();
+            
+            x = Double.Parse(lblDisplay.Text);
+            if (i == 1)
+            {
+                sum = sum + x;
+                
+            }
+            if (i == 2)
+            {
+                sum = sum - x;
+            }
+            if (i == 3)
+            {
+                sum = sum * x;
+            }
+            if (i == 4)
+            {
+                sum = sum / x;
+            }
+            if (i == 5)
+            {
+                sum = sum / 100;
+            }
+
+
+            lblDisplay.Text = sum.ToString();
         }
 
         
         private void btnDot_Click(object sender, EventArgs e)
         {
-
-
-            lblDisplay.Text = lblDisplay.Text + "." ;
-            lblDisplay.Text = val.ToString();
-
+            if(d==0)
+            {
+                lblDisplay.Text +=  ".";
+                d = 1;
+            }
             
+            
+            
+
 
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text == "+")
-                lblDisplay.Text = val.ToString();
-            else
-                lblDisplay.Text =  "-" + lblDisplay.Text ;
+            lblDisplay.Text = (float.Parse(lblDisplay.Text) * (-1)).ToString();
+
         }
 
-       
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length == 1)
+            {
+                lblDisplay.Text = "0";
+            }
+            else
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+            }
+        }
     }
 }
