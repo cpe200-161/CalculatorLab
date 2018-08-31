@@ -8,6 +8,8 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
+        private bool isNumberPart = false;
+        private bool is
         private bool isNumber(string str)
         {
             double retNum;
