@@ -23,35 +23,14 @@ namespace CPE200Lab1
             engine = new CalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        private bool isOperator(char ch)        //OK
         {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
-                    return true;
-            }
-            return false;
+            return engine.isOperator2(ch.ToString());
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
-            lblDisplay.Text += ((Button)sender).Text;
-            isSpaceAllowed = true;
+            btnNumber_Click2();
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)

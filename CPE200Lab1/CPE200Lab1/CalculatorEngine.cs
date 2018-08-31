@@ -14,7 +14,7 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator2(string str)
         {
             switch(str) {
                 case "+":
@@ -26,10 +26,30 @@ namespace CPE200Lab1
             return false;
         }
 
+        public void btnNumber_Click2()
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (lblDisplay.Text is "0")
+            {
+                lblDisplay.Text = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            lblDisplay.Text += ((Button)sender).Text;
+            isSpaceAllowed = true;
+        }
+
+
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if(!(isNumber(parts[0]) && isOperator2(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
             } else
