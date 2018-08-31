@@ -8,8 +8,181 @@ namespace CPE200Lab1
 {
 
     class CalculatorEngine
-    {   
-       public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+    {
+        private bool hasDot;
+        private bool isAllowBack;
+        private bool isAfterOperater;
+        private bool isAfterEqual;
+        private string firstOperand;
+        private string operate;
+        private string display = "0";
+
+
+        public void resetAll2()
+        {
+            display = "0";
+            isAllowBack = true;
+            hasDot = false;
+            isAfterOperater = false;
+            isAfterEqual = false;         
+        }
+
+        public string Display()
+        {
+            return display;
+        }
+
+        public void btnNumber_Click2(String Butt)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isAfterEqual)
+            {
+                resetAll2();
+            }
+            if (isAfterOperater)
+            {
+                display = "0";
+            }
+            if (display.Length is 8)
+            {
+                return;
+            }
+            isAllowBack = true;
+
+            if (display is "0")
+            {
+                display = "";
+            }
+            display += Butt;
+            isAfterOperater = false;
+        }
+
+        public void btnOperator_Click2(string operate)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+           
+            switch (operate)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                    firstOperand = display;
+                    isAfterOperater = true;
+                    break;
+                case "%":
+                    // your code here
+                    break;
+            }
+            isAllowBack = false;
+        }
+
+        public void btnEqual_Click2()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            string secondOperand = display;
+            string result = calculate(operate, firstOperand, secondOperand);
+            if (result is "E" || result.Length > 8)
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result;
+            }
+            isAfterEqual = true;
+        }
+
+        public void btnDot_Click2()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isAfterEqual)
+            {
+                resetAll2();
+            }
+            if (display.Length is 8)
+            {
+                return;
+            }
+            if (!hasDot)
+            {
+                display += ".";
+                hasDot = true;
+            }
+        }
+
+        public void btnSign_Click2()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isAfterEqual)
+            {
+                resetAll2();
+            }
+            // already contain negative sign
+            if (display.Length is 8)
+            {
+                return;
+            }
+            if (display[0] is '-')
+            {
+               display = display.Substring(1, display.Length - 1);
+            }
+            else
+            {
+                display = "-" + display;
+            }
+        }
+
+        public void btnBack_Click2()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isAfterEqual)
+            {
+                return;
+            }
+            if (!isAllowBack)
+            {
+                return;
+            }
+            if (display != "0")
+            {
+                string current = display;
+                char rightMost = current[current.Length - 1];
+                if (rightMost is '.')
+                {
+                    hasDot = false;
+                }
+                display = current.Substring(0, current.Length - 1);
+                if (display is "" || display is "-")
+                {
+                    display = "0";
+                }
+            }
+        }
+
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8) 
         {
 
             switch (operate)
