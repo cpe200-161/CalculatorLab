@@ -96,6 +96,9 @@ namespace CPE200Lab1
                         lblDisplay.Text = engine.calculate(btnOperate, firstOperand, lblDisplay.Text);
                     }
                     break;
+                case "√":
+                    lblDisplay.Text = engine.calculate(btnOperate, lblDisplay.Text, null);
+                    break;
             }
             isAllowBack = false;
         }

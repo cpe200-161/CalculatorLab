@@ -333,6 +333,7 @@
             this.button2.TabIndex = 22;
             this.button2.Text = "√";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button3
             // 
