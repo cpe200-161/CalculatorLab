@@ -8,7 +8,148 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+
         private string display = "0";
+
+        public string Display()
+        {
+            return display;
+        }
+
+        public void equal()
+        {
+            string result = Process(display);
+            if (result is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result;
+            }
+        }
+        
+        public void backclick()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            string current = display;
+           
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is ""||display is "-")
+            {
+                display = "0";
+            }
+        }
+        public void dot_click()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+        }
+        public void handspace()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+        public void botclear()
+        {
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+            display = "0";
+        }
+        public void handsigh()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                display = current.Substring(0, current.Length - 1);
+                if (display is "")
+                {
+                    display = "0";
+                }
+            }
+            else
+            {
+                display = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+
+        public void binaryopare(string x)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+            {
+                display += " " + x + " ";
+                isSpaceAllowed = false;
+
+            }
+        }
+            public void number_click(string digit)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += digit;
+            isSpaceAllowed = true;
+        }
+
         private bool isNumber(string str)
         {
             double retNum;
