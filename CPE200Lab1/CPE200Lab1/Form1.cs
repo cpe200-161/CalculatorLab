@@ -13,10 +13,11 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         private double  val = 0;
-        private double je1,je2;
+        private double je1,sum;
         private string before = "";
-        private int P =0;
+        private int P =0,r=0;
         private double W = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -103,7 +104,7 @@ namespace CPE200Lab1
         {
             val = 0 ;
             je1 = 0;
-            je2 = 0;
+            sum = 0;
             display(val);
 
         }
@@ -125,60 +126,56 @@ namespace CPE200Lab1
         
         private void btnPlus_Click(object sender, EventArgs e)
         {   P = 1;
-             je2 =   je1 + val;
-             display(je2);
-             val = je2;
-             je1 = val;//จำ
-                       //val = je2 ไม่จำเป็น;
-            je2 = 0;
-            val = 0;
-           
- 
-
+            
+                je1 = val;
+                val = 0;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
          {
             P = 2;
+            
             je1 = val;
             val = 0;
-            je2 = je1 - val;
-            display(je2);
-            val = je2;
+            sum  = je1 - val;
+            display(sum );
+            val = sum ;
                       //val = je2 ไม่จำเป็น;
-            je2 = 0;
+            sum  = 0;
             val = 0;
             //je2 -= je1;
             // lblDisplay.Text = je2.ToString();
 
          }
+      
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            r = 1;
             switch (P)
             {
                 case 1:
-                    je2 = je1+val;
-                    display(je2);
-                    val = je2;
-                    je2 = 0;
+                    sum  = je1+val;
+                    display(sum );
+                    val =  sum ;
+                    sum  = 0;
                     break;
                 case 2:
-                    je2 = je1 - val;
-                    display(je2);
-                    val = je2;
-                    je2 = 0;
+                    sum  = je1 - val;
+                    display(sum );
+                    val = sum ;
+                    sum  = 0;
                     break;
                 case 3:
-                    je2 = je1 * val;
-                    display(je2);
-                    val = je2;
-                    je2 = 0;
+                    sum  = je1 * val;
+                    display(sum );
+                    val = sum ;
+                    sum  = 0;
                     break;
                 case 4:
-                    je2 = je1 / val;
-                    display(je2);
-                    val = je2;
-                    je2 = 0;
+                    sum  = je1 / val;
+                    display(sum );
+                    val = sum ;
+                    sum  = 0;
                     break;
             }
            
