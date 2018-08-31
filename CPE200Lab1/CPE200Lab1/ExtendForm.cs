@@ -12,9 +12,7 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
+        
         private CalculatorEngine engine;
 
         public ExtendForm()
@@ -23,17 +21,13 @@ namespace CPE200Lab1
             engine = new CalculatorEngine();
         }
 
+        //fin
         private bool isOperator(char ch)
         {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
-                    return true;
-            }
-            return false;
+            return engine.isOperator(ch.ToString());
         }
+
+        
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -41,17 +35,10 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
+
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
+
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)

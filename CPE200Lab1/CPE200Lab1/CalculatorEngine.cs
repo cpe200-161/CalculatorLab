@@ -7,14 +7,40 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     class CalculatorEngine
+    
     {
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+        private string display ;
+
+        public string Display()
+        {
+            return display;
+        }
+
+        public void Btnum()
+        {
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+
+
+        }
+
         private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
