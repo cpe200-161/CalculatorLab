@@ -13,6 +13,11 @@ namespace CPE200Lab1
 		private bool isSpaceAllowed = false;
 		public string lblDisplay = "0";
 
+		public String screen ()
+		{
+			return lblDisplay;
+		}
+
 		private bool isNumber(string str)
         {
             double retNum;
@@ -130,7 +135,7 @@ namespace CPE200Lab1
             return "E";
         }
 
-		public void amount_click()
+		public void amount_click(string num)
 		{
 			if (lblDisplay is "Error")
 			{
@@ -145,11 +150,126 @@ namespace CPE200Lab1
 				isNumberPart = true;
 				isContainDot = false;
 			}
+			lblDisplay += num;
 			isSpaceAllowed = true;
 		}
-		public String screen()
+
+		public void clean()
 		{
-			return lblDisplay;
+			lblDisplay = "0";
+			isContainDot = false;
+			isNumberPart = false;
+			isSpaceAllowed = false;
 		}
-    }
+
+		public void space()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (isSpaceAllowed)
+			{
+				lblDisplay += " ";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void Dot()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (!isContainDot)
+			{
+				isContainDot = true;
+				lblDisplay += ".";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void sign()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (isNumberPart)
+			{
+				return;
+			}
+			string current = lblDisplay;
+			if (current is "0")
+			{
+				lblDisplay = "-";
+			}
+			else if (current[current.Length - 1] is '-')
+			{
+				lblDisplay = current.Substring(0, current.Length - 1);
+				if (lblDisplay is "")
+				{
+					lblDisplay = "0";
+				}
+			}
+			else
+			{
+				lblDisplay = current + "-";
+			}
+			isSpaceAllowed = false;
+		}
+
+		public void two_operator(string bi)
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			isNumberPart = false;
+			isContainDot = false;
+			string current = lblDisplay;
+			if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+			{
+				lblDisplay += " " + bi + " ";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void back()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			// check if the last one is operator
+			string current = lblDisplay;
+			if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+			{
+				lblDisplay = current.Substring(0, current.Length - 3);
+			}
+			else
+			{
+				lblDisplay = current.Substring(0, current.Length - 1);
+			}
+			if (lblDisplay is "")
+			{
+				lblDisplay = "0";
+			}
+		}
+
+		public void balance()
+		{
+			string result = Process(lblDisplay);
+			if (result is "E")
+			{
+				lblDisplay = "Error";
+			}
+			else
+			{
+				lblDisplay = result;
+			}
+		}
+
+
+	}
 }
