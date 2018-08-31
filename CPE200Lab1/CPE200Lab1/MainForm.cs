@@ -87,18 +87,21 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-
-                    isAfterOperater = true;
-                    break;
-                case "sqrt":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
+                    engine.calculate(operate, firstOperand, lblDisplay.Text);
                     break;
                 case "1/x":
+                case "sqrt":
                     firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
                     break;
-
+                case "MC":
+                case "M+":
+                case "M-":
+                    engine.calculate(operate, "", "");
+                    break;
+                case "MR":
+                    string result = engine.calculate(operate, "", "");
+                    lblDisplay.Text = result;
+                    break;
             }
             isAllowBack = false;
         }
