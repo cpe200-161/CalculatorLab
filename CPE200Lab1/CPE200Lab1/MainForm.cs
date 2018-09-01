@@ -17,10 +17,10 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string secondOperand;
         private string opeRate;
         private string operateForpercen;
-        public CalculatorEngine engine;        
+        public CalculatorEngine engine;
+        double meMory;
 
         private void resetAll()
         {
@@ -201,6 +201,34 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void btnClearMemory_Click(object sender, EventArgs e)
+        {
+            meMory = 0;
+        }
+
+        private void btnShowMemory_Click(object sender, EventArgs e)
+        {
+            if(meMory != 0)
+            {
+                lblDisplay.Text = meMory.ToString();
+            }            
+        }
+
+        private void btnAddMemory_Click(object sender, EventArgs e)
+        {
+            meMory = Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void btnPlusMemory_Click(object sender, EventArgs e)
+        {
+            meMory += Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void btnMinusMemory_Click(object sender, EventArgs e)
+        {
+            meMory -= Convert.ToDouble(lblDisplay.Text);
         }
     }
 }

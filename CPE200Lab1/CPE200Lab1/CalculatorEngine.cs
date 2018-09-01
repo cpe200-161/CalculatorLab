@@ -43,22 +43,18 @@ namespace CPE200Lab1
                 case "%":
                     if (secondOperand == null || secondOperand == "" && firstOperand != null && firstOperand != "")
                     {
-                        return (Convert.ToDouble(firstOperand) / 100).ToString();
-                        break;
+                        return (Convert.ToDouble(firstOperand) / 100).ToString();                        
                     }
 
                     if (secondOperand != null && secondOperand != "" && secondOperand != "0")
                     {
-                        return ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand)).ToString();
-                        break;
+                        return ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand)).ToString();                        
                     }
                     break;
                 case "√":
-                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
-                    break;
+                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();                    
                 case "1/x":
-                    return (1 / Convert.ToDouble(firstOperand)).ToString();
-                    break;
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();                    
             }
             return "E";
         }
