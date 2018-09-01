@@ -23,6 +23,10 @@ namespace CPE200Lab1
                     return ((float)Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
                 case "1/X":
                     return ((double)1 / Convert.ToDouble(firstOperand)).ToString();
+                case "M+":
+                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                case "M-":
+                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
                     if (secondOperand != "0")

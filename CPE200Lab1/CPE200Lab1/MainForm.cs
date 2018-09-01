@@ -21,7 +21,8 @@ namespace CPE200Lab1
         private string operateNew;
         public CalculatorEngine engine;
         private string secondOperand;
-        double M;
+        string Memory = "0";
+        
         
         private void resetAll()
         {
@@ -173,6 +174,11 @@ namespace CPE200Lab1
             resetAll();
         }
 
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -205,35 +211,33 @@ namespace CPE200Lab1
 
         private void btnMPlus_Click(object sender, EventArgs e)
         {
-            M += Convert.ToDouble(lblDisplay.Text);
+            secondOperand = lblDisplay.Text;
+            Memory = engine.calculate("M+", Memory, secondOperand, 8);
             lblDisplay.Text = "0";
         }
 
         private void btnMMinus_Click(object sender, EventArgs e)
         {
-            M -= Convert.ToDouble(lblDisplay.Text);
+            secondOperand = lblDisplay.Text;
+            Memory = engine.calculate(operate, Memory, secondOperand, 8);
             lblDisplay.Text = "0";
         }
 
         private void btnMS_Click(object sender, EventArgs e)
         {
-
+            lblDisplay.Text = Memory;
+            Memory = "0";
         }
 
         private void btnMC_Click(object sender, EventArgs e)
         {
-            M = 0;
+            Memory = "0";
         }
 
         private void btnMR_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = M.ToString();
+            lblDisplay.Text = Memory;
         }
-
-        private void btnCE_Click(object sender, EventArgs e)
-        {
-            lblDisplay.Text = "0";
-        }
-
+        
     }
 }
