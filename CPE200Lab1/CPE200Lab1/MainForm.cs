@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -35,6 +36,7 @@ namespace CPE200Lab1
             InitializeComponent();
 
             resetAll();
+            engine = new CalculatorEngine();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -99,7 +101,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -190,5 +192,6 @@ namespace CPE200Lab1
                 }
             }
         }
+
     }
 }
