@@ -225,8 +225,7 @@ namespace CPE200Lab1
 
         private void btnMS_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = Memory;
-            Memory = "0";
+            Memory = lblDisplay.Text;
         }
 
         private void btnMC_Click(object sender, EventArgs e)
