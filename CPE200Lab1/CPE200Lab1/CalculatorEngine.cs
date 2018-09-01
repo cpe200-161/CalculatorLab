@@ -41,9 +41,20 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-                case "%":
-                    //your code here
-                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(secondOperand)*Convert.ToDouble(firstOperand)/100)).ToString();
+               // case "%":
+                   // {
+                        case "+%":
+                            return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100)).ToString();
+                        case "-%":
+                            return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100)).ToString();
+                        case "X%":
+                            return (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
+                        case "÷%":
+                            return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand) * 100).ToString();
+                        case "%":
+                            return (Convert.ToDouble(firstOperand) / 100).ToString();
+                   // }
+                        
                 case "√":
                     return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
                 case "1/x":

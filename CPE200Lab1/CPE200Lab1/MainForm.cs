@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string persentOperate;
         public CalculatorEngine engine;
         private void resetAll()
         {
@@ -80,12 +81,12 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                    persentOperate = operate + "%";
+                    //seperate operator befor the persent.
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
-                    break;
                 case "√":
                 case "1/x":
                     firstOperand = lblDisplay.Text;
@@ -103,6 +104,8 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
+            //clear persentOperate
+            persentOperate = " ";
             if(result.Length >= 8 )
             {
                 result = result.Substring(0,8);
