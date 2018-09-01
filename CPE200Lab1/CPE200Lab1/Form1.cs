@@ -23,17 +23,36 @@ namespace CPE200Lab1
 
         private void display(string text, int i = 0)
         {
-            if(text.Length >= 9)
+            if (text.Length >= 9)
             {
                 display("Error");
             }
             else
             {
-                lblDisplay.Text = text;
-            }  
+                switch (i)
+                {
+                    case 0:
+                        lblDisplay.Text = text;
+                        break;
+
+                    case 1:
+                        lblDisplay.Text = "-" + text;
+                        number = lblDisplay.Text;
+                        break;
+
+                    case 2:
+                        lblDisplay.Text = text + ".";
+                        number = lblDisplay.Text;
+                        break;
+
+                    case 3:
+                        lblDisplay.Text = text + "%";
+                        break;
+                }
+            }
         }
 
-        private void numClik(double n, double m = 10)
+        private void numClik(double n)
         {
             number += n.ToString();
             display(number);
@@ -46,31 +65,26 @@ namespace CPE200Lab1
                 case '+' :
                     answer = val + valbefore;
                     display(answer.ToString());
-                    number = answer.ToString();
                     break;
 
                 case '-' :
                     answer = val - valbefore;
                     display(answer.ToString());
-                    number = answer.ToString();
                     break;
 
                 case '*' :
                     answer = val * valbefore;
                     display(answer.ToString());
-                    number = answer.ToString();
                     break;
 
                 case '/':
                     answer = val / valbefore;
                     display(answer.ToString());
-                    number = answer.ToString();
                     break;
 
                 case '%':
                     answer = val / 100;
                     display(answer.ToString());
-                    number = answer.ToString();
                     break;
             } 
         }
@@ -127,17 +141,20 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            //numClik(0, -1);
+            display(number, 1);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            //numdot = 1;
-            //display(number, 2);
+            display(number, 2);
         }
       
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            if (number == null)
+            {
+                number = "0";
+            }
             val = double.Parse(number);
             number = null;
             OperatorCalculator = 1; 
@@ -145,14 +162,19 @@ namespace CPE200Lab1
             {
                 Calculator('+', answer, val);       
             }
-            //else
-            //{
-                //i = 1;  
-           // }
+            else
+            {
+                i = 1;
+                Calculator('+', val, 0);
+            }
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            if (number == null)
+            {
+                number = "0";
+            }
             val = double.Parse(number);
             number = null;
             OperatorCalculator = 2;
@@ -160,11 +182,19 @@ namespace CPE200Lab1
             {
                 Calculator('-', answer, val);  
             }
-            ////  i = 1;
+            else
+            {
+                i = 1;
+                Calculator('-', val, 0);
+            }
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            if (number == null)
+            {
+                number = "0";
+            }
             val = double.Parse(number);
             number = null;
             OperatorCalculator = 3;
@@ -172,36 +202,56 @@ namespace CPE200Lab1
             {
                 Calculator('*', answer, val); 
             }
-            // i = 1;
+            else
+            {
+                i = 1;
+                Calculator('*', val, 1);
+            }
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            if (number == null)
+            {
+                number = "0";
+            }
             val = double.Parse(number);
             number = null;
             OperatorCalculator = 4;
-
             if (i != 0)
             {
                 Calculator('/', answer, val);
             }
-            // i = 1;   
+            else
+            {
+                i = 1;
+                Calculator('/', val, 1);
+            }
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
+            if(number == null)
+            {
+                number = "0";
+            }
             val = double.Parse(number);
             number = null;
-            //display(val, 1);
+            display(val.ToString(), 3);
             OperatorCalculator = 5;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            //string valstring = val.ToString();
-           // valstring = ".";
-           // display(val);
-
+            if (number.Length == 1)
+            {
+                number = "0";
+            }
+            else
+            {
+                number = number.Substring(0, number.Length - 1);
+            }
+            display(number);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -238,7 +288,7 @@ namespace CPE200Lab1
                     Calculator('%', val, 0);
                     break;
             }
-                
+            number = answer.ToString();
         }
     }
 }
