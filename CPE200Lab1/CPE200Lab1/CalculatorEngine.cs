@@ -40,6 +40,9 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
+
+                case "MC":
+
                 case "√":
                     string[] parts2;
                     int remainLength2;
@@ -47,6 +50,7 @@ namespace CPE200Lab1
                     parts2 = resultRoot.ToString().Split('.');
                     remainLength2 = maxOutputSize - parts2[0].Length - 1;
                     return resultRoot.ToString("N" + remainLength2);
+
                 case "1/x":
                     string[] parts3;
                     int remainLength3;
@@ -54,7 +58,6 @@ namespace CPE200Lab1
                     parts3 = resultOverX.ToString().Split('.');
                     remainLength3 = maxOutputSize - parts3[0].Length - 1;
                     return resultOverX.ToString("N" + remainLength3);
-
 
                 case "%":
                     return (Convert.ToDouble(firstOperand) + ((Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)) / 100)).ToString();

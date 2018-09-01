@@ -19,6 +19,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
+        private double memory;
+        private bool memFlag;
 
         private void resetAll()
         {
@@ -40,6 +42,8 @@ namespace CPE200Lab1
             //2. referance to that object with engine variable
             //LHS(left hand side) = RHS(right hand side)
             engine = new CalculatorEngine();
+            btnMC.Enabled = false;
+            btnMR.Enabled = false;
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -56,6 +60,10 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
+            if(memFlag)
+            {
+                lblDisplay.Text = "0";
+            }
             if(lblDisplay.Text.Length is 8)
             {
                 return;
@@ -68,6 +76,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            memFlag = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -204,6 +213,36 @@ namespace CPE200Lab1
             }
         }
 
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+            memory = Double.Parse(lblDisplay.Text);
+            btnMC.Enabled = true;
+            btnMR.Enabled = true;
+            memFlag = true;
+        }
 
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = memory.ToString();
+            memFlag = true;
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            memory = 0;
+            btnMC.Enabled = false;
+            btnMR.Enabled = false;
+        }
+
+        private void btnMplus_Click(object sender, EventArgs e)
+        {
+            memory += Double.Parse(lblDisplay.Text);
+        }
+
+        private void btnMminus_Click(object sender, EventArgs e)
+        {
+            memory -= Double.Parse(lblDisplay.Text);
+        }
     }
 }
