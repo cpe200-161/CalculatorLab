@@ -16,8 +16,10 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        private bool isMemoryPress;
         private string firstOperand;
         private string operate;
+        private string memoryNumber;
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -66,6 +68,11 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
+            else if(isMemoryPress)
+            {
+                lblDisplay.Text = "";
+                isMemoryPress = false;
+            }
             lblDisplay.Text += digit;
             isAfterOperater = false;
         }
@@ -112,6 +119,28 @@ namespace CPE200Lab1
                     firstOperand = (1 / Convert.ToDouble(firstOperand)).ToString();
                     lblDisplay.Text = firstOperand;
                     break;
+                case "MS":
+                    memoryNumber = lblDisplay.Text;
+                    isMemoryPress = true;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memoryNumber;
+                    break;
+                case "M+":
+                    firstOperand = lblDisplay.Text;
+                    System.Console.WriteLine("firstOperand in M+ case is " + firstOperand);
+                    memoryNumber = engine.memoryFunction(operate, firstOperand, memoryNumber);
+                    System.Console.WriteLine(memoryNumber);
+                    break;
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    memoryNumber = engine.memoryFunction(operate, firstOperand, memoryNumber);
+                    break;
+                case "MC":
+                    memoryNumber = "0";
+                    isMemoryPress = true;
+                    break;
+
 
             }
             isAllowBack = false;
@@ -218,11 +247,6 @@ namespace CPE200Lab1
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
         {
 
         }

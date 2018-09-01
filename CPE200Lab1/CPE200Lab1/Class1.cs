@@ -47,12 +47,28 @@ namespace CPE200Lab1
                     System.Console.WriteLine(secondOperand);
 
                     return secondOperand;
-                    break;
                 case "√":
                     return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
-                    System.Console.WriteLine(firstOperand);
             }
             return "E";
+        }
+
+        public string memoryFunction(string operate, string Operand, string memoryNumber)
+        {
+            switch(operate)
+            {
+                case "M+":
+                    memoryNumber = (Convert.ToDouble(Operand) + Convert.ToDouble(memoryNumber)).ToString();
+                    System.Console.WriteLine("MemoryNumber in memoryFunction is " + memoryNumber);
+                    break;
+                case "M-":
+                    memoryNumber = (Convert.ToDouble(memoryNumber) - Convert.ToDouble(Operand)).ToString();
+                    break;
+
+
+
+            }
+            return memoryNumber;
         }
     }
 }
