@@ -20,6 +20,8 @@ namespace CPE200Lab1
         private string operate;
         private string operateoperate;
         public CalculatorEngine engine;
+        private double numberMemory = 0;
+        private string numberMemorybutton;
 
         private void resetAll()
         {
@@ -205,6 +207,35 @@ namespace CPE200Lab1
                 {
                     lblDisplay.Text = "0";
                 }
+            }
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            Button mem = ((Button)sender);
+            numberMemorybutton = mem.Text;
+            switch(numberMemorybutton)
+            {
+                case "MC":
+                    numberMemory = 0;
+                    numberMemorybutton = "";
+                    break;
+                case "MR":
+                    lblDisplay.Text = numberMemory.ToString();
+                    numberMemorybutton = "";
+                    break;
+                case "MS":
+                    numberMemory = double.Parse(lblDisplay.Text);
+                    numberMemorybutton = "";
+                    break;
+                case "M+":
+                    numberMemory += double.Parse(lblDisplay.Text);
+                    numberMemorybutton = "";
+                    break;
+                case "M-":
+                    numberMemory = numberMemory - double.Parse(lblDisplay.Text);
+                    numberMemorybutton = "";
+                    break;
             }
         }
     }
