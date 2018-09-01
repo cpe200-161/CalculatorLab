@@ -12,22 +12,30 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double number = 0, val = 0, answer = 0;
+        private string number;
+        private double val = 0, answer = 0;
         private int OperatorCalculator = 0, i = 0;
-
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void display(double valText)
+        private void display(string text, int i = 0)
         {
-            lblDisplay.Text = valText.ToString();
+            if(text.Length >= 9)
+            {
+                display("Error");
+            }
+            else
+            {
+                lblDisplay.Text = text;
+            }  
         }
 
-        private void numClik(int n, double m = 10)
+        private void numClik(double n, double m = 10)
         {
-            number = number * m + n;
+            number += n.ToString();
             display(number);
         }
  
@@ -37,35 +45,39 @@ namespace CPE200Lab1
             {
                 case '+' :
                     answer = val + valbefore;
-                    display(answer);
+                    display(answer.ToString());
+                    number = answer.ToString();
                     break;
 
                 case '-' :
                     answer = val - valbefore;
-                    display(answer);
+                    display(answer.ToString());
+                    number = answer.ToString();
                     break;
 
                 case '*' :
                     answer = val * valbefore;
-                    display(answer);
+                    display(answer.ToString());
+                    number = answer.ToString();
                     break;
 
                 case '/':
                     answer = val / valbefore;
-                    display(answer);
+                    display(answer.ToString());
+                    number = answer.ToString();
                     break;
 
                 case '%':
-                    val /= 100;
-                    display(val);
+                    answer = val / 100;
+                    display(answer.ToString());
+                    number = answer.ToString();
                     break;
             } 
         }
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            numClik(0);
-            
+            numClik(0); 
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -115,83 +127,91 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            numClik(0,-1);
+            //numClik(0, -1);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            
+            //numdot = 1;
+            //display(number, 2);
         }
       
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            val = number;
-            number = 0;
-            OperatorCalculator = 1;
-            i = 1;
+            val = double.Parse(number);
+            number = null;
+            OperatorCalculator = 1; 
             if (i != 0)
             {
-
                 Calculator('+', answer, val);       
-            } 
+            }
+            //else
+            //{
+                //i = 1;  
+           // }
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            val = number;
-            number = 0;
+            val = double.Parse(number);
+            number = null;
             OperatorCalculator = 2;
-            i = 1;
-            if (answer != 0)
+            if (i != 0)
             {
                 Calculator('-', answer, val);  
-            } 
+            }
+            ////  i = 1;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            val = number;
-            number = 0;
+            val = double.Parse(number);
+            number = null;
             OperatorCalculator = 3;
-            i = 1;
-            if (answer != 0)
+            if (i != 0)
             {
                 Calculator('*', answer, val); 
-            } 
+            }
+            // i = 1;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            val = number;
-            number = 0;
+            val = double.Parse(number);
+            number = null;
             OperatorCalculator = 4;
-            i = 1;
-            if (answer != 0)
+
+            if (i != 0)
             {
                 Calculator('/', answer, val);
-            }   
+            }
+            // i = 1;   
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            val = number;
-            number = 0;
+            val = double.Parse(number);
+            number = null;
+            //display(val, 1);
             OperatorCalculator = 5;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            //string valstring = val.ToString();
+           // valstring = ".";
+           // display(val);
 
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            number = 0;
+            number = null;
+            display("0");
             val = 0;
             answer = 0;
             OperatorCalculator = 0;
-            i = 0;
-            display(answer);
+            i = 0;          
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -199,23 +219,23 @@ namespace CPE200Lab1
             switch (OperatorCalculator)
             {
                 case 1:
-                    Calculator('+', val, number);
+                    Calculator('+', val, double.Parse(number));
                     break;
 
                 case 2:
-                    Calculator('-', val, number);
+                    Calculator('-', val, double.Parse(number));
                     break;
 
                 case 3:
-                    Calculator('*', val, number);
+                    Calculator('*', val, double.Parse(number));
                     break;
 
                 case 4:
-                    Calculator('/', val, number);
+                    Calculator('/', val, double.Parse(number));
                     break;
 
                 case 5:
-                    Calculator('%', val, number);
+                    Calculator('%', val, 0);
                     break;
             }
                 
