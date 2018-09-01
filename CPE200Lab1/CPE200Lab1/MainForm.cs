@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
-
+       
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -28,8 +28,6 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
-       
 
         public MainForm()
         {
@@ -193,6 +191,50 @@ namespace CPE200Lab1
                 if(lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
+                }
+            }
+        }
+
+        private void memCalculate(object sender, EventArgs e)
+        {
+            Button ButtonPushed = (Button)sender;
+            string ButtonText = ButtonPushed.Text;
+            double EndResult = 0;
+            double MemorySave = 0;
+
+            if (lblDisplay.Text != "0")
+            {
+
+                if (ButtonText == "MC")
+                {
+                    MemorySave = 0;
+                    return;
+                }
+
+                if (ButtonText == "MR")
+                {
+                    lblDisplay.Text = MemorySave.ToString();
+                    return;
+                }
+
+                if (ButtonText == "MS")
+                {
+                    MemorySave = float.Parse(lblDisplay.Text);
+                    return;
+                }
+
+                if (ButtonText == "M-")
+                {
+                    MemorySave -= EndResult;
+                    lblDisplay.Text = MemorySave.ToString();
+                    return;
+                }
+
+                if (ButtonText == "M+")
+                {
+                    MemorySave += EndResult;
+                    lblDisplay.Text = MemorySave.ToString();
+                    return;
                 }
             }
         }
