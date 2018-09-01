@@ -83,26 +83,35 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            string secondOperand;
             switch (operate)
             {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
-                case "1/X":
-                case "√":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     lastoperate = operate;
                     break;
                 case "%":
-                    if(isAfterEqual == true)
+                case "1/X":
+                case "√":
+                    if (isAfterEqual == true)
                     {
                         firstOperand = "";
                     }
-                    string secondOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
                     lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
                     operate = lastoperate;
+                    break;
+                case "MC":
+                case "MS":
+
+                case "M+":
+                case "M-":
+                    secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
                     break;
             }
             isAllowBack = false;
