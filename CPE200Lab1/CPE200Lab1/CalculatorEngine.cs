@@ -40,25 +40,10 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
+                case "1/x":
                 case "%":
-                    if(first_operate == "+")
-                    {
-                        return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                    }
-                    else if(first_operate == "-")
-                    {
-                        return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                    }
-                    else if(first_operate == "*")
-                    {
-                        return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                    }
-                    else if(first_operate == "/")
-                    {
-                        return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
-                    }
-                    break;
-                case "1/​x":
+                case "M-":
+                case "M+":
                     if (first_operate == "+")
                     {
                         return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
@@ -76,10 +61,8 @@ namespace CPE200Lab1
                         return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
                     }
                     break;
-                   
-
-
             }
+
             return "E";
         }
     }

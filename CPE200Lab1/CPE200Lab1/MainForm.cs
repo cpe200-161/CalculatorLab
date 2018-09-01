@@ -16,10 +16,13 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
-        private string firstOperand;
+        private string firstOperand,secondOperand;
         private string operate;
         private string first_operate;
+        private string result;
         public CalculatorEngine engine;
+        private string Total_MR="0";
+
 
         private void resetAll()
         {
@@ -28,6 +31,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            Total_MR = "0";
         }
 
         
@@ -41,7 +45,6 @@ namespace CPE200Lab1
 
             resetAll();
         }
-
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -72,7 +75,10 @@ namespace CPE200Lab1
 
         private void btnOverX_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (1 / Convert.ToDouble(lblDisplay.Text)).ToString();
+           
+            string[] parts = lblDisplay.Text.Split('.');
+            int remainLength = 5 - parts[0].Length - 1;
+            lblDisplay.Text = (1 / Convert.ToDouble(lblDisplay.Text)).ToString("N" + remainLength);
         }
 
         private void btnSqrt_Click(object sender, EventArgs e)
@@ -117,14 +123,46 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
+        private void btnMS_Click(object sender,EventArgs e)
+        {
+            Total_MR = lblDisplay.Text;
+            lblDisplay.Text = "0";
+        }
+        
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = Total_MR;
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            Total_MR = "0";
+            lblDisplay.Text = "0";
+        }
+
+        private void btnM_Click(object sender, EventArgs e)
+        {
+           
+            btnEqual_Click(sender, e);
+            operate = ((Button)sender).Text;
+            if (operate == "M+")
+            {
+                Total_MR = (Convert.ToDouble(Total_MR) + Convert.ToDouble(lblDisplay.Text)).ToString();
+            }
+            else if (operate == "M-")
+            {
+                Total_MR = (Convert.ToDouble(Total_MR) - Convert.ToDouble(lblDisplay.Text)).ToString();
+            }
+        }
+
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand, first_operate , 8);
+            secondOperand = lblDisplay.Text;
+            result = engine.calculate(operate, firstOperand, secondOperand, first_operate, 8);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -215,7 +253,5 @@ namespace CPE200Lab1
                 }
             }
         }
-
-      
     }
 }
