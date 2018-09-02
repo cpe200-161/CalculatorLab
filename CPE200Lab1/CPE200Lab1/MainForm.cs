@@ -16,9 +16,13 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        private bool isMemOn;
+        private bool isAfterMem;
         private string firstOperand;
         private string operate;
         private string preOperate;
+        private string memStore;
+        private string memSign;
         private CalculatorEngine engine;
         
 
@@ -29,6 +33,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            isAfterMem = false;
         }
 
         
@@ -51,7 +56,7 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            if (isAfterOperater)
+            if (isAfterOperater || isAfterMem)
             {
                 lblDisplay.Text = "0";
             }
@@ -67,6 +72,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            isAfterMem = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -103,10 +109,11 @@ namespace CPE200Lab1
                     break;
                 case "1/x":
                     firstOperand = lblDisplay.Text;
-                    
+
                     break;
             }
             isAllowBack = false;
+            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -208,9 +215,59 @@ namespace CPE200Lab1
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void btnMem_Click(object sender, EventArgs e)
         {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterMem)
+            {
+                return;
+            }
+            memSign = ((Button)sender).Text;
+            switch (memSign)
+            {
+                case "MC":
+                    if (isMemOn)
+                    {
+                        memStore = "0";
+                    }
+                    isMemOn = false;
+                    isAfterOperater = true;
+                    break;
+                case "MR":
+                    if (isMemOn)
+                    {
+                        lblDisplay.Text = memStore;
+                    }
+                    isAfterMem = true;
+                    
+                    break;
+                case "MS":
+                    memStore = lblDisplay.Text;
+                    isMemOn = true;
+                    isAfterOperater = true;
+                    break;
 
+                case "M+":
+                    operate = "+";
+                    firstOperand = lblDisplay.Text;
+                    
+                    memStore = engine.calculate(operate, firstOperand, memStore);
+                    isMemOn = true;
+                    isAfterOperater = true;
+                    break;
+                case "M-":
+                    operate = "-";
+                    firstOperand = lblDisplay.Text;
+                    memStore = engine.calculate(operate, memStore, firstOperand);
+                    isMemOn = true;
+                    isAfterOperater = true;
+                    break;
+            }
+            
+            
         }
     }
 }
