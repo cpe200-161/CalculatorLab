@@ -19,6 +19,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private string Afteroperate;
+        private string result;
+        private double memory;
         public CalculatorEngine engine;
 
         private void resetAll()
@@ -83,9 +85,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":       
-                    firstOperand = lblDisplay.Text;
+                    firstOperand = lblDisplay.Text;         
                     isAfterOperater = true;
-                    Afteroperate = operate;
+                    Afteroperate = operate;  
                     break;
                 case "%":
                     lblDisplay.Text = (double.Parse(firstOperand) * double.Parse(lblDisplay.Text)/100).ToString();
@@ -201,6 +203,56 @@ namespace CPE200Lab1
         private void btnx_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = (1/(Double.Parse(lblDisplay.Text))).ToString();
+        }
+
+        private void M_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string secondOperand = lblDisplay.Text;          
+            string result = engine.Calculate(Afteroperate, firstOperand, secondOperand);
+            string M =((Button)sender).Text;
+            switch (M)
+            {
+                case "M+":
+                     memory += Convert.ToDouble(result); break;
+                case "M-":
+                     memory -= Convert.ToDouble(result); break;
+                default: break;
+            }
+            
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+            isAfterEqual = true;
+        }
+
+        private void Mr_Click(object sender, EventArgs e)
+        {
+
+            lblDisplay.Text = memory.ToString();
+
+        }
+        private void Ms_Click(object sender, EventArgs e)
+        {
+            memory = Convert.ToDouble(lblDisplay.Text);
+            isAfterEqual = true;
+        }
+        private void Mc_Click(object sender, EventArgs e)
+        {
+            memory = 0;
+        }
+
+        private void CE_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
         }
     }
 }
