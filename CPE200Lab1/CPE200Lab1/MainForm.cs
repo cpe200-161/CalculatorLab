@@ -221,10 +221,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterMem)
-            {
-                return;
-            }
             memSign = ((Button)sender).Text;
             switch (memSign)
             {
@@ -240,8 +236,9 @@ namespace CPE200Lab1
                     if (isMemOn)
                     {
                         lblDisplay.Text = memStore;
+                        isAfterMem = true;
                     }
-                    isAfterMem = true;
+                    
                     
                     break;
                 case "MS":
@@ -256,14 +253,14 @@ namespace CPE200Lab1
                     
                     memStore = engine.calculate(operate, firstOperand, memStore);
                     isMemOn = true;
-                    isAfterOperater = true;
+                    isAfterMem = true;
                     break;
                 case "M-":
-                    operate = "-";
-                    firstOperand = lblDisplay.Text;
-                    memStore = engine.calculate(operate, memStore, firstOperand);
+                    operate = "+";
+                    firstOperand = "-"+lblDisplay.Text;
+                    memStore = engine.calculate(operate, firstOperand, memStore);
                     isMemOn = true;
-                    isAfterOperater = true;
+                    isAfterMem = true;
                     break;
             }
             
