@@ -22,6 +22,8 @@ namespace CPE200Lab1
         private int maxOutputSize = 8;
         private string operate;
         private string operate2;
+        private double memory;
+               
         public CalculatorEngine engine;
 
         private void resetAll()
@@ -31,6 +33,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+           
         }
 
         
@@ -42,6 +45,10 @@ namespace CPE200Lab1
             resetAll();
             engine = new CalculatorEngine();
             engine.calculate(operate,firstOperand,secondOperand,operate2 ,maxOutputSize);
+            Btn_MC.Enabled = false;     //close function until click MS
+            Btn_MR.Enabled = false;     //close function until click MS
+
+
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -201,6 +208,36 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void Btn_MS_Click(object sender, EventArgs e)
+        {
+            memory = double.Parse(lblDisplay.Text);
+            Btn_MC.Enabled = true;
+            Btn_MR.Enabled = true;
+        }
+
+        private void Btn_MR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = memory.ToString();
+        }
+
+        private void memory_equal_Click(object sender, EventArgs e)
+        {
+            memory += Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void Btn_MC_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            memory = 0;
+            Btn_MC.Enabled = false;
+            Btn_MR.Enabled = false;
+        }
+
+        private void memory_minus_Click(object sender, EventArgs e)
+        {
+            memory -= Convert.ToDouble(lblDisplay.Text);
         }
     }
 }
