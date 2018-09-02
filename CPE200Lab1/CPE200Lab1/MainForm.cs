@@ -89,6 +89,15 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+                    string secondOperand = lblDisplay.Text;
+
+                    isAfterOperater = true;
+
+                    string result = engine.calculate(operate, firstOperand, secondOperand,8);
+
+                    lblDisplay.Text = result;
+
+                    break;
                 case "sqrt":
                 case "1/x":
                     
