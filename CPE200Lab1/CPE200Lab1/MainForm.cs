@@ -18,6 +18,8 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        public float memory;
+        private string opM; //operate memory function
         public CalculatorEngine engine ;
 
         private void resetAll()
@@ -90,9 +92,9 @@ namespace CPE200Lab1
                 case "sqrt":
                 case "1/X":
                     firstOperand = lblDisplay.Text;
-
-                    // your code here
                     break;
+                
+             
             }
             isAllowBack = false;
         }
@@ -195,7 +197,31 @@ namespace CPE200Lab1
                 }
             }
         }
+        private void btnM_Click(object sender, EventArgs e)
+        {   
+            opM = ((Button)sender).Text;
+            
+            switch (opM)
+            {   
+                case "M+":
+                    firstOperand = lblDisplay.Text;
+                    memory += (float.Parse(firstOperand));
+                    break;
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    memory -= (float.Parse(firstOperand));
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                
 
-        
+            }
+            isAllowBack = false;
+        }
+
     }
 }

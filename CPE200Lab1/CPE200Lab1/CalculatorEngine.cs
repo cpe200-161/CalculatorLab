@@ -8,8 +8,10 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
+            
             switch (operate)
             {
                 case "+":
@@ -46,8 +48,10 @@ namespace CPE200Lab1
                     return ((float.Parse(firstOperand)) / 100).ToString();
                 case "sqrt":
                     return ((float)Math.Sqrt(float.Parse(firstOperand))).ToString();
-                //your code here
                 
+                    
+                
+
 
             }
             return "E";
