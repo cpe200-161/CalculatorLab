@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate, operateBefore;
         public CalculatorEngine engine;
-        private double valueSave = 0;
+        private double valueMemory = 0;
 
         private void resetAll()
         {
@@ -209,28 +209,28 @@ namespace CPE200Lab1
         private void modeM(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if(btn.Text =="MC" && valueSave != 0)
+            if(btn.Text =="MC" && valueMemory != 0)
             {
-                valueSave = 0;
-                lblDisplay.Text = valueSave.ToString();
+                valueMemory = 0;
+                lblDisplay.Text = valueMemory.ToString();
                 
             }
-            else if(btn.Text == "MR" && valueSave!=0)
+            else if(btn.Text == "MR" && valueMemory!=0)
             {
-                lblDisplay.Text = valueSave.ToString();
+                lblDisplay.Text = valueMemory.ToString();
             }
             else if(btn.Text == "M+")
             {
-                valueSave += (double.Parse(lblDisplay.Text));
+                valueMemory += (double.Parse(lblDisplay.Text));
             }
             else if(btn.Text == "M-")
             {
                 
-                valueSave -= (double.Parse(lblDisplay.Text));
+                valueMemory -= (double.Parse(lblDisplay.Text));
             }
             else if(btn.Text == "MS")
             {
-                valueSave = Convert.ToDouble(lblDisplay.Text);
+                valueMemory = Convert.ToDouble(lblDisplay.Text);
             }
         }
 
