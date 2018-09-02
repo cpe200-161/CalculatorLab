@@ -23,7 +23,7 @@ namespace CPE200Lab1
 
         private void display(string text, int i = 0)
         {
-            if (text.Length >= 9)
+            if (text.Length > 9)
             {
                 display("Error");
             }
@@ -63,11 +63,23 @@ namespace CPE200Lab1
             display(number);
         }
 
-        private void check(string number)
+        private void check(string number,int i = 0)
         {
-            if (number == null)
+            if(i == 0)
             {
-                this.number = "0";
+                if (number == null)
+                {
+                    this.number = "0";
+                }
+            }
+            if(i == 1)
+            {
+                string answers;
+                while ((answer.ToString()).Length > 9)
+                {
+                    answers = (answer.ToString()).Substring(0, (answer.ToString()).Length - 1);
+                    answer = double.Parse(answers);
+                }
             }
         }
  
@@ -92,14 +104,16 @@ namespace CPE200Lab1
 
                 case '/':
                     answer = val / valbefore;
+                    check(answer.ToString(), 1);
                     display(answer.ToString());
                     break;
 
                 case '%':
                     answer = val / 100;
+                    check(answer.ToString(), 1);
                     number = answer.ToString();
                     break;
-            } 
+            }
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -166,82 +180,154 @@ namespace CPE200Lab1
         {
             check(number);
             val = double.Parse(number);
-            number = null;
-            OperatorCalculator = 1; 
-            if (i != 0)
+            if (OperatorCalculator != 1 && OperatorCalculator != 0)
             {
-                Calculator('+', answer, val);
+                if (OperatorCalculator == 2)
+                {
+                    Calculator('-', answer, val);
+                }
+                else if (OperatorCalculator == 3)
+                {
+                    Calculator('*', answer, val);
+                }
+                else if (OperatorCalculator == 4)
+                {
+                    Calculator('/', answer, val);
+                }
+                val = answer;
             }
             else
             {
-                i = 1;
-                //Calculator('+', val, 0);
-                answer = val;
+                if (i != 0)
+                {
+                    Calculator('+', answer, val);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('+', val, 0);
+                }
             }
+            OperatorCalculator = 1;
+            number = null;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
             check(number);
             val = double.Parse(number);
-            number = null;
-            OperatorCalculator = 2;
-            if (i != 0)
+            if(OperatorCalculator != 2 && OperatorCalculator != 0)
             {
-                Calculator('-', answer, val);
+                if(OperatorCalculator == 1)
+                {
+                    Calculator('+', answer, val);
+                }
+                else if (OperatorCalculator == 3)
+                {
+                    Calculator('*', answer, val);
+                }
+                else if (OperatorCalculator == 4)
+                {
+                    Calculator('/', answer, val);
+                }
+                val = answer;
             }
             else
             {
-                i = 1;
-                //Calculator('-', val, 0);
-                answer = val;
+                if (i != 0)
+                {
+                    Calculator('-', answer, val);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('-', val, 0);
+                }
             }
+            OperatorCalculator = 2;
+            number = null;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             check(number);
             val = double.Parse(number);
-            number = null;
-            OperatorCalculator = 3;
-            if (i != 0)
+            if (OperatorCalculator != 3 && OperatorCalculator != 0)
             {
-                Calculator('*', answer, val);
+                if (OperatorCalculator == 1)
+                {
+                    Calculator('+', answer, val);
+                }
+                else if (OperatorCalculator == 2)
+                {
+                    Calculator('-', answer, val);
+                }
+                else if (OperatorCalculator == 4)
+                {
+                    Calculator('/', answer, val);
+                }
+                val = answer;
             }
             else
             {
-                i = 1;
-                //Calculator('*', val, 1);
-                answer = val;
+                if (i != 0)
+                {
+                    Calculator('*', answer, val);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('*', val, 1);
+                }
             }
+            OperatorCalculator = 3;
+            number = null;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
             check(number);
             val = double.Parse(number);
-            number = null;
-            OperatorCalculator = 4;
-            if (i != 0)
+            if (OperatorCalculator != 4 && OperatorCalculator != 0)
             {
-                Calculator('/', answer, val);
+                if (OperatorCalculator == 1)
+                {
+                    Calculator('+', answer, val);
+                }
+                else if (OperatorCalculator == 2)
+                {
+                    Calculator('-', answer, val);
+                }
+                else if (OperatorCalculator == 3)
+                {
+                    Calculator('*', answer, val);
+                }
+                val = answer;
             }
             else
             {
-                i = 1;
-                //Calculator('/', val, 1);
-                answer = val;
+                if (i != 0)
+                {
+                    Calculator('/', answer, val);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('/', val, 1);
+                }
             }
+            OperatorCalculator = 4;
+            number = null;
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
             check(number);
             val = double.Parse(number);
-            number = null;
             display(val.ToString(), 3);
-            OperatorCalculator = 5;
             Calculator('%', val, 0);
+            OperatorCalculator = 5;
+            number = null;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -292,6 +378,7 @@ namespace CPE200Lab1
                     break;
             }
             number = answer.ToString();
+            i = 0;
         }
     }
 }
