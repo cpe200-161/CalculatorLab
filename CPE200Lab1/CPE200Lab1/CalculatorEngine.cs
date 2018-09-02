@@ -12,33 +12,35 @@ namespace CPE200Lab1
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             string ans;
-            double result;
-            string[] parts;
-            int remainLength;
             switch (operate)
             {
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                case "M+":
+                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                case "M-":
+                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
+                    if (secondOperand == "0")
                     {
-                        
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        parts = result.ToString().Split('.');
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        return result.ToString("N" + remainLength);
+                        return "E";
                     }
-                    break;
+                    else
+                    {
+                        ans = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
+                        if (ans.Length > maxOutputSize)
+                        {
+                            return ans.Substring(0, 8);
+                        }
+                        else
+                        {
+                            return ans.ToString();
+                        }
+                    }
                 case "%":
                     if(firstOperand == "")
                     {
@@ -56,14 +58,32 @@ namespace CPE200Lab1
                     else
                     {
                         ans = (1 / Convert.ToDouble(secondOperand)).ToString();
-
-                        if (ans.Length > 8)
+                        if (ans.Length > maxOutputSize)
                         {
-                            ans[8] = "";
+                            return ans.Substring(0, 8);
+                        }
+                        else
+                        {
+                            return ans.ToString();
                         }
                     }
                 case "√":
-                    result = Math.Sqrt(Convert.ToDouble(secondOperand));
+                    if (Convert.ToDouble(secondOperand) < -1)
+                    {
+                        return "E";
+                    }
+                    else
+                    {
+                        ans = (Math.Sqrt(Convert.ToDouble(secondOperand))).ToString();
+                        if (ans.Length > maxOutputSize)
+                        {
+                            return ans.Substring(0, 8);
+                        }
+                        else
+                        {
+                            return ans.ToString();
+                        }
+                    }
             }
             return "E";
         }

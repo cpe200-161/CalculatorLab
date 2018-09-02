@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private string lastoperate;
+        private string mathsave = "0";
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -74,11 +75,8 @@ namespace CPE200Lab1
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
+            hasDot = false;
             if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
             {
                 return;
             }
@@ -106,12 +104,20 @@ namespace CPE200Lab1
                     operate = lastoperate;
                     break;
                 case "MC":
+                    mathsave = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = mathsave;
+                    break;
                 case "MS":
-
+                    mathsave = lblDisplay.Text;
+                    lblDisplay.Text = "0";
+                    break;
                 case "M+":
                 case "M-":
                     secondOperand = lblDisplay.Text;
-                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
+                    firstOperand = mathsave;
+                    mathsave = engine.calculate(operate, firstOperand, secondOperand);
                     break;
             }
             isAllowBack = false;
@@ -125,7 +131,7 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
+            if (result is "E")
             {
                 lblDisplay.Text = "Error";
             }
@@ -134,6 +140,8 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+            isAfterOperater = false;
+            hasDot = false;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
