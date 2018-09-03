@@ -12,27 +12,112 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        private double Firstnum,Secondnum, One = 1, Zero=0,ans=0;
-         
-        String Operation;
-        private double val,val2;
-        private char Operator;
+        private double Firstnum=0, ans=0;
+        private string num;
+
+        private int OperatorCal = 0, i =0;
+       // private char Operator;
         public Form1()
         
         {
             InitializeComponent();
         }
 
-        private void display(double show)
+        private void display(string txt,int i=0)
         {
-            lblDisplay.Text = show.ToString();
+            if (txt.Length>9)
+            {
+                display("Error");
+            }
+            else
+            {
+                switch(i)
+                {
+                    case 1:
+                        lblDisplay.Text = "-" + txt;
+                        num = lblDisplay.Text;
+                        break;
+
+                    case 2:
+                        lblDisplay.Text = txt + ".";
+                        num = lblDisplay.Text;
+                        break;
+
+                    case 3:
+                        lblDisplay.Text = txt + "%";
+                        num = lblDisplay.Text;
+                        break;
+
+                    default:
+                        lblDisplay.Text = txt;
+                        break;
+                }
+            }
         }
 
-        private void numClick(int n)
+        private void numClick(double n)
         {
-            val = val * 10 + n;
-            display(val);
+            if(num=="0")
+            {
+                num = null;
+            }
+            num += n.ToString();
+            display(num);
         }
+
+        private void check(string num, int i=0)
+        {
+            if(i==0)
+            {
+                if(num==null)
+                {
+                    this.num = "0";
+                }
+            }
+            if(i==1)
+            {
+                string ans1;
+                while ((ans.ToString()).Length>9)
+                {
+                    ans1 = (ans.ToString()).Substring(0, (ans.ToString()).Length - 1);
+                    ans = double.Parse(ans1);
+                }
+                    
+            }
+        }
+
+        private void Calculator(char Operator, double Firstnum, double Secondnum)
+        {
+            switch (Operator)
+            {
+                case '+':
+                    ans = Firstnum + Secondnum;
+                    display(ans.ToString());
+                    break; 
+
+                case '-':
+                    ans = Firstnum - Secondnum;
+                    display(ans.ToString());
+                    break;
+
+                case '*':
+                    ans = Firstnum * Secondnum;
+                    display(ans.ToString());
+                    break;
+
+                case '/':
+                    ans = Firstnum / Secondnum;
+                    display(ans.ToString());
+                    break;
+
+                case '%':
+                    ans = Firstnum / 100;
+                    check(ans.ToString(), 1);
+                    break;
+                
+            }
+        }
+
 
         private void btn1_Click(object sender, EventArgs e)
         {
@@ -91,10 +176,12 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            val=0;
+            num = null;
             Firstnum = 0;
-            Secondnum = 0;
-            display(val);
+            ans = 0;
+            OperatorCal = 0;
+            i = 0;
+            display("0");
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -107,7 +194,38 @@ namespace CPE200Lab1
 
              display(Secondnum);*/
 
-            Operator = '-';
+            check(num);
+            Firstnum = double.Parse(num);
+            if (OperatorCal != 2 && OperatorCal != 0)
+            {
+                if (OperatorCal == 1 )
+                {
+                    Calculator('+', ans, Firstnum);
+                }
+                else if (OperatorCal == 3)
+                {
+                    Calculator('*', ans, Firstnum);
+                }
+                else if (OperatorCal == 4)
+                {
+                    Calculator('/', ans, Firstnum);
+                }
+                Firstnum = ans;
+            }
+            else
+            {
+                if (i != 0)
+                {
+                    Calculator('-', ans, Firstnum);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('-', Firstnum, 0);
+                }
+            }
+            OperatorCal = 2;
+            num = null;
 
         }
 
@@ -119,7 +237,38 @@ namespace CPE200Lab1
 
             display(Secondnum);*/
 
-            Operator = '*';
+            check(num);
+            Firstnum = double.Parse(num);
+            if (OperatorCal != 3 && OperatorCal != 0)
+            {
+                if (OperatorCal == 1)
+                {
+                    Calculator('+', ans, Firstnum);
+                }
+                else if (OperatorCal == 2)
+                {
+                    Calculator('-', ans, Firstnum);
+                }
+                else if (OperatorCal == 4)
+                {
+                    Calculator('/', ans, Firstnum);
+                }
+                Firstnum = ans;
+            }
+            else
+            {
+                if (i != 0)
+                {
+                    Calculator('*', ans, Firstnum);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('*', Firstnum, 0);
+                }
+            }
+            OperatorCal = 1;
+            num = null;
 
         }
 
@@ -130,7 +279,30 @@ namespace CPE200Lab1
             Secondnum += Firstnum;
 
             display(Secondnum);*/
+            switch(OperatorCal)
+            {
+                case 1:
+                    Calculator('+', Firstnum, double.Parse(num));
+                    break;
 
+                case 2:
+                    Calculator('-', Firstnum, double.Parse(num));
+                    break;
+
+                case 3:
+                    Calculator('*', Firstnum, double.Parse(num));
+                    break;
+
+                case 4:
+                    Calculator('/', Firstnum, double.Parse(num));
+                    break;
+
+                case 5:
+                    display(ans.ToString());
+                    break;
+            }
+            num = ans.ToString();
+            i = 0;
            
         }
 
@@ -141,46 +313,117 @@ namespace CPE200Lab1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            
+
             /*Firstnum = val;
             val = 0;
             Secondnum += Firstnum ;
 
             display(Secondnum);*/
-            Operator = '+';
+            check(num);
+            Firstnum = double.Parse(num);
+            if(OperatorCal !=1 && OperatorCal !=0)
+            {
+                if (OperatorCal == 2)
+                {
+                    Calculator('-', ans, Firstnum);
+                }
+                else if (OperatorCal == 3)
+                {
+                    Calculator('*', ans, Firstnum);
+                }
+                else if (OperatorCal == 4) 
+                {
+                    Calculator('/', ans, Firstnum);
+                }
+                Firstnum = ans;
+            }
+            else
+            {
+                if (i != 0)
+                {
+                    Calculator('+', ans, Firstnum);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('+', Firstnum, 0);
+                }
+            }
+            OperatorCal = 1;
+            num = null;
 
+        }
+
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            check(num);
+            Firstnum = double.Parse(num);
+            if (OperatorCal != 4 && OperatorCal != 0)
+            {
+                if (OperatorCal == 1)
+                {
+                    Calculator('+', ans, Firstnum);
+                }
+                else if (OperatorCal == 2)
+                {
+                    Calculator('-', ans, Firstnum);
+                }
+                else if (OperatorCal == 3)
+                {
+                    Calculator('*', ans, Firstnum);
+                }
+                Firstnum = ans;
+            }
+            else
+            {
+                if (i != 0)
+                {
+                    Calculator('/', ans, Firstnum);
+                }
+                else
+                {
+                    i = 1;
+                    Calculator('/', Firstnum, 0);
+                }
+            }
+            OperatorCal = 1;
+            num = null;
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            check(num);
+            Firstnum = double.Parse(num);
+            display(Firstnum.ToString(), 3);
+            Calculator('%', Firstnum, 0);
+            OperatorCal = 5;
+            num = null;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (num.Length == 1)
+            {
+                num = "0";
+            }
+            else
+            {
+                num = num.Substring(0, num.Length - 1);
+            }
+            display(num);
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            display(num, 2);
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            val = val * (-1);
-            display(val);
+            display(num, 1);
         }
 
-        private void Calculator(char Operator, double ans)
-        {
-            switch (Operator)
-            {
-                case '+':
-                    ans = Firstnum + Secondnum;
-                    display(ans);
-                    break;
-
-                case '-':
-                    ans = Firstnum - Secondnum;
-                    display(ans);
-                    break;
-
-                case '*':
-                    ans = Firstnum * Secondnum;
-                    display(ans);
-                    break;
-                case '/':
-                    ans = Firstnum / Secondnum;
-                    display(ans);
-                    break;
-            }
-        }
+        
         
     }
 }
