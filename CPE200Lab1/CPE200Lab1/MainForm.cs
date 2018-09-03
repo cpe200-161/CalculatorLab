@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         public CalculatorEngine engine;
-
+        public double sum;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -39,7 +39,33 @@ namespace CPE200Lab1
             engine = new CalculatorEngine();
             
         }
+        private void btnMemory_click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate) {
+                case "M+":
+                    sum += (Convert.ToDouble(lblDisplay.Text));
+                    isAfterOperater = true;
+                    break;
+                case "M-":
+                    sum -= (Convert.ToDouble(lblDisplay.Text));
+                    isAfterOperater = true;
+                    break;
+                case "MR":
+                    lblDisplay.Text = sum.ToString();
+                    isAfterOperater = true;
+                    break;
+                case "MS":
+                    sum = (Convert.ToDouble(lblDisplay.Text));
+                    isAfterOperater = true;
+                    break;
+                case "MC":
+                    sum = 0;
+                    break;
 
+            }
+        }
+            
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -194,6 +220,11 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
