@@ -45,7 +45,7 @@ namespace CPE200Lab1
                 case "Sqrt":
                     return ((float)Math.Sqrt(float.Parse(firstOperand))).ToString();
                 case "1/X":
-                    return (Math.Round((1 / float.Parse(firstOperand)),5)).ToString() ;
+                    return (Math.Round((1 / float.Parse(firstOperand)),5)).ToString();
             }
             return "E";
         }

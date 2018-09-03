@@ -18,7 +18,9 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        public float memory;
         public CalculatorEngine engine;
+        string[] fisrtSet = new string[] {};
 
         private void resetAll()
         {
@@ -66,6 +68,33 @@ namespace CPE200Lab1
             isAfterOperater = false;
         }
 
+        private void btnMemory_Click(object sender,EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "M+":
+                    memory += float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+                case "M-":
+                    memory -= float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    isAfterOperater = true;
+                    break;
+                case "MS":
+                    memory = float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+            }
+        }
+
         private void btnOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -87,10 +116,9 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                case "Sqrt":
+                case "√":
                 case "1/X":
                     firstOperand = lblDisplay.Text;
-
                     break;
             }
             isAllowBack = false;
@@ -179,16 +207,16 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
                 }
