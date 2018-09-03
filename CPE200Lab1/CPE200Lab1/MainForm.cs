@@ -99,6 +99,9 @@ namespace CPE200Lab1
                 case "√":
                     lblDisplay.Text = engine.calculate(btnOperate, lblDisplay.Text, null);
                     break;
+                case "1/X":
+                    lblDisplay.Text = engine.calculate("÷", 1.ToString(), lblDisplay.Text);
+                    break;
             }
             isAllowBack = false;
         }
