@@ -20,7 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private string temp;
         public CalculatorEngine engine;
-        private int sum;
+        private double sum;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -81,7 +81,7 @@ namespace CPE200Lab1
             operate = ((Button)sender).Text;
             switch (operate)
             {
-                case "+":
+                case "+":                   
                 case "-":
                 case "*":
                 case "/":
@@ -90,13 +90,10 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     string secondOperand = lblDisplay.Text;
-
                     isAfterOperater = true;
-
                     string result = engine.calculate(operate, firstOperand, secondOperand,8);
-
                     lblDisplay.Text = result;
-
+                    operate = "+";
                     break;
                 case "sqrt":
                 case "1/x":
@@ -218,7 +215,7 @@ namespace CPE200Lab1
         private void memory_add_Click(object sender, EventArgs e)
         {
             temp = lblDisplay.Text;
-            sum += int.Parse(temp);
+            sum += double.Parse(temp);
         }
 
         private void memory_clear_Click(object sender, EventArgs e)
@@ -230,12 +227,12 @@ namespace CPE200Lab1
         private void memory_minus_Click(object sender, EventArgs e)
         {
             temp = lblDisplay.Text;
-            sum -= int.Parse(temp);
+            sum -= double.Parse(temp);
         }
 
         private void memory_store_Click(object sender, EventArgs e)
         {
-            sum = int.Parse(lblDisplay.Text);
+            sum = double.Parse(lblDisplay.Text);
         }
     }
 }

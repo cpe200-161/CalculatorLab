@@ -42,7 +42,7 @@ namespace CPE200Lab1
                     break;
 
                 case "%":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100)).ToString();
 
                 case "sqrt":
                     return ((float)Math.Sqrt(float.Parse(firstOperand))).ToString();
