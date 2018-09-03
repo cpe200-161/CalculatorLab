@@ -224,5 +224,23 @@ namespace CPE200Lab1
         {
             memory = null;
         }
+       
+        private void btnMemoryEdit_Click(object sender, EventArgs e)
+        {
+            if (memory == null)
+            {
+                memory = "0";
+            }
+            string memoryOperate = ((Button)sender).Text;
+            switch (memoryOperate)
+            {
+                case "M+":
+                    memory = engine.calculate("+", memory, lblDisplay.Text);
+                    break;
+                case "M-":
+                    memory = engine.calculate("-", memory, lblDisplay.Text);
+                    break;
+            }
+        }
     }
 }
