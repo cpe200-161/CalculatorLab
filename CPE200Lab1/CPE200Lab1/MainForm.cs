@@ -11,14 +11,17 @@ using System.Windows.Forms;
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
-    {
+    { 
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        bool MemoryOperater;
         private string firstOperand;
         private string operate;
+        public float Memory;
         public CalculatorEngine engine;
+
 
         private void resetAll()
         {
@@ -50,7 +53,7 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            if (isAfterOperater)
+            if (isAfterOperater||MemoryOperater)
             {
                 lblDisplay.Text = "0";
             }
@@ -66,6 +69,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            MemoryOperater = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -96,6 +100,35 @@ namespace CPE200Lab1
             }
             isAllowBack = false;
         }
+        private void btnMemory_Click(object sender,EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "M+":
+                    Memory = Memory + float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "M-":
+                    Memory = Memory - float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "MS":
+                    Memory = float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "MC":
+                    Memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Memory.ToString();
+                    MemoryOperater = true;
+                    break;
+            }
+            
+        }
+
+
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
@@ -195,6 +228,7 @@ namespace CPE200Lab1
                 }
             }
         }
-       
+
+        
     }
 }
