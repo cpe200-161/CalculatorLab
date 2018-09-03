@@ -20,6 +20,8 @@ namespace CPE200Lab1
 		private string secondOperand;
 		private string operate;
 		private string operate0;
+		//private decimal EndResult;
+		private string MemoryStore = "0";
 		public CalculatorEngine engine;
 
         private void resetAll()
@@ -144,6 +146,21 @@ namespace CPE200Lab1
 					break;
 				case "1/X":
 					firstOperand = lblDisplay.Text;
+					break;
+				case "MC":
+					MemoryStore = "0";
+					break;
+				case "MR":
+					lblDisplay.Text = MemoryStore;
+					break;
+				case "MS":
+					MemoryStore = lblDisplay.Text;
+					break;
+				case "M+":
+					MemoryStore = (Convert.ToDouble(MemoryStore) + Convert.ToDouble(lblDisplay.Text)).ToString();
+					break;
+				case "M-":
+					MemoryStore = (Convert.ToDouble(MemoryStore) - Convert.ToDouble(lblDisplay.Text)).ToString();
 					break;
 			}
             isAllowBack = false;
