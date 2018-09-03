@@ -9,6 +9,8 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        //keep memory
+        double Mem = 0;
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -59,6 +61,28 @@ namespace CPE200Lab1
                     return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
                 case "1/x":
                     return (1 / Convert.ToDouble(firstOperand)).ToString();
+                case "MS":
+                    Mem = Convert.ToDouble(firstOperand);
+                    return firstOperand;
+                case "MC":
+                    Mem = 0;
+                    return firstOperand;
+                case "MR":
+                    if(Mem != 0)
+                    {
+                        return Convert.ToString(Mem);
+                    }
+                    else
+                    {
+                        return "0";
+                    }
+                case "M+":
+                    Mem = Mem + Convert.ToDouble(firstOperand);
+                    return Convert.ToString(Mem);
+                case "M-":
+                    Mem = Mem - Convert.ToDouble(firstOperand);
+                    return Convert.ToString(Mem);
+
             }
             return "E";
         }

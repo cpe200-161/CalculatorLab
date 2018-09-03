@@ -87,9 +87,40 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+                    isAfterOperater = true;
+                    if (persentOperate != " ")
+                    {
+                        operate = persentOperate;
+                        break;
+                        //break before get new firstoperand
+                    }
+                    firstOperand = lblDisplay.Text;
+                    break;
                 case "√":
                 case "1/x":
+                    //lblDisplay.Text = operate;
                     firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
+                case "MC":
+                case "MR":
+                case "MS":
+                case "M+":
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    string result = engine.calculate(operate, firstOperand, " ");
+                    if (result.Length >= 8)
+                    {
+                        result = result.Substring(0, 8);
+                    }
+                    if (result is "E")
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
                     isAfterOperater = true;
                     break;
             }
