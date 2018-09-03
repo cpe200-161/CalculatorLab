@@ -50,7 +50,7 @@ namespace CPE200Lab1
                     default:
                         lblDisplay.Text = text;
                         break;
-
+                        
                 }
 
             }
@@ -66,8 +66,8 @@ namespace CPE200Lab1
             display(num);
         }
 
-            private void check(string num, int i = 0)
-            {
+        private void check(string num, int i = 0)
+        {
             if (i == 0)
             {
                 if (num == null)
@@ -84,10 +84,10 @@ namespace CPE200Lab1
                 }
             }
 
-             }
+        }
 
-            private void calcu(char oprt, double val, double before)
-            {
+        private void calcu(char oprt, double val, double before)
+        {
             switch (oprt)
             {
                 case '+':
@@ -117,72 +117,64 @@ namespace CPE200Lab1
                     display(sum.ToString());
                     break;
             }
-            private void btn1_Click(object sender, EventArgs e)
-            {
-                numclick(1);
-            }
+        }
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            numclick(1);    
+        }
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            numclick(2);
+        }
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            numclick(3);
+        }
 
-            private void btn2_Click(object sender, EventArgs e)
-            {
-                numclick(2);
-            }
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            numclick(4);
+        }
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            numclick(5);
+        }
 
-            private void btn3_Click(object sender, EventArgs e)
-            {
-                numclick(3);
-            }
+        private void btn6_Click(object sender, EventArgs e)
+        {
+            numclick(6);
+        }
 
-            private void btn4_Click(object sender, EventArgs e)
-            {
-                numclick(4);
-            }
+        private void btn7_Click(object sender, EventArgs e)
+        {
+            numclick(7);
+        }
+        private void btn8_Click(object sender, EventArgs e)
+        {
+            numclick(8);
+        }
 
-            private void btn5_Click(object sender, EventArgs e)
-            {
-                numclick(5);
-            }
+        private void btn9_Click(object sender, EventArgs e)
+        {
+            numclick(9);
+        }
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            numclick(0);
+        }
 
-            private void btn6_Click(object sender, EventArgs e)
-            {
-                numclick(6);
-            }
+       
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            display(num, 1);
+        }
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            display(num, 2);
+        }
 
-            private void btn7_Click(object sender, EventArgs e)
-            {
-                numclick(7);
-            }
-            private void btn8_Click(object sender, EventArgs e)
-            {
-                numclick(8);
-            }
-
-            private void btn9_Click(object sender, EventArgs e)
-            {
-                numclick(9);
-            }
-            private void btn0_Click(object sender, EventArgs e)
-            {
-                numclick(0);
-            }
-
-            private void lblDisplay_Click(object sender, EventArgs e)
-            {
-
-
-            }
-            private void btnSign_Click(object sender, EventArgs e)
-            {
-                display(num, 1);
-            }
-
-
-            private void btnDot_Click(object sender, EventArgs e)
-            {
-                display(num, 2);
-            }
-
-            private void btnClear_Click(object sender, EventArgs e)
-            {
+        private void btnClear_Click(object sender, EventArgs e)
+        {
                 num = null;
                 val = 0;
                 sum = 0;
@@ -190,10 +182,10 @@ namespace CPE200Lab1
                 i = 0;
                 display("0");
 
-            }
+        }
 
-            private void btnMultiply_Click(object sender, EventArgs e)
-            {
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
                 check(num);
                 val = double.Parse(num);
                 if (Oper != 3 && Oper != 0)
@@ -211,8 +203,7 @@ namespace CPE200Lab1
                         calcu('/', sum, val);
                     }
                     val = sum;
-                }
-            }else
+                }else
                 {
                 if (i != 0)
                 {
@@ -335,49 +326,49 @@ namespace CPE200Lab1
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-
+            if(num.Length == 1)
+            {
+                num = "0";
+            }else
+            {
+                num = num.Substring(0,num.Length - 1);
+            }
+            display(num);
         }
         private void btnPercent_Click(object sender, EventArgs e)
         {
-
+            check(num);
+            val = double.Parse(num);
+            display(val.ToString(), 3);
+            calcu('%', val, 0);
+            Oper = 5;
+            num = null;
         }
 
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            r = 1;
-            switch (P)
+
+            switch (Oper)
             {
                 case 1:
-                    sum = je1 + val;
-                    display(sum);
-                    val = sum;
-                    sum = 0;
+                    calcu('+', val, double.Parse(num));
                     break;
                 case 2:
-                    sum = je1 - val;
-                    display(sum);
-                    val = sum;
-                    sum = 0;
+                    calcu('-', val, double.Parse(num));
                     break;
                 case 3:
-                    sum = je1 * val;
-                    display(sum);
-                    val = sum;
-                    sum = 0;
+                    calcu('*', val, double.Parse(num));
                     break;
                 case 4:
-                    sum = je1 / val;
-                    display(sum);
-                    val = sum;
-                    sum = 0;
+                    calcu('/', val, double.Parse(num));
+                    break;
+                case 5:
+                    display(sum.ToString());
                     break;
             }
-
-
+                num = sum.ToString();
+                i = 0;
         }
-
-          
-        
-    
+    } 
 }
