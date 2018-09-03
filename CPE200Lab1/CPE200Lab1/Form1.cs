@@ -267,7 +267,7 @@ namespace CPE200Lab1
                     Calculator('*', Firstnum, 0);
                 }
             }
-            OperatorCal = 1;
+            OperatorCal = 3;
             num = null;
 
         }
@@ -386,7 +386,7 @@ namespace CPE200Lab1
                     Calculator('/', Firstnum, 0);
                 }
             }
-            OperatorCal = 1;
+            OperatorCal = 4;
             num = null;
         }
 
