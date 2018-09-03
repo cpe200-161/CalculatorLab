@@ -116,6 +116,27 @@ namespace CPE200Lab1
             }
         }
 
+        private void OpCheck(int OperatorCalculator)
+        {
+            if (OperatorCalculator == 1)
+            {
+                Calculator('+', answer, val);
+            }
+            else if (OperatorCalculator == 2)
+            {
+                Calculator('-', answer, val);
+            }
+            else if (OperatorCalculator == 3)
+            {
+                Calculator('*', answer, val);
+            }
+            else if (OperatorCalculator == 4)
+            {
+                Calculator('/', answer, val);
+            }
+            val = answer;
+        }
+
         private void btn0_Click(object sender, EventArgs e)
         {
             numClik(0); 
@@ -175,26 +196,14 @@ namespace CPE200Lab1
         {
             display(number, 2);
         }
-      
+        
         private void btnPlus_Click(object sender, EventArgs e)
         {
             check(number);
             val = double.Parse(number);
             if (OperatorCalculator != 1 && OperatorCalculator != 0)
             {
-                if (OperatorCalculator == 2)
-                {
-                    Calculator('-', answer, val);
-                }
-                else if (OperatorCalculator == 3)
-                {
-                    Calculator('*', answer, val);
-                }
-                else if (OperatorCalculator == 4)
-                {
-                    Calculator('/', answer, val);
-                }
-                val = answer;
+                OpCheck(OperatorCalculator);
             }
             else
             {
@@ -218,19 +227,7 @@ namespace CPE200Lab1
             val = double.Parse(number);
             if(OperatorCalculator != 2 && OperatorCalculator != 0)
             {
-                if(OperatorCalculator == 1)
-                {
-                    Calculator('+', answer, val);
-                }
-                else if (OperatorCalculator == 3)
-                {
-                    Calculator('*', answer, val);
-                }
-                else if (OperatorCalculator == 4)
-                {
-                    Calculator('/', answer, val);
-                }
-                val = answer;
+                OpCheck(OperatorCalculator);
             }
             else
             {
@@ -254,19 +251,7 @@ namespace CPE200Lab1
             val = double.Parse(number);
             if (OperatorCalculator != 3 && OperatorCalculator != 0)
             {
-                if (OperatorCalculator == 1)
-                {
-                    Calculator('+', answer, val);
-                }
-                else if (OperatorCalculator == 2)
-                {
-                    Calculator('-', answer, val);
-                }
-                else if (OperatorCalculator == 4)
-                {
-                    Calculator('/', answer, val);
-                }
-                val = answer;
+                OpCheck(OperatorCalculator);
             }
             else
             {
@@ -290,19 +275,7 @@ namespace CPE200Lab1
             val = double.Parse(number);
             if (OperatorCalculator != 4 && OperatorCalculator != 0)
             {
-                if (OperatorCalculator == 1)
-                {
-                    Calculator('+', answer, val);
-                }
-                else if (OperatorCalculator == 2)
-                {
-                    Calculator('-', answer, val);
-                }
-                else if (OperatorCalculator == 3)
-                {
-                    Calculator('*', answer, val);
-                }
-                val = answer;
+                OpCheck(OperatorCalculator);
             }
             else
             {
