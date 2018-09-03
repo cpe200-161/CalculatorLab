@@ -137,13 +137,13 @@ namespace CPE200Lab1
             {
                 string first;
                 first = lblDisplay.Text;
-                lblDisplay.Text = (Convert.ToDouble(first) + Convert.ToDouble(memory)).ToString();
+                this.memory = (Convert.ToDouble(first) + Convert.ToDouble(memory)).ToString();
             }
             else if (operate == "M-")
             {
                 string first;
                 first = lblDisplay.Text;
-                lblDisplay.Text = (Convert.ToDouble(first) - Convert.ToDouble(memory)).ToString(); 
+                this.memory = (Convert.ToDouble(memory) - Convert.ToDouble(first)).ToString(); 
             }
         }
 
