@@ -229,7 +229,7 @@ namespace CPE200Lab1
 
         private void Btn_MC_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "0";
+           // lblDisplay.Text = "0";
             memory = 0;
             Btn_MC.Enabled = false;
             Btn_MR.Enabled = false;
