@@ -25,7 +25,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
-            display = "0";
+            display = " 0";
 
 
         }
