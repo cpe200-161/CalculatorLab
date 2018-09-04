@@ -31,7 +31,6 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = "0";
-            data = "0";
         }
 
         public MainForm()
@@ -219,30 +218,32 @@ namespace CPE200Lab1
         private void btnMemory(object sender, EventArgs e)
         {
             memoryFunc = ((Button)sender).Text;
-            switch (memoryFunc)
+            if (float.TryParse(lblDisplay.Text, out float display))
             {
-                case "M+":
-                    data = (float.Parse(data) + float.Parse(lblDisplay.Text)).ToString();
-                    isAfterOperater = true;
-                    
-                    break;
-                case "M-":
-                    data = (float.Parse(data) - float.Parse(lblDisplay.Text)).ToString();
-                    isAfterOperater = true;
-                    
-                    break;
-                case "MS":
-                    data = lblDisplay.Text;
-                    break;
-                case "MC":
-                    resetAll();
-                    break;
-                case "MR":
-                    lblDisplay.Text = data;
-                    break;
-            
-            }
+                switch (memoryFunc)
+                {
+                    case "M+":
+                        data = (float.Parse(data) + float.Parse(lblDisplay.Text)).ToString();
+                        isAfterOperater = true;
 
+                        break;
+                    case "M-":
+                        data = (float.Parse(data) - float.Parse(lblDisplay.Text)).ToString();
+                        isAfterOperater = true;
+
+                        break;
+                    case "MS":
+                        data = lblDisplay.Text;
+                        break;
+                    case "MC":
+                        data = "0";
+                        break;
+                    case "MR":
+                        lblDisplay.Text = data;
+                        break;
+
+                }
+            }
         }
     }
 }

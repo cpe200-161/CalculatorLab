@@ -66,14 +66,28 @@ namespace CPE200Lab1
         }
         public string squareRoot(string number)
         {
-            float ans = (float)Math.Sqrt(float.Parse(number));
-            return ans.ToString();
+            if (float.Parse(number) < 0)
+            {
+                return "Unindentified";
+            }
+            else
+            {
+                float ans = (float)Math.Sqrt(float.Parse(number));
+                return ans.ToString();
+            }
         }
 
         public string overX(string number)
         {
-            float ans = (1 / (float.Parse(number)));
-            return ans.ToString();
+            if (float.Parse(number) == 0)
+            {
+                return "Unindentified";
+            }
+            else
+            {
+                float ans = (1 / (float.Parse(number)));
+                return ans.ToString();
+            }
         }
 
         public string percentage(string number1, string number2)
