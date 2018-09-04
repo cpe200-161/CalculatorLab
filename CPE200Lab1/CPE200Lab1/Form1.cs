@@ -115,7 +115,7 @@ namespace CPE200Lab1
 
 
         }
-        private double old = 0;
+        private double old;
         private void btnPlus_Click(object sender, EventArgs e)
         {
             old = val;
@@ -130,6 +130,7 @@ namespace CPE200Lab1
             if (x == 2) val = old - val;
             if (x == 3) val = old * val;
             if (x == 4) val = old / val;
+            if (x == 5) val =  old % val;
               display();
          }
 
@@ -156,14 +157,16 @@ namespace CPE200Lab1
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            
-            display();
-
+            old = val;
+            val = 0;
+            x = 5;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            
+
+
+            display();
         }
     }  
     
