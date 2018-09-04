@@ -101,8 +101,8 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
-
+                    secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, 8);
                     break;
             }
             hasDot = false;
