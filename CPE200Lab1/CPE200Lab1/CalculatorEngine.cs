@@ -87,6 +87,7 @@ namespace CPE200Lab1
                         int remainLength;
 
                         result = (1 / Convert.ToDouble(firstOperand));
+
                         parts = result.ToString().Split('.');
 
                         if (parts[0].Length > maxOutputSize)
@@ -95,6 +96,7 @@ namespace CPE200Lab1
                         }
 
                         remainLength = maxOutputSize - parts[0].Length - 1;
+
                         return firstOperand = result.ToString("N" + remainLength);
                     }
             }
