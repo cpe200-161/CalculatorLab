@@ -8,10 +8,12 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        double momory = 0;
 
-        public string calculate(string operate, string firstOperand, string secondOperand, string x, int maxOutputSize = 8) {
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8) {
 
-            switch(operate)
+
+            switch (operate)
             {
                 case "+":
                     return firstOperand = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
@@ -89,26 +91,23 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    if (x == "+")
+                    //your code here
+                    if (operate == "%")
                     {
-                        return firstOperand = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                        if(secondOperand != "0")
+                        {
+                            return firstOperand = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
+                        }
+                        if (secondOperand == "0")
+                        {
+                            return firstOperand = (Convert.ToDouble(firstOperand)/ 100).ToString();
+                        }
                     }
                     break;
-                    //your code here
-                    
 
 
             }
             return "E";
-        }
-        public string Percent(string firstOperand, string secondOperand)
-        {
-
-            {
-                double result = (Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand);
-                return result.ToString();
-
-            }
         }
     }
 
