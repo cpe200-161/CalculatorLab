@@ -311,7 +311,7 @@
             this.button2.TabIndex = 16;
             this.button2.Text = "MC";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Mc_Click);
+            this.button2.Click += new System.EventHandler(this.M_Click);
             // 
             // button3
             // 
@@ -344,7 +344,7 @@
             this.button5.TabIndex = 16;
             this.button5.Text = "MR";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Mr_Click);
+            this.button5.Click += new System.EventHandler(this.M_Click);
             // 
             // button6
             // 
@@ -355,7 +355,7 @@
             this.button6.TabIndex = 16;
             this.button6.Text = "MS";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Ms_Click);
+            this.button6.Click += new System.EventHandler(this.M_Click);
             // 
             // Mp
             // 

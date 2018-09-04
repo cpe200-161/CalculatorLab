@@ -210,29 +210,21 @@ namespace CPE200Lab1
             switch (M)
             {
                 case "M+":
-                    memory += Convert.ToDouble(lblDisplay.Text); break;
+                    memory += Convert.ToDouble(lblDisplay.Text);
+                    isAfterEqual = true;  break;
                 case "M-":
-                    memory -= Convert.ToDouble(lblDisplay.Text); break;
+                    memory -= Convert.ToDouble(lblDisplay.Text); 
+                    isAfterEqual = true; break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();break;
+                case "MS":
+                    memory = Convert.ToDouble(lblDisplay.Text);
+                    isAfterEqual = true; break;
+                case "MC":
+                    memory = 0; break;
                 default: break;
             }
         }
-
-        private void Mr_Click(object sender, EventArgs e)
-        {
-
-            lblDisplay.Text = memory.ToString();
-
-        }
-        private void Ms_Click(object sender, EventArgs e)
-        {
-            memory = Convert.ToDouble(lblDisplay.Text);
-            isAfterEqual = true;
-        }
-        private void Mc_Click(object sender, EventArgs e)
-        {
-            memory = 0;
-        }
-
         private void CE_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
