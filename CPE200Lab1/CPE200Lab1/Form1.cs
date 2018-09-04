@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-      
+
         double x = 0;
         private bool checkdot = false;
         private bool flag = true;
@@ -22,7 +22,7 @@ namespace CPE200Lab1
             InitializeComponent();
 
         }
-        
+
         private void display()
         {
             lblDisplay.Text = val.ToString();
@@ -37,7 +37,7 @@ namespace CPE200Lab1
         private void lblDisplay_Click(object sender, EventArgs e)
         {
 
-           }
+        }
         private void btn5_Click(object sender, EventArgs e)
         {
             numClick(5);
@@ -105,7 +105,7 @@ namespace CPE200Lab1
             val = 0;
             display();
         }
-        
+
         private void btnBack_Click(object sender, EventArgs e)
         {
 
@@ -121,18 +121,17 @@ namespace CPE200Lab1
             old = val;
             val = 0;
             x = 1;
-         }
+        }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-           
-            if (x == 1) val= old + val;
+            if (x == 1) val = old + val;
             if (x == 2) val = old - val;
             if (x == 3) val = old * val;
             if (x == 4) val = old / val;
-            if (x == 5) val =  old % val;
-              display();
-         }
+            if (x == 5) val = old % val;
+            display();
+        }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
@@ -164,25 +163,28 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            string z = ".";
-            
-            if (!checkdot)
+           
+
+            if (checkdot == false )
             {
-               
 
 
+                
+                lblDisplay.Text += "."  ;
+                
+                
 
-
-            }
-      
-            
+                checkdot = true;
               
 
-
-
-                display();
             }
-        }
-    }  
-    
 
+             display();
+
+
+
+        }
+
+    }
+
+}
