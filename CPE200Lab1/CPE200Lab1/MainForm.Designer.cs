@@ -344,6 +344,7 @@
             this.button8.TabIndex = 17;
             this.button8.Text = "MS";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnMemoryStore_Click);
             // 
             // button9
             // 

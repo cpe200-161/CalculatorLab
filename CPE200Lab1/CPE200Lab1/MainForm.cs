@@ -20,8 +20,10 @@ namespace CPE200Lab1
         private string operate ;
         public string operateBefore;
         public CalculaterEngine engine;
-        private double memorize = 0; 
+        private double memorize = 0;
+        private double[] memoryStore = new double[10];
         private string funcMemory;
+        private int storeSize = 0;
 
         private void resetAll()
         {
@@ -220,12 +222,27 @@ namespace CPE200Lab1
                     lblDisplay.Text = memorize.ToString();
                     break;
             }
-
+            isAfterEqual = true;
         }
 
         private void memoryClear_Click(object sender, EventArgs e)
         {
             memorize = 0;
+        }
+
+        private void btnMemoryStore_Click(object sender, EventArgs e)
+        {
+            if (memorize == 0)
+            {
+                memoryStore[storeSize] = Convert.ToDouble(lblDisplay.Text);
+            }
+            else
+            {
+                memoryStore[storeSize] = memorize;
+            }
+            memorize = 0;
+            storeSize += 1;
+            isAfterEqual = true;
         }
     }
 }
