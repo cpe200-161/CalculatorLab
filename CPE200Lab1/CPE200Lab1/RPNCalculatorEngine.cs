@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         public string Process(string str)
         {
+            Stack<string> Numbers = new Stack<string>();
+            string[] part = str.Split(' ');
+            foreach()
+
             // your code here
             return "E";
         }
