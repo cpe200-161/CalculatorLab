@@ -55,7 +55,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
             }
             return "E";
         }
@@ -119,6 +119,9 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    firstOperand = number;
+                    isAfterOperater = true;
+                    hasDot = false;
                     break;
             }
             isAllowBack = false;
