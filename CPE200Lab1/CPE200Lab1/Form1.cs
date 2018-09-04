@@ -18,7 +18,7 @@ namespace CPE200Lab1
         private bool dividesign = false;
         private bool dotsign = true;
         private float num1=0,result=0;
-        
+        private float pec;
         
 
         public Form1()
@@ -284,6 +284,20 @@ namespace CPE200Lab1
                 dotsign = false;
             } 
             
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            pec = float.Parse(lblDisplay.Text);
+            if(num1 == 0)
+            {
+                pec = pec / 100;
+            }
+            else
+            {
+                pec = (pec / 100) * num1;
+            }
+            lblDisplay.Text = pec.ToString();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
