@@ -21,6 +21,7 @@ namespace CPE200Lab1
         private string temp;
         public CalculatorEngine engine;
         private double sum;
+        private string beforePercent;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -79,6 +80,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            
             switch (operate)
             {
                 case "+":                   
@@ -87,13 +89,14 @@ namespace CPE200Lab1
                 case "/":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    beforePercent = operate;
                     break;
+                    
                 case "%":
                     string secondOperand = lblDisplay.Text;
                     isAfterOperater = true;
-                    string result = engine.calculate(operate, firstOperand, secondOperand,8);
-                    lblDisplay.Text = result;
-                    operate = "+";
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, 8);
+                    operate = beforePercent;
                     break;
                 case "sqrt":
                 case "1/x":
