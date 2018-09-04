@@ -202,7 +202,10 @@ namespace CPE200Lab1
             opM = ((Button)sender).Text;
             
             switch (opM)
-            {   
+            {
+                case "MS": firstOperand = lblDisplay.Text;
+                    memory = (float.Parse(firstOperand));
+                    break;
                 case "M+":
                     firstOperand = lblDisplay.Text;
                     memory += (float.Parse(firstOperand));
@@ -217,6 +220,7 @@ namespace CPE200Lab1
                 case "MC":
                     memory = 0;
                     break;
+
                 
 
             }
