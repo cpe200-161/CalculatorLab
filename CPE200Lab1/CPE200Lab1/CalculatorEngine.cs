@@ -44,46 +44,34 @@ namespace CPE200Lab1
             {
                 case "√":
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return FixDecimalPart(Math.Sqrt(Convert.ToDouble(operand)), maxOutputSize);
                     }
                 case "1/x":
                     if(operand != "0")
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (1.0 / Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return FixDecimalPart(1 / Convert.ToDouble(operand), maxOutputSize);
                     }
                     break;
             }
             return "E";
+        }
+
+        private static string FixDecimalPart(double result, int maxOutputSize)
+        {
+            string[] parts;
+            int remainLength;
+
+            // split between integer part and fractional part
+            parts = result.ToString().Split('.');
+            // if integer part length is already break max output, return error
+            if (parts[0].Length > maxOutputSize)
+            {
+                return "E";
+            }
+            // calculate remaining space for fractional part.
+            remainLength = maxOutputSize - parts[0].Length - 1;
+            // trim the fractional part gracefully. =
+            return result.ToString("N" + remainLength);
         }
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -100,22 +88,7 @@ namespace CPE200Lab1
                     // Not allow devide be zero
                     if (secondOperand != "0")
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return FixDecimalPart(Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand), maxOutputSize);
                     }
                     break;
                 case "%":
