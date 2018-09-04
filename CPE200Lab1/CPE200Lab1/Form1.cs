@@ -164,9 +164,14 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
+            if (checkdot == false){
+                string h = ".";
+              
 
 
-            display();
+
+                display();
+            }
         }
     }  
     
