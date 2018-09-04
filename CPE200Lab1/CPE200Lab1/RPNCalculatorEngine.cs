@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine
     {
-        public string process(string str)
+        public string Process(string str)
         {
-        
+            // your code here
+            return "E";
         }
     }
 }
