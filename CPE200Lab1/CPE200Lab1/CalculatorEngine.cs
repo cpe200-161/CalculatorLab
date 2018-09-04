@@ -24,8 +24,17 @@ namespace CPE200Lab1
             return display;
         }
 
-        
-        
+        public void enginresetAll()
+        {
+
+            display = "0";
+            isAllowBack = true;
+            hasDot = false;
+            isAfterOperater = false;
+            isAfterEqual = false;
+        }
+
+
 
 
 

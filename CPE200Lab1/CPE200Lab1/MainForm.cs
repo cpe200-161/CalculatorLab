@@ -19,13 +19,18 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
 
+        private CalculatorEngine engine = new CalculatorEngine();
+
+       
+        private void 
+
+       
+
+
         private void resetAll()
         {
-            lblDisplay.Text = "0";
-            isAllowBack = true;
-            hasDot = false;
-            isAfterOperater = false;
-            isAfterEqual = false;
+            engine.enginresetAll();
+
         }
 
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
