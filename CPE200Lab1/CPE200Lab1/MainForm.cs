@@ -112,7 +112,7 @@ namespace CPE200Lab1
                     break;
 
                 case "1/x":
-
+                  
                     string tempx = (1 / Convert.ToDouble(lblDisplay.Text)).ToString();
 
                     if (firstOperand == null) firstOperand = tempx;
