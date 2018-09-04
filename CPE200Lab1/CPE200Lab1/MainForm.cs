@@ -215,7 +215,7 @@ namespace CPE200Lab1
             switch (mBtn)
             {
                 case "M+":
-                    memberM = float.Parse(lblDisplay.Text);
+                    memberM += float.Parse(lblDisplay.Text);
                     isAfterOperater = true;
                     break;
                 case "MS":
@@ -227,7 +227,7 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "M-":
-                    memberM = 0;
+                    memberM -= float.Parse(lblDisplay.Text) - memberM;
                     break;
                 case "MC":
                     memberM = 0;
