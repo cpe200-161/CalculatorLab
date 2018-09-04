@@ -125,10 +125,17 @@ namespace CPE200Lab1
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (sigh_check == false)
-            {
+           
+                if (lblDisplay.Text[0] is '-')
+                {
+                    lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
+                }
+                else
+                {
+                    lblDisplay.Text = "-" + lblDisplay.Text;
+                }
+            
 
-            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
