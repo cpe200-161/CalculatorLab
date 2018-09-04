@@ -45,9 +45,12 @@ namespace CPE200Lab1
         {
             string[] parts;
             int remainLength;
-
             // split between integer part and fractional part
             parts = result.ToString().Split('.');
+            if (parts.Length == 1)
+            {
+                return result.ToString();
+            }
             // if integer part length is already break max output, return error
             if (parts[0].Length > maxOutputSize)
             {
