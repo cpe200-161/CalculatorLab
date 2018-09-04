@@ -32,8 +32,6 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        
-
         public MainForm()
         {
             InitializeComponent();
