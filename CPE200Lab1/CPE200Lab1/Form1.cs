@@ -77,7 +77,7 @@ namespace CPE200Lab1
             if(i==1)
             {
                 string ans1;
-                while ((ans.ToString()).Length>9)
+                while ((ans.ToString()).Length>8)
                 {
                     ans1 = (ans.ToString()).Substring(0, (ans.ToString()).Length - 1);
                     ans = double.Parse(ans1);
@@ -264,7 +264,7 @@ namespace CPE200Lab1
                 else
                 {
                     i = 1;
-                    Calculator('*', Firstnum, 0);
+                    Calculator('*', Firstnum, 1);
                 }
             }
             OperatorCal = 3;
@@ -383,7 +383,7 @@ namespace CPE200Lab1
                 else
                 {
                     i = 1;
-                    Calculator('/', Firstnum, 0);
+                    Calculator('/', Firstnum, 1);
                 }
             }
             OperatorCal = 4;
