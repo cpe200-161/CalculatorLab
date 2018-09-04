@@ -19,7 +19,6 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private string Afteroperate;
-        private string result;
         private double memory;
         public CalculatorEngine engine;
 
@@ -207,31 +206,15 @@ namespace CPE200Lab1
 
         private void M_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            string secondOperand = lblDisplay.Text;          
-            string result = engine.Calculate(Afteroperate, firstOperand, secondOperand);
-            string M =((Button)sender).Text;
+            string M = ((Button)sender).Text;
             switch (M)
             {
                 case "M+":
-                     memory += Convert.ToDouble(result); break;
+                    memory += Convert.ToDouble(lblDisplay.Text); break;
                 case "M-":
-                     memory -= Convert.ToDouble(result); break;
+                    memory -= Convert.ToDouble(lblDisplay.Text); break;
                 default: break;
             }
-            
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-            isAfterEqual = true;
         }
 
         private void Mr_Click(object sender, EventArgs e)
