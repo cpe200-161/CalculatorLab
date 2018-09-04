@@ -93,6 +93,9 @@ namespace CPE200Lab1
                 case "X":
                 case "√":
                 case "1/X":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
@@ -102,7 +105,9 @@ namespace CPE200Lab1
 
                     break;
             }
+            hasDot = false;
             isAllowBack = false;
+
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -213,19 +218,26 @@ namespace CPE200Lab1
         {
             secondOperand = lblDisplay.Text;
             Memory = engine.calculate("M+", Memory, secondOperand, 8);
-            lblDisplay.Text = "0";
+            hasDot = false;
+            isAllowBack = false;
+            isAfterOperater = true;
         }
 
         private void btnMMinus_Click(object sender, EventArgs e)
         {
             secondOperand = lblDisplay.Text;
-            Memory = engine.calculate(operate, Memory, secondOperand, 8);
-            lblDisplay.Text = "0";
+            Memory = engine.calculate("M-", Memory, secondOperand, 8);
+            hasDot = false;
+            isAllowBack = false;
+            isAfterOperater = true;
         }
 
         private void btnMS_Click(object sender, EventArgs e)
         {
             Memory = lblDisplay.Text;
+            hasDot = false;
+            isAllowBack = false;
+            isAfterOperater = true;
         }
 
         private void btnMC_Click(object sender, EventArgs e)
