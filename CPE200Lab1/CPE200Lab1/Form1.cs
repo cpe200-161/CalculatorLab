@@ -12,9 +12,9 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-
+      
         double x = 0;
-       
+        private bool checkdot = false;
         private bool flag = true;
         private double val = 0;
         public Form1()
@@ -164,8 +164,18 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if (checkdot == false){
-                string h = ".";
+            string z = ".";
+            
+            if (!checkdot)
+            {
+               
+
+
+
+
+            }
+      
+            
               
 
 
@@ -175,4 +185,4 @@ namespace CPE200Lab1
         }
     }  
     
-}
+
