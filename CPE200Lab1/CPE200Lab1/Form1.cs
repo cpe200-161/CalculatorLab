@@ -186,7 +186,22 @@ namespace CPE200Lab1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-           
+            double p = -sum;
+            sum = p;
+            display();
+        }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.StartsWith("-"))
+            {
+                lblDisplay.Text = lblDisplay.Text.Substring(1);
+            }
+            else
+            {
+                lblDisplay.Text = "-" + lblDisplay.Text;
+            }
+
         }
     }
 }
