@@ -22,6 +22,8 @@ namespace CPE200Lab1
         CalculatorEngine cal;
         private string secondOperand;
         private string result = "0";
+        private double mem;
+        private double allmem;
 
         private void resetAll()
         {
@@ -120,15 +122,22 @@ namespace CPE200Lab1
             switch (member)
             {
                 case "M+":
-
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = allmem + mem;
                     break;
                 case "M-":
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = allmem - mem;
                     break;
                 case "MS":
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = mem;
                     break;
                 case "MR":
+                    lblDisplay.Text = (allmem).ToString();
                     break;
                 case "MC":
+                    allmem = mem = 0;
                     break;
             }
         }
