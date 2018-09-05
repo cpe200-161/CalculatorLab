@@ -21,7 +21,7 @@ namespace CPE200Lab1
         private string operate;
         CalculatorEngine cal;
         private string secondOperand;
-        private string result;
+        private string result = "0";
 
         private void resetAll()
         {
@@ -31,9 +31,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
         
-
         public MainForm()
         {
             InitializeComponent();
@@ -91,6 +89,11 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+                    double sumpercent;
+                    double resultper = double.Parse(result);
+                    sumpercent = double.Parse(lblDisplay.Text);
+                    sumpercent = double.Parse(firstOperand) * (sumpercent / 100.00);
+                    lblDisplay.Text = sumpercent.ToString();
                     break;
                 // your code here
                 case "1/X":
