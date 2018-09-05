@@ -129,12 +129,16 @@ namespace CPE200Lab1
                     case "-":
                     case "X":
                     case "÷":
-                    case "√":
-                    case "1/x":
-                        firstOperand = lblDisplay.Text;
+                        operatebefore = ((Button)sender).Text;
                         btnEqual_Click(sender, e);
                         resultpercent = double.Parse(result);
-                        operatebefore = ((Button)sender).Text;
+                        isAfterOperater = true;
+                        break;
+                    case "√":
+                        firstOperand = lblDisplay.Text;
+                        result = engine.calculate(first, operate, operatebefore, percent, resultpercent, firstOperand, result);
+                        lblDisplay.Text = result;
+                        operate = operatebefore;
                         isAfterOperater = true;
                         break;
                 }
@@ -144,8 +148,30 @@ namespace CPE200Lab1
             operate = ((Button)sender).Text;
             isAllowBack = false;
         }
+        private void btnbyx_Click(object sender, EventArgs e)
+        {
+            string byx = lblDisplay.Text;
 
-        private void btnEqual_Click(object sender, EventArgs e)
+            double byxdouble = 1 / Double.Parse(byx);
+            for (int i = byx.Length; byx.Length >= 8; i++)
+            {
+                byx = byx.Substring(0, byx.Length - 1);
+            }
+            char right = byx[byx.Length - 1];
+            double temp = Char.GetNumericValue(right);
+            double rightMost = Convert.ToDouble(temp);
+            if (rightMost > 5)
+            {
+                rightMost++;
+                string rightMostS = rightMost.ToString();
+                byx = byx + rightMostS;
+            }
+
+            
+            lblDisplay.Text = (byxdouble).ToString();
+        }
+
+            private void btnEqual_Click(object sender, EventArgs e)
         {
             if (isAfterEqual == false)
             {
@@ -214,7 +240,7 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            result = operate = "0";
+            result = operate =operatebefore= "0";
             percent = resultpercent = first = 0;
             isPercent = false;
             resetAll();

@@ -42,13 +42,13 @@ namespace CPE200Lab1
                             {
                                 resultdivide = resultdivide.Substring(0, resultdivide.Length - 1);
                             }
-                            char right = resultdivide[resultdivide.Length - 1];
-                            double temp = Char.GetNumericValue(right);
-                            double rightMost = Convert.ToDouble(temp);
-                            if (rightMost > 5)
+                            char rightd = resultdivide[resultdivide.Length - 1];
+                            double tempd = Char.GetNumericValue(rightd);
+                            double rightMostd = Convert.ToDouble(tempd);
+                            if (rightMostd > 5)
                             {
-                                rightMost++;
-                                string rightMostS = rightMost.ToString();
+                                rightMostd++;
+                                string rightMostS = rightMostd.ToString();
                                 return resultdivide + rightMostS;
                             }
                             return resultdivide;
@@ -82,43 +82,6 @@ namespace CPE200Lab1
                             resultroot = resultroot.Substring(0, resultroot.Length - 1);
                         }
                         return resultroot;
-                    }
-                case "1/x":
-                    if (first == 0)
-                    {
-                        string fObyx = (1/firstOperandnum).ToString();
-                        for (int i = fObyx.Length; fObyx.Length >= 8; i++)
-                        {
-                            fObyx = fObyx.Substring(0, fObyx.Length - 1);
-                        }
-                        char right = fObyx[fObyx.Length - 1];
-                        double temp = Char.GetNumericValue(right);
-                        double rightMost = Convert.ToDouble(temp);
-                        if (rightMost > 5)
-                        {
-                            rightMost++;
-                            string rightMostS = rightMost.ToString();
-                            return fObyx + rightMostS;
-                        }
-                        return fObyx;
-                    }
-                    else
-                    {
-                        string resultbyx = (1 / resultnum).ToString();
-                        for (int i = resultbyx.Length; resultbyx.Length > 8; i++)
-                        {
-                            resultbyx = resultbyx.Substring(0, resultbyx.Length - 1);
-                        }
-                        char right = resultbyx[resultbyx.Length - 1];
-                        double temp = Char.GetNumericValue(right);
-                        double rightMost = Convert.ToDouble(temp);
-                        if (rightMost > 5)
-                        {
-                            rightMost++;
-                            string rightMostS = rightMost.ToString();
-                            return resultbyx + rightMostS;
-                        }
-                        return resultbyx;
                     }
             }
             return "E";

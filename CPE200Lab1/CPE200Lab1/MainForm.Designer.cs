@@ -290,7 +290,7 @@
             this.button2.TabIndex = 22;
             this.button2.Text = "1/x";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnOperator_Click);
+            this.button2.Click += new System.EventHandler(this.btnbyx_Click);
             // 
             // button3
             // 
