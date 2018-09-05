@@ -17,7 +17,13 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string prev_operate;
         private string operate;
+        CalculatorEngine cal;
+        private string secondOperand;
+        private string result = "0";
+        private double mem;
+        private double allmem;
 
         private void resetAll()
         {
@@ -27,50 +33,11 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
-
+        
         public MainForm()
         {
             InitializeComponent();
-
+            cal = new CalculatorEngine();
             resetAll();
         }
 
@@ -112,6 +79,7 @@ namespace CPE200Lab1
             {
                 return;
             }
+            prev_operate = operate;
             operate = ((Button)sender).Text;
             switch (operate)
             {
@@ -123,10 +91,55 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    double sumpercent;
+                    double resultper = double.Parse(firstOperand);
+                    sumpercent = double.Parse(lblDisplay.Text);
+                    sumpercent = double.Parse(firstOperand) * (sumpercent / 100.00);
+                    lblDisplay.Text = sumpercent.ToString();
+                    break;
+                // your code here
+                case "1/X":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    result = cal.calculate(operate,firstOperand,secondOperand,prev_operate);
+                    lblDisplay.Text = result;
+                    operate = prev_operate;
+                    break;
+                case "√":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    result = cal.calculate(operate, firstOperand, secondOperand, prev_operate);
+                    lblDisplay.Text = result;
+                    operate = prev_operate;
                     break;
             }
             isAllowBack = false;
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            string member = ((Button)sender).Text;
+            switch (member)
+            {
+                case "M+":
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = allmem + mem;
+                    break;
+                case "M-":
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = allmem - mem;
+                    break;
+                case "MS":
+                    mem = double.Parse(lblDisplay.Text);
+                    allmem = mem;
+                    break;
+                case "MR":
+                    lblDisplay.Text = (allmem).ToString();
+                    break;
+                case "MC":
+                    allmem = mem = 0;
+                    break;
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -135,8 +148,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            
+            secondOperand = lblDisplay.Text;
+            result = cal.calculate(operate, firstOperand, secondOperand,prev_operate);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
