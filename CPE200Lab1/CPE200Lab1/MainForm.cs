@@ -90,7 +90,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     double sumpercent;
-                    double resultper = double.Parse(result);
+                    double resultper = double.Parse(firstOperand);
                     sumpercent = double.Parse(lblDisplay.Text);
                     sumpercent = double.Parse(firstOperand) * (sumpercent / 100.00);
                     lblDisplay.Text = sumpercent.ToString();
@@ -114,12 +114,32 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            string member = ((Button)sender).Text;
+            switch (member)
+            {
+                case "M+":
+
+                    break;
+                case "M-":
+                    break;
+                case "MS":
+                    break;
+                case "MR":
+                    break;
+                case "MC":
+                    break;
+            }
+        }
+
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
+            
             secondOperand = lblDisplay.Text;
             result = cal.calculate(operate, firstOperand, secondOperand,prev_operate);
             if (result is "E" || result.Length > 8)

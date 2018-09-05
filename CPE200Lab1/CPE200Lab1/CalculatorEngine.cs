@@ -47,18 +47,18 @@ namespace CPE200Lab1
                     switch (prev_operate)
                     {
                         case "+":
-                            return (Convert.ToDouble(firstOperand)) + (Convert.ToDouble(secondOperand) * (Convert.ToDouble(firstOperand) / 100)).ToString();
+                            return ((Convert.ToDouble(firstOperand)) + (Convert.ToDouble(secondOperand) )).ToString();
                             break;
                         case "-":
-                            return ((Convert.ToDouble(firstOperand)) - (Convert.ToDouble(secondOperand) * (Convert.ToDouble(firstOperand) / 100))).ToString();
+                            return ((Convert.ToDouble(firstOperand)) - (Convert.ToDouble(secondOperand) )).ToString();
                             break;
                         case "X":
-                            return ((Convert.ToDouble(firstOperand)) * (Convert.ToDouble(secondOperand) * (Convert.ToDouble(firstOperand) / 100))).ToString();
+                            return ((Convert.ToDouble(firstOperand)) * (Convert.ToDouble(secondOperand) )).ToString();
                             break;
                         case "÷":
                             if (Convert.ToDouble(secondOperand) != 0)
                             {
-                                return ((Convert.ToDouble(firstOperand)) / (Convert.ToDouble(secondOperand) * (Convert.ToDouble(firstOperand) / 100))).ToString();
+                                return ((Convert.ToDouble(firstOperand)) / (Convert.ToDouble(secondOperand) )).ToString();
                             }
                             else
                             {

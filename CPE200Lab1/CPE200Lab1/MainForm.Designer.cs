@@ -382,7 +382,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(117, 79);
             this.button7.TabIndex = 27;
-            this.button7.Text = "M";
+            this.button7.Text = "M-";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button8
