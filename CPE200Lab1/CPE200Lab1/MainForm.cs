@@ -130,6 +130,7 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+
                     break;
                 case "1/X":
                     string x = lblDisplay.Text;
