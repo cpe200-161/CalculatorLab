@@ -239,6 +239,7 @@ namespace CPE200Lab1
                     meemory -= double.Parse(lblDisplay.Text);
                     break;
             }
+
         }
     }
 }
