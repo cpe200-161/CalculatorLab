@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate2, string operate, string firstOperand, string secondOperand, double result1, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -44,14 +44,25 @@ namespace CPE200Lab1
                 case "%":
                     double first = Convert.ToDouble(firstOperand);
                     double secon = Convert.ToDouble(secondOperand);
-                    return (first + (first * secon)/100).ToString(); //ทำแค่ + 
+                    switch (operate2)
+                    {
+                        case "+":
+                            return (first + (first * secon) / 100).ToString();
+                            //break;
+                        case "-":
+                            return (first - (first * secon) / 100).ToString();
+                            //break;
+                        case "X":
+                            return ((first * secon) / 100).ToString();
+                            //break;
+                    }
                     break;
                 case "√":
                     return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
-                    break;
+                    //break;
                 case "1/x":
                     return (1 / Convert.ToDouble(firstOperand)).ToString();
-                    break;
+                    //break;
             }
             return "E";
         }

@@ -18,6 +18,8 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string operate2;
+        private double result1 = 0;
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -84,8 +86,20 @@ namespace CPE200Lab1
             switch (operate)
             {
                 case "+":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    operate2 = "+";
+                    break;
                 case "-":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    operate2 = "-";
+                    break;
                 case "X":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    operate2 = "X";
+                    break;
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
@@ -96,9 +110,11 @@ namespace CPE200Lab1
                     break;
                 case "√":
                     firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
                 case "1/x":
                     firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
@@ -111,7 +127,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate2,operate, firstOperand, secondOperand, result1);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -201,6 +217,37 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+        }
+        private void btnMplus_Click(object sender, EventArgs e)
+        {
+            firstOperand = lblDisplay.Text;
+            result1 += (Convert.ToDouble(firstOperand));
+            resetAll();
+        }
+        private void btnMminus_Click(object sender, EventArgs e)
+        {
+            firstOperand = lblDisplay.Text;
+            result1 -= (Convert.ToDouble(firstOperand));
+            resetAll();
+        }
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = result1.ToString();
+        }
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+            firstOperand = lblDisplay.Text;
+            result1 = (Convert.ToDouble(firstOperand));
+            resetAll();
+        }
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            result1 = 0;
         }
     }
 }
