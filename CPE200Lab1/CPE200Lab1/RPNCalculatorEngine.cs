@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
@@ -24,10 +28,14 @@ namespace CPE200Lab1
 
                 else
                 {
-                    if ((text == "+" || text == "-" || text == "X" || text == "÷") && numStack.Count >= 2)
+                    if ((text == "+" || text == "-" || text == "X" || text == "÷" || text == "%") && numStack.Count >= 2)
                     {
                         string second = numStack.Pop();
                         string first = numStack.Pop();
+                        if (text == "%")
+                        {
+                            numStack.Push(first);
+                        }
                         numStack.Push(calculate(text, first, second));
                     }
 
@@ -37,20 +45,17 @@ namespace CPE200Lab1
                         numStack.Push(unaryCalculate(text, num));
                     }
 
-                    else if (text == "")
-                    {
-                        break;
-                    }
-
                     else
                     {
                         return "E";
                     }
                 }
-
             }
 
-            if (numStack.Count != 1) return "E";
+            if (numStack.Count != 1)
+            {
+                return "E";
+            }
 
             return numStack.Peek();
         }
