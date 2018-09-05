@@ -298,7 +298,7 @@
             this.btn_oneOverX.Name = "btn_oneOverX";
             this.btn_oneOverX.Size = new System.Drawing.Size(88, 53);
             this.btn_oneOverX.TabIndex = 21;
-            this.btn_oneOverX.Text = " 1/x";
+            this.btn_oneOverX.Text = "1/x";
             this.btn_oneOverX.UseVisualStyleBackColor = true;
             this.btn_oneOverX.Click += new System.EventHandler(this.btnOperator_Click);
             // 

@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     { 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand, string secondOperand="", string prev="",int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -41,37 +41,81 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
+                    double x0, z0;
+                    string y0;
+
+
+                    switch (prev)
+                    {
+                        case "+":
+                            x0 = Convert.ToDouble(firstOperand);
+                            z0 = Convert.ToDouble(secondOperand);
+                            y0 = (x0 + ((x0 * z0 )/ 100)).ToString();
+                            return y0;
+
+                        case "-":
+                            x0 = Convert.ToDouble(firstOperand);
+                            z0 = Convert.ToDouble(secondOperand);
+                            y0 = (x0 - ((x0 * z0) / 100)).ToString();
+                            return y0;
+
+                        case "X":
+                            x0 = Convert.ToDouble(firstOperand);
+                            z0 = Convert.ToDouble(secondOperand);
+                            y0 = (x0 * ((x0 * z0) / 100)).ToString();
+                            return y0;
+
+                        case "÷":
+                            x0 = Convert.ToDouble(firstOperand);
+                            z0 = Convert.ToDouble(secondOperand);
+                            if(z0 != 0)
+                            {
+                                y0 = (x0 * ((x0 * z0 )/ 100)).ToString();
+                            return y0;
+                            }
+                            return "Error";
+                            
+                    }
+                    
                     break;
                 case "√":
                     double x = Math.Sqrt(Convert.ToDouble(firstOperand));
                     string y = x.ToString();
-                    double z;
+                    
                     if (y.Length > 8)
                     {
                         y = string.Format("{0:F6}", x);
                         x = Convert.ToDouble(y);
-                        return y;
+                        return x.ToString();
                     }
                     else
                     {
-                        return y;
+                        return x.ToString();
                     }
+                    
 
                 case "1/x":
-                    x = 1/Convert.ToDouble(firstOperand);
-                    
-                    y = Convert.ToString(z);
-                   /* if (y.Length > 8)
-                    {
-                        y = string.Format("{0:F6}", x);
-                        x = Convert.ToDouble(y);
-                        return y;
+
+                    double x1, z1;
+                    string[] y1;
+                    int lengthRemain;
+
+                    x1 = Convert.ToDouble(firstOperand);
+                    if(x1 != 0) {
+                        z1 = 1 / x1;
+                        y1 = z1.ToString().Split('.');
+
+                        if (y1[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+
+                        lengthRemain = maxOutputSize - y1[0].Length - 1;
+                        return z1.ToString("N" + lengthRemain);
+                        
                     }
-                    else
-                    {*/
-                        return y;
-                    //}
+                    break;
+                    
 
             }
             return "E";

@@ -17,7 +17,9 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand;
         private string operate;
+        private string prev;
         private CalculatorEngine engine; //create a new object base on blueprint named "CalculatorEngine
 
         private void resetAll()
@@ -113,6 +115,7 @@ namespace CPE200Lab1
             {
                 return;
             }
+            prev = operate;
             operate = ((Button)sender).Text; 
             switch (operate)
             {
@@ -120,13 +123,17 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                    firstOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    
+                    break;
                 case "1/x":
                 case "√":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
-                    break;
-                case "%":
-                    // your code here
+                    lblDisplay.Text = engine.calculate(operate,firstOperand);
                     break;
             }
             isAllowBack = false;
@@ -138,8 +145,8 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+             secondOperand = lblDisplay.Text;
+            string result = engine.calculate(operate, firstOperand, secondOperand,prev);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
