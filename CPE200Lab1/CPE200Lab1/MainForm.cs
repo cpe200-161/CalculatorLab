@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//011-600611010-LAB1-HW1 
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
@@ -18,6 +18,8 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string operate_prev;
+        CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -27,12 +29,12 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
+        /*
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
             {
-                case "+":
+                case "+":1
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
@@ -66,11 +68,16 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        */
+
 
         public MainForm()
         {
+            //SuperHuman nanno = new SuperHuman(); 
+            //ClassType instancename = new ClassType();
             InitializeComponent();
-
+            engine = new CalculatorEngine();
+            memory = 0;
             resetAll();
         }
 
@@ -83,7 +90,7 @@ namespace CPE200Lab1
             if (isAfterEqual)
             {
                 resetAll();
-            }
+            } 
             if (isAfterOperater)
             {
                 lblDisplay.Text = "0";
@@ -112,6 +119,7 @@ namespace CPE200Lab1
             {
                 return;
             }
+            operate_prev = operate;
             operate = ((Button)sender).Text;
             switch (operate)
             {
@@ -125,6 +133,18 @@ namespace CPE200Lab1
                 case "%":
                     // your code here
                     break;
+                case "1/X":
+                    string collect = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate, collect);
+                    
+                    break;
+                case "√":
+                    string sqrt = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate, sqrt);
+                    
+                    break;
             }
             isAllowBack = false;
         }
@@ -136,7 +156,8 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand,operate_prev);
+            //Math.Sqrt()
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -226,6 +247,36 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+        private double memory;
+        private string operateMemory;
+        private void btnmemoryclick(object sender, EventArgs e)
+        {
+            operateMemory = ((Button)sender).Text;
+            switch (operateMemory)
+            {
+                case "MS":
+                    memory = Double.Parse(lblDisplay.Text);
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+                case "M+":
+                    memory = Double.Parse(lblDisplay.Text) + memory;
+                    
+                    break;
+                case "M-":
+                    memory = Double.Parse(lblDisplay.Text) - memory;
+                  
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine(operateMemory);
+            Console.WriteLine(memory);
         }
     }
 }
