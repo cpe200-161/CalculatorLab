@@ -75,8 +75,12 @@ namespace CPE200Lab1
                         return Convert.ToString(1 / Convert.ToDouble(firstOperand));
                     }
                 case "√":
-                    return Convert.ToString(Math.Sqrt(Convert.ToDouble(firstOperand)));
-
+                     string answer= Convert.ToString(Math.Sqrt(Convert.ToDouble(firstOperand)));
+                    if (answer.Length > 8)
+                    {
+                        answer = answer.Remove(8, answer.Length - 8);
+                    }
+                    return answer;
 
             }
             return "E";
