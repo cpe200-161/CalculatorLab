@@ -46,7 +46,6 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -128,10 +127,10 @@ namespace CPE200Lab1
                     lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
                     break;
                 case "1/x":
-                     firstOperand = lblDisplay.Text;          
-                     isAfterOperater = true;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
-                   
+
             }
             isAllowBack = false;
         }

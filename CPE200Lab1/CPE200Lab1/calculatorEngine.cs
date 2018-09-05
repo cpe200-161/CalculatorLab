@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+
 namespace CPE200Lab1
 {
     class CalculatorEngine
     {
- 
- 
+
+
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -27,7 +27,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
- 
+
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -45,7 +45,7 @@ namespace CPE200Lab1
                 case "%":
                     //your code here
                     return (((Convert.ToDouble(secondOperand)) / 100) * Convert.ToDouble(firstOperand)).ToString();
-                    
+
                 case "1/x":
                     // Not allow devide be zero
                     if (firstOperand != "0")
@@ -73,6 +73,6 @@ namespace CPE200Lab1
             }
             return "E";
         }
- 
+
     }
 }
