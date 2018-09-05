@@ -9,7 +9,7 @@ namespace CPE200Lab1
     class CalculatorEngine
     {
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(int per ,string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -42,7 +42,6 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
                     if (firstOperand != "0")
                     {
                         double result;
@@ -56,30 +55,44 @@ namespace CPE200Lab1
                         }
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         secondOperand = result.ToString("N" + remainLength);
-                        return result.ToString("N" + remainLength);
-
-                    }
-                    else return "0";
-
-                  
-                case "1/X":
-                    if (firstOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-                        result = (1 / Convert.ToDouble(firstOperand));
-                        parts = result.ToString().Split('.');
-                        if (parts[0].Length > maxOutputSize)
+                        if (per ==0)
                         {
-                            return "E";
+                            return calculate(per, "+", firstOperand, secondOperand, maxOutputSize = 8);
                         }
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        firstOperand = result.ToString("N" + remainLength);
-                        return result.ToString("N" + remainLength);
+                        else if (per == 1)
+                        {
+                            return calculate(per, "-", firstOperand, secondOperand, maxOutputSize = 8);
+                        }
+                        else if (per == 2)
+                        {
+                            return calculate(per, "X", firstOperand, secondOperand, maxOutputSize = 8);
+                        }
+                        else if (per == 3)
+                        {
+                            return calculate(per , "÷", firstOperand, secondOperand, maxOutputSize = 8);
+                        }
                     }
-                    else return "0";
-                    
+
+                    break;
+
+
+
+                /*     case "1/x":
+
+                             double result2;
+                             string[] parts2;
+                             int remainLength2;
+                             result2 = (1 / Convert.ToDouble(firstOperand));
+                             parts2 = result2.ToString().Split('.');
+                             if (parts2[0].Length > maxOutputSize)
+                             {
+                                 return "E";
+                             }
+                             remainLength2 = maxOutputSize - parts2[0].Length - 1;
+
+                             return result2.ToString("N" + remainLength2);
+                         */
+
                 case "√":
                     if (firstOperand != "0")
                     {

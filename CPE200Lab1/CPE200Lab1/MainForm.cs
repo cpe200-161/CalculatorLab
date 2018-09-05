@@ -17,7 +17,10 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand;
         private string operate;
+        
+        int per;
 
         private void resetAll()
         {
@@ -27,11 +30,11 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-        CalculatorEngine  engine;
+        CalculatorEngine engine;
         public MainForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine() ;
+            engine = new CalculatorEngine();
             resetAll();
             memory = 0;
         }
@@ -50,13 +53,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
             }
@@ -78,20 +81,37 @@ namespace CPE200Lab1
             switch (operate)
             {
                 case "+":
+                    per = 0;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
                 case "-":
+                    per = 1;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
                 case "X":
+                    per = 2;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
                 case "÷":
+                    per = 3;
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
-                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
+                    secondOperand = firstOperand;
+                    isAfterOperater = true;
                     break;
+                    
                 case "√":
-                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
                 case "1/X":
-                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
 
 
@@ -107,7 +127,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(per,operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -155,10 +175,11 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text[0] is '-')
+            if (lblDisplay.Text[0] is '-')
             {
                 lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = "-" + lblDisplay.Text;
             }
@@ -183,16 +204,16 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
                 }
@@ -221,22 +242,49 @@ namespace CPE200Lab1
                 case "Mc":
                     memory = 0;
                     break;
-               case "Mr":
+                case "Mr":
                     lblDisplay.Text = memory.ToString();
                     break;
                 case "M+":
+                   
                     memory += Convert.ToDouble(lblDisplay.Text);
-                break;
+                    lblDisplay.Text = "0";
+                    break;
                 case "M-":
                     memory -= Convert.ToDouble(lblDisplay.Text);
-                break;
+                    lblDisplay.Text = "0";
+                    break;
 
                 default:
                     break;
             }
-            
+
             Console.WriteLine(operateMemory);
-Console.WriteLine(memory);
+            Console.WriteLine(memory);
+        }
+
+        private void btnOnedivX_Click(object sender, EventArgs e)
+        {
+            // Not allow devide be zero
+            if (firstOperand != "0")
+            {
+                double result;
+                string[] parts;
+                int remainLength;
+
+                result = (1 / Convert.ToDouble(lblDisplay.Text));
+                // split between integer part and fractional part
+                parts = result.ToString().Split('.');
+                // if integer part length is already break max output, return error
+                if (parts[0].Length > 8)
+                {
+                    lblDisplay.Text = "E";
+                }
+                // calculate remaining space for fractional part.
+                remainLength = 8 - parts[0].Length - 1;
+                // trim the fractional part gracefully. =
+                lblDisplay.Text = result.ToString("N" + remainLength);
+            }
         }
     }
 }
