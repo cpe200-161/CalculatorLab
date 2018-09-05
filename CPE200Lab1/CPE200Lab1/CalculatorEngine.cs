@@ -29,24 +29,30 @@ namespace CPE200Lab1
                         return (resultnum * firstOperandnum).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (first == 0)
+                    if (firstOperandnum != 0)
                     {
-                        return (firstOperandnum).ToString();
-                    }
-                    if (firstOperand != "0")
-                    {
-                        string resultdivide =  (resultnum / firstOperandnum).ToString();
-                        for (int i = resultdivide.Length; resultdivide.Length >= 8; i++)
+                        if (first == 0)
                         {
-                            resultdivide = resultdivide.Substring(0, resultdivide.Length - 1);
+                            return (firstOperandnum).ToString();
                         }
-                        char right = resultdivide[resultdivide.Length - 1];
-                        double temp = Char.GetNumericValue(right);
-                        double rightMost = Convert.ToDouble(temp);
-                        if (rightMost > 5)
-                            rightMost++;
-                        string rightMostS = rightMost.ToString();
-                        return resultdivide + rightMostS;
+                        if (firstOperand != "0")
+                        {
+                            string resultdivide = (resultnum / firstOperandnum).ToString();
+                            for (int i = resultdivide.Length; resultdivide.Length >= 8; i++)
+                            {
+                                resultdivide = resultdivide.Substring(0, resultdivide.Length - 1);
+                            }
+                            char right = resultdivide[resultdivide.Length - 1];
+                            double temp = Char.GetNumericValue(right);
+                            double rightMost = Convert.ToDouble(temp);
+                            if (rightMost > 5)
+                            {
+                                rightMost++;
+                                string rightMostS = rightMost.ToString();
+                                return resultdivide + rightMostS;
+                            }
+                            return resultdivide;
+                        }
                     }
                     break;
                 case "%":
@@ -121,9 +127,5 @@ namespace CPE200Lab1
         {
             return (resultpercent *(percent/100.00)).ToString();
         }
-
-
-
-
     }
 }

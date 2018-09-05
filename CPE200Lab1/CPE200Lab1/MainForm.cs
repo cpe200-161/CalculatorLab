@@ -219,7 +219,10 @@ namespace CPE200Lab1
             isPercent = false;
             resetAll();
         }
-
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            resetAll();
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -248,10 +251,6 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
-        }
-        private void btnCE_Click(object sender, EventArgs e)
-        {
-            resetAll();
         }
     }
 }
