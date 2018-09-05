@@ -346,7 +346,7 @@
             this.button3.TabIndex = 23;
             this.button3.Text = "MR";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnMemory_click);
+            this.button3.Click += new System.EventHandler(this.btnmem_click);
             // 
             // button4
             // 
@@ -358,7 +358,7 @@
             this.button4.TabIndex = 24;
             this.button4.Text = "MC";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.btnMemory_click);
+            this.button4.Click += new System.EventHandler(this.btnmem_click);
             // 
             // button5
             // 
@@ -370,7 +370,7 @@
             this.button5.TabIndex = 25;
             this.button5.Text = "M+";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnMemory_click);
+            this.button5.Click += new System.EventHandler(this.btnmem_click);
             // 
             // button6
             // 
@@ -382,7 +382,7 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "M-";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.btnMemory_click);
+            this.button6.Click += new System.EventHandler(this.btnmem_click);
             // 
             // button7
             // 
@@ -394,7 +394,7 @@
             this.button7.TabIndex = 27;
             this.button7.Text = "MS";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.btnMemory_click);
+            this.button7.Click += new System.EventHandler(this.btnmem_click);
             // 
             // MainForm
             // 
