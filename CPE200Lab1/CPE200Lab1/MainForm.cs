@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
+
     public partial class MainForm : Form
     {
         private bool hasDot;
@@ -18,7 +19,9 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-        private double num2;
+        double MR;
+
+
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -30,7 +33,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        
+
 
         public MainForm()
         {
@@ -56,13 +59,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
             }
@@ -84,7 +87,7 @@ namespace CPE200Lab1
             switch (operate)
             {
                 case "+":
-                  
+
                 case "-":
                 case "X":
                 case "÷":
@@ -92,10 +95,7 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    
-                            
-                       
-                    
+
                     // your code here
                     break;
             }
@@ -157,7 +157,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text[0] is '-')
+            if (lblDisplay.Text[0] is '-')
             {
                 lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
             } else
@@ -185,18 +185,18 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
-                    lblDisplay.Text = "0"; 
+                    lblDisplay.Text = "0";
                 }
             }
         }
@@ -208,14 +208,14 @@ namespace CPE200Lab1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
-            if(lblDisplay.Text == "0")
+
+            if (lblDisplay.Text == "0")
             {
                 lblDisplay.Text = "Error";
             }
             else
             {
-                lblDisplay.Text = (1/Convert.ToDouble(lblDisplay.Text)).ToString() ;
+                lblDisplay.Text = (1 / Convert.ToDouble(lblDisplay.Text)).ToString();
 
             }
         }
@@ -224,5 +224,38 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
         }
+
+        private void bntM_click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            isAfterOperater = true;
+            switch (operate)
+            {
+                case "M+":
+                   
+                    MR += Convert.ToDouble(lblDisplay.Text);                
+                    break;
+
+                case "M-":
+                    
+                    MR -= Convert.ToDouble(lblDisplay.Text);
+                    break;
+
+                case "MR":
+                    
+                    lblDisplay.Text = Convert.ToString(MR);
+                    break;
+
+                case "MS":
+
+                    MR = Convert.ToDouble(lblDisplay.Text);
+                    break;
+
+                case "MC":
+                    lblDisplay.Text = lblDisplay.Text;
+                    MR = 0;
+                    break;
+            }
+        } 
     }
 }

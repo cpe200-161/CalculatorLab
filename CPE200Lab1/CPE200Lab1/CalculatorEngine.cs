@@ -10,6 +10,7 @@ namespace CPE200Lab1
     {
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
+            
             switch (operate)
             {
                 case "+":
@@ -43,7 +44,9 @@ namespace CPE200Lab1
                 case "%":
                     return ((Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100)).ToString());
                     //your code here
-                    break;
+                    
+                
+             
             }
             return "E";
         }
