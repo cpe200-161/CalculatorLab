@@ -43,7 +43,8 @@ namespace CPE200Lab1
                 case "%":
                     //your code here
                     double result1;
-                  result1 = Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100);
+                   result1 = (Convert.ToDouble(firstOperand)) * (Convert.ToDouble(secondOperand)/100);
+                    
                     return result1.ToString();
                     break;
                 case "1/X":
@@ -58,8 +59,26 @@ namespace CPE200Lab1
                     if (a.Length > 8) a=a.Substring(0, 8);
                    return a;
                     break;
+                
             }
             return "E";
         }
+        public string calculatefuncM(string operate,string secondOperand,string save)
+        {
+            switch (operate)
+            {
+                case "M+":
+                    save = (Convert.ToDouble(save) + Convert.ToDouble(secondOperand)).ToString();
+                    return save;
+                    break;
+                case "M-":
+                    save = (Convert.ToDouble(save) - Convert.ToDouble(secondOperand)).ToString();
+                    return  save;
+                    break;
+            }
+
+            return save;
+        }
+       
     }
 }
