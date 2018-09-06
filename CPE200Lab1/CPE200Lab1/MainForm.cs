@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        double btnMR;
         private CalculatorEngine engine;
        
         private void resetAll()
@@ -197,45 +198,26 @@ namespace CPE200Lab1
 
         private void memCalculate(object sender, EventArgs e)
         {
-            Button ButtonPushed = (Button)sender;
-            string ButtonText = ButtonPushed.Text;
-            double EndResult = 0;
-            double MemorySave = 0;
-
-            if (lblDisplay.Text != "0")
+            operate = ((Button)sender).Text;
+            isAfterOperater = true;
+            switch (operate)
             {
-
-                if (ButtonText == "MC")
-                {
-                    MemorySave = 0;
-                    return;
-                }
-
-                if (ButtonText == "MR")
-                {
-                    lblDisplay.Text = MemorySave.ToString();
-                    return;
-                }
-
-                if (ButtonText == "MS")
-                {
-                    MemorySave = float.Parse(lblDisplay.Text);
-                    return;
-                }
-
-                if (ButtonText == "M-")
-                {
-                    MemorySave -= EndResult;
-                    lblDisplay.Text = MemorySave.ToString();
-                    return;
-                }
-
-                if (ButtonText == "M+")
-                {
-                    MemorySave += EndResult;
-                    lblDisplay.Text = MemorySave.ToString();
-                    return;
-                }
+                case "MC":
+                    lblDisplay.Text = lblDisplay.Text;
+                    btnMR = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(btnMR);
+                    break;
+                case "MS":
+                    btnMR = Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M+":
+                    btnMR += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    btnMR -= Convert.ToDouble(lblDisplay.Text);
+                    break;
             }
         }
     }
