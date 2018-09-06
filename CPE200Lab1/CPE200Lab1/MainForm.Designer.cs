@@ -337,6 +337,7 @@
             // 
             // MemoryClear
             // 
+            this.MemoryClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MemoryClear.Location = new System.Drawing.Point(16, 181);
             this.MemoryClear.Name = "MemoryClear";
             this.MemoryClear.Size = new System.Drawing.Size(117, 78);
@@ -347,6 +348,7 @@
             // 
             // MemoryRecall
             // 
+            this.MemoryRecall.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MemoryRecall.Location = new System.Drawing.Point(141, 181);
             this.MemoryRecall.Name = "MemoryRecall";
             this.MemoryRecall.Size = new System.Drawing.Size(117, 78);
@@ -357,6 +359,7 @@
             // 
             // MemoryStored
             // 
+            this.MemoryStored.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MemoryStored.Location = new System.Drawing.Point(267, 182);
             this.MemoryStored.Name = "MemoryStored";
             this.MemoryStored.Size = new System.Drawing.Size(117, 78);
@@ -367,6 +370,7 @@
             // 
             // MemoryAdd
             // 
+            this.MemoryAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MemoryAdd.Location = new System.Drawing.Point(392, 183);
             this.MemoryAdd.Name = "MemoryAdd";
             this.MemoryAdd.Size = new System.Drawing.Size(117, 78);
@@ -377,6 +381,7 @@
             // 
             // MemoryMinus
             // 
+            this.MemoryMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MemoryMinus.Location = new System.Drawing.Point(515, 184);
             this.MemoryMinus.Name = "MemoryMinus";
             this.MemoryMinus.Size = new System.Drawing.Size(117, 78);
