@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     { 
-        public string calculate(string operate, string firstOperand, string secondOperand="", string prev="",int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand , string secondOperand="", string prevOperate="",int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -40,34 +40,27 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
+
                 case "%":
-                    double x0, z0;
+
+                    double x0 = Convert.ToDouble(firstOperand);
+                    double z0 = Convert.ToDouble(secondOperand);
                     string y0;
-
-
-                    switch (prev)
+                   switch (prevOperate)
                     {
                         case "+":
-                            x0 = Convert.ToDouble(firstOperand);
-                            z0 = Convert.ToDouble(secondOperand);
-                            y0 = (x0 + ((x0 * z0 )/ 100)).ToString();
+                            y0 = (x0+(x0 * z0 / 100)).ToString(); 
                             return y0;
 
                         case "-":
-                            x0 = Convert.ToDouble(firstOperand);
-                            z0 = Convert.ToDouble(secondOperand);
                             y0 = (x0 - ((x0 * z0) / 100)).ToString();
                             return y0;
 
                         case "X":
-                            x0 = Convert.ToDouble(firstOperand);
-                            z0 = Convert.ToDouble(secondOperand);
                             y0 = (x0 * ((x0 * z0) / 100)).ToString();
                             return y0;
 
                         case "÷":
-                            x0 = Convert.ToDouble(firstOperand);
-                            z0 = Convert.ToDouble(secondOperand);
                             if(z0 != 0)
                             {
                                 y0 = (x0 * ((x0 * z0 )/ 100)).ToString();
@@ -75,7 +68,7 @@ namespace CPE200Lab1
                             }
                             return "Error";
                             
-                    }
+                    } 
                     
                     break;
                 case "√":
