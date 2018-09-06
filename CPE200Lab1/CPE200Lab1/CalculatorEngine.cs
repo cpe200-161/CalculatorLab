@@ -40,7 +40,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-
+                    
                 case "%":
 
                     double x0 = Convert.ToDouble(firstOperand);
