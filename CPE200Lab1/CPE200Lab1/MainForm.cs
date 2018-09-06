@@ -19,7 +19,10 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private string operateTemp;
+        private string secondOperand;
         private CalculatorEngine engine;
+        public double memory;
+        private string M;
 
         private void resetAll()
         {
@@ -36,6 +39,7 @@ namespace CPE200Lab1
 
             resetAll();
             engine = new CalculatorEngine();
+            engine.calculate(operate, firstOperand, secondOperand);
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -77,6 +81,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+
             switch (operate)
             {
                 case "+":
@@ -89,14 +94,11 @@ namespace CPE200Lab1
                     break;
                 // your code here
                 case "%":
-                    /*lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;*/
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
                     break;
-                case "√":
-                    /*lblDisplay.Text = engine.calculate(operate, firstOperand, "").ToString();
-                    operate = operateTemp;
-                    isAfterOperater = true;*/
+                case "1/x":
+                    firstOperand = lblDisplay.Text; 
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
@@ -108,7 +110,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
+            secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
@@ -205,5 +207,33 @@ namespace CPE200Lab1
         {
 
         }
+
+        private void btnM(object sender, EventArgs e)
+        {
+            M = ((Button)sender).Text;
+            switch (M)
+            {
+                case "MS":
+                    memory = Double.Parse(lblDisplay.Text);
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+                case "M+":
+                    memory += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    memory -= Convert.ToDouble(lblDisplay.Text);
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine(operateTemp);
+            Console.WriteLine(memory);
+        }
     }
-}
+ }
+
