@@ -19,6 +19,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string tempOper;
         private string operate;
+        private double Mem;
+        private string OperMem;
         private CalculaterEngine engine;
 
         private void resetAll()
@@ -209,6 +211,31 @@ namespace CPE200Lab1
 
         }
 
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            OperMem = ((Button)sender).Text;
+            switch (OperMem)
+            {
+                case "MC":
+                    Mem = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Mem.ToString();
+                    break;
+                case "MS":
+                    Mem = Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M+":
+                    Mem += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    Mem -= Convert.ToDouble(lblDisplay.Text);
+                    break;
 
+                    
+            }
+            Console.WriteLine(OperMem);
+            Console.WriteLine(Mem);
+        }
     }
 }
