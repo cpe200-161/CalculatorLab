@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
+        private string memory;
 
 
         private void resetAll()
@@ -29,16 +30,13 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
         }
-
-        
-
         public MainForm()
         {
             InitializeComponent();
             resetAll();
             engine = new CalculatorEngine();
         }
-
+        
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -204,5 +202,38 @@ namespace CPE200Lab1
             }
         }
 
+        private void MC_Click(object sender, EventArgs e)
+        {
+            memory = null;
+            lblDisplay.Text = "0";
+            
+        }
+
+        private void MR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = memory;
+        }
+
+        private void MS_Click(object sender, EventArgs e)
+        {
+            memory = lblDisplay.Text;
+            if (memory != null)
+            {
+                lblDisplay.Text = "";
+            }
+
+            
+        }
+
+        private void MP_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) + Convert.ToDouble(memory)).ToString();
+
+        }
+
+        private void MM_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) - Convert.ToDouble(memory)).ToString();
+        }
     }
 }
