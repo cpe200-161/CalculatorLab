@@ -19,6 +19,9 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
+        private Double memory;
+        private bool memFlag;
+        
 
 
         private void resetAll()
@@ -34,6 +37,11 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+
+            btnMC.Enabled = false;
+            btnMR.Enabled = false;
+
+            
 
             resetAll();
             // 1. new CalculatorEngine()=> instantiate an object
@@ -62,9 +70,10 @@ namespace CPE200Lab1
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if(lblDisplay.Text is "0"|| memFlag == true)
             {
                 lblDisplay.Text = "";
+                memFlag = false;
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
@@ -220,6 +229,43 @@ namespace CPE200Lab1
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+            memory = Convert.ToDouble(lblDisplay.Text);
+
+            btnMC.Enabled = true;
+            btnMR.Enabled = true;
+            memFlag = true;
+        }
+
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = memory.ToString();
+            memFlag = true;
+                
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            memory = 0;
+            btnMR.Enabled = false;
+            btnMC.Enabled = false;
+
+        
+        }
+
+        private void btnMplus_Click(object sender, EventArgs e)
+        {
+            memory += Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void btnMminus_Click(object sender, EventArgs e)
+        {
+            memory -= Convert.ToDouble(lblDisplay.Text);
         }
     }
 }
