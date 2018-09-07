@@ -256,7 +256,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
+                   
             }
             return "E";
         }
