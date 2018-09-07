@@ -246,24 +246,29 @@ namespace CPE200Lab1
             if (btn.Text == "MC")
             {
                 Memo = 0;
+                isAfterOperater = true;
             }
             else if (btn.Text == "MR")
             {
-                lblDisplay.Text = Memo.ToString();                
+                lblDisplay.Text = Memo.ToString();
+                isAfterOperater = true;
             }
             else if (btn.Text == "MS")
             {
                 Memo = Convert.ToDouble(lblDisplay.Text);
+                isAfterOperater = true;
             }
             else if (btn.Text == "M+")
             {
                 Memo += Convert.ToDouble(lblDisplay.Text);
+                isAfterOperater = true;
             }
             else if (btn.Text == "M-")
             {
                 Memo -= Convert.ToDouble(lblDisplay.Text);
+                isAfterOperater = true;
             }
-            //else if (btn)
+
          
         }
 
