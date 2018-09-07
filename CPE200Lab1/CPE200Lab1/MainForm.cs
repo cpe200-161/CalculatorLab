@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
+        double btnMR;
 
         private void resetAll()
         {
@@ -200,9 +201,29 @@ namespace CPE200Lab1
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void M_Calculate (object sender, EventArgs e)
         {
-
+            operate = ((Button)sender).Text;
+            isAfterOperater = true;
+            switch (operate)
+            {
+                case "MC":
+                    lblDisplay.Text = lblDisplay.Text;
+                    btnMR = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(btnMR);
+                    break;
+                case "MS":
+                    btnMR = Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M+":
+                    btnMR += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    btnMR -= Convert.ToDouble(lblDisplay.Text);
+                    break;
+            }
         }
     }
 }
