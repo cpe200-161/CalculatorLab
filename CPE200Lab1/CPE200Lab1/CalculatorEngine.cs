@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     
     {
         private bool isNumberPart = false;
@@ -14,7 +14,7 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         private string display = "0"  ;
 
-        public string Display()
+        public virtual string Display()
         {
             return display;
         }
