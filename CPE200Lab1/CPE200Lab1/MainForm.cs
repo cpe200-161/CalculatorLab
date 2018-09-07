@@ -19,6 +19,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculatorEngine engine;
+        private double memory = 0;
+        private string mem;
 
         private void resetAll()
         {
@@ -91,7 +93,7 @@ namespace CPE200Lab1
                     break;
                 //case "%":
                     // your code here.
-                    // my code in new functions.
+                    // my code are in new functions.
             }
             isAllowBack = false;
         }
@@ -198,6 +200,42 @@ namespace CPE200Lab1
         private void btnPercent_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = (Convert.ToDouble(firstOperand) * ((Convert.ToDouble(lblDisplay.Text)) / 100)).ToString();
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+            mem = ((Button)sender).Text;
+            switch (mem)
+            {
+                case "MS":
+                    memory = (Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "M+":
+                    memory = memory +(Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "M-":
+                    memory = memory - (Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+            }
         }
     }
 }
