@@ -1,0 +1,10 @@
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.exe.config
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.exe
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\bin\Debug\CPE200Lab1.pdb
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csprojAssemblyReference.cache
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.MainForm.resources
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.Properties.Resources.resources
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csproj.GenerateResource.cache
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.csproj.CoreCompileInputs.cache
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.exe
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1\obj\Debug\CPE200Lab1.pdb
