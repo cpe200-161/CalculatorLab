@@ -16,8 +16,15 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        private bool isMemOn;
+        private bool isAfterMem;
         private string firstOperand;
         private string operate;
+        private string preOperate;
+        private string memStore;
+        private string memSign;
+        private CalculatorEngine engine;
+        
 
         private void resetAll()
         {
@@ -26,52 +33,17 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            isAfterMem = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
+        
 
         public MainForm()
         {
             InitializeComponent();
 
             resetAll();
+            engine = new CalculatorEngine();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -84,7 +56,7 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            if (isAfterOperater)
+            if (isAfterOperater || isAfterMem)
             {
                 lblDisplay.Text = "0";
             }
@@ -100,6 +72,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            isAfterMem = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -119,14 +92,28 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                    preOperate = operate;
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
+
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
+                    
+                    operate = preOperate;
                     // your code here
+                    break;
+                case "√":
+                    firstOperand = lblDisplay.Text;
+                    
+                    break;
+                case "1/x":
+                    firstOperand = lblDisplay.Text;
+
                     break;
             }
             isAllowBack = false;
+            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -136,7 +123,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -226,6 +213,58 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void btnMem_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            memSign = ((Button)sender).Text;
+            switch (memSign)
+            {
+                case "MC":
+                    if (isMemOn)
+                    {
+                        memStore = "0";
+                    }
+                    isMemOn = false;
+                    isAfterOperater = true;
+                    break;
+                case "MR":
+                    if (isMemOn)
+                    {
+                        lblDisplay.Text = memStore;
+                        isAfterMem = true;
+                    }
+                    
+                    
+                    break;
+                case "MS":
+                    memStore = lblDisplay.Text;
+                    isMemOn = true;
+                    isAfterOperater = true;
+                    break;
+
+                case "M+":
+                    operate = "+";
+                    firstOperand = lblDisplay.Text;
+                    
+                    memStore = engine.calculate(operate, firstOperand, memStore);
+                    isMemOn = true;
+                    isAfterMem = true;
+                    break;
+                case "M-":
+                    operate = "+";
+                    firstOperand = "-"+lblDisplay.Text;
+                    memStore = engine.calculate(operate, firstOperand, memStore);
+                    isMemOn = true;
+                    isAfterMem = true;
+                    break;
+            }
+            
+            
         }
     }
 }
