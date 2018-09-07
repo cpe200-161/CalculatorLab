@@ -18,9 +18,12 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-
+        private CalculateX engine;
+        double sum=0;
+        
         private void resetAll()
         {
+            
             lblDisplay.Text = "0";
             isAllowBack = true;
             hasDot = false;
@@ -28,50 +31,15 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
 
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
+        
 
         public MainForm()
         {
             InitializeComponent();
-
             resetAll();
+            engine = new CalculateX();
+            
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -119,12 +87,18 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "1/X":
+                case "√":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+
+                    string secondOperand = lblDisplay.Text;
+                    
+                    
                     break;
+               
             }
             isAllowBack = false;
         }
@@ -136,10 +110,14 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
+            string result = engine.calculate(operate, firstOperand, secondOperand);
+            if (result is "E")
             {
                 lblDisplay.Text = "Error";
+            }
+            else if(result.Length > 8)
+            {
+                lblDisplay.Text = result.Substring(0,8);
             }
             else
             {
@@ -226,6 +204,41 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonM_Click(object sender, EventArgs e)
+        {
+           string Checksum = ((Button)sender).Text;
+            isAfterOperater = true;
+            switch (Checksum)
+            {
+                case "MS":
+                    sum = Convert.ToDouble(lblDisplay.Text);
+                    break;
+
+                case "M+":
+                    sum += Convert.ToDouble(lblDisplay.Text); ;
+                    break;
+
+                case "M-":
+                    sum -= Convert.ToDouble(lblDisplay.Text); ;
+                    break;
+
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(sum);
+                    break;
+
+                case "MC":
+                    sum = 0;
+                    break;
+            }
+      
+            
         }
     }
 }
