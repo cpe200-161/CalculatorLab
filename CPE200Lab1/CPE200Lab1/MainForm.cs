@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private CalculateX engine;
+        double sum=0;
         
         private void resetAll()
         {
@@ -205,10 +206,39 @@ namespace CPE200Lab1
             }
         }
 
-        
+        private void MainForm_Load(object sender, EventArgs e)
+        {
 
-        
+        }
 
-        
+        private void buttonM_Click(object sender, EventArgs e)
+        {
+           string Checksum = ((Button)sender).Text;
+            isAfterOperater = true;
+            switch (Checksum)
+            {
+                case "MS":
+                    sum = Convert.ToDouble(lblDisplay.Text);
+                    break;
+
+                case "M+":
+                    sum += Convert.ToDouble(lblDisplay.Text); ;
+                    break;
+
+                case "M-":
+                    sum -= Convert.ToDouble(lblDisplay.Text); ;
+                    break;
+
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(sum);
+                    break;
+
+                case "MC":
+                    sum = 0;
+                    break;
+            }
+      
+            
+        }
     }
 }
