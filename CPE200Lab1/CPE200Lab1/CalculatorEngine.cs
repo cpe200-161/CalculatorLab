@@ -84,6 +84,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    firstOperand = display;
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
@@ -225,6 +227,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
 
                     break;
             }
