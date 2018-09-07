@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
@@ -15,7 +15,7 @@ namespace CPE200Lab1
 
         private string display = "0";
 
-        public string Display()
+        public virtual string Display()
         {
             return display;
         }
@@ -36,8 +36,16 @@ namespace CPE200Lab1
                 isNumberPart = true;
                 isContainDot = false;
             }
-            display += ((Button)sender).Text;
+            display += n;
             isSpaceAllowed = true;
+        }
+        public void handleOperatorClick(string a)
+        {
+            isNumberPart = true;
+            isContainDot = false;
+            string current = display;
+
+        if (current[current.Length - 1] !=)
         }
 
         public void BinaryOperator(object sender, EventArgs e)
@@ -51,7 +59,7 @@ namespace CPE200Lab1
             string current = display;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                display += " " + ((Button)sender).Text + " ";
+                display += " " + n + " ";
                 isSpaceAllowed = false;
             }
         }
@@ -85,18 +93,7 @@ namespace CPE200Lab1
             isSpaceAllowed = false;
         }
 
-        public void Equak(object sender, EventArgs e)
-        {
-            string result = engine.Process(display);
-            if (result is "E")
-            {
-                display = "Error";
-            }
-            else
-            {
-                display = result;
-            }
-        }
+        
 
         public void Sign(object sender, EventArgs e)
         {

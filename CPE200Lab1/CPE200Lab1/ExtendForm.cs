@@ -17,10 +17,20 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
 
+        
+
+        
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine =Engine();
+        }
+
+
+        protected virtual CalculatorEngine Engine()
+        {
+            return new CalculatorEngine();
+
         }
 
         private bool isOperator(char ch)
@@ -41,18 +51,15 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
-            lblDisplay.Text += ((Button)sender).Text;
-            isSpaceAllowed = true;
+            
+
+            string n = ((Button)sender).Text;
+            engine.Number(n);
+
+            lblDisplay.Text = engine.Display();
         }
+
+        
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
