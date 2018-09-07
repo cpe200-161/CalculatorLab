@@ -122,7 +122,7 @@ namespace CPE200Lab1
 
         }
 
-        public void BtSpace_Click()
+        public virtual void BtSpace_Click()
         {
             if (isSpaceAllowed)
             {

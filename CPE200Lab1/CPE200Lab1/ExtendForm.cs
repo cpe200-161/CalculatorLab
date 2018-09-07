@@ -21,7 +21,7 @@ namespace CPE200Lab1
             engine = Engine();
         }
 
-        protected new  CalculatorEngine Engine()
+        protected virtual CalculatorEngine Engine()
         {
             return new CalculatorEngine();
         }
