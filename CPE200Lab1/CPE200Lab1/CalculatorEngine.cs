@@ -50,7 +50,6 @@ namespace CPE200Lab1
                     string result2 = (1 / Convert.ToDouble(secondOperand)).ToString();
                     if (result2.Length > 8) return result2.Substring(0, 8);
                     else return result2;
-
             }
             return "E";
         }

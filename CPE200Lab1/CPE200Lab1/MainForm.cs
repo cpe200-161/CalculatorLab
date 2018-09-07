@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        public string memory = "0";
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -29,7 +30,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        
+
 
         public MainForm()
         {
@@ -53,13 +54,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
             }
@@ -90,6 +91,7 @@ namespace CPE200Lab1
                 case "%":
                     // your code here
                     break;
+
             }
             isAllowBack = false;
         }
@@ -149,7 +151,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text[0] is '-')
+            if (lblDisplay.Text[0] is '-')
             {
                 lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
             } else
@@ -177,21 +179,48 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
                 }
             }
         }
-
+        private void btnMemory(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "MC":
+                    memory = "0";
+                    isAfterOperater = true;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory;
+                    isAfterOperater = true;
+                    break;
+                case "MS":
+                    memory = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
+                case "M+":
+                   memory = (Convert.ToDouble(memory) + Convert.ToDouble(lblDisplay.Text) ).ToString();
+                    isAfterOperater = true;
+                    break;
+                case "M-":
+                    memory = (Convert.ToDouble(memory) - Convert.ToDouble(lblDisplay.Text)).ToString();
+                    isAfterOperater = true;
+                    break;
+                    
+            }
+        }
     }
 }
