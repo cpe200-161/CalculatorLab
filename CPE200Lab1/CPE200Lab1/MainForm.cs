@@ -16,8 +16,11 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        private bool isMemoryPress;
         private string firstOperand;
         private string operate;
+        private string memoryNumber;
+        private CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -28,50 +31,17 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
+        
 
         public MainForm()
         {
             InitializeComponent();
 
             resetAll();
+            //1. new CalculatorEngine() -> instantiate an object
+            //2. reference to that object with engine varriable
+            // LHS = RHS
+            engine = new CalculatorEngine();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -98,12 +68,18 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
+            else if(isMemoryPress)
+            {
+                lblDisplay.Text = "";
+                isMemoryPress = false;
+            }
             lblDisplay.Text += digit;
             isAfterOperater = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
+
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -113,18 +89,59 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            System.Console.WriteLine(operate);
             switch (operate)
             {
+
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+                
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
                     // your code here
+                    string secondOperand = lblDisplay.Text;
+                    string result = engine.calculate(operate, firstOperand, secondOperand);
+                    lblDisplay.Text = result;
+
                     break;
+                case "√":
+                    firstOperand = lblDisplay.Text;
+                    firstOperand = (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
+                    lblDisplay.Text = firstOperand;
+
+                    break;
+                case "1/x":
+                    firstOperand = lblDisplay.Text;
+                    firstOperand = (1 / Convert.ToDouble(firstOperand)).ToString();
+                    lblDisplay.Text = firstOperand;
+                    break;
+                case "MS":
+                    memoryNumber = lblDisplay.Text;
+                    isMemoryPress = true;
+                    break;
+                case "MR":
+                    lblDisplay.Text = memoryNumber;
+                    break;
+                case "M+":
+                    firstOperand = lblDisplay.Text;
+                    System.Console.WriteLine("firstOperand in M+ case is " + firstOperand);
+                    memoryNumber = engine.memoryFunction(operate, firstOperand, memoryNumber);
+                    System.Console.WriteLine(memoryNumber);
+                    break;
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    memoryNumber = engine.memoryFunction(operate, firstOperand, memoryNumber);
+                    break;
+                case "MC":
+                    memoryNumber = "0";
+                    isMemoryPress = true;
+                    break;
+
+
             }
             isAllowBack = false;
         }
@@ -136,7 +153,8 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand);
+            System.Console.WriteLine(result);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -226,6 +244,11 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
