@@ -52,11 +52,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.MC = new System.Windows.Forms.Button();
+            this.MR = new System.Windows.Forms.Button();
+            this.MS = new System.Windows.Forms.Button();
+            this.MPlus = new System.Windows.Forms.Button();
+            this.Mminus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -371,65 +371,70 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.btnOperator_Click);
             // 
-            // button4
+            // MC
             // 
-            this.button4.BackColor = System.Drawing.Color.SandyBrown;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(16, 181);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(117, 79);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "MC";
-            this.button4.UseVisualStyleBackColor = false;
+            this.MC.BackColor = System.Drawing.Color.SandyBrown;
+            this.MC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MC.Location = new System.Drawing.Point(16, 181);
+            this.MC.Margin = new System.Windows.Forms.Padding(4);
+            this.MC.Name = "MC";
+            this.MC.Size = new System.Drawing.Size(117, 79);
+            this.MC.TabIndex = 24;
+            this.MC.Text = "MC";
+            this.MC.UseVisualStyleBackColor = false;
+            this.MC.Click += new System.EventHandler(this.MC_Click);
             // 
-            // button5
+            // MR
             // 
-            this.button5.BackColor = System.Drawing.Color.SandyBrown;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(141, 181);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(117, 79);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "MR";
-            this.button5.UseVisualStyleBackColor = false;
+            this.MR.BackColor = System.Drawing.Color.SandyBrown;
+            this.MR.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MR.Location = new System.Drawing.Point(141, 181);
+            this.MR.Margin = new System.Windows.Forms.Padding(4);
+            this.MR.Name = "MR";
+            this.MR.Size = new System.Drawing.Size(117, 79);
+            this.MR.TabIndex = 25;
+            this.MR.Text = "MR";
+            this.MR.UseVisualStyleBackColor = false;
+            this.MR.Click += new System.EventHandler(this.MR_Click);
             // 
-            // button6
+            // MS
             // 
-            this.button6.BackColor = System.Drawing.Color.SandyBrown;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(267, 181);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(117, 79);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "MS";
-            this.button6.UseVisualStyleBackColor = false;
+            this.MS.BackColor = System.Drawing.Color.SandyBrown;
+            this.MS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MS.Location = new System.Drawing.Point(267, 181);
+            this.MS.Margin = new System.Windows.Forms.Padding(4);
+            this.MS.Name = "MS";
+            this.MS.Size = new System.Drawing.Size(117, 79);
+            this.MS.TabIndex = 26;
+            this.MS.Text = "MS";
+            this.MS.UseVisualStyleBackColor = false;
+            this.MS.Click += new System.EventHandler(this.MS_Click);
             // 
-            // button7
+            // MPlus
             // 
-            this.button7.BackColor = System.Drawing.Color.SandyBrown;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(392, 181);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(117, 79);
-            this.button7.TabIndex = 27;
-            this.button7.Text = "M+";
-            this.button7.UseVisualStyleBackColor = false;
+            this.MPlus.BackColor = System.Drawing.Color.SandyBrown;
+            this.MPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MPlus.Location = new System.Drawing.Point(392, 181);
+            this.MPlus.Margin = new System.Windows.Forms.Padding(4);
+            this.MPlus.Name = "MPlus";
+            this.MPlus.Size = new System.Drawing.Size(117, 79);
+            this.MPlus.TabIndex = 27;
+            this.MPlus.Text = "M+";
+            this.MPlus.UseVisualStyleBackColor = false;
+            this.MPlus.Click += new System.EventHandler(this.MPlus_Click);
             // 
-            // button8
+            // Mminus
             // 
-            this.button8.BackColor = System.Drawing.Color.SandyBrown;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(517, 181);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(117, 79);
-            this.button8.TabIndex = 28;
-            this.button8.Text = "M-";
-            this.button8.UseVisualStyleBackColor = false;
+            this.Mminus.BackColor = System.Drawing.Color.SandyBrown;
+            this.Mminus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mminus.Location = new System.Drawing.Point(517, 181);
+            this.Mminus.Margin = new System.Windows.Forms.Padding(4);
+            this.Mminus.Name = "Mminus";
+            this.Mminus.Size = new System.Drawing.Size(117, 79);
+            this.Mminus.TabIndex = 28;
+            this.Mminus.Text = "M-";
+            this.Mminus.UseVisualStyleBackColor = false;
+            this.Mminus.Click += new System.EventHandler(this.Mminus_Click);
             // 
             // MainForm
             // 
@@ -437,11 +442,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(649, 709);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Mminus);
+            this.Controls.Add(this.MPlus);
+            this.Controls.Add(this.MS);
+            this.Controls.Add(this.MR);
+            this.Controls.Add(this.MC);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -499,11 +504,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button MC;
+        private System.Windows.Forms.Button MR;
+        private System.Windows.Forms.Button MS;
+        private System.Windows.Forms.Button MPlus;
+        private System.Windows.Forms.Button Mminus;
     }
 }
 

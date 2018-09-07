@@ -17,6 +17,7 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string ThirdOperand;
         private string operate;
         private CalculatorEngine engine;
 
@@ -204,6 +205,32 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MC_Click(object sender, EventArgs e)
+        {
+            ThirdOperand = "0";
+            lblDisplay.Text = "0";
+        }
+
+        private void MR_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = ThirdOperand;
+        }
+
+        private void MS_Click(object sender, EventArgs e)
+        {
+            ThirdOperand = lblDisplay.Text;
+        }
+
+        private void MPlus_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) + Convert.ToDouble(ThirdOperand)).ToString();
+        }
+
+        private void Mminus_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) - Convert.ToDouble(ThirdOperand)).ToString();
         }
     }
 }
