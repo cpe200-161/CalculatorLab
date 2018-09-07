@@ -101,13 +101,16 @@ namespace CPE200Lab1
                     lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, memory);
                     isAfterOperater = true;
                     break;
+                case "MC":
+                    memory = "0";
+                    isAfterOperater = true;
+                    break;
                 case "MS":
                 case "M+":
                 case "M-":
                 case "MR":
-                case "MC":
                     secondOperand = lblDisplay.Text;
-                    memory=lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, memory);
+                    memory = lblDisplay.Text =  engine.calculate(operate, firstOperand, secondOperand, memory);
                     isAfterOperater = true;
                     break;
 

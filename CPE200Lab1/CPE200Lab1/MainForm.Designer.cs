@@ -345,7 +345,7 @@
             this.button5.TabIndex = 25;
             this.button5.Text = "MC";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnClear_Click);
+            this.button5.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button6
             // 

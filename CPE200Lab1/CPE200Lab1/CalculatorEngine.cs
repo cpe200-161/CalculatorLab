@@ -47,6 +47,8 @@ namespace CPE200Lab1
                         return ((Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100)).ToString();
                     //your code here
                     case "√":
+                    if (Convert.ToDouble(secondOperand) < 0)
+                        return temp = "ERROR  (-N)";
                         temp=(Math.Sqrt(Convert.ToDouble(secondOperand))).ToString();
                         if (temp.Length > 8) return temp.Substring(0, 8);
                         else return temp;
@@ -62,8 +64,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(memory) - Convert.ToDouble(secondOperand)).ToString();
                 case "MR":
                     return memory;
-                case "MC":
-                    return memory= (Convert.ToDouble(memory) *0).ToString();
+                
                 }
             
             return "E";
