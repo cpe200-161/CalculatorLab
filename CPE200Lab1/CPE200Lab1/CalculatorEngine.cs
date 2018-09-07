@@ -74,14 +74,10 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
        
-        public void Number(object sender, EventArgs e)
+        public void Number(string h)
         {
             
-
-            if (display is "Error")
-            {
-                return;
-            }
+            
             if (isAfterEqual)
             {
                 resetAll();
@@ -95,13 +91,37 @@ namespace CPE200Lab1
                 return;
             }
             isAllowBack = true;
-            string digit = ((Button)sender).Text;
+            string digit = h;
             if (display is "0")
             {
                 display = "";
             }
             display += digit;
             isAfterOperater = false;
+
+
+        }
+
+        public void handleOperater()
+        {
+            if (isAfterEqual)
+            {
+                resetAll();
+            }
+            if(display.Length is 8)
+            {
+                return;
+            }
+            if (display[0]is '-')
+            {
+                display = display.Substring(1, display.Length - 1);
+            }
+            else
+            {
+                display = "-" + display;
+            }
+
+
 
 
         }
@@ -120,52 +140,6 @@ namespace CPE200Lab1
             isAllowBack = true;
         }
          
-        public void Operator(object sender)
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            operate = ((Button)sender).Text;
-            switch (operate)
-            {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    firstOperand = display;
-                    isAfterOperater = true;
-                    break;
-                case "%":
-                    // your code here
-                    break;
-            }
-            isAllowBack = false;
-        }
-
-        public void Equal()
-        {
-            
-            if (display is "Error")
-            {
-                return;
-            }
-            string secondOperand = display;
-            string result = calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                display = "Error";
-            }
-            else
-            {
-                display = result;
-            }
-            isAfterEqual = true;
-        }
 
         public void Dot()
         {
