@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
 		private bool isNumberPart = false;
 		private bool isContainDot = false;
@@ -36,7 +36,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        protected virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
