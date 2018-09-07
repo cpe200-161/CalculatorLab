@@ -96,7 +96,15 @@ namespace CPE200Lab1
                 case "MC":
                 case "M+":
                 case "M-":
-                    engine.calculate(operate, "", "");
+                case "MS":
+                    if(isAfterEqual == true)
+                    {
+                        engine.calculate(operate, "", "");
+                    }
+                    else
+                    {
+                        engine.calculate(operate, lblDisplay.Text, "");
+                    }
                     break;
                 case "MR":
                     string result = engine.calculate(operate, "", "");

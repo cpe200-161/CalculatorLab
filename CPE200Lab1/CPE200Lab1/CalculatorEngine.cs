@@ -91,13 +91,37 @@ namespace CPE200Lab1
                 case "MR":
                     return memStore.ToString();
                 case "MS":
-                    memStore = fResult;
+                    if(fResult == 0)
+                    {
+                        memStore = Convert.ToDouble(firstOperand);
+                    }
+                    else
+                    {
+                        memStore = fResult;
+                        fResult = 0;
+                    }
                     break;
                 case "M+":
-                    memStore += fResult;
+                    if (fResult == 0)
+                    {
+                        memStore += Convert.ToDouble(firstOperand);
+                    }
+                    else
+                    {
+                        memStore += fResult;
+                        fResult = 0;
+                    }
                     break;
                 case "M-":
-                    memStore -= fResult;
+                    if (fResult == 0)
+                    {
+                        memStore += Convert.ToDouble(firstOperand);
+                    }
+                    else
+                    {
+                        memStore += fResult;
+                        fResult = 0;
+                    }
                     break;
             }
             return "E";
