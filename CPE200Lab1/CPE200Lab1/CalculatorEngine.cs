@@ -94,7 +94,7 @@ namespace CPE200Lab1
             string digit = h;
             if (display is "0")
             {
-                display = ""; a
+                display = ""; 
             }
             display += digit;
             isAfterOperater = false;
