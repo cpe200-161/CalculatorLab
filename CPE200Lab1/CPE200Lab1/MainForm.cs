@@ -12,12 +12,14 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
+        private Double M;
         private bool hasDot;
         private bool isAllowBack;
-        private bool isAfterOperater;
+        private bool isAfterOperater,isAfterMem,isPercentage;
         private bool isAfterEqual;
-        private string firstOperand;
-        private string operate;
+        private string firstOperand ;
+        private string operate,Mem_Operate;
+        private CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -28,50 +30,16 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
+        
 
         public MainForm()
         {
             InitializeComponent();
-
             resetAll();
+            // 1. new CalculatorEngine() => instantiate an object
+            // 2. reference to that object with engine virable
+            // LHS =RHS
+            engine = new CalculatorEngine();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -84,7 +52,7 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            if (isAfterOperater)
+            if (isAfterOperater||isAfterMem)
             {
                 lblDisplay.Text = "0";
             }
@@ -100,6 +68,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            isAfterMem = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -112,21 +81,46 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
-            switch (operate)
+            
+            switch (((Button)sender).Text)
             {
+                case "%":
+                    isPercentage = true;
+                    string secondOperand = lblDisplay.Text;
+                    break;
                 case "+":
                 case "-":
                 case "X":
+                    case "√":
+                case "1/X":
                 case "÷":
+                    operate = ((Button)sender).Text;
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here
-                    break;
+                
+                
             }
             isAllowBack = false;
+        }
+
+        private void btnMemory_Click(object sender,EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            Mem_Operate = ((Button)sender).Text;
+
+            switch (Mem_Operate)
+            {
+                case "MC": M = 0; break;
+                case "MR": lblDisplay.Text = Convert.ToString(M); break;
+                case "M+":M = M + Convert.ToDouble(lblDisplay.Text); isAfterMem = true; break;
+                case "M-": M = M - Convert.ToDouble(lblDisplay.Text); isAfterMem = true; break;
+                case "MS": M = Convert.ToDouble(lblDisplay.Text); isAfterMem = true; break;
+            }
+            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -136,10 +130,14 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
+            string result = engine.calculate(operate, firstOperand, secondOperand);
+            if (result is "E")
             {
                 lblDisplay.Text = "Error";
+            }
+            else if(result.Length > 8)
+            {
+                lblDisplay.Text = result.Substring(0, 8);
             }
             else
             {
@@ -198,6 +196,8 @@ namespace CPE200Lab1
             resetAll();
         }
 
+      
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -226,6 +226,11 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
