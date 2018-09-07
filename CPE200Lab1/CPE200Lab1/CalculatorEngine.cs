@@ -60,8 +60,10 @@ namespace CPE200Lab1
             isAfterOperater = false;
         }
 
-        public void btnOperator_Click2(string operate)
+        public void btnOperator_Click2(string operateArg)
         {
+            
+
             if (display is "Error")
             {
                 return;
@@ -70,8 +72,8 @@ namespace CPE200Lab1
             {
                 return;
             }
-         
-            switch (operate)
+            operate = operateArg;
+            switch (operateArg)
             {
                 case "+":
                 case "-":
@@ -89,11 +91,16 @@ namespace CPE200Lab1
 
         public void btnEqual_Click2()
         {
+            if(display is "0")
+            {
+                return;
+            }
             if (display is "Error")
             {
                 return;
             }
             string secondOperand = display;
+            
             string result = calculate(operate, firstOperand, secondOperand);
             
             if (result is "E" || result.Length > 8)

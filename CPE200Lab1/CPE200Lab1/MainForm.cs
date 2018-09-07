@@ -29,7 +29,6 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
-
             resetAll();
         }
 
