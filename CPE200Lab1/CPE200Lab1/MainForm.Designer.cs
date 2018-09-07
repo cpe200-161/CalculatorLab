@@ -330,6 +330,7 @@
             this.buttonMR.TabIndex = 24;
             this.buttonMR.Text = "MR";
             this.buttonMR.UseVisualStyleBackColor = false;
+            this.buttonMR.Click += new System.EventHandler(this.buttonMemory_Click);
             // 
             // buttonMC
             // 
@@ -341,6 +342,7 @@
             this.buttonMC.TabIndex = 23;
             this.buttonMC.Text = "MC";
             this.buttonMC.UseVisualStyleBackColor = false;
+            this.buttonMC.Click += new System.EventHandler(this.buttonMemory_Click);
             // 
             // buttonMS
             // 
@@ -352,6 +354,7 @@
             this.buttonMS.TabIndex = 22;
             this.buttonMS.Text = "MS";
             this.buttonMS.UseVisualStyleBackColor = false;
+            this.buttonMS.Click += new System.EventHandler(this.buttonMemory_Click);
             // 
             // buttonMPlus
             // 
@@ -363,6 +366,7 @@
             this.buttonMPlus.TabIndex = 21;
             this.buttonMPlus.Text = "M+";
             this.buttonMPlus.UseVisualStyleBackColor = false;
+            this.buttonMPlus.Click += new System.EventHandler(this.buttonMemory_Click);
             // 
             // buttonMMinus
             // 
@@ -374,6 +378,7 @@
             this.buttonMMinus.TabIndex = 29;
             this.buttonMMinus.Text = "M-";
             this.buttonMMinus.UseVisualStyleBackColor = false;
+            this.buttonMMinus.Click += new System.EventHandler(this.buttonMemory_Click);
             // 
             // buttonSqnt
             // 
