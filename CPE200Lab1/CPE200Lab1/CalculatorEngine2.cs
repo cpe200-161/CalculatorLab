@@ -8,6 +8,9 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        public double[] balance = new double[10];
+        public int i = 0;
+        
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -82,9 +85,10 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         return result.ToString("N" + remainLength);
                     }
-
-                    
                     break;
+                
+
+
             }
             return "E";
         }

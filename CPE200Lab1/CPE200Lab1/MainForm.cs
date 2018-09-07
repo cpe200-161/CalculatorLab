@@ -19,8 +19,10 @@ namespace CPE200Lab1
         private string firstOperand;
         private CalculatorEngine engine;
         private string operate;
-
+        private double memmoryResult=0;
+        
         private void resetAll()
+
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
@@ -89,6 +91,22 @@ namespace CPE200Lab1
                 case "%":
                     // your code here
                     break;
+                case "M+":
+                    memmoryResult += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    memmoryResult += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "MC":
+                    memmoryResult = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(memmoryResult);
+                    break;
+                case "MS":
+                    memmoryResult = Convert.ToDouble(lblDisplay.Text);
+                    break;
+
             }
             isAllowBack = false;
         }

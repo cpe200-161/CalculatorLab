@@ -62,7 +62,7 @@
             // 
             this.btn7.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn7.Location = new System.Drawing.Point(20, 347);
-            this.btn7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn7.Margin = new System.Windows.Forms.Padding(4);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(93, 68);
             this.btn7.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             this.btn8.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn8.Location = new System.Drawing.Point(119, 346);
-            this.btn8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn8.Margin = new System.Windows.Forms.Padding(4);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(93, 68);
             this.btn8.TabIndex = 1;
@@ -86,7 +86,7 @@
             // 
             this.btn9.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn9.Location = new System.Drawing.Point(219, 346);
-            this.btn9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn9.Margin = new System.Windows.Forms.Padding(4);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(93, 68);
             this.btn9.TabIndex = 2;
@@ -98,7 +98,7 @@
             // 
             this.btnMultiply.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMultiply.Location = new System.Drawing.Point(319, 487);
-            this.btnMultiply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMultiply.Margin = new System.Windows.Forms.Padding(4);
             this.btnMultiply.Name = "btnMultiply";
             this.btnMultiply.Size = new System.Drawing.Size(85, 69);
             this.btnMultiply.TabIndex = 3;
@@ -110,7 +110,7 @@
             // 
             this.btnMinus.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinus.Location = new System.Drawing.Point(319, 417);
-            this.btnMinus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMinus.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(85, 69);
             this.btnMinus.TabIndex = 7;
@@ -122,7 +122,7 @@
             // 
             this.btn6.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn6.Location = new System.Drawing.Point(219, 416);
-            this.btn6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn6.Margin = new System.Windows.Forms.Padding(4);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(93, 68);
             this.btn6.TabIndex = 6;
@@ -134,7 +134,7 @@
             // 
             this.btn5.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn5.Location = new System.Drawing.Point(119, 416);
-            this.btn5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn5.Margin = new System.Windows.Forms.Padding(4);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(93, 68);
             this.btn5.TabIndex = 5;
@@ -146,7 +146,7 @@
             // 
             this.btn4.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn4.Location = new System.Drawing.Point(20, 417);
-            this.btn4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn4.Margin = new System.Windows.Forms.Padding(4);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(93, 68);
             this.btn4.TabIndex = 4;
@@ -158,7 +158,7 @@
             // 
             this.btnPlus.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlus.Location = new System.Drawing.Point(319, 347);
-            this.btnPlus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPlus.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(85, 69);
             this.btnPlus.TabIndex = 11;
@@ -170,7 +170,7 @@
             // 
             this.btn3.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn3.Location = new System.Drawing.Point(220, 486);
-            this.btn3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn3.Margin = new System.Windows.Forms.Padding(4);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(93, 68);
             this.btn3.TabIndex = 10;
@@ -182,7 +182,7 @@
             // 
             this.btn2.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2.Location = new System.Drawing.Point(120, 487);
-            this.btn2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn2.Margin = new System.Windows.Forms.Padding(4);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(93, 68);
             this.btn2.TabIndex = 9;
@@ -194,7 +194,7 @@
             // 
             this.btn1.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.Location = new System.Drawing.Point(21, 487);
-            this.btn1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn1.Margin = new System.Windows.Forms.Padding(4);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(93, 68);
             this.btn1.TabIndex = 8;
@@ -206,7 +206,7 @@
             // 
             this.btnEqual.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEqual.Location = new System.Drawing.Point(412, 420);
-            this.btnEqual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEqual.Margin = new System.Windows.Forms.Padding(4);
             this.btnEqual.Name = "btnEqual";
             this.btnEqual.Size = new System.Drawing.Size(88, 209);
             this.btnEqual.TabIndex = 15;
@@ -218,7 +218,7 @@
             // 
             this.btnDot.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDot.Location = new System.Drawing.Point(220, 557);
-            this.btnDot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDot.Margin = new System.Windows.Forms.Padding(4);
             this.btnDot.Name = "btnDot";
             this.btnDot.Size = new System.Drawing.Size(93, 68);
             this.btnDot.TabIndex = 14;
@@ -230,7 +230,7 @@
             // 
             this.btn0.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.Location = new System.Drawing.Point(120, 557);
-            this.btn0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn0.Margin = new System.Windows.Forms.Padding(4);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(93, 68);
             this.btn0.TabIndex = 13;
@@ -242,7 +242,7 @@
             // 
             this.btnSign.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSign.Location = new System.Drawing.Point(21, 557);
-            this.btnSign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSign.Margin = new System.Windows.Forms.Padding(4);
             this.btnSign.Name = "btnSign";
             this.btnSign.Size = new System.Drawing.Size(93, 68);
             this.btnSign.TabIndex = 12;
@@ -254,7 +254,7 @@
             // 
             this.btnDivide.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDivide.Location = new System.Drawing.Point(319, 557);
-            this.btnDivide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDivide.Margin = new System.Windows.Forms.Padding(4);
             this.btnDivide.Name = "btnDivide";
             this.btnDivide.Size = new System.Drawing.Size(85, 69);
             this.btnDivide.TabIndex = 16;
@@ -266,7 +266,7 @@
             // 
             this.btnPercent.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPercent.Location = new System.Drawing.Point(319, 273);
-            this.btnPercent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPercent.Margin = new System.Windows.Forms.Padding(4);
             this.btnPercent.Name = "btnPercent";
             this.btnPercent.Size = new System.Drawing.Size(85, 69);
             this.btnPercent.TabIndex = 17;
@@ -278,7 +278,7 @@
             // 
             this.btnClear.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Location = new System.Drawing.Point(20, 273);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(117, 69);
             this.btnClear.TabIndex = 18;
@@ -290,7 +290,7 @@
             // 
             this.btnBack.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(145, 273);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(166, 68);
             this.btnBack.TabIndex = 19;
@@ -346,6 +346,7 @@
             this.button3.TabIndex = 23;
             this.button3.Text = "M-";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button4
             // 
@@ -357,6 +358,7 @@
             this.button4.TabIndex = 24;
             this.button4.Text = "M+";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button5
             // 
@@ -368,6 +370,7 @@
             this.button5.TabIndex = 25;
             this.button5.Text = "MS";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button6
             // 
@@ -379,6 +382,7 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "MR";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // button7
             // 
@@ -390,6 +394,7 @@
             this.button7.TabIndex = 27;
             this.button7.Text = "MC";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // MainForm
             // 
@@ -425,7 +430,7 @@
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
