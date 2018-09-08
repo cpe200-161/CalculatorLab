@@ -15,12 +15,15 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private double memoryValue = 0;
         private CalculatorEngine engine;
-
+        private RPNCalculatorEngine RPN;
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RPN = new RPNCalculatorEngine();
+
         }
 
         private bool isOperator(char ch)
@@ -65,7 +68,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text+" " ;
                 isSpaceAllowed = false;
             }
         }
@@ -101,7 +104,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPN.Process(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -165,5 +168,50 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        
+
+   
+
+        private void buttonUnary(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            lblDisplay.Text = engine.unaryCalculate(btn.Text, lblDisplay.Text);
+            
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonM(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if(btn.Text == "MC")
+            {
+                memoryValue = 0;
+            }
+            else if(btn.Text == "MR")
+            {
+                lblDisplay.Text = memoryValue.ToString();
+            }
+            else if(btn.Text =="MS")
+            {
+                memoryValue = double.Parse(lblDisplay.Text);
+            }
+            else if(btn.Text == "M+")
+            {
+                memoryValue += double.Parse(lblDisplay.Text);
+            }
+            else if (btn.Text == "M-")
+            {
+                memoryValue -= double.Parse(lblDisplay.Text);
+            }
+
+        }
+
+        
     }
 }
