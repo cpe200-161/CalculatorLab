@@ -15,12 +15,16 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private double memory;
         private CalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            btnMC.Enabled = false;
+            btnMR.Enabled = false;
+
         }
 
         private bool isOperator(char ch)
@@ -164,6 +168,55 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+            btnMC.Enabled = true;
+            btnMR.Enabled = true;
+            memory = Convert.ToDouble(lblDisplay.Text);
+
+
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            btnMC.Enabled = false;
+            btnMR.Enabled = false;
+            memory = 0;
+        }
+
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "error")
+            {
+                return;
+            }
+            lblDisplay.Text = memory.ToString();
+        }
+
+        private void btnMP_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            memory += Convert.ToDouble(lblDisplay.Text);
+            
+        }
+
+        private void btnMM_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            memory -= Convert.ToDouble(lblDisplay.Text);
         }
     }
 }
