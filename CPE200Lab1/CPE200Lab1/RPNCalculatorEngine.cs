@@ -10,8 +10,15 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
-            // your code here
-            return "E";
+            string[] parts = str.Split(' ');
+            if (!(isNumber(parts[0]) && isNumber(parts[1]) && isOperator(parts[2])))
+            {
+                return "E";
+            }
+            else
+            {
+                return calculate(parts[2], parts[0], parts[1], 4);
+            }
         }
     }
 }
