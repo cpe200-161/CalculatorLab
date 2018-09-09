@@ -66,7 +66,7 @@ namespace CPE200Lab1
                     return firstOperand;
                 case "MC":
                     Mem = 0;
-                    return firstOperand;
+                    return "0";
                 case "MR":
                     if(Mem != 0)
                     {

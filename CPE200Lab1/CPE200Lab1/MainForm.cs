@@ -70,7 +70,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterOperater)
+            if (isAfterOperater && ((Button)sender).Text != "MC")
             {
                 return;
             }
