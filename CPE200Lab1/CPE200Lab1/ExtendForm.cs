@@ -165,5 +165,32 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+        string memory;
+        private void buttonMemory_Click(object sender, EventArgs e)
+        {
+            string operate;
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "MC":
+                    memory = "";
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory;
+                    break;
+                case "MS":
+                    memory = lblDisplay.Text;
+                    lblDisplay.Text = "";
+                    break;
+                case "M+":
+                    this.memory = (Convert.ToDouble(lblDisplay.Text) + Convert.ToDouble(memory)).ToString();
+                    lblDisplay.Text = "";
+                    break;
+                case "M-":
+                    this.memory = (Convert.ToDouble(memory) - Convert.ToDouble(lblDisplay.Text)).ToString();
+                    lblDisplay.Text = "";
+                    break;
+            }
+        }
     }
 }

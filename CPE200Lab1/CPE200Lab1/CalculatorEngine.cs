@@ -85,9 +85,10 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        string memory;
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
+            
             switch (operate)
             {
                 case "+":
@@ -121,6 +122,7 @@ namespace CPE200Lab1
                 case "%":
                     //your code here
                     break;
+               
             }
             return "E";
         }

@@ -12,7 +12,7 @@ namespace CPE200Lab1
         {
             Stack<string> Stacknumber = new Stack<string>();
             string[] parts = str.Split(' ');
-            int onenumber;
+            
             foreach (string number in parts)
             {
                 if (isOperator(number))
@@ -32,13 +32,8 @@ namespace CPE200Lab1
                     Stacknumber.Push(number);
                     
                 }
-                
-
             }
-            //if (onenumber == 1)
-            //{
-            //    return "E";
-            //}
+           
             if (Stacknumber.Count > 1)
             {
                 return "E";
