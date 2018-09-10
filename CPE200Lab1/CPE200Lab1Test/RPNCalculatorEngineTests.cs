@@ -40,13 +40,14 @@ namespace CPE200Lab1.Tests
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
             Assert.AreEqual("E", r.Process("1"));
-            Assert.AreEqual("E", r.Process("1 +"));
+           Assert.AreEqual("E", r.Process("1 +"));
             Assert.AreEqual("E", r.Process("1 + 1"));
             Assert.AreEqual("E", r.Process("1 1 1 +"));
             Assert.AreEqual("E", r.Process("+"));
-            Assert.AreEqual("E", r.Process("+ 1"));
-            Assert.AreEqual("E", r.Process("+ 1 1"));
-            Assert.AreEqual("E", r.Process("1 1 1 + + +"));
+             Assert.AreEqual("E", r.Process("+ 1"));
+             Assert.AreEqual("E", r.Process("+ 1 1"));
+             Assert.AreEqual("E", r.Process("1 1 1 + + +"));
+            
         }
     }
 }

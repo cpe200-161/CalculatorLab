@@ -13,28 +13,48 @@ namespace CPE200Lab1
         {
             Stack<string> numbers = new Stack<string>();
             string[] part = str.Split(' ');
-            foreach(string text in part)
+            string secondOperand;
+            string firstOperand;
+            int countbase = 0;
+            foreach (string text in part)
             {
-                if (isOperator(text))
+                if (isOperator(text) && numbers.Count != 0)
                 {
                     string ansWer;
-                    string secondOperand = numbers.Pop();
-                    string firstOperand = numbers.Pop();
-                    ansWer = calculate(text, firstOperand, secondOperand);
-                    numbers.Push(ansWer);
-
-
+                    secondOperand = numbers.Pop();
+                    if (numbers.Count != 0)
+                    {
+                        firstOperand = numbers.Pop();
+                        ansWer = calculate(text, firstOperand, secondOperand);
+                        numbers.Push(ansWer);
+                    }
+                    else
+                    {
+                        return "E";
+                    }
                 }
-                else if(isNumber(text))
+                else if (isNumber(text))
                 {
+
                     numbers.Push(text);
-                    
+                    countbase++;
                 }
-                
-                    
             }
-            
-            return numbers.Peek();
+            if (numbers.Count == 1 && countbase > 1)
+            {
+                return numbers.Peek();
+            }
+            else
+            {
+                return "E";
+            }
+
+
+
+
+
+
+
         }
     }
 }

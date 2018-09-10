@@ -26,7 +26,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public string ProcessCal(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -119,7 +119,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    
+                    return (double.Parse(secondOperand) * double.Parse(firstOperand) / 100).ToString();
                     break;
             }
             return "E";
