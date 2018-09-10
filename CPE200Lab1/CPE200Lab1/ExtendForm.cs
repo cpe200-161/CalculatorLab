@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private double memMory = 0;
         private RPNCalculatorEngine engine;
 
         public ExtendForm()
@@ -23,17 +24,36 @@ namespace CPE200Lab1
             engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        private bool isOperator(char str)
         {            
-            switch (ch) {
+            switch (str) {
                 case '+':
                 case '-':
                 case 'X':
-                case '÷':
+                case '÷':                
                     return true;
             }
             return false;
         }
+
+        public bool isOperatorforstring(string str)
+        {
+            switch (str)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":                
+                    return true;
+            }
+            return false;
+        }
+
+        public bool isNumber(string str)
+        {
+            double retNum;
+            return Double.TryParse(str, out retNum);
+        }        
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -162,5 +182,157 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        private void memmory_Cleanr(object sender, EventArgs e)
+        {
+            memMory = 0;
+        }
+
+        private void memory_Show(object sender, EventArgs e)
+        {
+            if(memMory != 0)
+            {
+                lblDisplay.Text = memMory.ToString();
+            }
+        }
+
+        private void memory_Save(object sender, EventArgs e)
+        {
+            memMory = Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void memory_Plus(object sender, EventArgs e)
+        {
+            memMory += Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void memory_Minus(object sender, EventArgs e)
+        {
+            memMory -= Convert.ToDouble(lblDisplay.Text);
+        }
+
+        private void sQrt_Click(object sender, EventArgs e)
+        {                        
+            string[] memBers = lblDisplay.Text.Split(' ');
+
+            if (memBers.Length < 2 && isNumber(memBers[0]))
+            {                
+                lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(memBers[0]))).ToString();
+                return;
+            } else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
+            {                
+                memBers[memBers.Length - 1] = (Math.Sqrt(Convert.ToDouble(memBers[memBers.Length - 1]))).ToString();
+                
+                for (int i = 0; i < memBers.Length; i++)
+                {
+                    if(i == 0)
+                    {
+                        lblDisplay.Text = memBers[0];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + memBers[i];
+                    }                    
+                }
+                return;
+            } else {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+                else
+                {                    
+                    lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(result))).ToString();
+                    return;
+                }
+            }
+        }
+
+        private void perCen_Click(object sender, EventArgs e)
+        {
+            string[] memBers = lblDisplay.Text.Split(' ');
+
+            if (memBers.Length < 2 && isNumber(memBers[0]))
+            {
+                lblDisplay.Text = (Convert.ToDouble(memBers[0]) / 100).ToString();
+                return;
+            }
+            else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
+            {
+                memBers[memBers.Length - 1] = (Convert.ToDouble(memBers[memBers.Length - 1]) / 100).ToString();
+
+                for (int i = 0; i < memBers.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        lblDisplay.Text = memBers[0];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + memBers[i];
+                    }
+                }
+                return;
+            }
+            else
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+                else
+                {
+                    lblDisplay.Text = (Convert.ToDouble(result) / 100).ToString();
+                    return;
+                }
+            }
+        }
+
+        private void oneDividex_Click(object sender, EventArgs e)
+        {
+            string[] memBers = lblDisplay.Text.Split(' ');
+
+            if (memBers.Length < 2 && isNumber(memBers[0]))
+            {
+                lblDisplay.Text = (1 / Convert.ToDouble(memBers[0])).ToString();
+                return;
+            }
+            else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
+            {
+                memBers[memBers.Length - 1] = (1 / Convert.ToDouble(memBers[memBers.Length - 1])).ToString();
+
+                for (int i = 0; i < memBers.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        lblDisplay.Text = memBers[0];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + memBers[i];
+                    }
+                }
+                return;
+            }
+            else
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+                else
+                {
+                    lblDisplay.Text = (1 / Convert.ToDouble(result)).ToString();
+                    return;
+                }
+            }
+        }
+
     }
 }
