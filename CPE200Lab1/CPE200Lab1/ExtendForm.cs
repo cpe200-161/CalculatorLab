@@ -38,6 +38,14 @@ namespace CPE200Lab1
             }
             return false;
         }
+        private bool SpecialOperator(string str)
+        {
+            if (str == "1/x" || str == "%" || str == "√")
+            {
+                return true;
+            }
+            else return false;
+        }
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -218,5 +226,25 @@ namespace CPE200Lab1
             }
             memory -= Convert.ToDouble(lblDisplay.Text);
         }
+
+        private void btnOox_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
-}
+   /* private void thisOperator_Click(object sender, EventArgs e)
+    {
+        if (lblDisplay.Text is "Error")
+        {
+            return;
+        }
+        isNumberPart = false;
+        isContainDot = false;
+        string current = lblDisplay.Text;
+        if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+        {
+            lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            isSpaceAllowed = false;
+        }*/
+    }

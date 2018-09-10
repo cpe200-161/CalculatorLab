@@ -53,11 +53,11 @@
             this.btnMP = new System.Windows.Forms.Button();
             this.btnMR = new System.Windows.Forms.Button();
             this.btnMC = new System.Windows.Forms.Button();
-            this.btnPercent = new System.Windows.Forms.Button();
             this.btnMS = new System.Windows.Forms.Button();
             this.btnCE = new System.Windows.Forms.Button();
             this.btnSqr = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnOox = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -362,18 +362,6 @@
             this.btnMC.UseVisualStyleBackColor = true;
             this.btnMC.Click += new System.EventHandler(this.btnMC_Click);
             // 
-            // btnPercent
-            // 
-            this.btnPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPercent.Location = new System.Drawing.Point(513, 355);
-            this.btnPercent.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPercent.Name = "btnPercent";
-            this.btnPercent.Size = new System.Drawing.Size(105, 79);
-            this.btnPercent.TabIndex = 46;
-            this.btnPercent.Text = "%";
-            this.btnPercent.UseVisualStyleBackColor = true;
-            this.btnPercent.Click += new System.EventHandler(this.btnPercent_Click);
-            // 
             // btnMS
             // 
             this.btnMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -419,16 +407,28 @@
             this.button1.Text = "%";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // btnOox
+            // 
+            this.btnOox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOox.Location = new System.Drawing.Point(513, 354);
+            this.btnOox.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOox.Name = "btnOox";
+            this.btnOox.Size = new System.Drawing.Size(105, 79);
+            this.btnOox.TabIndex = 51;
+            this.btnOox.Text = "1/x";
+            this.btnOox.UseVisualStyleBackColor = true;
+            this.btnOox.Click += new System.EventHandler(this.btnOox_Click);
+            // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 618);
+            this.Controls.Add(this.btnOox);
             this.Controls.Add(this.btnSqr);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCE);
             this.Controls.Add(this.btnMS);
-            this.Controls.Add(this.btnPercent);
             this.Controls.Add(this.btnMM);
             this.Controls.Add(this.btnMP);
             this.Controls.Add(this.btnMR);
@@ -489,10 +489,10 @@
         private System.Windows.Forms.Button btnMP;
         private System.Windows.Forms.Button btnMR;
         private System.Windows.Forms.Button btnMC;
-        private System.Windows.Forms.Button btnPercent;
         private System.Windows.Forms.Button btnMS;
         private System.Windows.Forms.Button btnCE;
         private System.Windows.Forms.Button btnSqr;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOox;
     }
 }

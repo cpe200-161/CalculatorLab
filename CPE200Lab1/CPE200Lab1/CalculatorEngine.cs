@@ -25,7 +25,23 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        public bool isNextOperater(string str)  //function which is check percent to add second operator
+        {
+            if (str == "%")
+            {
+                return true;
+            }
+            else return false;
+        }
+        public bool OnlyOneOperand(string str)  //function use for only one operate ex. 1/2 sqrt(4)
+        {
+            if (str == "1/x" || str == "√")
+            {
+                return true;
+            }
+            else return false;
+                
+        }
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -34,8 +50,9 @@ namespace CPE200Lab1
                 return "E";
             } else
             {
-                return calculate(parts[1], parts[0], parts[2], 4);
+                return calculate(parts[1], parts[0], parts[2], 4);  //what is 4 made for??? it's  a reason whhy i can't make operate2
             }
+           
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -85,7 +102,26 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        public string PercentCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)    // return case of secondoperand
+        {
+            switch (operate)
+            {
+                case "+":
+                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "-":
+                    return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "X":
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "÷":
+                    return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+            }
+            return "E";
+        }
+            public string PercentResult(string firstOperand, string secondOperand, int maxOutputSize = 8)     // return result
+        {
 
+            return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
+        }
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -120,7 +156,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    
+                    //line 105 - 124
                     
                     break;
             }
