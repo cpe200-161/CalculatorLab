@@ -31,13 +31,16 @@ namespace CPE200Lab1
                 {
                     Stacknumber.Push(number);
                     
+
                 }
+                
             }
            
             if (Stacknumber.Count > 1)
             {
                 return "E";
             }
+            
             return Stacknumber.Pop();
         }
     }

@@ -120,9 +120,14 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
                     break;
-               
+                case "Root":
+                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
+                    break;
+                case "1/x":
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();
+                    break;
             }
             return "E";
         }
