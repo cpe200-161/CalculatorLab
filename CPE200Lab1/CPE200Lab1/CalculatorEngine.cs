@@ -126,9 +126,8 @@ namespace CPE200Lab1
         }
         public string calculatePercent(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
-            
-            
-            return "E";
+            secondOperand = ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand)).ToString();
+            return secondOperand;
         }
     }
 }
