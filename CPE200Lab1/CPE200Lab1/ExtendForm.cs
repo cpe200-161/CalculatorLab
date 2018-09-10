@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private string memoryNumber = "0";
         private RPNCalculatorEngine engine;
 
         public ExtendForm()
@@ -168,7 +169,8 @@ namespace CPE200Lab1
         }
         private void buttonUnary_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string operateU = ((Button)sender).Text;
+            string result = engine.ProcessUnary(operateU, lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -180,8 +182,42 @@ namespace CPE200Lab1
         }
         private void buttonPercent_Click(object sender, EventArgs e)
         {
-            
+            string operate = ((Button)sender).Text;
+            string result = engine.ProcessPercent(lblDisplay.Text);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
 
+        }
+
+        private void buttonMemory_Click(object sender, EventArgs e)
+        {
+            string operate = ((Button)sender).Text;
+            string result = engine.ProcessMemory(operate, lblDisplay.Text, memoryNumber);
+            memoryNumber = result;
+            if(operate == "MR")
+            {
+                if (lblDisplay.Text is "Error")
+                {
+                    return;
+                }
+                if (lblDisplay.Text is "0")
+                {
+                    lblDisplay.Text = "";
+                }
+                if (!isNumberPart)
+                {
+                    isNumberPart = true;
+                    isContainDot = false;
+                }
+                lblDisplay.Text += memoryNumber;
+                isSpaceAllowed = true;
+            }
         }
     }
 }
