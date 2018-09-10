@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -58,7 +58,11 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
+						// trim the fractional part gracefully. =
+						if (Convert.ToDouble(operand) % result == 0)
+						{
+							return result.ToString();
+						}
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
@@ -78,8 +82,12 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+						// trim the fractional part gracefully. =
+						if (Convert.ToDouble(operand)*result == 1)
+						{
+							return result.ToString();
+						}
+						return result.ToString("N" + remainLength);
                     }
                     break;
             }
@@ -114,8 +122,13 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+						// trim the fractional part gracefully. =
+						if (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
+						{
+							return result.ToString();
+						}
+						else
+							return result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
