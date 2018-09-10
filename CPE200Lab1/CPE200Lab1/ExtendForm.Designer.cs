@@ -143,7 +143,7 @@
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(88, 64);
             this.btnPlus.TabIndex = 31;
-            this.btnPlus.Text = "+";
+            this.btnPlus.Text = " +";
             this.btnPlus.UseVisualStyleBackColor = true;
             this.btnPlus.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
@@ -357,6 +357,7 @@
             this.button8.Text = "1/x";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.button8.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button9
             // 
@@ -368,6 +369,7 @@
             this.button9.Text = "%";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.button9.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button10
             // 
@@ -379,6 +381,7 @@
             this.button10.Text = "Root";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.button10.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 
