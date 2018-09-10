@@ -166,5 +166,22 @@ namespace CPE200Lab1
                 isContainDot = false;
             }
         }
+        private void buttonUnary_Click(object sender, EventArgs e)
+        {
+            string result = engine.Process(lblDisplay.Text);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+        }
+        private void buttonPercent_Click(object sender, EventArgs e)
+        {
+            
+
+        }
     }
 }

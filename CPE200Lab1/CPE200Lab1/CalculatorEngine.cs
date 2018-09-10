@@ -118,10 +118,16 @@ namespace CPE200Lab1
                         return result.ToString(("0.#######"));
                     }
                     break;
-                case "%":
+                /*case "%":
                     //your code here
-                    break;
+                    break;*/
             }
+            return "E";
+        }
+        public string calculatePercent(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            
+            
             return "E";
         }
     }
