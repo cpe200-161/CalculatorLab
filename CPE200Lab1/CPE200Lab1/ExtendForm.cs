@@ -10,17 +10,21 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form 
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine RPNCalculator;
 
+            
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RPNCalculator = new RPNCalculatorEngine();
+             
         }
 
         private bool isOperator(char ch)
@@ -65,7 +69,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
                 isSpaceAllowed = false;
             }
         }
@@ -101,7 +105,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPNCalculator.Process(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -165,5 +169,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        
     }
 }
