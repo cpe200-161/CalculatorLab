@@ -48,25 +48,34 @@ namespace CPE200Lab1
                         string[] parts;
                         int remainLength;
 
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                        if (Convert.ToDouble(operand) % Math.Sqrt(Convert.ToDouble(operand)) == 0)
                         {
-                            return "E";
+                            result = Math.Sqrt(Convert.ToDouble(operand));
+                            return Convert.ToInt32(result).ToString();
                         }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        else if (Convert.ToDouble(operand) % Math.Sqrt(Convert.ToDouble(operand)) != 0)
+                        {
+                            result = Math.Sqrt(Convert.ToDouble(operand));
+                            // split between integer part and fractional part
+                            parts = result.ToString().Split('.');
+                            // if integer part length is already break max output, return error
+                            if (parts[0].Length > maxOutputSize)
+                            {
+                                return "E";
+                            }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            return result.ToString("N" + remainLength);
+                        }
+                        break;
                     }
                 case "1/x":
                     if(operand != "0")
                     {
                         double result;
                         string[] parts;
-                        int remainLength;
+                       // int remainLength;
 
                         result = (1.0 / Convert.ToDouble(operand));
                         // split between integer part and fractional part
@@ -77,9 +86,9 @@ namespace CPE200Lab1
                             return "E";
                         }
                         // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        //remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N");
                     }
                     break;
             }
@@ -103,13 +112,12 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-                        int nonfractional_result;
 
                         // split between integer part and fractional part
                         if(Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
                         {
-                            nonfractional_result = (int.Parse(firstOperand) / int.Parse(secondOperand));
-                            return nonfractional_result.ToString();
+                            result = (int.Parse(firstOperand) / int.Parse(secondOperand));
+                            return Convert.ToInt32(result).ToString();
                         }
                         else if (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) != 0)
                         {
