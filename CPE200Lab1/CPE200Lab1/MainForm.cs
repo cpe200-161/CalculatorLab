@@ -147,7 +147,13 @@ namespace CPE200Lab1
             }
             else
             {
-                lblDisplay.Text = result;
+				string[] parts;
+				parts = result.ToString().Split('.');
+				if (Convert.ToDouble(parts[1]) == 0)
+				{
+					result = parts[0];
+				}
+				lblDisplay.Text = result;
             }
             isAfterEqual = true;
         }
