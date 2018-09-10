@@ -16,11 +16,13 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine RPNengine;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RPNengine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -37,6 +39,7 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
+            
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -51,6 +54,7 @@ namespace CPE200Lab1
                 isContainDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
+            RPNengine.Process(lblDisplay.Text);
             isSpaceAllowed = true;
         }
 
@@ -62,12 +66,11 @@ namespace CPE200Lab1
             }
             isNumberPart = false;
             isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
+            
+            lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            RPNengine.Process(lblDisplay.Text);
+            isSpaceAllowed = false;
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -101,13 +104,14 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPNengine.Process(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
             } else
             {
                 lblDisplay.Text = result;
+                isSpaceAllowed = true;
             }
         }
 
@@ -162,6 +166,7 @@ namespace CPE200Lab1
             if(isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
+
                 isSpaceAllowed = false;
             }
         }

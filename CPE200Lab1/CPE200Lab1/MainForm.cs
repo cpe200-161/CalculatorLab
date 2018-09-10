@@ -129,7 +129,10 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    
+                    string secondOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, 8);
+                    operate = beforePercent;
                     break;
             }
             isAllowBack = false;
