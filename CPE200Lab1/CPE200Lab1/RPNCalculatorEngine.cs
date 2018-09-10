@@ -30,8 +30,6 @@ namespace CPE200Lab1
                 else if(isNumber(number)) 
                 {
                     Stacknumber.Push(number);
-                    
-
                 }
                 
             }
