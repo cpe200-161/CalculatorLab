@@ -31,19 +31,19 @@ namespace CPE200Lab1
                 {
                     Stacknumber.Push(number);
                 }
-                else if(number == "Root")
+                else if(number == "√")
                 {
                     string first;
                     first = Stacknumber.Pop();
                     
-                    Stacknumber.Push(calculate(number, first,"0"));
+                    Stacknumber.Push(unaryCalculate(number, first));
                 }
                 else if (number== "1/x")
                 {
                     string first;
                     first = Stacknumber.Pop();
                     
-                    Stacknumber.Push(calculate(number,first, "0"));
+                    Stacknumber.Push(unaryCalculate(number,first));
                 }
                 else if (number == "%")
                 {

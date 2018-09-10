@@ -85,7 +85,7 @@ namespace CPE200Lab1
             }
             return "E";
         }
-        string memory;
+        
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             
@@ -122,12 +122,7 @@ namespace CPE200Lab1
                 case "%":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
                     break;
-                case "Root":
-                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
-                    break;
-                case "1/x":
-                    return (1 / Convert.ToDouble(firstOperand)).ToString();
-                    break;
+                
             }
             return "E";
         }

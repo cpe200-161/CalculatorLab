@@ -378,7 +378,7 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(88, 64);
             this.button10.TabIndex = 47;
-            this.button10.Text = "Root";
+            this.button10.Text = "√";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
             this.button10.Click += new System.EventHandler(this.btnBinaryOperator_Click);
