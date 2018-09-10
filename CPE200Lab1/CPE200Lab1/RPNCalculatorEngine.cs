@@ -10,15 +10,39 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
+            string firstOperand;
+            string secondOperand;
+            string result;
             string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isNumber(parts[1]) && isOperator(parts[2])))
+            Stack<string> Operands = new Stack<string>();
+
+            foreach(string list in parts)
             {
-                return "E";
+                if (isNumber(list))
+                {
+                    Operands.Push(list);
+                }
+                else if(isOperator(list))
+                {
+                    if (Operands.Count < 2)
+                    {
+                        return "E";
+                    }
+                    secondOperand = Operands.Pop();
+                    firstOperand = Operands.Pop();
+                    result = calculate(list, firstOperand, secondOperand);
+                    Operands.Push(result);
+                }
+            }
+            if (Operands.Count == 1 && parts.Length>1)
+            {
+                return Operands.Peek();
             }
             else
             {
-                return calculate(parts[2], parts[0], parts[1], 4);
+                return "E";
             }
+            
         }
     }
 }

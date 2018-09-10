@@ -74,17 +74,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    if (operate == "+")
-                    {
-
-                    }else if(operate == "-")
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)/100).ToString();
                     break;
             }
             return "E";
