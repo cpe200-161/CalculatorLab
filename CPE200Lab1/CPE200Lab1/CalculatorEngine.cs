@@ -103,19 +103,30 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
+                        int nonfractional_result;
 
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                        if(Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
                         {
-                            return "E";
+                            nonfractional_result = (int.Parse(firstOperand) / int.Parse(secondOperand));
+                            return nonfractional_result.ToString();
                         }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        else if (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) != 0)
+                        {
+
+                            result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                            parts = result.ToString().Split('.');
+                            if (parts[0].Length > maxOutputSize)
+                            {
+                                return "E";
+                            }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            return result.ToString("N" + remainLength);
+                        }
+                        // if integer part length is already break max output, return error
+                        
                     }
                     break;
                 case "%":
