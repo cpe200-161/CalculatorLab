@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
@@ -14,7 +14,7 @@ namespace CPE200Lab1
 
         private string display = "0";
 
-        public string Display()
+        public  virtual string Display()
         {
             return display;
         }
@@ -150,13 +150,13 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -168,7 +168,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+       public  virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -257,7 +257,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
                 case "%":
