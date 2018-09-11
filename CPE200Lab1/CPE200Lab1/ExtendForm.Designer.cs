@@ -54,6 +54,9 @@
             this.btnMS = new System.Windows.Forms.Button();
             this.btnMC = new System.Windows.Forms.Button();
             this.btnMR = new System.Windows.Forms.Button();
+            this.sqrt = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -313,9 +316,9 @@
             // btnMminus
             // 
             this.btnMminus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnMminus.Location = new System.Drawing.Point(517, 140);
+            this.btnMminus.Location = new System.Drawing.Point(317, 136);
             this.btnMminus.Name = "btnMminus";
-            this.btnMminus.Size = new System.Drawing.Size(119, 77);
+            this.btnMminus.Size = new System.Drawing.Size(68, 78);
             this.btnMminus.TabIndex = 42;
             this.btnMminus.Text = "M-";
             this.btnMminus.UseVisualStyleBackColor = true;
@@ -324,9 +327,9 @@
             // btnMplus
             // 
             this.btnMplus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnMplus.Location = new System.Drawing.Point(392, 140);
+            this.btnMplus.Location = new System.Drawing.Point(245, 136);
             this.btnMplus.Name = "btnMplus";
-            this.btnMplus.Size = new System.Drawing.Size(119, 77);
+            this.btnMplus.Size = new System.Drawing.Size(66, 78);
             this.btnMplus.TabIndex = 43;
             this.btnMplus.Text = "M+";
             this.btnMplus.UseVisualStyleBackColor = true;
@@ -335,9 +338,9 @@
             // btnMS
             // 
             this.btnMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnMS.Location = new System.Drawing.Point(267, 140);
+            this.btnMS.Location = new System.Drawing.Point(169, 137);
             this.btnMS.Name = "btnMS";
-            this.btnMS.Size = new System.Drawing.Size(119, 77);
+            this.btnMS.Size = new System.Drawing.Size(70, 77);
             this.btnMS.TabIndex = 44;
             this.btnMS.Text = "MS";
             this.btnMS.UseVisualStyleBackColor = true;
@@ -346,9 +349,9 @@
             // btnMC
             // 
             this.btnMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnMC.Location = new System.Drawing.Point(142, 140);
+            this.btnMC.Location = new System.Drawing.Point(96, 139);
             this.btnMC.Name = "btnMC";
-            this.btnMC.Size = new System.Drawing.Size(119, 77);
+            this.btnMC.Size = new System.Drawing.Size(67, 77);
             this.btnMC.TabIndex = 45;
             this.btnMC.Text = "MC";
             this.btnMC.UseVisualStyleBackColor = true;
@@ -357,19 +360,55 @@
             // btnMR
             // 
             this.btnMR.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnMR.Location = new System.Drawing.Point(17, 140);
+            this.btnMR.Location = new System.Drawing.Point(16, 140);
             this.btnMR.Name = "btnMR";
-            this.btnMR.Size = new System.Drawing.Size(119, 77);
+            this.btnMR.Size = new System.Drawing.Size(74, 77);
             this.btnMR.TabIndex = 46;
             this.btnMR.Text = "MR";
             this.btnMR.UseVisualStyleBackColor = true;
             this.btnMR.Click += new System.EventHandler(this.btnMemory_click);
+            // 
+            // sqrt
+            // 
+            this.sqrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.sqrt.Location = new System.Drawing.Point(392, 135);
+            this.sqrt.Name = "sqrt";
+            this.sqrt.Size = new System.Drawing.Size(72, 79);
+            this.sqrt.TabIndex = 47;
+            this.sqrt.Text = "√";
+            this.sqrt.UseVisualStyleBackColor = true;
+            this.sqrt.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button2.Location = new System.Drawing.Point(470, 136);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 80);
+            this.button2.TabIndex = 48;
+            this.button2.Text = "1/X";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button3.Location = new System.Drawing.Point(550, 135);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(83, 79);
+            this.button3.TabIndex = 49;
+            this.button3.Text = "%";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 577);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.sqrt);
             this.Controls.Add(this.btnMR);
             this.Controls.Add(this.btnMC);
             this.Controls.Add(this.btnMS);
@@ -432,5 +471,8 @@
         private System.Windows.Forms.Button btnMS;
         private System.Windows.Forms.Button btnMC;
         private System.Windows.Forms.Button btnMR;
+        private System.Windows.Forms.Button sqrt;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

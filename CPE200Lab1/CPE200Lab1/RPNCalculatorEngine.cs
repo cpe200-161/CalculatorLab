@@ -15,7 +15,7 @@ namespace CPE200Lab1
         public string result;
       
         
-        private bool isNotOperator(string str)
+        private int isNotOperator(string str)
         {
             switch (str)
             {
@@ -23,9 +23,15 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                    return false;
+                    return 0;
+                case "%":
+                    return 2;
+                case "√":
+                    return 3;
+                case "1/X":
+                    return 4;
             }
-            return true;
+            return 1;
         }
 
         public new string Process(string str)
@@ -41,9 +47,42 @@ namespace CPE200Lab1
             for (int i=0; i<element.Length; i++)
             {
                 
-                if (isNotOperator(element[i]))
+                if (isNotOperator(element[i]) == 1)
                 {
                     RPN.Push(float.Parse(element[i]));
+                }
+                else if(isNotOperator(element[i]) == 2)
+                {
+                    if (element[i + 1] == "+" || element[i + 1] == "-")
+                    {
+                        secondOperand = RPN.Pop().ToString();
+                        firstOperand = RPN.Peek().ToString();
+                        secondOperand = (float.Parse(firstOperand) * float.Parse(secondOperand) * 0.01).ToString();
+
+                    }
+                    else if (element[i + 1] == "X" || element[i + 1] == "÷")
+                    {
+                        secondOperand = RPN.Pop().ToString();
+                        secondOperand = (float.Parse(secondOperand) * 0.01).ToString();
+                    }
+                    RPN.Push(float.Parse(secondOperand));
+                }
+                else if(isNotOperator(element[i]) == 3)
+                {
+                    firstOperand = RPN.Pop().ToString() ;
+                    result = engine.unaryCalculate(element[i], firstOperand);
+                    RPN.Push(float.Parse(result));
+                }
+                else if(isNotOperator(element[i]) == 4)
+                {
+                    if (RPN.Peek() != 0)
+                    {
+                    firstOperand = 1.ToString();
+                    secondOperand = RPN.Pop().ToString();
+                    result = engine.calculate("÷", firstOperand, secondOperand);
+                    RPN.Push(float.Parse(result));
+                    }
+              
                 }
                 else 
                 {   
@@ -76,7 +115,7 @@ namespace CPE200Lab1
             
             if (RPN.Count == 1)
             {
-                 result = RPN.Pop().ToString();
+                result = RPN.Pop().ToString();
                 return result;
             }
             else
