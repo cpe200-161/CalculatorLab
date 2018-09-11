@@ -87,8 +87,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
             }
             return "E";
         }
@@ -178,6 +177,8 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+                    firstOperand = display;
+                    isAfterOperater = true;
                     // your code here
                     break;
             }
