@@ -12,7 +12,11 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private string display = "0";
-
+        private string[] value;
+        public double m, n;
+        private int size ;
+        private bool IsEmtry = false;
+      
 
 
         public override void BtSpace_Click()
@@ -20,6 +24,18 @@ namespace CPE200Lab1
             base.BtSpace_Click();
             isSpaceAllowed = false;
             
+        }
+
+        public void BtEq()
+        {
+            Stack<string> s = new Stack<string>(value.Length);
+            if (IsEmtry)
+            {
+                return;
+            }
+            if()
+
+
         }
     }
 }

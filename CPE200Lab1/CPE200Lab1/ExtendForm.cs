@@ -122,7 +122,7 @@ namespace CPE200Lab1
 
         
 
-        private void btnSpace_Click(object sender, EventArgs e)
+        protected virtual void btnSpace_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "Error")
             {
