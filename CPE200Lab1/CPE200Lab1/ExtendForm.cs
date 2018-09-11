@@ -32,6 +32,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -169,6 +170,11 @@ namespace CPE200Lab1
 
                 isSpaceAllowed = false;
             }
+        }
+
+        private void Memory_Store_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text += ((Button)sender).Text;
         }
     }
 }

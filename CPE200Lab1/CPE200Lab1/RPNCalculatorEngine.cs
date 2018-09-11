@@ -21,23 +21,27 @@ namespace CPE200Lab1
 
             for (int i = 0; i < numBers.Length; i++)
             {
-                Console.WriteLine("loop push&pop");
+                
                 if (isNumber(numBers[i]))    
                 {
-                    Console.WriteLine("Number on");
+                    
                     numbersStack.Push(numBers[i]);
                     sizeStack++;
                    
                 }
                 else if(isOperator(numBers[i]))
                 {
-                    Console.WriteLine("Operator on");
+                    
                     opeRator = numBers[i];
-                    Console.WriteLine(opeRator+sizeStack);
+                    
                     if (sizeStack != 0)
                     {
                         secondOperand = numbersStack.Pop();
                         sizeStack--;
+                        if (opeRator == "√" || opeRator == "1/x")
+                        {
+                            numbersStack.Push(engine.unaryCalculate(opeRator, secondOperand, 8));
+                        }
                         if (sizeStack < 1)
                         {
                             sizeStack = 0;
@@ -45,9 +49,9 @@ namespace CPE200Lab1
                         }
                         firstOperand = numbersStack.Pop();
                         sizeStack--;
-                        Console.WriteLine("Ready to calculate");
+                        
                         numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand,8));
-                        Console.WriteLine("Complete!");
+                        
                         sizeStack++;
                     }
                 }
