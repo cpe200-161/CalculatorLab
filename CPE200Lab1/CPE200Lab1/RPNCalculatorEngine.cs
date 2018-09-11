@@ -12,15 +12,26 @@ namespace CPE200Lab1
         {
             // your code here
             string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isNumber(parts[1]) && isOperator(parts[2])))
+            Stack<string> Operands = new Stack<string>();
+            foreach(string list in parts)
             {
-                return "E";
+                if (isNumber(list))
+                {
+                    Operands.Push(list);
+                }
+                else if (isOperator(list))
+                {
+                    if (Operands.Count < 2)
+                    {
+                        return "E";
+                    }
+                    string secondOperand = Operands.Pop();
+                    string firstOperand = Operands.Pop();
+                    string result = calculate(list, firstOperand, secondOperand);
+                    Operands.Push(result);
+                }
             }
-            else
-            {
-                return calculate(parts[2], parts[0], parts[1], 4);
-            }
-            return "E";
+            return Operands.Pop();
         }
     }
 }
