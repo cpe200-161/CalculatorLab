@@ -16,11 +16,14 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine rpnEngine;
+        private string memoData;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            rpnEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -70,6 +73,45 @@ namespace CPE200Lab1
             }
         }
 
+        private void btnUnary_Click(object sender, EventArgs e)
+        {
+            string[] parts = lblDisplay.Text.Split(' ');
+            switch (((Button)sender).Text)
+            {
+                case "1/x":
+                case "√":
+                    parts[parts.Length - 1] = engine.unaryCalculate(((Button)sender).Text, parts[parts.Length - 1]);
+                    break;
+                case "%":
+                    if (parts.Length == 2)
+                    {
+                        parts[1] = engine.calculate(((Button)sender).Text, parts[0], parts[1]);
+                    } else
+                    {
+                        lblDisplay.Text = "Error";
+                        return ;
+                    }
+                    break;
+            }
+            lblDisplay.Text = parts[0];
+            for (int i = 1; i < parts.Length; i++)
+            {
+                lblDisplay.Text += " " + parts[i];
+            }
+            
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            string[] parts = lblDisplay.Text.Split(' ');
+            parts[parts.Length - 1] = engine.unaryCalculate(((Button)sender).Text, parts[parts.Length - 1]);
+            lblDisplay.Text = parts[0];
+            for (int i = 1; i < parts.Length; i++)
+            {
+                lblDisplay.Text += " " + parts[i];
+            }
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -99,9 +141,17 @@ namespace CPE200Lab1
             isSpaceAllowed = false;
         }
 
+        private void btnClearEmpty_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = rpnEngine.Process(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -165,5 +215,42 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+        /*
+        private void btnMemoeyFunc(object sender, EventArgs e)
+        {
+            string[] parts = lblDisplay.Text.Split(' ');
+            if (parts.Length == 1 && engine.isNumber(parts[0]))
+            {
+                memoData = lblDisplay.Text;
+            }
+            else lblDisplay.Text = "Error";
+            switch (((Button)sender).Text)
+            {
+                case "MC":
+                    memoData = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text += memoData;
+                    break;
+                case "MS":
+                case "M+":
+                case "M-":
+                    string[] parts = lblDisplay.Text.Split(' ');
+                    if (parts.Length == 1 && engine.isNumber(parts[0]))
+                    {
+                        memoData = lblDisplay.Text;
+                    }
+                    else lblDisplay.Text = "Error";
+            }
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isSpaceAllowed)
+            {
+                lblDisplay.Text += " ";
+                isSpaceAllowed = false;
+            }
+        }*/
     }
 }
