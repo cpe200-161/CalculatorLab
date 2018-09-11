@@ -54,13 +54,14 @@ namespace CPE200Lab1
                     string first, second;
                     first = Stacknumber.Pop();
                     second = Stacknumber.Pop();
+                    //Stacknumber.Push(second);
                     Stacknumber.Push(calculate(number, second, first));
                 }
                 
                 switch (number)
                 {
                     case "MC":
-                        memory = "";
+                        memory = "0";
                         beforeopereter = true;
                         checkmemory = true;
                         break;
@@ -69,23 +70,24 @@ namespace CPE200Lab1
                         return memory;
                         break;
                     case "MS":
+                        beforeopereter = true;
                         memory = Stacknumber.Pop();
                         Stacknumber.Push(memory);
                         checkmemory = true;
                         break;
                     case "M+":
-                        String kebmem;
+                        String kebmemory1;
                         checkmemory = true;
-                        kebmem = (Convert.ToDouble(Stacknumber.Pop()) + Convert.ToDouble(memory)).ToString();
+                        kebmemory1 = (Convert.ToDouble(Stacknumber.Pop()) + Convert.ToDouble(memory)).ToString();
                         beforeopereter = true;
-                        memory = kebmem;
+                        memory = kebmemory1;
                         break;
                     case "M-":
-                        String kebmeme;
+                        String kebmemory2;
                         checkmemory = true;
-                        kebmeme = (Convert.ToDouble(memory) - Convert.ToDouble(Stacknumber.Pop())).ToString();
+                        kebmemory2 = (Convert.ToDouble(memory) - Convert.ToDouble(Stacknumber.Pop())).ToString();
                         beforeopereter = true;
-                        memory = kebmeme;
+                        memory = kebmemory2;
                         break;
                 }
 
