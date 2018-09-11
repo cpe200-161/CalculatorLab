@@ -34,7 +34,7 @@ namespace CPE200Lab1
                     Operands.Push(result);
                 }
             }
-            if (Operands.Count == 1 && parts.Length>1)
+            if (Operands.Count == 1 )
             {
                 return Operands.Peek();
             }
