@@ -49,7 +49,7 @@ namespace CPE200Lab1
         }
         public void resetAll()
         {
-            display = "0";
+           
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;

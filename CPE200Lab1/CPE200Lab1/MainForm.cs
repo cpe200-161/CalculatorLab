@@ -63,6 +63,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
+            //lblDisplay.Text = "0";
         }
 
        private void btnBack_Click(object sender, EventArgs e)
