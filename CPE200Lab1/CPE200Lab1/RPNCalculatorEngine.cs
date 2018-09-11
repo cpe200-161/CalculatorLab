@@ -13,7 +13,7 @@ namespace CPE200Lab1
             switch(str)
             {
                 case "√":
-                case "1/X":
+                case "1/x":
                     return true;
             }
             return false;
