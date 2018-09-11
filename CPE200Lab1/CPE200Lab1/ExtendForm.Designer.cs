@@ -367,7 +367,7 @@
             this.button7.TabIndex = 48;
             this.button7.Text = "%";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.button7.Click += new System.EventHandler(this.perCen_Click);
             // 
             // button8
             // 

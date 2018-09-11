@@ -35,13 +35,7 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(numBers[i]))
                 {                    
-                    opeRator = numBers[i];
-                    if(opeRator == "%" && sizeStack == 1)
-                    {
-                        firstOperand = numbersStack.Pop();
-                        sizeStack = 0;
-                        return engine.calculate(opeRator, firstOperand, "1");
-                    }
+                    opeRator = numBers[i];                    
                     if (sizeStack != 0)
                     {
                         secondOperand = numbersStack.Pop();

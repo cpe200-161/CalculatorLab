@@ -31,7 +31,6 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
-                case '%':
                     return true;
             }
             return false;
@@ -283,5 +282,46 @@ namespace CPE200Lab1
             }
         }
 
+        private void perCen_Click(object sender, EventArgs e)
+        {
+            string[] memBers = lblDisplay.Text.Split(' ');
+
+            if (memBers.Length < 2 && isNumber(memBers[0]))
+            {
+                lblDisplay.Text = (Convert.ToDouble(memBers[0]) / 100).ToString();
+                return;
+            }
+            else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]) && isNumber(memBers[memBers.Length - 2]))
+            {
+                memBers[memBers.Length - 1] = (Convert.ToDouble(memBers[memBers.Length - 1]) / 100 * Convert.ToDouble(memBers[memBers.Length - 2])).ToString();
+
+                for (int i = 0; i < memBers.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        lblDisplay.Text = memBers[0];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + memBers[i];
+                    }
+                }
+                return;
+            }
+            else
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+                else
+                {
+                    lblDisplay.Text = (Convert.ToDouble(result) / 100).ToString();
+                    return;
+                }
+            }
+        }
     }
 }
