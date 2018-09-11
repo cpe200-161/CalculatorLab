@@ -49,11 +49,11 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnMminus = new System.Windows.Forms.Button();
+            this.btnMplus = new System.Windows.Forms.Button();
+            this.btnMS = new System.Windows.Forms.Button();
+            this.btnMC = new System.Windows.Forms.Button();
+            this.btnMR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -310,66 +310,71 @@
             this.btnSpace.UseVisualStyleBackColor = true;
             this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
             // 
-            // button1
+            // btnMminus
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(517, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 77);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "M-";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnMminus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnMminus.Location = new System.Drawing.Point(517, 140);
+            this.btnMminus.Name = "btnMminus";
+            this.btnMminus.Size = new System.Drawing.Size(119, 77);
+            this.btnMminus.TabIndex = 42;
+            this.btnMminus.Text = "M-";
+            this.btnMminus.UseVisualStyleBackColor = true;
+            this.btnMminus.Click += new System.EventHandler(this.btnMemory_click);
             // 
-            // button2
+            // btnMplus
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button2.Location = new System.Drawing.Point(392, 140);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 77);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "M+";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnMplus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnMplus.Location = new System.Drawing.Point(392, 140);
+            this.btnMplus.Name = "btnMplus";
+            this.btnMplus.Size = new System.Drawing.Size(119, 77);
+            this.btnMplus.TabIndex = 43;
+            this.btnMplus.Text = "M+";
+            this.btnMplus.UseVisualStyleBackColor = true;
+            this.btnMplus.Click += new System.EventHandler(this.btnMemory_click);
             // 
-            // button3
+            // btnMS
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button3.Location = new System.Drawing.Point(267, 140);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 77);
-            this.button3.TabIndex = 44;
-            this.button3.Text = "MS";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnMS.Location = new System.Drawing.Point(267, 140);
+            this.btnMS.Name = "btnMS";
+            this.btnMS.Size = new System.Drawing.Size(119, 77);
+            this.btnMS.TabIndex = 44;
+            this.btnMS.Text = "MS";
+            this.btnMS.UseVisualStyleBackColor = true;
+            this.btnMS.Click += new System.EventHandler(this.btnMemory_click);
             // 
-            // button4
+            // btnMC
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button4.Location = new System.Drawing.Point(142, 140);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(119, 77);
-            this.button4.TabIndex = 45;
-            this.button4.Text = "MC";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnMC.Location = new System.Drawing.Point(142, 140);
+            this.btnMC.Name = "btnMC";
+            this.btnMC.Size = new System.Drawing.Size(119, 77);
+            this.btnMC.TabIndex = 45;
+            this.btnMC.Text = "MC";
+            this.btnMC.UseVisualStyleBackColor = true;
+            this.btnMC.Click += new System.EventHandler(this.btnMemory_click);
             // 
-            // button5
+            // btnMR
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button5.Location = new System.Drawing.Point(17, 140);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(119, 77);
-            this.button5.TabIndex = 46;
-            this.button5.Text = "MR";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnMR.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnMR.Location = new System.Drawing.Point(17, 140);
+            this.btnMR.Name = "btnMR";
+            this.btnMR.Size = new System.Drawing.Size(119, 77);
+            this.btnMR.TabIndex = 46;
+            this.btnMR.Text = "MR";
+            this.btnMR.UseVisualStyleBackColor = true;
+            this.btnMR.Click += new System.EventHandler(this.btnMemory_click);
             // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 577);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMR);
+            this.Controls.Add(this.btnMC);
+            this.Controls.Add(this.btnMS);
+            this.Controls.Add(this.btnMplus);
+            this.Controls.Add(this.btnMminus);
             this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -422,10 +427,10 @@
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnMminus;
+        private System.Windows.Forms.Button btnMplus;
+        private System.Windows.Forms.Button btnMS;
+        private System.Windows.Forms.Button btnMC;
+        private System.Windows.Forms.Button btnMR;
     }
 }

@@ -17,8 +17,11 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
         private RPNCalculatorEngine RPNCalculator;
+        private float memory;
+        bool isAllowBack;
 
-            
+
+
         public ExtendForm()
         {
             InitializeComponent();
@@ -94,6 +97,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = "0";
             }
         }
+   
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -171,5 +175,38 @@ namespace CPE200Lab1
         }
 
         
+        
+        private void btnMemory_click(object sender, EventArgs e)
+        {
+            string opM = ((Button)sender).Text;
+            string firstOperand;
+            
+
+
+            switch (opM)
+            {
+                case "MS":
+                    firstOperand = lblDisplay.Text;
+                    memory = (float.Parse(firstOperand));
+                    break;
+                case "M+":
+                    firstOperand = lblDisplay.Text;
+                    memory += (float.Parse(firstOperand));
+                    break;
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    memory -= (float.Parse(firstOperand));
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+
+            }
+            isAllowBack = false;
+
+        }
     }
 }

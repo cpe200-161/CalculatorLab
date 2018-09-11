@@ -13,8 +13,8 @@ namespace CPE200Lab1
         public string firstOperand;
         public string secondOperand;
         public string result;
+      
         
-
         private bool isNotOperator(string str)
         {
             switch (str)
