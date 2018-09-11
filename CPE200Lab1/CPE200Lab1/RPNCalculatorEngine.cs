@@ -24,13 +24,13 @@ namespace CPE200Lab1
             // your code here
             string[] parts = str.Split(' ');
             Stack<string> Operands = new Stack<string>();
-            foreach(string list in parts)
+            for (int i = 0;i < parts.Length; i++)
             {
-                if (isNumber(list))
+                if (isNumber(parts[i]))
                 {
-                    Operands.Push(list);
+                    Operands.Push(parts[i]);
                 }
-                else if (isOperator(list))
+                else if (isOperator(parts[i]))
                 {
                     if (Operands.Count < 2)
                     {
@@ -38,12 +38,25 @@ namespace CPE200Lab1
                     }
                     string secondOperand = Operands.Pop();
                     string firstOperand = Operands.Pop();
-                    string result = calculate(list, firstOperand, secondOperand);
+                    string result = calculate(parts[i], firstOperand, secondOperand);
                     Operands.Push(result);
                 }
-                else if (isUnaryCalculate(list))
+                else if (isUnaryCalculate(parts[i]))
                 {
-                    Operands.Push(unaryCalculate(list, Operands.Pop()));
+                    Operands.Push(unaryCalculate(parts[i], Operands.Pop()));
+                }
+                else if (parts[i] == "%")
+                {
+                    if (parts[i+1] == "+" || parts[i+1] == "-")
+                    {
+                        string secondOperand = Operands.Pop();
+                        string firstOperand = Operands.Peek();
+                        Operands.Push(calculate(parts[i], firstOperand, secondOperand));
+                    }
+                    else
+                    {
+                        Operands.Push(calculate(parts[i], Operands.Pop(), null));
+                    }
                 }
             }
             if (Operands.Count == 1)
