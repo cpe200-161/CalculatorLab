@@ -46,7 +46,11 @@ namespace CPE200Lab1
                     Operands.Push(unaryCalculate(list, Operands.Pop()));
                 }
             }
-            return Operands.Pop();
+            if (Operands.Count == 1)
+            {
+                return Operands.Pop();
+            }
+            return "E";
         }
     }
 }
