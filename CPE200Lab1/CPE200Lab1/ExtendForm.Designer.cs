@@ -323,6 +323,7 @@
 			this.button1.TabIndex = 42;
 			this.button1.Text = "MS";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.btnMemory);
 			// 
 			// button2
 			// 
@@ -334,6 +335,7 @@
 			this.button2.TabIndex = 43;
 			this.button2.Text = "MC";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.btnMemory);
 			// 
 			// button3
 			// 
@@ -345,6 +347,7 @@
 			this.button3.TabIndex = 44;
 			this.button3.Text = "MR";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.btnMemory);
 			// 
 			// button4
 			// 
@@ -356,6 +359,7 @@
 			this.button4.TabIndex = 45;
 			this.button4.Text = "M+";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
 			// button5
 			// 
@@ -367,6 +371,7 @@
 			this.button5.TabIndex = 46;
 			this.button5.Text = "M-";
 			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
 			// button6
 			// 
@@ -376,9 +381,9 @@
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(117, 79);
 			this.button6.TabIndex = 47;
-			this.button6.Text = "1/X";
+			this.button6.Text = "1/x";
 			this.button6.UseVisualStyleBackColor = true;
-			this.button6.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
+			this.button6.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
 			// button7
 			// 
@@ -390,7 +395,7 @@
 			this.button7.TabIndex = 48;
 			this.button7.Text = "√";
 			this.button7.UseVisualStyleBackColor = true;
-			this.button7.AutoSizeChanged += new System.EventHandler(this.btnBinaryOperator_Click);
+			this.button7.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
 			// button8
 			// 
@@ -402,6 +407,7 @@
 			this.button8.TabIndex = 49;
 			this.button8.Text = "%";
 			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
 			// ExtendForm
 			// 

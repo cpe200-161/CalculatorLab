@@ -21,6 +21,7 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+				case "%":
                     return true;
             }
             return false;
@@ -30,8 +31,10 @@ namespace CPE200Lab1
 		{
 			switch (str)
 			{
-				case "1/X":
+				case "1/x":
 				case "√":
+				case "M+":
+				case "M-":
 					return true;
 			}
 			return false;
@@ -94,7 +97,11 @@ namespace CPE200Lab1
 							result.ToString("N" + remainLength);
 					}
                     break;
-            }
+				//case "M+":
+					//return (Convert.ToDouble(memory) + Convert.ToDouble(operand)).ToString();
+				//case "M-":
+					//return (Convert.ToDouble(memory) - Convert.ToDouble(operand)).ToString();
+			}
             return "E";
         }
 
@@ -105,8 +112,8 @@ namespace CPE200Lab1
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
+					return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString(); 
+				case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
@@ -133,8 +140,8 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+					//your code here
+					return ((Convert.ToDouble(secondOperand) * 0.01) * Convert.ToDouble(firstOperand)).ToString();
             }
             return "E";
         }
