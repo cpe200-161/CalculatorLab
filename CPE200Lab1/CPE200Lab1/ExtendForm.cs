@@ -225,8 +225,10 @@ namespace CPE200Lab1
                 keep[keep.Length - 1] = Math.Sqrt(Convert.ToDouble(keep[keep.Length-1])).ToString(); ;
                 for (int i = 0; i < keep.Length; i++)
                 {
-                    lblDisplay.Text = "";
-                    lblDisplay.Text = keep[0] + lblDisplay.Text + " " + keep[i];
+                    if (i == 0) { lblDisplay.Text = keep[i]; }
+                    else {
+                        lblDisplay.Text = lblDisplay.Text + " " + keep[i];
+                    }
 
                 }
                 isSpaceAllowed = true;
@@ -278,8 +280,11 @@ namespace CPE200Lab1
                 keep[keep.Length - 1] = (Convert.ToDouble(keep[keep.Length - 1]) * (Convert.ToDouble(keep[keep.Length - 2]) / 100)).ToString();
                 for(int i = 0; i < keep.Length; i++)
                 {
-                    lblDisplay.Text = "";
-                    lblDisplay.Text = keep[0] + lblDisplay.Text + " " + keep[i];
+                    if (i == 0) { lblDisplay.Text = keep[0]; }
+                    else
+                    {
+                        lblDisplay.Text = lblDisplay.Text + " " + keep[i];
+                    }
                     
                 }
                 isSpaceAllowed = true;
