@@ -19,11 +19,14 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
+        string newOper;
+        string secondOperand;
         private CalculatorEngine engine;
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
+            secondOperand = null;
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
@@ -65,7 +68,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
-            lblDisplay.Text += digit;
+            lblDisplay.Text +=digit;
             isAfterOperater = false;
         }
 
@@ -103,20 +106,16 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
+            if(firstOperand != null&& isAfterEqual==false)
             {
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
-                if (result is "E" || result.Length > 8)
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                }
+                 secondOperand= lblDisplay.Text;
+
             }
             operate = ((Button)sender).Text;
+            if (operate != "%")
+            {
+                newOper = ((Button)sender).Text;
+            }
             switch (operate)
             {
                 case "+":
@@ -127,8 +126,23 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
                     break;
+            }
+            if (isAfterEqual)
+            {
+                firstOperand = lblDisplay.Text;
+                isAfterEqual = false;
+            }else
+            {
+                string result = engine.calculate(operate, firstOperand, secondOperand);
+                if (result is "E" || result.Length > 8)
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                }
             }
             isAllowBack = false;
         }
@@ -140,7 +154,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(newOper, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
