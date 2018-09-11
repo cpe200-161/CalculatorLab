@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -26,7 +26,17 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+		protected bool is_exOperator(string str)
+		{
+			switch (str)
+			{
+				case "1/X":
+				case "√":
+					return true;
+			}
+			return false;
+		}
+		public string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
