@@ -13,17 +13,26 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         
-        private CalculatorEngine engine;
+        private    CalculatorEngine engine;
 
-        public ExtendForm()
+        public ExtendForm ()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = Engine ();
         }
 
-        
-        
-       
+        protected virtual CalculatorEngine Engine()
+        {
+            return new CalculatorEngine();
+        }
+
+
+        private  string  Display()
+        {
+            lblDisplay.Text = engine.Display();
+            return lblDisplay.Text;
+        }
+
         private void btnNumber_Click(object sender, EventArgs e)
         {
          

@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
-        private bool isNumberPart = false;
+        protected  bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private string display = "0";
         
-        private bool isNumber(string str)
+        protected  virtual bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-        public  string Display()
+
+        public virtual  string Display()
         {
             return display;
         }
+
         public  bool isOperator(string str)
         {
             switch(str) {
@@ -134,7 +136,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
-        public void handleSpace()
+        public virtual  void handleSpace()
         {
             if (isSpaceAllowed)
             {
@@ -142,7 +144,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
