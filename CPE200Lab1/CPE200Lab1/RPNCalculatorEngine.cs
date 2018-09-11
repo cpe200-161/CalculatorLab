@@ -15,49 +15,42 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             // your code here
-            Stack<string> numStack = new Stack<string>();
-
-            string[] numSet = str.Split(' ');
-
-            foreach(string text in numSet)
+            Stack<string> number = new Stack<string>();
+            string[] part = str.Split(' ');
+            string firstOp;
+            string seccondOp;
+            
+            foreach(string text in part)
             {
                 if (isNumber(text))
                 {
-                    numStack.Push(text);
+                    number.Push(text);
                 }
-
+                else if(isOperator(text) && number.Count >= 2)
+                {
+                    seccondOp = number.Pop();
+                    firstOp = number.Pop();
+                    if(text == "%")
+                    {
+                        number.Push(firstOp);
+                    }
+                    number.Push(calculate(text, firstOp, seccondOp));
+                }
+                else if(isOperator2(text) && number.Count >= 1)
+                {
+                    string num = number.Pop();
+                    number.Push(unaryCalculate(text, num));
+                }
                 else
                 {
-                    if ((text == "+" || text == "-" || text == "X" || text == "÷" || text == "%") && numStack.Count >= 2)
-                    {
-                        string second = numStack.Pop();
-                        string first = numStack.Pop();
-                        if (text == "%")
-                        {
-                            numStack.Push(first);
-                        }
-                        numStack.Push(calculate(text, first, second));
-                    }
-
-                    else if ((text == "√" || text == "1/x") && numStack.Count >= 1)
-                    {
-                        string num = numStack.Pop();
-                        numStack.Push(unaryCalculate(text, num));
-                    }
-
-                    else
-                    {
-                        return "E";
-                    }
+                    return "E";
                 }
             }
-
-            if (numStack.Count != 1)
+            if(number.Count == 1)
             {
-                return "E";
+                return number.Peek();
             }
-
-            return numStack.Peek();
+            return "E";
         }
     }
 }

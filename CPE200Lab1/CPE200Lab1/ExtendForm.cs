@@ -16,7 +16,7 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
-        public string memory = "0";
+        public string member = "0";
 
         public ExtendForm()
         {
@@ -24,7 +24,7 @@ namespace CPE200Lab1
             engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        public bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
@@ -170,34 +170,25 @@ namespace CPE200Lab1
 
         public void mFunction(object sender, EventArgs e)
         {
-            string mfc = ((Button)sender).Text;
+            string mF = ((Button)sender).Text;
 
-            if (float.TryParse((engine.Process(lblDisplay.Text)), out float f))
+            switch (mF)
             {
-                if (mfc == "MC")
-                {
-                    memory = "0";
-                }
-
-                else if (mfc == "MR")
-                {
-                    lblDisplay.Text = memory;
-                }
-
-                else if (mfc == "MS")
-                {
-                    memory = engine.Process(lblDisplay.Text);
-                }
-
-                else if (mfc == "M+")
-                {
-                    memory = (float.Parse(memory) + float.Parse(engine.Process(lblDisplay.Text))).ToString();
-                }
-
-                else if (mfc == "M-")
-                {
-                    memory = (float.Parse(memory) - float.Parse(engine.Process(lblDisplay.Text))).ToString();
-                }
+                case "MC":
+                    member = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = member;
+                    break;
+                case "MS":
+                    member = engine.Process(lblDisplay.Text);
+                    break;
+                case "M+":
+                    member = (float.Parse(member) + float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                    break;
+                case "M-":
+                    member = (float.Parse(member) - float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                    break;
             }
         }
     }

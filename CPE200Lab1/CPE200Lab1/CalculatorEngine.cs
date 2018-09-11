@@ -14,7 +14,7 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -26,7 +26,16 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        public bool isOperator2(string str)
+        {
+            switch (str)
+            {
+                case "1/x":
+                case "√":
+                    return true;
+            }
+            return false;
+        }
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
