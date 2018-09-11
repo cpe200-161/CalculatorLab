@@ -21,6 +21,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "√":
+                case "%":
+                case "1/X":
                     return true;
             }
             return false;
@@ -47,7 +50,7 @@ namespace CPE200Lab1
                     {
                         return NotOver8(Math.Sqrt(Convert.ToDouble(operand)), maxOutputSize);
                     }
-                case "1/x":
+                case "1/X":
                     if(operand != "0")
                     {
                         return NotOver8((1.0 / Convert.ToDouble(operand)), maxOutputSize);
@@ -75,7 +78,6 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)/100).ToString();
-                    break;
             }
             return "E";
         }

@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private bool isEqual = false;
         private RPNCalculatorEngine engine;
 
         public ExtendForm()
@@ -28,8 +29,11 @@ namespace CPE200Lab1
             switch(ch) {
                 case '+':
                 case '-':
-                case 'X':
+                case 'x':
                 case '÷':
+                case '%':
+                case '1':
+                case '√':
                     return true;
             }
             return false;
@@ -41,9 +45,14 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0" )
             {
                 lblDisplay.Text = "";
+            }
+            if (isEqual)
+            {
+                lblDisplay.Text = "";
+                isEqual = false;
             }
             if (!isNumberPart)
             {
@@ -109,6 +118,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            isEqual = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -163,6 +173,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+                isContainDot = false;
             }
         }
     }
