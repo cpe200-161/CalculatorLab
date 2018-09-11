@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine 
     {
-        public string Process(string str)
+        public override string Process(string str)
         {
             Stack<string> numberStack = new Stack<string>();
             string[] numbers = str.Split(' ');
@@ -29,12 +29,11 @@ namespace CPE200Lab1
                         numberStack.Push(number);
                     }
                     
-                    
                 }
                 return numberStack.Pop();
             }
             
-                return "E";
+            return "E";
             
             
             
