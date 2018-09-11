@@ -318,6 +318,7 @@
             this.button1.TabIndex = 42;
             this.button1.Text = "√";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button2
             // 
@@ -329,6 +330,7 @@
             this.button2.TabIndex = 43;
             this.button2.Text = "%";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button3
             // 
@@ -340,6 +342,7 @@
             this.button3.TabIndex = 44;
             this.button3.Text = "1/X";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 
