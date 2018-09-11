@@ -22,12 +22,13 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "1/x":
                     return true;
             }
             return false;
         }
 
-        public string Process(string str)
+        public  string  Process(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -48,7 +49,7 @@ namespace CPE200Lab1
                     numbers.Pop();
                     numbers.Push(unaryCalculate(parts[i], st, 8));
                 }
-                else if (isNextOperater(parts[i]))
+                else if (parts[i] == "%")
                 {
                     string st, nd;
                     if (numbers.Count < 2)
@@ -109,8 +110,6 @@ namespace CPE200Lab1
              }
              if (operand.Count > 1)
                  return "E";
-
-
              return operand.Pop();*/
         }
     }
