@@ -15,15 +15,14 @@ namespace CPE200Lab1
             string[] part = str.Split(' ');
             string secondOperand;
             string firstOperand;
-            int countbase = 0;
+            string ansWer;
             foreach (string text in part)
             {
-                if (isOperator(text) && numbers.Count != 0)
+                if (isOperator(text)  )
                 {
-                    string ansWer;
-                    secondOperand = numbers.Pop();
-                    if (numbers.Count != 0)
+                    if (numbers.Count >=2  )
                     {
+                        secondOperand = numbers.Pop();
                         firstOperand = numbers.Pop();
                         ansWer = calculate(text, firstOperand, secondOperand);
                         numbers.Push(ansWer);
@@ -35,12 +34,21 @@ namespace CPE200Lab1
                 }
                 else if (isNumber(text))
                 {
-
+                    
                     numbers.Push(text);
-                    countbase++;
+                    
+                }
+                else if(text == "√" || text =="1/x")
+                {
+                    ansWer = unaryCalculate(text, numbers.Pop());
+                    numbers.Push(ansWer);
+                }
+                else 
+                {
+                    return "E";
                 }
             }
-            if (numbers.Count == 1 && countbase > 1)
+            if (numbers.Count == 1 )
             {
                 return numbers.Peek();
             }
@@ -48,13 +56,6 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-
-
-
-
-
-
-
         }
     }
 }
