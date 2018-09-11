@@ -50,6 +50,8 @@
 			this.lblDisplay = new System.Windows.Forms.Label();
 			this.btnSpace = new System.Windows.Forms.Button();
 			this.bntPercentage = new System.Windows.Forms.Button();
+			this.bntSquare = new System.Windows.Forms.Button();
+			this.bntOneoverX = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnBack
@@ -317,6 +319,30 @@
 			this.bntPercentage.UseVisualStyleBackColor = true;
 			this.bntPercentage.Click += new System.EventHandler(this.btnBinaryOperator_Click);
 			// 
+			// bntSquare
+			// 
+			this.bntSquare.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bntSquare.Location = new System.Drawing.Point(639, 196);
+			this.bntSquare.Margin = new System.Windows.Forms.Padding(4);
+			this.bntSquare.Name = "bntSquare";
+			this.bntSquare.Size = new System.Drawing.Size(117, 79);
+			this.bntSquare.TabIndex = 36;
+			this.bntSquare.Text = "√";
+			this.bntSquare.UseVisualStyleBackColor = true;
+			this.bntSquare.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+			// 
+			// bntOneoverX
+			// 
+			this.bntOneoverX.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bntOneoverX.Location = new System.Drawing.Point(639, 283);
+			this.bntOneoverX.Margin = new System.Windows.Forms.Padding(4);
+			this.bntOneoverX.Name = "bntOneoverX";
+			this.bntOneoverX.Size = new System.Drawing.Size(117, 79);
+			this.bntOneoverX.TabIndex = 36;
+			this.bntOneoverX.Text = "1/x";
+			this.bntOneoverX.UseVisualStyleBackColor = true;
+			this.bntOneoverX.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+			// 
 			// ExtendForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -326,6 +352,8 @@
 			this.Controls.Add(this.lblDisplay);
 			this.Controls.Add(this.btnBack);
 			this.Controls.Add(this.btnClear);
+			this.Controls.Add(this.bntOneoverX);
+			this.Controls.Add(this.bntSquare);
 			this.Controls.Add(this.bntPercentage);
 			this.Controls.Add(this.btnDivide);
 			this.Controls.Add(this.btnEqual);
@@ -375,5 +403,7 @@
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
 		private System.Windows.Forms.Button bntPercentage;
+		private System.Windows.Forms.Button bntSquare;
+		private System.Windows.Forms.Button bntOneoverX;
 	}
 }

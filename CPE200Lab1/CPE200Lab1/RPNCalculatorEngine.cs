@@ -18,15 +18,34 @@ namespace CPE200Lab1
 				{
 					myStack.Push(token);
 				}
-				else if(isOperator(token))
+				else if (isOperator(token))
 				{
 					if (myStack.Count < 2)
 					{
 						return "E";
 					}
-					string secondOperand = myStack.Pop();
-					myStack.Push(calculate(token, myStack.Pop(), secondOperand));
+					switch (token)
+					{
+						case "+":
+						case "-":
+						case "X":
+						case "÷":
+							string secondOperand = myStack.Pop();
+							myStack.Push(calculate(token, myStack.Pop(), secondOperand));
+							break;
+						case "%":
+							secondOperand = myStack.Pop();
+							myStack.Push(calculate(token, myStack.Peek(), secondOperand));
+							break;
+						case "√":
+							myStack.Push(unaryCalculate(token, myStack.Pop()));
+							break;
+						case "1/x":
+							myStack.Push(unaryCalculate(token, myStack.Pop()));
+							break;
+					}
 				}
+
 			}
 			if (myStack.Count == 1)
 			{
