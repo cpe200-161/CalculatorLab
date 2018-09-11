@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
+        private string beforePercent;
         private CalculatorEngine engine;
 
         private void resetAll()
@@ -117,6 +118,7 @@ namespace CPE200Lab1
                 }
             }
             operate = ((Button)sender).Text;
+            beforePercent = operate;
             switch (operate)
             {
                 case "+":
@@ -127,7 +129,10 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    string secondOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, 8);
+                    operate = beforePercent;
                     break;
             }
             isAllowBack = false;
