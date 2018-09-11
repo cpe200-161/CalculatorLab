@@ -103,7 +103,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
+            if(firstOperand != null && ((Button)sender).Text != "%")
             {
                 string secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
@@ -116,8 +116,8 @@ namespace CPE200Lab1
                     lblDisplay.Text = result;
                 }
             }
-            operate = ((Button)sender).Text;
-            switch (operate)
+            
+            switch (((Button)sender).Text)
             {
                 case "+":
                 case "-":
@@ -125,9 +125,18 @@ namespace CPE200Lab1
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    operate = ((Button)sender).Text;
                     break;
                 case "%":
                     // your code here
+                    if (firstOperand == null || operate == "X" || operate == "÷")
+                    {
+                        lblDisplay.Text = engine.calculate("%", lblDisplay.Text, null);
+                    }
+                    else
+                    {
+                        lblDisplay.Text = engine.calculate("%", lblDisplay.Text, firstOperand);
+                    }
                     break;
             }
             isAllowBack = false;
