@@ -123,12 +123,13 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                   
+                case "%":
+                    // your code here 
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here
-                    break;
+                    //break;
             }
             isAllowBack = false;
         }

@@ -15,12 +15,14 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        double memory;
         private CalculatorEngine engine;
-
+        private RPNCalculatorEngine RPNengine;
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RPNengine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,6 +32,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -70,8 +73,49 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string operate = ((Button)sender).Text;
+            string firstOperand;
+            firstOperand = lblDisplay.Text;
+            if (!engine.isNumber(lblDisplay.Text))
+            {
+                string[] parts;
+                parts = firstOperand.ToString().Split(' ');
+                firstOperand = parts[parts.Length - 1];
+                Console.WriteLine(firstOperand);
+            }
+
+            string result;
+
+            if (engine.isNumber(firstOperand))
+            {
+               result = engine.unaryCalculate(operate, firstOperand);
+            }
+            else
+            {
+                result = "E";
+            }
+
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                string[] parts;
+                parts = firstOperand.ToString().Split(' ');
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - parts[parts.Length - 1].Length);
+                lblDisplay.Text +=result;
+            }
+
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {       
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -104,8 +148,17 @@ namespace CPE200Lab1
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
-            } else
+                result = RPNengine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                }
+            }
+            else
             {
                 lblDisplay.Text = result;
             }
@@ -163,6 +216,65 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        private void btnMP_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory += Convert.ToDouble(lblDisplay.Text);
+            }
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            memory = 0;
+        }
+
+        private void btnMM_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory -= Convert.ToDouble(lblDisplay.Text);
+            }
+
+
+        }
+
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "error")
+            {
+                return;
+            }
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                lblDisplay.Text = memory.ToString();
+            }
+        }
+
+        private void btnMS_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "error")
+            {
+                return;
+            }
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory = Convert.ToDouble(lblDisplay.Text);
             }
         }
     }
