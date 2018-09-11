@@ -39,7 +39,7 @@ namespace CPE200Lab1
                 case '÷':
                 case '%':   // add % sign
                     case '√':   // add sqrt
-                case 'm':
+                case 'x':
 
 
                     return true;
