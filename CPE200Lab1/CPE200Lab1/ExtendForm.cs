@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private bool isequal = false;
         private CalculatorEngine engine;
         private RPNCalculatorEngine rpnEngine;
 
@@ -33,6 +34,9 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case '√':
+                case 'x':
                     return true;
             }
             return false;
@@ -40,6 +44,11 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
+            if (isequal)
+            {
+                lblDisplay.Text = "";
+                isequal = false;
+            }
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -59,6 +68,11 @@ namespace CPE200Lab1
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
+            if (isequal)
+            {
+                lblDisplay.Text = "";
+                isequal = false;
+            }
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -101,6 +115,7 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            isequal = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -123,6 +138,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            isequal = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)

@@ -18,8 +18,10 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string operate0;
         private double memory;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine rpnEngine;
 
         private void resetAll()
         {
@@ -31,13 +33,12 @@ namespace CPE200Lab1
             firstOperand = null;
         }
 
-      
-
         public MainForm()
         {
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            rpnEngine = new RPNCalculatorEngine();
             resetAll();
         }
 
@@ -47,14 +48,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterEqual)
-            {
-                resetAll();
-            }
-            if (isAfterOperater)
-            {
-                lblDisplay.Text = "0";
-            }
+
             if(lblDisplay.Text.Length is 8)
             {
                 return;
@@ -117,16 +111,21 @@ namespace CPE200Lab1
                 }
             }
             operate = ((Button)sender).Text;
+            if (operate == "%")
+            {
+                operate0 = ((Button)sender).Text;
+            }
             switch (operate)
             {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
+                    lblDisplay.Text += " " + operate + " ";
                     break;
                 case "%":
+                    string secondOperand = lblDisplay.Text;
+                    engine.calculate("%", firstOperand, secondOperand);
                     // your code here
                     break;
             }
@@ -139,8 +138,17 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = null;
+            string[] parts = lblDisplay.Text.Split(' ');
+            if (engine.isOperator(parts[1]))
+            {
+                result = engine.Process(lblDisplay.Text);
+            }
+            else
+            {
+                result = rpnEngine.Process(lblDisplay.Text);
+            }
+            //string secondOperand = lblDisplay.Text;
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -149,7 +157,6 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-            isAfterEqual = true;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -264,6 +271,16 @@ namespace CPE200Lab1
                 return;
             }
             lblDisplay.Text = memory.ToString();
+        }
+
+        private void btnSpace_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length == 8 || lblDisplay.Text == "Error")
+            {
+                return;
+            }
+            
+            lblDisplay.Text += " ";
         }
     }
 }
