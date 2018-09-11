@@ -8,32 +8,29 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine:CalculatorEngine
     {
-		public new string Process(string str)
+		public string Process(string str)
 		{
 			string[] RPNparts = str.Split(' ');
-			int ArrLenght = RPNparts.Length;
-			if(!isNumber(RPNparts[RPNparts.Length-1]) && RPNparts.Length >= 3)
+			Stack<string> myStack = new Stack<string>();
+			foreach (string token in RPNparts)
 			{
-				for(int i = 0; i<ArrLenght; i++)
+				if (isNumber(token))
 				{
-					if (isOperator(RPNparts[i + 2]) && isNumber(RPNparts[i]) && isNumber(RPNparts[i + 1]))
-					{
-						if (ArrLenght == 3)
-						{
-							return calculate(RPNparts[i + 2], RPNparts[i], RPNparts[i + 1], 4);
-						}
-						else
-						{
-							RPNparts[i] = calculate(RPNparts[i + 2], RPNparts[i], RPNparts[i + 1], 4);
-							for (int j = i + 1; j < ArrLenght - 2; j++)
-							{
-								RPNparts[j] = RPNparts[j + 2];
-							}
-							ArrLenght -= 2;
-							i = -1;
-						}
-					}
+					myStack.Push(token);
 				}
+				else if(isOperator(token))
+				{
+					if (myStack.Count < 2)
+					{
+						return "E";
+					}
+					string secondOperand = myStack.Pop();
+					myStack.Push(calculate(token, myStack.Pop(), secondOperand));
+				}
+			}
+			if (myStack.Count == 1)
+			{
+				return myStack.Pop();
 			}
 			return "E";
 		}
