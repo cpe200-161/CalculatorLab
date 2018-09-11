@@ -13,13 +13,13 @@ namespace CPE200Lab1
         {
             Stack<string> Stacknumber = new Stack<string>();
             string[] parts = str.Split(' ');
-            bool beforeopereter=false,checkmem=false,checkoper=false;
+            bool beforeopereter=false,checkmemory=false,checkoperate=false;
             foreach (string number in parts)
             {
                 if (isOperator(number))
                 {
                     string first, second;
-                    if (Stacknumber.Count < 2 && checkoper == false)
+                    if (Stacknumber.Count < 2 && checkoperate == false)
                     {
                         return "E";
                     }
@@ -36,7 +36,7 @@ namespace CPE200Lab1
                 {
                     string first;
                     first = Stacknumber.Pop();
-                    checkoper = true;
+                    checkoperate = true;
                     beforeopereter = true;
                     Stacknumber.Push(unaryCalculate(number, first));
                 }
@@ -44,7 +44,7 @@ namespace CPE200Lab1
                 {
                     string first;
                     first = Stacknumber.Pop();
-                    checkoper = true;
+                    checkoperate = true;
                     beforeopereter = true;
                     Stacknumber.Push(unaryCalculate(number,first));
                 }
@@ -61,44 +61,43 @@ namespace CPE200Lab1
                 {
                     case "MC":
                         memory = "";
-                        checkmem = true;
+                        beforeopereter = true;
+                        checkmemory = true;
                         break;
                     case "MR":
-                        checkmem = true;
+                        checkmemory = true;
                         return memory;
                         break;
                     case "MS":
                         memory = Stacknumber.Pop();
                         Stacknumber.Push(memory);
-                        checkmem = true;
+                        checkmemory = true;
                         break;
                     case "M+":
                         String kebmem;
-                        checkmem = true;
+                        checkmemory = true;
                         kebmem = (Convert.ToDouble(Stacknumber.Pop()) + Convert.ToDouble(memory)).ToString();
-                        
+                        beforeopereter = true;
                         memory = kebmem;
                         break;
                     case "M-":
                         String kebmeme;
-                        checkmem = true;
+                        checkmemory = true;
                         kebmeme = (Convert.ToDouble(memory) - Convert.ToDouble(Stacknumber.Pop())).ToString();
-                        
+                        beforeopereter = true;
                         memory = kebmeme;
                         break;
                 }
 
             }
-
-           
             if (Stacknumber.Count > 1 || beforeopereter == false)
             {
                 return "E";
             }
             
-            if(checkmem == true)
+            if(checkmemory == true)
             {
-                return "";
+                return "0";
             }
             else
             {
