@@ -30,20 +30,16 @@
         {
             this.btnBack = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnDivide = new System.Windows.Forms.Button();
             this.btnEqual = new System.Windows.Forms.Button();
             this.btnDot = new System.Windows.Forms.Button();
             this.btn0 = new System.Windows.Forms.Button();
             this.btnSign = new System.Windows.Forms.Button();
-            this.btnPlus = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
-            this.btnMinus = new System.Windows.Forms.Button();
             this.btn6 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
-            this.btnMultiply = new System.Windows.Forms.Button();
             this.btn9 = new System.Windows.Forms.Button();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn7 = new System.Windows.Forms.Button();
@@ -56,6 +52,10 @@
             this.btnOox = new System.Windows.Forms.Button();
             this.btnSqr = new System.Windows.Forms.Button();
             this.btnPercent = new System.Windows.Forms.Button();
+            this.btnMultiply = new System.Windows.Forms.Button();
+            this.btnMinus = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
+            this.btnDivide = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -79,17 +79,6 @@
             this.btnClear.Text = "C";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnDivide
-            // 
-            this.btnDivide.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDivide.Location = new System.Drawing.Point(382, 168);
-            this.btnDivide.Name = "btnDivide";
-            this.btnDivide.Size = new System.Drawing.Size(88, 64);
-            this.btnDivide.TabIndex = 36;
-            this.btnDivide.Text = "÷";
-            this.btnDivide.UseVisualStyleBackColor = true;
-            this.btnDivide.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // btnEqual
             // 
@@ -135,17 +124,6 @@
             this.btnSign.UseVisualStyleBackColor = true;
             this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
             // 
-            // btnPlus
-            // 
-            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(382, 378);
-            this.btnPlus.Name = "btnPlus";
-            this.btnPlus.Size = new System.Drawing.Size(88, 64);
-            this.btnPlus.TabIndex = 31;
-            this.btnPlus.Text = "+";
-            this.btnPlus.UseVisualStyleBackColor = true;
-            this.btnPlus.Click += new System.EventHandler(this.btnBinaryOperator_Click);
-            // 
             // btn3
             // 
             this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,17 +157,6 @@
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Click += new System.EventHandler(this.btnNumber_Click);
             // 
-            // btnMinus
-            // 
-            this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinus.Location = new System.Drawing.Point(382, 308);
-            this.btnMinus.Name = "btnMinus";
-            this.btnMinus.Size = new System.Drawing.Size(88, 64);
-            this.btnMinus.TabIndex = 27;
-            this.btnMinus.Text = "-";
-            this.btnMinus.UseVisualStyleBackColor = true;
-            this.btnMinus.Click += new System.EventHandler(this.btnBinaryOperator_Click);
-            // 
             // btn6
             // 
             this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -222,17 +189,6 @@
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
             this.btn4.Click += new System.EventHandler(this.btnNumber_Click);
-            // 
-            // btnMultiply
-            // 
-            this.btnMultiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMultiply.Location = new System.Drawing.Point(382, 238);
-            this.btnMultiply.Name = "btnMultiply";
-            this.btnMultiply.Size = new System.Drawing.Size(88, 64);
-            this.btnMultiply.TabIndex = 23;
-            this.btnMultiply.Text = "X";
-            this.btnMultiply.UseVisualStyleBackColor = true;
-            this.btnMultiply.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // btn9
             // 
@@ -344,7 +300,7 @@
             this.btnOox.TabIndex = 48;
             this.btnOox.Text = "1/x";
             this.btnOox.UseVisualStyleBackColor = true;
-            this.btnOox.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.btnOox.Click += new System.EventHandler(this.btnUnary_Click);
             // 
             // btnSqr
             // 
@@ -355,7 +311,7 @@
             this.btnSqr.TabIndex = 47;
             this.btnSqr.Text = "√";
             this.btnSqr.UseVisualStyleBackColor = true;
-            this.btnSqr.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.btnSqr.Click += new System.EventHandler(this.btnUnary_Click);
             // 
             // btnPercent
             // 
@@ -367,6 +323,50 @@
             this.btnPercent.Text = "%";
             this.btnPercent.UseVisualStyleBackColor = true;
             this.btnPercent.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // btnMultiply
+            // 
+            this.btnMultiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMultiply.Location = new System.Drawing.Point(382, 238);
+            this.btnMultiply.Name = "btnMultiply";
+            this.btnMultiply.Size = new System.Drawing.Size(88, 64);
+            this.btnMultiply.TabIndex = 23;
+            this.btnMultiply.Text = "X";
+            this.btnMultiply.UseVisualStyleBackColor = true;
+            this.btnMultiply.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // btnMinus
+            // 
+            this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinus.Location = new System.Drawing.Point(382, 308);
+            this.btnMinus.Name = "btnMinus";
+            this.btnMinus.Size = new System.Drawing.Size(88, 64);
+            this.btnMinus.TabIndex = 27;
+            this.btnMinus.Text = "-";
+            this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // btnPlus
+            // 
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlus.Location = new System.Drawing.Point(382, 378);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(88, 64);
+            this.btnPlus.TabIndex = 31;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // btnDivide
+            // 
+            this.btnDivide.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDivide.Location = new System.Drawing.Point(382, 168);
+            this.btnDivide.Name = "btnDivide";
+            this.btnDivide.Size = new System.Drawing.Size(88, 64);
+            this.btnDivide.TabIndex = 36;
+            this.btnDivide.Text = "÷";
+            this.btnDivide.UseVisualStyleBackColor = true;
+            this.btnDivide.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 
@@ -412,20 +412,16 @@
 
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnDivide;
         private System.Windows.Forms.Button btnEqual;
         private System.Windows.Forms.Button btnDot;
         private System.Windows.Forms.Button btn0;
         private System.Windows.Forms.Button btnSign;
-        private System.Windows.Forms.Button btnPlus;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn1;
-        private System.Windows.Forms.Button btnMinus;
         private System.Windows.Forms.Button btn6;
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.Button btnMultiply;
         private System.Windows.Forms.Button btn9;
         private System.Windows.Forms.Button btn8;
         private System.Windows.Forms.Button btn7;
@@ -438,5 +434,9 @@
         private System.Windows.Forms.Button btnOox;
         private System.Windows.Forms.Button btnSqr;
         private System.Windows.Forms.Button btnPercent;
+        private System.Windows.Forms.Button btnMultiply;
+        private System.Windows.Forms.Button btnMinus;
+        private System.Windows.Forms.Button btnPlus;
+        private System.Windows.Forms.Button btnDivide;
     }
 }

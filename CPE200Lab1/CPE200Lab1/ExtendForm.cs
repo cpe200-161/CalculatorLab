@@ -98,6 +98,7 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            memorize = 0;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -182,12 +183,26 @@ namespace CPE200Lab1
             }
             else if(operate == "M+")
             {
-                memorize += Convert.ToDouble(lblDisplay);
+                memorize += Convert.ToDouble(lblDisplay.Text);
             }
             else if(operate == "M-")
             {
-                memorize -= Convert.ToDouble(lblDisplay);
+                memorize -= Convert.ToDouble(lblDisplay.Text);
             } 
+        }
+
+        private void btnUnary_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (btn.Text)
+            {
+                case "1/x":
+                    lblDisplay.Text += " " + "1/x";
+                    break;
+                case "√":
+                    lblDisplay.Text += " " + "√";
+                    break;
+            }
         }
     }
 }

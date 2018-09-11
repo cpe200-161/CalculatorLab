@@ -12,30 +12,24 @@ namespace CPE200Lab1
         {
             Stack<string> Numbers = new Stack<string>();
             string[] part = str.Split(' ');
-            foreach(string text in part)
+            foreach (string text in part)
             {
                 if (isNumber(text))
                 {
                     Numbers.Push(text);
                 }
-                else
+                else if(isOperator(text))
                 {
-                    if (Numbers.Count >= 2)
+                    if (Numbers.Count >= 2 && text == "+" || text == "-" || text == "X" || text == "÷" || text == "%")
                     {
-                        if (text == "+" || text == "-" || text == "X" || text == "÷" || text == "%")
-                        {
-                            string secondOperand = Numbers.Pop();
-                            string firstOperand = Numbers.Pop();
-                            Numbers.Push(calculate(text, firstOperand, secondOperand));
-                        }
+                        string secondOperand = Numbers.Pop();
+                        string firstOperand = Numbers.Pop();
+                        Numbers.Push(calculate(text, firstOperand, secondOperand));
                     }
-                    else if (Numbers.Count >= 1)
+                    else if (Numbers.Count >= 1 && text == "√" || text == "1/x")
                     {
-                        if (text == "√" || text == "1/x")
-                        {
-                            string operand = Numbers.Pop();
-                            Numbers.Push(unaryCalculate(text, operand));
-                        }
+                        string operand = Numbers.Pop();
+                        Numbers.Push(unaryCalculate(text, operand));
                     }
                     else
                     {
@@ -43,7 +37,7 @@ namespace CPE200Lab1
                     }
                 }
             }
-            if(Numbers.Count != 1)
+            if (Numbers.Count != 1)
             {
                 return "E";
             }

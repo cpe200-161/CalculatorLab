@@ -14,13 +14,16 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                case "√":
+                case "1/x":
                     return true;
             }
             return false;
@@ -59,7 +62,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +82,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
             }
