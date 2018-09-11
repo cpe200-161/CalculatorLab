@@ -8,19 +8,30 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        protected virtual bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        protected virtual bool isOperator(string str)
+        public virtual bool isOperator(string str)
         {
             switch(str) {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+                case "%":      
+                    return true;
+            }
+            return false;
+        }
+        public virtual bool isOperator1(string str)
+        {
+            switch (str)
+            {             
+                case "1/x":
+                case "√":
                     return true;
             }
             return false;
@@ -119,8 +130,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString(); 
             }
             return "E";
         }

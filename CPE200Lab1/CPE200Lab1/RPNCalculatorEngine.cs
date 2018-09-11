@@ -8,28 +8,34 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
             Stack<string> stack = new Stack<string>();
+            string[] data = str.Split(' ');
 
-            string []data = str.Split(' ');
-            if ((data.Length>=3 && data.Length%2!=0 && !isOperator(data[0]) && !isOperator(data[1]))) //complete
+            foreach (string number in data)
             {
-                foreach(string number in data)
+                if (isNumber(number))
                 {
-                    if(isNumber(number))
-                    {
-                        stack.Push(number);
-                    }
-                    if(isOperator(number))
-                    {
-                        string secondOperand = stack.Pop();
-                        string firstOperand = stack.Pop();
-                        string result = calculate(number, firstOperand, secondOperand,4);
-                        stack.Push(result);
-                    }
+                    stack.Push(number);
                 }
-                return stack.Pop();
+                else if (isOperator(number) && stack.Count > 1) //
+                {
+                    string secondOperand = stack.Pop();
+                    string firstOperand = stack.Pop();
+                    string result = calculate(number, firstOperand, secondOperand);
+                    stack.Push(result);
+                }
+                else if (isOperator1(number) && stack.Count >= 1)
+                {
+                    string Operand = stack.Pop();
+                    string result2 = unaryCalculate(number, Operand);
+                    stack.Push(result2);
+                }
+                else if (stack.Count == 1)
+                {
+                    return stack.Peek();
+                }      
             }
             return "E";
         }
