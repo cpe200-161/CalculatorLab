@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -115,16 +115,11 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
                 case "%":
-                    double result;
-                    result = Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100);
-                    
-
-
-                    break;
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100)).ToString();
             }
             return "E";
         }

@@ -15,12 +15,13 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
+        public double memorize=0;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -164,6 +165,29 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
+        }
+
+        private void Memory_Function(object sender, EventArgs e)
+        {
+            string operate;
+            operate = ((Button)sender).Text;
+
+            if (operate == "MC")
+            {
+                memorize = 0;
+            }
+            else if(operate == "MR")
+            {
+                lblDisplay.Text = memorize.ToString();
+            }
+            else if(operate == "M+")
+            {
+                memorize += Convert.ToDouble(lblDisplay);
+            }
+            else if(operate == "M-")
+            {
+                memorize -= Convert.ToDouble(lblDisplay);
+            } 
         }
     }
 }
