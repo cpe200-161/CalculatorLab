@@ -49,13 +49,14 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.one_overX = new System.Windows.Forms.Button();
+            this.Percent = new System.Windows.Forms.Button();
+            this.sqrt = new System.Windows.Forms.Button();
             this.Memory_Store = new System.Windows.Forms.Button();
             this.Memory_recall = new System.Windows.Forms.Button();
             this.Memory_Add = new System.Windows.Forms.Button();
             this.Memory_minus = new System.Windows.Forms.Button();
+            this.Memory_clear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -312,41 +313,41 @@
             this.btnSpace.UseVisualStyleBackColor = true;
             this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
             // 
-            // button1
+            // one_overX
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 475);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 79);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "1/x";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.one_overX.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.one_overX.Location = new System.Drawing.Point(16, 475);
+            this.one_overX.Margin = new System.Windows.Forms.Padding(4);
+            this.one_overX.Name = "one_overX";
+            this.one_overX.Size = new System.Drawing.Size(117, 79);
+            this.one_overX.TabIndex = 42;
+            this.one_overX.Text = "1/x";
+            this.one_overX.UseVisualStyleBackColor = true;
+            this.one_overX.Click += new System.EventHandler(this.one_overX_Click);
             // 
-            // button2
+            // Percent
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(141, 475);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(117, 79);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "%";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.Percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Percent.Location = new System.Drawing.Point(141, 475);
+            this.Percent.Margin = new System.Windows.Forms.Padding(4);
+            this.Percent.Name = "Percent";
+            this.Percent.Size = new System.Drawing.Size(117, 79);
+            this.Percent.TabIndex = 43;
+            this.Percent.Text = "%";
+            this.Percent.UseVisualStyleBackColor = true;
+            this.Percent.Click += new System.EventHandler(this.Percent_Click);
             // 
-            // button3
+            // sqrt
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(267, 475);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 79);
-            this.button3.TabIndex = 44;
-            this.button3.Text = "√";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            this.sqrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sqrt.Location = new System.Drawing.Point(267, 475);
+            this.sqrt.Margin = new System.Windows.Forms.Padding(4);
+            this.sqrt.Name = "sqrt";
+            this.sqrt.Size = new System.Drawing.Size(117, 79);
+            this.sqrt.TabIndex = 44;
+            this.sqrt.Text = "√";
+            this.sqrt.UseVisualStyleBackColor = true;
+            this.sqrt.Click += new System.EventHandler(this.sqrt_Click);
             // 
             // Memory_Store
             // 
@@ -368,8 +369,9 @@
             this.Memory_recall.Name = "Memory_recall";
             this.Memory_recall.Size = new System.Drawing.Size(117, 79);
             this.Memory_recall.TabIndex = 46;
-            this.Memory_recall.Text = "MC";
+            this.Memory_recall.Text = "MR";
             this.Memory_recall.UseVisualStyleBackColor = true;
+            this.Memory_recall.Click += new System.EventHandler(this.Memory_recall_Click);
             // 
             // Memory_Add
             // 
@@ -381,6 +383,7 @@
             this.Memory_Add.TabIndex = 47;
             this.Memory_Add.Text = "M+";
             this.Memory_Add.UseVisualStyleBackColor = true;
+            this.Memory_Add.Click += new System.EventHandler(this.Memory_Add_Click);
             // 
             // Memory_minus
             // 
@@ -392,19 +395,33 @@
             this.Memory_minus.TabIndex = 48;
             this.Memory_minus.Text = "M-";
             this.Memory_minus.UseVisualStyleBackColor = true;
+            this.Memory_minus.Click += new System.EventHandler(this.Memory_minus_Click);
+            // 
+            // Memory_clear
+            // 
+            this.Memory_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Memory_clear.Location = new System.Drawing.Point(642, 302);
+            this.Memory_clear.Margin = new System.Windows.Forms.Padding(4);
+            this.Memory_clear.Name = "Memory_clear";
+            this.Memory_clear.Size = new System.Drawing.Size(117, 79);
+            this.Memory_clear.TabIndex = 49;
+            this.Memory_clear.Text = "MC";
+            this.Memory_clear.UseVisualStyleBackColor = true;
+            this.Memory_clear.Click += new System.EventHandler(this.Memory_clear_Click);
             // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 628);
+            this.Controls.Add(this.Memory_clear);
             this.Controls.Add(this.Memory_minus);
             this.Controls.Add(this.Memory_Add);
             this.Controls.Add(this.Memory_recall);
             this.Controls.Add(this.Memory_Store);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sqrt);
+            this.Controls.Add(this.Percent);
+            this.Controls.Add(this.one_overX);
             this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -457,12 +474,13 @@
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button one_overX;
+        private System.Windows.Forms.Button Percent;
+        private System.Windows.Forms.Button sqrt;
         private System.Windows.Forms.Button Memory_Store;
         private System.Windows.Forms.Button Memory_recall;
         private System.Windows.Forms.Button Memory_Add;
         private System.Windows.Forms.Button Memory_minus;
+        private System.Windows.Forms.Button Memory_clear;
     }
 }

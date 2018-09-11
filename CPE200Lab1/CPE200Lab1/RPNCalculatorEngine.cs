@@ -10,6 +10,7 @@ namespace CPE200Lab1
     {
         public new string Process(string str) 
         {
+            string keep;
             String firstOperand;
             String secondOperand;
             String opeRator;
@@ -17,7 +18,11 @@ namespace CPE200Lab1
             CalculatorEngine engine = new CalculatorEngine();
             Stack<string> numbersStack = new Stack<string>();
             string[] numBers = str.Split(' ');
-            
+
+            if (numBers.Length < 3)
+            {
+                return "E";
+            }
 
             for (int i = 0; i < numBers.Length; i++)
             {
@@ -33,14 +38,24 @@ namespace CPE200Lab1
                 {
                     
                     opeRator = numBers[i];
-                    
+                    Console.WriteLine("Enter operator");
                     if (sizeStack != 0)
                     {
+
                         secondOperand = numbersStack.Pop();
+                        if (opeRator == "%" && sizeStack == 1)
+                        {
+                            numbersStack.Push(engine.calculate(opeRator, "1",secondOperand, 8));
+                            return numbersStack.Pop();
+                        }
                         sizeStack--;
                         if (opeRator == "√" || opeRator == "1/x")
                         {
+                            Console.WriteLine("Enter unarycalculate SecondOperand "+secondOperand+"Operator "+opeRator);
                             numbersStack.Push(engine.unaryCalculate(opeRator, secondOperand, 8));
+                            Console.WriteLine("Complete!");
+                            sizeStack++;
+                            
                         }
                         if (sizeStack < 1)
                         {
@@ -48,11 +63,27 @@ namespace CPE200Lab1
                             return "E";
                         }
                         firstOperand = numbersStack.Pop();
-                        sizeStack--;
                         
-                        numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand,8));
-                        
-                        sizeStack++;
+                        if (opeRator== "√")
+                        {
+                            numbersStack.Push(firstOperand);
+                        }
+                        else if (opeRator == "+" || opeRator == "-" || opeRator == "X" || opeRator == "÷")
+                        {
+                 
+                            sizeStack--;
+                            numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
+                            
+                            sizeStack++;
+                        }
+                        else if (opeRator == "%")
+                        {
+                            sizeStack--;
+                            keep = firstOperand;
+                            numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
+                            firstOperand = keep;
+                            sizeStack++;
+                        }
                     }
                 }
             }

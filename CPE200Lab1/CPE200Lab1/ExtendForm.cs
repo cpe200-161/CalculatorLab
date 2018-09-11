@@ -15,6 +15,8 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private double sum;
+        private string temp;
         private CalculatorEngine engine;
         private RPNCalculatorEngine RPNengine;
 
@@ -36,6 +38,12 @@ namespace CPE200Lab1
                     return true;
             }
             return false;
+        }
+
+        public bool isNumber(string str)
+        {
+            double retNum;
+            return Double.TryParse(str, out retNum);
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -93,6 +101,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
+            isSpaceAllowed = true;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -174,7 +183,110 @@ namespace CPE200Lab1
 
         private void Memory_Store_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text += ((Button)sender).Text;
+            sum = double.Parse(lblDisplay.Text);
+        }
+
+        private void Memory_recall_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = sum.ToString();
+            RPNengine.Process(lblDisplay.Text);
+            isSpaceAllowed = true;
+        }
+
+        private void Memory_clear_Click(object sender, EventArgs e)
+        {
+            sum = 0;
+            lblDisplay.Text = sum.ToString();
+        }
+
+        private void Memory_Add_Click(object sender, EventArgs e)
+        {
+            temp = lblDisplay.Text;
+            sum += double.Parse(temp);
+        }
+
+        private void Memory_minus_Click(object sender, EventArgs e)
+        {
+            temp = lblDisplay.Text;
+            sum -= double.Parse(temp);
+        }
+
+        private void sqrt_Click(object sender, EventArgs e)
+        {
+            string[] keep = (lblDisplay.Text).Split(' ');
+            if (keep.Length == 1)
+            {
+                keep[0] = Math.Sqrt(Convert.ToDouble(keep[0])).ToString();
+                lblDisplay.Text = keep[0];
+                isSpaceAllowed = true;
+            }
+            else if (isNumber(keep[keep.Length - 1]))
+            {
+                keep[keep.Length - 1] = Math.Sqrt(Convert.ToDouble(keep[keep.Length-1])).ToString(); ;
+                for (int i = 0; i < keep.Length; i++)
+                {
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = keep[0] + lblDisplay.Text + " " + keep[i];
+
+                }
+                isSpaceAllowed = true;
+            }
+        }
+//wanna fix
+        private void one_overX_Click(object sender, EventArgs e)
+        {
+            string [] keep = lblDisplay.Text.Split(' ');
+            if (keep.Length == 1)
+            {
+                keep[0] = (1.0 / Convert.ToDouble(keep[0])).ToString();
+                lblDisplay.Text = keep[0];
+                isSpaceAllowed = true;
+            }
+            else if (isNumber(keep[keep.Length - 1]) && keep.Length > 1)
+            {
+                keep[keep.Length - 1] = (1 / Convert.ToDouble(keep[keep.Length-1])).ToString(); 
+                //string keep2 = (1 / Convert.ToDouble(keep[keep.Length - 1])).ToString();
+                //keep[keep.Length - 1] = keep2;
+                for (int i = 0; i < keep.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        lblDisplay.Text = keep[i];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + keep[i];
+                    }
+                }
+                //lblDisplay.Text = keep2 + lblDisplay.Text;
+                isSpaceAllowed = true;
+                return;
+            }
+        }
+
+        private void Percent_Click(object sender, EventArgs e)
+        {
+            string[] keep = (lblDisplay.Text).Split(' ');
+            if (keep.Length ==1)
+            {
+                keep[0] = (Convert.ToDouble(keep[0])/100).ToString();
+                lblDisplay.Text = keep[0];
+                isSpaceAllowed = true;
+            }
+            else if (isNumber(keep[keep.Length-1])&& isNumber(keep[keep.Length - 2]))
+            {
+                keep[keep.Length - 1] = (Convert.ToDouble(keep[keep.Length - 1]) * (Convert.ToDouble(keep[keep.Length - 2]) / 100)).ToString();
+                for(int i = 0; i < keep.Length; i++)
+                {
+                    lblDisplay.Text = "";
+                    lblDisplay.Text = keep[0] + lblDisplay.Text + " " + keep[i];
+                    
+                }
+                isSpaceAllowed = true;
+            }
+            
+
+            
         }
     }
 }
