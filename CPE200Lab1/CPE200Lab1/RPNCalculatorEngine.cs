@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
-    {      
+    {
         public new string Process(string str)
         {
 
@@ -34,8 +34,14 @@ namespace CPE200Lab1
                     sizeStack++;
                 }
                 else if (isOperator(numBers[i]))
-                {
+                {                    
                     opeRator = numBers[i];
+                    if(opeRator == "%" && sizeStack == 1)
+                    {
+                        firstOperand = numbersStack.Pop();
+                        sizeStack = 0;
+                        return engine.calculate(opeRator, firstOperand, "1");
+                    }
                     if (sizeStack != 0)
                     {
                         secondOperand = numbersStack.Pop();
@@ -50,8 +56,8 @@ namespace CPE200Lab1
                         numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand));
                         sizeStack++;
                     }
-                }                                
-            }            
+                }
+            }
 
             if (sizeStack == 1)
             {
