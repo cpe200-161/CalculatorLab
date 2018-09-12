@@ -15,15 +15,16 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
-
+        private bool isAfterOperand = false;
+        private RPNCalculatorEngine engine;
+        private string result = "0";
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        public bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
@@ -41,6 +42,10 @@ namespace CPE200Lab1
             {
                 return;
             }
+            if (isAfterOperand)
+            {
+                lblDisplay.Text += " ";
+            }
             if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
@@ -51,6 +56,7 @@ namespace CPE200Lab1
                 isContainDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
+            isAfterOperand = false;
             isSpaceAllowed = true;
         }
 
@@ -65,7 +71,14 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                if (!isAfterOperand)
+                {
+                    lblDisplay.Text += " " + ((Button)sender).Text ;
+                }
+                else {
+                    lblDisplay.Text += ((Button)sender).Text ;
+                }
+                isAfterOperand = true;
                 isSpaceAllowed = false;
             }
         }
@@ -94,6 +107,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+            result = "0";
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
@@ -101,7 +115,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            result = engine.RPNProcess(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
