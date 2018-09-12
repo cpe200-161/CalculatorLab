@@ -49,6 +49,13 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
+            this.btnRoot = new System.Windows.Forms.Button();
+            this.btnover = new System.Windows.Forms.Button();
+            this.btnMc = new System.Windows.Forms.Button();
+            this.btnMr = new System.Windows.Forms.Button();
+            this.btnMs = new System.Windows.Forms.Button();
+            this.btnMplus = new System.Windows.Forms.Button();
+            this.btnMdiff = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -186,7 +193,7 @@
             // btnEqual
             // 
             this.btnEqual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEqual.Location = new System.Drawing.Point(294, 428);
+            this.btnEqual.Location = new System.Drawing.Point(294, 432);
             this.btnEqual.Name = "btnEqual";
             this.btnEqual.Size = new System.Drawing.Size(88, 64);
             this.btnEqual.TabIndex = 15;
@@ -247,7 +254,7 @@
             this.btnPercent.TabIndex = 17;
             this.btnPercent.Text = "%";
             this.btnPercent.UseVisualStyleBackColor = true;
-            this.btnPercent.Click += new System.EventHandler(this.btnOperator_Click);
+            this.btnPercent.Click += new System.EventHandler(this.btnPercent_Click);
             // 
             // btnClear
             // 
@@ -276,19 +283,96 @@
             this.lblDisplay.AutoSize = true;
             this.lblDisplay.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 54F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplay.Location = new System.Drawing.Point(12, 54);
-            this.lblDisplay.MinimumSize = new System.Drawing.Size(365, 0);
+            this.lblDisplay.Location = new System.Drawing.Point(12, 57);
+            this.lblDisplay.MinimumSize = new System.Drawing.Size(465, 0);
             this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(365, 82);
+            this.lblDisplay.Size = new System.Drawing.Size(465, 82);
             this.lblDisplay.TabIndex = 20;
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Form1
+            // btnRoot
+            // 
+            this.btnRoot.Location = new System.Drawing.Point(388, 400);
+            this.btnRoot.Name = "btnRoot";
+            this.btnRoot.Size = new System.Drawing.Size(88, 44);
+            this.btnRoot.TabIndex = 21;
+            this.btnRoot.Text = "√";
+            this.btnRoot.UseVisualStyleBackColor = true;
+            this.btnRoot.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // btnover
+            // 
+            this.btnover.Location = new System.Drawing.Point(388, 450);
+            this.btnover.Name = "btnover";
+            this.btnover.Size = new System.Drawing.Size(88, 46);
+            this.btnover.TabIndex = 22;
+            this.btnover.Text = "1/x";
+            this.btnover.UseVisualStyleBackColor = true;
+            this.btnover.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // btnMc
+            // 
+            this.btnMc.Location = new System.Drawing.Point(390, 350);
+            this.btnMc.Name = "btnMc";
+            this.btnMc.Size = new System.Drawing.Size(88, 44);
+            this.btnMc.TabIndex = 23;
+            this.btnMc.Text = "MC";
+            this.btnMc.UseVisualStyleBackColor = true;
+            this.btnMc.Click += new System.EventHandler(this.memory_Click);
+            // 
+            // btnMr
+            // 
+            this.btnMr.Location = new System.Drawing.Point(389, 300);
+            this.btnMr.Name = "btnMr";
+            this.btnMr.Size = new System.Drawing.Size(88, 44);
+            this.btnMr.TabIndex = 24;
+            this.btnMr.Text = "MR";
+            this.btnMr.UseVisualStyleBackColor = true;
+            this.btnMr.Click += new System.EventHandler(this.memory_Click);
+            // 
+            // btnMs
+            // 
+            this.btnMs.Location = new System.Drawing.Point(388, 250);
+            this.btnMs.Name = "btnMs";
+            this.btnMs.Size = new System.Drawing.Size(88, 44);
+            this.btnMs.TabIndex = 25;
+            this.btnMs.Text = "MS";
+            this.btnMs.UseVisualStyleBackColor = true;
+            this.btnMs.Click += new System.EventHandler(this.memory_Click);
+            // 
+            // btnMplus
+            // 
+            this.btnMplus.Location = new System.Drawing.Point(388, 200);
+            this.btnMplus.Name = "btnMplus";
+            this.btnMplus.Size = new System.Drawing.Size(88, 44);
+            this.btnMplus.TabIndex = 26;
+            this.btnMplus.Text = "M+";
+            this.btnMplus.UseVisualStyleBackColor = true;
+            this.btnMplus.Click += new System.EventHandler(this.memory_Click);
+            // 
+            // btnMdiff
+            // 
+            this.btnMdiff.Location = new System.Drawing.Point(388, 148);
+            this.btnMdiff.Name = "btnMdiff";
+            this.btnMdiff.Size = new System.Drawing.Size(88, 44);
+            this.btnMdiff.TabIndex = 27;
+            this.btnMdiff.Text = "M-";
+            this.btnMdiff.UseVisualStyleBackColor = true;
+            this.btnMdiff.Click += new System.EventHandler(this.memory_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 508);
+            this.ClientSize = new System.Drawing.Size(490, 508);
+            this.Controls.Add(this.btnMdiff);
+            this.Controls.Add(this.btnMplus);
+            this.Controls.Add(this.btnMs);
+            this.Controls.Add(this.btnMr);
+            this.Controls.Add(this.btnMc);
+            this.Controls.Add(this.btnover);
+            this.Controls.Add(this.btnRoot);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
@@ -310,7 +394,7 @@
             this.Controls.Add(this.btn9);
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -340,6 +424,13 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
+        private System.Windows.Forms.Button btnRoot;
+        private System.Windows.Forms.Button btnover;
+        private System.Windows.Forms.Button btnMc;
+        private System.Windows.Forms.Button btnMr;
+        private System.Windows.Forms.Button btnMs;
+        private System.Windows.Forms.Button btnMplus;
+        private System.Windows.Forms.Button btnMdiff;
     }
 }
 
