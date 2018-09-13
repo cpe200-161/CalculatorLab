@@ -22,9 +22,8 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-            number.Push(parts[0]);
-            number.Push(parts[1]);
-            for (int i = 2; i < parts.Length; i++)
+
+            for (int i = 0; i < parts.Length; i++)
             {
                 if (parts[i] == "")
                 {
@@ -35,33 +34,30 @@ namespace CPE200Lab1
                 {
                     number.Push(parts[i]);
                 }
-                if (parts[i] == "1/x" || parts[i] == "√")
-                {
-                    secondOperand = number.Pop();
-                    number.Push(unaryCalculate(parts[i], secondOperand));
-                    continue;
-                }
-                if (parts[i] == "%")
-                {
-                    secondOperand = number.Pop();
-                    firstOperand = number.Peek();
-                    number.Push(calculate(parts[i], firstOperand, secondOperand));
-                    continue;
-                }
+               
                 else if(isOperator(parts[i]))
                 {
                     if (number.Count < 2)
                     {
                         return "E";
                     }
-                   
-                    else
+                    if (parts[i] == "1/x" || parts[i] == "√")
                     {
+                        secondOperand = number.Pop();
+                        number.Push(unaryCalculate(parts[i], secondOperand));
+                        continue;
+                    }
+                    if (parts[i] == "%")
+                    {
+                        secondOperand = number.Pop();
+                        firstOperand = number.Peek();
+                        number.Push(calculate(parts[i], firstOperand, secondOperand));
+                        continue;
+                    }
                         secondOperand = number.Pop();
                         firstOperand = number.Pop();
                         answer = calculate(parts[i], firstOperand, secondOperand);
                         number.Push(answer);
-                    }
                     
                 }
                 else

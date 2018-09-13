@@ -122,6 +122,7 @@ namespace CPE200Lab1
         {
             string result = null;
             string[] parts = lblDisplay.Text.Split(' ');
+
             if (engine.isOperator(parts[1]))
             {
                 result = engine.Process(lblDisplay.Text);
@@ -194,6 +195,7 @@ namespace CPE200Lab1
             if (isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
+                isContainDot = false;
                 isSpaceAllowed = false;
             }
         }

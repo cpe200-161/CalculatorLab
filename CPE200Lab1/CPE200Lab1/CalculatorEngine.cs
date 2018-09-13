@@ -32,6 +32,10 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            {
+                return "E";
+            }
             if (parts[1] == "%")
             {
                 return calculate("%", "1", parts[0]);
@@ -44,14 +48,10 @@ namespace CPE200Lab1
             {
                 return calculate("%", "1", parts[0]);
             }
-
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            }
+           
             else
             {
-                if (parts[3] == "%")
+                if (parts.Length > 3)
                 {
                     parts[2] = calculate("%", parts[0], parts[2]);
                 }
