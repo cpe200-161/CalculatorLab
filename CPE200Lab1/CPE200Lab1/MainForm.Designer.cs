@@ -36,7 +36,6 @@
             this.btn6 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
-            this.btnPlus = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
@@ -55,6 +54,8 @@
             this.btnMM = new System.Windows.Forms.Button();
             this.btnSqr = new System.Windows.Forms.Button();
             this.btnOox = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
+            this.btnSpace = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -144,17 +145,6 @@
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
             this.btn4.Click += new System.EventHandler(this.btnNumber_Click);
-            // 
-            // btnPlus
-            // 
-            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(294, 517);
-            this.btnPlus.Name = "btnPlus";
-            this.btnPlus.Size = new System.Drawing.Size(88, 64);
-            this.btnPlus.TabIndex = 11;
-            this.btnPlus.Text = "+";
-            this.btnPlus.UseVisualStyleBackColor = true;
-            this.btnPlus.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btn3
             // 
@@ -356,11 +346,34 @@
             this.btnOox.UseVisualStyleBackColor = true;
             this.btnOox.Click += new System.EventHandler(this.btnUnaryOperator_Click);
             // 
+            // btnPlus
+            // 
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlus.Location = new System.Drawing.Point(294, 517);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(88, 64);
+            this.btnPlus.TabIndex = 11;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // btnSpace
+            // 
+            this.btnSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpace.Location = new System.Drawing.Point(200, 237);
+            this.btnSpace.Name = "btnSpace";
+            this.btnSpace.Size = new System.Drawing.Size(88, 64);
+            this.btnSpace.TabIndex = 27;
+            this.btnSpace.Text = "Space";
+            this.btnSpace.UseVisualStyleBackColor = true;
+            this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 666);
+            this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.btnOox);
             this.Controls.Add(this.btnSqr);
             this.Controls.Add(this.btnMM);
@@ -405,7 +418,6 @@
         private System.Windows.Forms.Button btn6;
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.Button btnPlus;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn1;
@@ -424,6 +436,8 @@
         private System.Windows.Forms.Button btnMM;
         private System.Windows.Forms.Button btnSqr;
         private System.Windows.Forms.Button btnOox;
+        private System.Windows.Forms.Button btnPlus;
+        private System.Windows.Forms.Button btnSpace;
     }
 }
 
