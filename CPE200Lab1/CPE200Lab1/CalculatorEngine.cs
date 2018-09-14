@@ -74,7 +74,7 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = display;
-            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2].ToString))
+            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2].ToString()))
             {
                 display += " " + Butt2 + " ";
                 isSpaceAllowed = false;
@@ -160,7 +160,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = display;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator2(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator2(current[current.Length - 2].ToString()))
             {
                 display = current.Substring(0, current.Length - 3);
             }

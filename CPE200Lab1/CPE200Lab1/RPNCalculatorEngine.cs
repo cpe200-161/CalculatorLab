@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        string stnum , secnum, oprator, resultback;
+        string stnum , secnum,  resultback;
         public override string Process(string str)
         {
             Stack<string> cct = new Stack<string>();
