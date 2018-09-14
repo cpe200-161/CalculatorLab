@@ -14,6 +14,16 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
+        protected virtual bool isOperatorX(string str)
+        {
+            switch (str)
+            {
+                case "1/x":
+                case "√":
+                    return true;
+            }
+            return false;
+        }
         protected virtual bool isOperator(string str)
         {
             switch(str) {
@@ -21,6 +31,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                
+                
                     return true;
             }
             return false;
@@ -28,6 +41,7 @@ namespace CPE200Lab1
 
        public virtual string Process(string str)
         {
+            
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
@@ -120,8 +134,8 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    return ((Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand)).ToString();
+                    
             }
             return "E";
         }

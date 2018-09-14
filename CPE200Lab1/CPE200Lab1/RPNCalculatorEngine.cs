@@ -6,39 +6,48 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine 
+    public class RPNCalculatorEngine : CalculatorEngine
     {
+        
+       
         public override string Process(string str)
         {
             Stack<string> numberStack = new Stack<string>();
+            
+            
             string[] numbers = str.Split(' ');
-            if((numbers.Length>=3 && numbers.Length%2!= 0 && !isOperator(numbers[0]) && !isOperator(numbers[1])))
-            {
-                foreach (string number in numbers) 
+           
+                foreach (string number in numbers)
                 {
-                    
-                    if (isOperator(number))
-                    {
-                        string secondOperand = numberStack.Pop();
-                        string firstOperand = numberStack.Pop();
-                        string answer = calculate(number, firstOperand, secondOperand);
-                        numberStack.Push(answer);
-                    }
-                    else
+                    if (isNumber(number))
                     {
                         numberStack.Push(number);
                     }
-                    
-                }
-                return numberStack.Pop();
-            }
-            
-            return "E";
-            
-            
-            
-        }
+                    else
+                    if (isOperator(number) && numberStack.Count > 1)
+                    {
+                        string secondNumber = numberStack.Pop();
+                        string firstNumber  = numberStack.Pop();
+                        string answer = calculate(number, firstNumber, secondNumber);
+                        numberStack.Push(answer);
+                    }
+                    else if(isOperatorX(number) && numberStack.Count>=1)
+                    {
+                        string UOperand = numberStack.Pop();
+                        string answer = unaryCalculate(number, UOperand);
+                        numberStack.Push(answer);
 
+                    }
+                    else if (numberStack.Count == 1) return numberStack.Pop();
+
+
+                }
+               
+           return "E";
+
+
+        }
+        
 
     }
 }
