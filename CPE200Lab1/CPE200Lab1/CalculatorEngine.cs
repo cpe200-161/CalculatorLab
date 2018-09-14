@@ -83,12 +83,15 @@ namespace CPE200Lab1
                         {
                             return "E";
                         }
+                        string.Format(parts[1], "G29");
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
+
+                        string rr = parts[0] + "." + parts[1];
                         if (result.ToString().Contains("."))
                         {
-                            return result.ToString("N" + remainLength);
+                            return string.Format(rr, ("N" + remainLength));
                         }
                         else
                         {
