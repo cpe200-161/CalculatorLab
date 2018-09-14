@@ -74,17 +74,14 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = display;
-            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2].ToString))
             {
                 display += " " + Butt2 + " ";
                 isSpaceAllowed = false;
             }
         }
 
-        private bool isOperator2(char v)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public void btnEqual_Click2(string result2) //OK
         {         

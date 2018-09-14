@@ -8,34 +8,40 @@ namespace CPE200Lab1
 {
     class RPNCalculatorEngine : CalculatorEngine
     {
-        string w1, w2, w3;
+        string stnum , secnum, oprator, resultback;
         public override string Process(string str)
         {
             Stack<string> cct = new Stack<string>();
             string[] parts = str.Split(' ');
-
-            cct.Push(parts[0]);
-            cct.Push(parts[1]);
-            cct.Push(parts[2]);
+     
+            for(int i=0;i< parts.Length-1; i++)
+            {
+                if (isNumber(parts[i]))
+                {
+                    cct.Push(parts[i]);
+                }
+                if (isOperator2(parts[i]))
+                {                   
+                    
+                    secnum = cct.Pop();
+                    stnum = cct.Pop();
+                    resultback = calculate(parts[i], stnum, secnum, 4);
+                    cct.Push(resultback);
+                }
+            }
 
             if (!(isNumber(parts[0]) && isOperator2(parts[1]) && isNumber(parts[2])))
             {
-                w3 = cct.Pop();
-                w2 = cct.Pop();
-                w1 = cct.Pop(); //operators
-    
-                return calculate(w3, w1, w2, 4);              
+                return cct.Peek();
             } else
             {
                 return "E";
 
             }
-
             
-
         }
+     
 
-        
 
     }
 }
