@@ -95,7 +95,7 @@ namespace CPE200Lab1
                     memmoryResult += Convert.ToDouble(lblDisplay.Text);
                     break;
                 case "M-":
-                    memmoryResult += Convert.ToDouble(lblDisplay.Text);
+                    memmoryResult -= Convert.ToDouble(lblDisplay.Text);
                     break;
                 case "MC":
                     memmoryResult = 0;
