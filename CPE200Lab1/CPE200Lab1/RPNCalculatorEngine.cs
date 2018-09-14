@@ -18,10 +18,9 @@ namespace CPE200Lab1
             //check every string in parts
             foreach(string p in parts)
             {
-                Console.WriteLine(p);
-                //if p is not number and empty string calculating
                 if (isOperator(p))
                 { 
+                    //when doing operator stack must have at least 2 item
                     if (myStack.Count < 2)
                     {
                         return "E";
@@ -35,8 +34,19 @@ namespace CPE200Lab1
                 }
                 else if (isNumber(p))
                 {
-                    //if p is a number push in stack
+                    //if p is a number push it in stack
                     myStack.Push(p);
+                }
+                else if (isUnary(p))
+                {
+                    //when doing unaryOperator stack must have at least 1 item
+                    if (myStack.Count < 1)
+                    {
+                        return "E";
+                    }
+
+                    String num = (String)myStack.Pop();
+                    myStack.Push(unaryCalculate(p, num));
                 }
             }
 
