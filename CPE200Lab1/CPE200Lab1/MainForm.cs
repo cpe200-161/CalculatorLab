@@ -230,7 +230,7 @@ namespace CPE200Lab1
 
         private void Mminus_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) - Convert.ToDouble(ThirdOperand)).ToString();
+            lblDisplay.Text = (Convert.ToDouble(ThirdOperand) - Convert.ToDouble(lblDisplay.Text)).ToString();
         }
     }
 }
