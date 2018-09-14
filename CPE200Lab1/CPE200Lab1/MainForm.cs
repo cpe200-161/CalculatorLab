@@ -34,12 +34,12 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
-
+            engine = new Calculator_Engine();
             resetAll();
             //1.new CalculatorEngine() => instantiate an object
             //2.reference to that object with engine variable
            
-            engine = new Calculator_Engine();
+            
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterOperater)
+            if (isAfterOperater )
             {
                 return;
             }
@@ -103,9 +103,30 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
+ 
                 case "%":
                     lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
-                    
+                    break;
+                case "MC":
+                case "MR":
+                case "MS":
+                case "M+":
+                case "M-":
+                    firstOperand = lblDisplay.Text;
+                    string result = engine.calculate(operate, firstOperand, " ");
+                    if(result.Length >=8)
+                    {
+                        result = result.Substring(0, 8);
+                    }
+                    if(result is "E")
+                    {
+                        lblDisplay.Text = "Eror";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
@@ -209,17 +230,18 @@ namespace CPE200Lab1
                 }
             }
         }
-
- 
         private void OneoverX(object sender, EventArgs e)
-        {
-            lblDisplay.Text = (1/Convert.ToDouble(lblDisplay.Text)).ToString();
-
+         {
+            lblDisplay.Text = (1 / Convert.ToDouble(lblDisplay.Text)).ToString();
         }
 
         private void squreroot(object sender, EventArgs e)
         {
             lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
         }
+
+
+
+
     }
 }

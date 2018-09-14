@@ -9,7 +9,9 @@ namespace CPE200Lab1
     //class need to be public as well
     public class Calculator_Engine
     {
-       // private -> public
+        // private -> public
+        //keep memory
+        double Mem = 0;
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -45,8 +47,28 @@ namespace CPE200Lab1
                 case "%":
                     
                         return  (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
-                    
-                    //break;
+  
+                case "MS":
+                    Mem = Convert.ToDouble(firstOperand);
+                    return firstOperand;
+                case "MC":
+                    Mem = 0;
+                    return "0";
+                case "MR":
+                    if(Mem!=0)
+                    {
+                        return Convert.ToString(Mem);
+                    }
+                    else
+                    {
+                        return "0";
+                    }
+                case "M+":
+                    Mem = Mem + Convert.ToDouble(firstOperand);
+                    return Convert.ToString(Mem);
+                case "M-":
+                    Mem = Mem - Convert.ToDouble(firstOperand);
+                    return Convert.ToString(Mem);
             }
             return "E";
         }
