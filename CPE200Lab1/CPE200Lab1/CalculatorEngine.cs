@@ -51,7 +51,9 @@ namespace CPE200Lab1
 
                     return  percent.ToString();
                 case "sqrt":
+                
                     string resultText = Math.Sqrt(Convert.ToDouble(secondOperand)).ToString();
+                    if (resultText == "NaN") return "E"; 
                     return resultText.Length > 8 ? resultText.Substring(0, 8) : resultText;
                 case "1/x":
                     
