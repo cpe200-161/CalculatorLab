@@ -27,7 +27,7 @@ namespace CPE200Lab1
             isSpaceAllowed = false;
         }
 
-        private bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -74,14 +74,14 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = display;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2]))
             {
                 display += " " + Butt2 + " ";
                 isSpaceAllowed = false;
             }
         }
 
-        private bool isOperator(char v) //IDK
+        private bool isOperator2(char v)
         {
             throw new NotImplementedException();
         }
@@ -163,7 +163,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = display;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator2(current[current.Length - 2]))
             {
                 display = current.Substring(0, current.Length - 3);
             }
@@ -177,7 +177,7 @@ namespace CPE200Lab1
             }
         }
 
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator2(parts[1]) && isNumber(parts[2])))
@@ -271,6 +271,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
                     break;
             }
             return "E";
