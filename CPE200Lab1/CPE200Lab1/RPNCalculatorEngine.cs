@@ -26,9 +26,9 @@ namespace CPE200Lab1
             Stack<string> s = new Stack<string>();
             string[] parts = str.Split(' ');
 
-            
 
-                foreach (string i in parts)
+
+            foreach (string i in parts) 
                 {
                     if (isNumber(i))
                     {
