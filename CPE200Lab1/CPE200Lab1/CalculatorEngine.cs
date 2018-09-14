@@ -115,11 +115,11 @@ namespace CPE200Lab1
                 case "M-":
                     if (fResult == 0)
                     {
-                        memStore += Convert.ToDouble(firstOperand);
+                        memStore -= Convert.ToDouble(firstOperand);
                     }
                     else
                     {
-                        memStore += fResult;
+                        memStore -= fResult;
                         fResult = 0;
                     }
                     break;
