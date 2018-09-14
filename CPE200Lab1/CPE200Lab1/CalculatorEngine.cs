@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CPE200Lab1
 {
     public class CalculatorEngine
@@ -25,7 +24,6 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -42,16 +40,42 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    return (Convert.ToDouble(firstOperand) + ((Convert.ToDouble(secondOperand) /100) * Convert.ToDouble(firstOperand))).ToString();
+                    double result1;
+                    result1 = (Convert.ToDouble(firstOperand)) * (Convert.ToDouble(secondOperand) / 100);
+
+                    return result1.ToString();
                     break;
                 case "1/X":
-                    return (1 / Convert.ToDouble(secondOperand)).ToString().Substring(0, 8);
+                    string b;
+                    b = (1 / Convert.ToDouble(secondOperand)).ToString();
+                    if (b.Length > 8) b = b.Substring(0, 8);
+                    return b;
                     break;
                 case "√":
-                    return Math.Sqrt(Convert.ToDouble(secondOperand)).ToString().Substring(0,8);
+                    string a;
+                    a = Math.Sqrt(Convert.ToDouble(secondOperand)).ToString();
+                    if (a.Length > 8) a = a.Substring(0, 8);
+                    return a;
                     break;
+
             }
             return "E";
         }
+        public string calculatefuncM(string operate, string secondOperand, string save)
+        {
+            switch (operate)
+            {
+                case "M+":
+                    save = (Convert.ToDouble(save) + Convert.ToDouble(secondOperand)).ToString();
+                    return save;
+                    break;
+                case "M-":
+                    save = (Convert.ToDouble(save) - Convert.ToDouble(secondOperand)).ToString();
+                    return save;
+                    break;
+            }
+            return save;
+        }
+
     }
 }

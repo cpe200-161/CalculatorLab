@@ -17,11 +17,16 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand;
+        private string r1;
         private string operate;
+        private string operate_before;
+        private string save;
         private CalculatorEngine engine;
 
         private void resetAll()
         {
+            operate_before = "";
             lblDisplay.Text = "0";
             isAllowBack = true;
             hasDot = false;
@@ -40,6 +45,7 @@ namespace CPE200Lab1
             //2.reference to that object with engine variable
             // LHS = RHS
             engine = new CalculatorEngine();
+            engine.calculate(operate, firstOperand, secondOperand, 8);
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -87,11 +93,14 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                    operate_before = operate;
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
                     // your code here
+                    secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand, 8);
                     break;
             }
             isAllowBack = false;
@@ -104,7 +113,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate_before, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -200,6 +209,43 @@ namespace CPE200Lab1
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            resetAll();
+            firstOperand = "0";
+        }
+        private void btnMplus_Click(object sender, EventArgs e)
+        {
+            secondOperand = lblDisplay.Text;
+            save = engine.calculatefuncM("M+", secondOperand, save);
+            lblDisplay.Text = "0";
+
+            hasDot = false;
+            isAllowBack = false;
+            isAfterOperater = true;
+
+        }
+        private void btnMresult_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = save;
+        }
+        private void btnMc_Click(object sender, EventArgs e)
+        {
+            save = "0";
+        }
+        private void btnMminus_Click(object sender, EventArgs e)
+        {
+            secondOperand = lblDisplay.Text;
+            save = engine.calculatefuncM("M-", secondOperand, save);
+            hasDot = false;
+            isAllowBack = false;
+            isAfterOperater = true;
+        }
+        private void btnMs_Click(object sender, EventArgs e)
+        {
+            save = lblDisplay.Text;
+            lblDisplay.Text = "0";
         }
     }
 }
