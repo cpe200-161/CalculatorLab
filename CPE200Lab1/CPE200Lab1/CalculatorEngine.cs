@@ -59,7 +59,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +79,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
             }
@@ -107,6 +107,7 @@ namespace CPE200Lab1
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
+                        //System.Console.WriteLine("parts.Length is " + parts.Length);
                         // if integer part length is already break max output, return error
                         if (parts[0].Length > maxOutputSize)
                         {
@@ -114,8 +115,11 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
+                        System.Console.WriteLine("remainLength is " + remainLength);
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        //System.Console.WriteLine("result is " + result.ToString("N" + remainLength));
+                        return result.ToString();
+
                     }
                     break;
                 case "%":
