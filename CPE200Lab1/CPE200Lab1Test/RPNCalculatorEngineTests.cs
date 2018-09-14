@@ -33,13 +33,17 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("8", r.Process("1 3 + 2 X"));
             Assert.AreEqual("5", r.Process("1 3 2 + X"));
             Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
+            Assert.AreEqual("14", r.Process("5 1 2 + 4 X 3 - +"));
+            Assert.AreEqual("-1", r.Process("1 1 1 + -"));
+            Assert.AreEqual("1", r.Process("1 1 + 1 -"));
+            
         }
 
         [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            Assert.AreEqual("E", r.Process("1"));
+            //Assert.AreEqual("E", r.Process("1"));
             Assert.AreEqual("E", r.Process("1 +"));
             Assert.AreEqual("E", r.Process("1 + 1"));
             Assert.AreEqual("E", r.Process("1 1 1 +"));
@@ -47,6 +51,9 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("E", r.Process("+ 1"));
             Assert.AreEqual("E", r.Process("+ 1 1"));
             Assert.AreEqual("E", r.Process("1 1 1 + + +"));
+            //
+            Assert.AreEqual("E", r.Process("1 1 1 + 1 -"));
+            Assert.AreEqual("E", r.Process("1 0 ÷"));
         }
     }
 }
