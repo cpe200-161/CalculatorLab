@@ -88,6 +88,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     isAfterOperater = true;
+                    //lblDisplay.Text = (Convert.ToDouble(lblDisplay.Text) / 100).ToString();
                     if (persentOperate != " ")
                     {
                         operate = persentOperate;
@@ -95,6 +96,7 @@ namespace CPE200Lab1
                         //break before get new firstoperand
                     }
                     firstOperand = lblDisplay.Text;
+                    
                     break;
                 case "√":
                 case "1/x":
@@ -233,6 +235,11 @@ namespace CPE200Lab1
         }
 
         private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
         {
 
         }

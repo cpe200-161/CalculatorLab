@@ -75,6 +75,7 @@ namespace CPE200Lab1
                     else
                     {
                         return "0";
+
                     }
                 case "M+":
                     Mem = Mem + Convert.ToDouble(firstOperand);

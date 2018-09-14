@@ -391,6 +391,7 @@
             this.button9.TabIndex = 29;
             this.button9.Text = "CE";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // MainForm
             // 
