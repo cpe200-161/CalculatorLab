@@ -23,10 +23,7 @@ namespace CPE200Lab1
 
         public void Number(string n)
         {
-            if (display is "0")
-            {
-                return;
-            }
+            
             if (display is "0")
             {
                 display = "";
@@ -39,16 +36,34 @@ namespace CPE200Lab1
             display += n;
             isSpaceAllowed = true;
         }
-        public void handleOperatorClick(string a)
+       public void handleOperater()
         {
-            isNumberPart = true;
-            isContainDot = false;
-            string current = display;
+            
+            if(display.Length is 8)
+            {
+                return;
+            }
+            if (display[0]is '-')
+            {
+                display = display.Substring(1, display.Length - 1);
+            }
+            else
+            {
+                display = "-" + display;
+            }
 
-        if (current[current.Length - 1] !=)
+        }
+        
+
+       public void Clear(object sender, EventArgs e)
+        {
+            display= "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
         }
 
-        public void BinaryOperator(object sender, EventArgs e)
+        public void BinaryOperator(string n)
         {
             if (display is "Error")
             {
@@ -57,21 +72,20 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = display;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
             {
                 display += " " + n + " ";
                 isSpaceAllowed = false;
             }
+
+
         }
-        public void Back(object sender, EventArgs e)
+
+        public void Back_Click(object sender, EventArgs e)
         {
-            if (display is "Error")
-            {
-                return;
-            }
-            // check if the last one is operator
+           
             string current = display;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
             {
                 display = current.Substring(0, current.Length - 3);
             }
@@ -85,22 +99,9 @@ namespace CPE200Lab1
             }
         }
 
-       public void Clear(object sender, EventArgs e)
-        {
-            display= "0";
-            isContainDot = false;
-            isNumberPart = false;
-            isSpaceAllowed = false;
-        }
-
-        
-
         public void Sign(object sender, EventArgs e)
         {
-            if (display is "Error")
-            {
-                return;
-            }
+            
             if (isNumberPart)
             {
                 return;
@@ -127,10 +128,7 @@ namespace CPE200Lab1
 
         public void Dot(object sender, EventArgs e)
         {
-            if (display is "Error")
-            {
-                return;
-            }
+           
             if (!isContainDot)
             {
                 isContainDot = true;
@@ -141,33 +139,21 @@ namespace CPE200Lab1
 
         public void Space(object sender, EventArgs e)
         {
-            if (display is "Error")
-            {
-                return;
-            }
+            
             if (isSpaceAllowed)
             {
                 display += " ";
                 isSpaceAllowed = false;
             }
         }
-
-
-
-
-
-
-
-
-
-
-        private bool isNumber(string str)
+        
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -179,18 +165,20 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+         public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
 
         }
+
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
