@@ -19,8 +19,9 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
 		private CalculatorEngine engine;
+		float Memory = 0;
 
-        private void resetAll()
+		private void resetAll()
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
@@ -84,11 +85,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
                 case "%":
-					// your code here
+					firstOperand = lblDisplay.Text;
+					isAfterOperater = true;
 					break;
             }
             isAllowBack = false;
@@ -102,6 +101,7 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
+			/*Memory = Memory + float.Parse(result);*/
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -156,7 +156,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "-" + lblDisplay.Text;
             }
-        }
+        } 
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -192,5 +192,35 @@ namespace CPE200Lab1
                 }
             }
         }
-    }
+
+
+		private void btnMemory_Click(object sender, EventArgs e)
+		{
+			if (lblDisplay.Text is "Error")
+			{
+				return;
+			}
+			operate = ((Button)sender).Text;
+			switch (operate)
+			{
+				case "M+":
+					Memory = Memory + float.Parse(lblDisplay.Text);
+					break;
+				case "M-":
+					Memory -= float.Parse(lblDisplay.Text);
+					break;
+				case "MR":
+					lblDisplay.Text = Memory.ToString();
+					break;
+				case "MC":
+					Memory = 0; 
+					break;
+				case "MS":
+					Memory = float.Parse(lblDisplay.Text);
+					break;
+			}
+			isAfterOperater = true;
+			isAllowBack = false;
+		}
+	}
 }
