@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        protected bool isNumberPart = false;
+        protected bool isContainDot = false;
+        protected bool isSpaceAllowed = false;
+        private string display = "0";
+        private int position = 0;
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -26,7 +31,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        protected virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -122,7 +127,135 @@ namespace CPE200Lab1
                     //your code here
                     break;
             }
-            return "E";
+            return operate;
+        }
+        
+        protected bool isOperator(char ch)
+        {
+            switch (ch)
+            {
+                case '+':
+                case '-':
+                case 'X':
+                case '÷':
+                    return true;
+            }
+            return false;
+        }
+
+        public void Num_click(string num)
+        {
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += num;
+            isSpaceAllowed = true;
+        }
+
+        public void Binary(string str)
+        {
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            {
+                display += " " + str + " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void Back()
+        {
+            string current = display;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is "")
+            {
+                display = "0";
+            }
+        }
+
+        public void Clear()
+        {
+            display = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
+        public void Equal()
+        {
+            string result = Process(display);
+            if (result is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result;
+            }
+        }
+
+        public void Sign()
+        {
+            if (!isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[0] is '-')
+            {
+                display = current.Substring(1, current.Length-1);
+                if (display is "")
+                {
+                    display = "0";
+                }
+            }
+            else
+            {
+                display = "-" + current;
+            }
+            //isSpaceAllowed = false;
+        }
+
+        public void Dot()
+        {
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void Space()
+        {
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public string Display()
+        {
+            return display;
         }
     }
 }
