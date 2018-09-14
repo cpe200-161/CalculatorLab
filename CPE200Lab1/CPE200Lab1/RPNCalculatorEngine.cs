@@ -8,11 +8,61 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Processs(string str)
+        public string Process(string str)
         {
             // your code here
-            
-            return "E";
+            string fristOperand;
+            string secondOperand;
+            string[] parts = str.Split(' ');
+            if (parts.Length >= 2)
+            {
+                Stack<string> myStack = new Stack<string>();
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    if (isNumber(parts[i]))
+                    {
+                        myStack.Push(parts[i]);
+                    }
+                    if (isOperator(parts[i]))
+                    {
+                        if (parts[i] == "1/x" || parts[i] == "√" && myStack.Count >= 1)
+                        {
+                            fristOperand = myStack.Pop();
+                            myStack.Push(unaryCalculate(parts[i], fristOperand));
+                        }
+                        else
+                        {
+                            if (myStack.Count >= 2)
+                            {
+                                secondOperand = myStack.Pop();
+                                fristOperand = myStack.Pop();
+                                myStack.Push(calculate(parts[i], fristOperand, secondOperand));
+                            }
+                            else
+                            {
+                                return "E";
+                            }
+
+
+                        }
+
+                    }
+                }
+                if (myStack.Count == 1)
+                {
+                    return myStack.Pop();
+                }
+                else
+                {
+                    return "E";
+                }
+
+            }
+            else
+            {
+                return "E";
+            }
+
         }
     }
 }
