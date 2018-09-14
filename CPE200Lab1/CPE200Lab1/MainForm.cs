@@ -223,7 +223,7 @@ namespace CPE200Lab1
 
         private void clearAll_Click(object sender, EventArgs e)
         {
-
+            lblDisplay.Text = "0";
         }
 
         private void button2_Click(object sender, EventArgs e)
