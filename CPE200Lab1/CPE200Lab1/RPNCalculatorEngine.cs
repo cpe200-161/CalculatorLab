@@ -35,9 +35,7 @@ namespace CPE200Lab1
                     myStack.Push(mun4);
                     
 
-
-
-
+                    
                 }
 
                 if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
