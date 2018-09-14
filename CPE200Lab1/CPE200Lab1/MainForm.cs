@@ -87,6 +87,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+           
             switch (operate)
             {
                 case "+":
@@ -114,7 +115,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate_before, firstOperand, secondOperand);       //hereeeeeeeeeeeeeeeeeeeeeeeeeee//
+            string result = engine.calculate(operate_before,firstOperand, secondOperand,8);       //hereeeeeeeeeeeeeeeeeeeeeeeeeee//
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -252,6 +253,56 @@ namespace CPE200Lab1
         {
             save = lblDisplay.Text;
             lblDisplay.Text = "0";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+            operate = ((Button)sender).Text;
+            operate_before = operate;
+            switch (operate)
+            {
+                case "√":
+               
+                    operate_before = operate;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
+                
+            }
+            isAllowBack = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+            operate = ((Button)sender).Text;
+            operate_before = operate;
+            switch (operate)
+            {
+                case "1/x":
+
+                    operate_before = operate;
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
+
+            }
+            isAllowBack = false;
         }
     }
 }
