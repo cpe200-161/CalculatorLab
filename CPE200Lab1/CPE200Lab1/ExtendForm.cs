@@ -165,5 +165,10 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        private void ExtendForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
