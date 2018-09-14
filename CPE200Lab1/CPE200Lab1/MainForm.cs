@@ -229,6 +229,7 @@ namespace CPE200Lab1
                     {
                         memStore = "0";
                     }
+                    lblDisplay.Text = "0";
                     isMemOn = false;
                     isAfterOperater = true;
                     break;
