@@ -88,6 +88,9 @@ namespace CPE200Lab1
             if (lblDisplay.Text is "")
             {
                 lblDisplay.Text = "0";
+                isContainDot = false;
+                isNumberPart = false;
+                isSpaceAllowed = false;
             }
         }
 
@@ -109,6 +112,8 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+
+            isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
