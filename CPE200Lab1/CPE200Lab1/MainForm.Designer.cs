@@ -49,7 +49,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.root = new System.Windows.Forms.Button();
             this.oneperx = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -260,9 +259,9 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(200, 183);
+            this.btnClear.Location = new System.Drawing.Point(106, 183);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(88, 64);
+            this.btnClear.Size = new System.Drawing.Size(182, 64);
             this.btnClear.TabIndex = 18;
             this.btnClear.Text = "C";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -292,16 +291,6 @@
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(106, 183);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 64);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "CE";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // root
             // 
@@ -334,6 +323,7 @@
             this.button4.TabIndex = 24;
             this.button4.Text = "MC";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button5
             // 
@@ -344,6 +334,7 @@
             this.button5.TabIndex = 25;
             this.button5.Text = "M-";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button6
             // 
@@ -354,6 +345,7 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "M+";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button7
             // 
@@ -364,6 +356,7 @@
             this.button7.TabIndex = 27;
             this.button7.Text = "MS";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button8
             // 
@@ -374,6 +367,7 @@
             this.button8.TabIndex = 28;
             this.button8.Text = "MR";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // MainForm
             // 
@@ -387,7 +381,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.oneperx);
             this.Controls.Add(this.root);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
@@ -411,6 +404,7 @@
             this.Controls.Add(this.btn7);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,7 +433,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button root;
         private System.Windows.Forms.Button oneperx;
         private System.Windows.Forms.Button button4;

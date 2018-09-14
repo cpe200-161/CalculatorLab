@@ -31,10 +31,10 @@ namespace CPE200Lab1
 
         public MainForm()
         {
-            InitializeComponent();
-
-            resetAll();
+            InitializeComponent();        
             engine = new CalculatorEngine();
+            memory = 0;
+            resetAll();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -87,10 +87,13 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-                    firstOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
                     break;
                 case "√":
-                    
+                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
+                    break;
+                case "1/x":
+                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
                     break;
             }
             isAllowBack = false;
@@ -104,7 +107,7 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
+            if (result is "E"|| result.Length > 8)
             {
                 lblDisplay.Text = "Error";
             }
@@ -209,5 +212,41 @@ namespace CPE200Lab1
         {
 
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private double memory;
+        private string operateMemory;
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            operateMemory = ((Button)sender).Text;
+            switch (operateMemory)
+            {
+                case "MS":
+                    memory = Double.Parse(lblDisplay.Text);
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Convert.ToString(memory);
+                    break;
+                case "M+":
+                    memory += Double.Parse(lblDisplay.Text);
+                    break;
+                case "M-":
+                    memory -= Double.Parse(lblDisplay.Text);
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine(operateMemory);
+            Console.WriteLine(memory);
+        }
     }
-}
+    }
+
