@@ -156,7 +156,7 @@ namespace CPE200Lab1
         {
             if (lblDisplay.Text is "Error")
             {
-                return;
+                //return;
             }
             if (isAfterEqual)
             {
