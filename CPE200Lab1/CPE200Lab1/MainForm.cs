@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        CalculatorEngine engine = new CalculatorEngine();
 
         private void resetAll()
         {
@@ -28,7 +29,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        /*private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
             {
@@ -66,11 +67,11 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        */
         public MainForm()
         {
             InitializeComponent();
-
+            
             resetAll();
         }
 
@@ -112,18 +113,44 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
-            switch (operate)
+            switch (((Button)sender).Text)
             {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
                     firstOperand = lblDisplay.Text;
+                    operate = ((Button)sender).Text;
                     isAfterOperater = true;
                     break;
+                case "1/x":
+                case "√":
+                    lblDisplay.Text = engine.calculate(((Button)sender).Text, lblDisplay.Text, null);
+                    break;
                 case "%":
-                    // your code here
+                    lblDisplay.Text = engine.calculate(((Button)sender).Text, firstOperand, lblDisplay.Text);
+                    break;
+                case "MS":
+                case "MR":
+                case "MC":
+                case "M+":
+                case "M-":
+                    operate = ((Button)sender).Text;
+                    firstOperand = lblDisplay.Text;
+                    string result = engine.calculate(((Button)sender).Text, lblDisplay.Text, null);
+                    if (result.Length >= 8)
+                    {
+                        result = result.Substring(0, 8);
+                    }
+                    if (result is "E")
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
@@ -136,7 +163,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
