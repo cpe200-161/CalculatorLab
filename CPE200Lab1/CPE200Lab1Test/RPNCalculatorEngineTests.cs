@@ -36,7 +36,9 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("14", r.Process("5 1 2 + 4 X 3 - +"));
             Assert.AreEqual("-1", r.Process("1 1 1 + -"));
             Assert.AreEqual("1", r.Process("1 1 + 1 -"));
-            
+            //
+            Assert.AreEqual("360", r.Process("300 20 % +"));
+
         }
 
         [TestMethod()]

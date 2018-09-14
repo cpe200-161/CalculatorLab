@@ -15,34 +15,52 @@ namespace CPE200Lab1
             Stack RPNcalc = new Stack();
 
             string first, second, result;
-            string[] parts = str.Split(' ');
-            parts = parts.Take(parts.Length - 1).ToArray();
+            string[] parts = str.Split(' ');           
 
-            foreach (string element in parts)
-            {
+            List<string> partsWithoutSpace = parts.ToList<string>();
+            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
+            parts = partsWithoutSpace.ToArray();
 
+
+                foreach (string element in parts)
+                {
                     if (isNumber(element))
                     {
                         RPNcalc.Push(element);
                     }
-                    else if (isOperator(element) && RPNcalc.Count >= 2)
+                    else if (isUnaryOperator(element) || (isOperator(element) && RPNcalc.Count >= 2))
                     {
-                        second = RPNcalc.Pop().ToString();
-                        first = RPNcalc.Pop().ToString();
-                        result = calculate(element, first, second);
-                        RPNcalc.Push(result);
+                        if (element == "%")
+                        {
+                            second = RPNcalc.Pop().ToString();
+                            first = RPNcalc.Peek().ToString();
+                            result = calculate(element, first, second);
+                            RPNcalc.Push(result);
+                        }
+                        else if (element == "√" || element == "1/x")
+                        {
+                            second = RPNcalc.Pop().ToString();
+                            result = unaryCalculate(element, second);
+                            RPNcalc.Push(result);
+                        }
+                        else
+                        {
+                            second = RPNcalc.Pop().ToString();
+                            first = RPNcalc.Pop().ToString();
+                            result = calculate(element, first, second);
+                            RPNcalc.Push(result);
+                        }
                     }
                     else
                     {
                         return "E";
                     }
-            }
-
+                }
             if (RPNcalc.Count == 1)
             {
                 return RPNcalc.Pop().ToString();
             }
-            else 
+            else
             {
                 return "E";
             }
