@@ -239,9 +239,5 @@ namespace CPE200Lab1
         {
             lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
         }
-
-
-
-
     }
 }
