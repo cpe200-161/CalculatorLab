@@ -93,5 +93,6 @@ namespace CPE200Lab1
             lblDisplay.Text = engine.Display();
 
         }
+
     }
 }

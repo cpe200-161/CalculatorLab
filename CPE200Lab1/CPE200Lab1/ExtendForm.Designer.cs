@@ -272,6 +272,7 @@
             this.lblDisplay.TabIndex = 40;
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            
             // 
             // btnSpace
             // 
