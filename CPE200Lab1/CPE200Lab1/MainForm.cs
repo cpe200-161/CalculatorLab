@@ -128,6 +128,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+
                     break;
             }
             isAllowBack = false;
