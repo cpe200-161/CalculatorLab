@@ -9,12 +9,12 @@ namespace CPE200Lab1
     public class CalculatorEngine
     
     {
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
+        protected bool isNumberPart = false;
+        protected bool isContainDot = false;
+        protected bool isSpaceAllowed = false;
         private string display = "0"  ;
 
-        public virtual string Display()
+        public string Display()
         {
             return display;
         }
@@ -36,7 +36,7 @@ namespace CPE200Lab1
 
         }
 
-        public void BtEq_click()
+        public virtual void BtEq_click()
         {
             string result = Process(display);
             if (result is "E")
@@ -144,7 +144,7 @@ namespace CPE200Lab1
 
         
 
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -162,7 +162,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))

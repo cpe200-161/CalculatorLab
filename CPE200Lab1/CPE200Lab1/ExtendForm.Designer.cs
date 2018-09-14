@@ -313,6 +313,7 @@
             this.Controls.Add(this.btn7);
             this.Name = "ExtendForm";
             this.Text = "ExtendForm";
+            this.Load += new System.EventHandler(this.ExtendForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

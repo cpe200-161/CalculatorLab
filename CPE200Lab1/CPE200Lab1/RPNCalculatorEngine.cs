@@ -8,34 +8,49 @@ namespace CPE200Lab1
 {
     class RPNCalculatorEngine : CalculatorEngine
     {
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
-        private string display = "0";
-        private string[] value;
-        public double m, n;
-        private int size ;
-        private bool IsEmtry = false;
-      
+        
+        
+        
+        private string v1, v2;
 
 
         public override void BtSpace_Click()
         {
             base.BtSpace_Click();
-            isSpaceAllowed = false;
+            isNumberPart = false;
             
         }
 
-        public void BtEq()
+        public override string Process(string str)
         {
-            Stack<string> s = new Stack<string>(value.Length);
-            if (IsEmtry)
-            {
-                return;
-            }
-            if()
+            Stack<string> s = new Stack<string>();
+            string[] parts = str.Split(' ');
+
+            
+
+                foreach (string i in parts)
+                {
+                    if (isNumber(i))
+                    {
+                        s.Push(i);
+
+                    }
+                    else if(isOperator(i))
+                    {
+                        v1 = s.Pop();
+                        v2 = s.Pop();
+                        s.Push(calculate(i, v2, v1 ));
+                    }
 
 
+                }
+
+                return s.Peek();
+            
         }
+
+        
+
+
     }
-}
+    }
