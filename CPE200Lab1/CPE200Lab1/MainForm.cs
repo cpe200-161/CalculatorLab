@@ -111,7 +111,7 @@ namespace CPE200Lab1
                 return;
             }
             secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operateTemp, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -231,8 +231,8 @@ namespace CPE200Lab1
                 default:
                     break;
             }
-            Console.WriteLine(operateTemp);
-            Console.WriteLine(memory);
+            isAfterOperater = true;
+            isAllowBack = false;
         }
     }
  }
