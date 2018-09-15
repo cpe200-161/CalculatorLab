@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
+        private double Memory;
         private RPNCalculatorEngine engine;
 
         public ExtendForm()
@@ -30,6 +31,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                
                     return true;
             }
             return false;
@@ -53,6 +55,33 @@ namespace CPE200Lab1
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
         }
+
+        private void btnMemmory_Click(object sender, EventArgs e)
+        {
+            string Function = ((Button)sender).Text;
+            switch (Function)
+            {
+                case "MR":
+                    lblDisplay.Text = Memory.ToString();
+                    break;
+                case "MC":
+                    Memory = 0;
+                    break;
+                case "M+":
+                    if (lblDisplay.Text == "Error") return;
+                    Memory += Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "M-":
+                    if (lblDisplay.Text == "Error") return;
+                    Memory -= Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "MS":
+                    if (lblDisplay.Text == "Error") return;
+                    Memory = Convert.ToDouble(lblDisplay.Text);
+                    break;
+            }
+        }
+
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {

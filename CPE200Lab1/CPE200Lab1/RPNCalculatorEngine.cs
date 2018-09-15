@@ -14,7 +14,7 @@ namespace CPE200Lab1
             string fristOperand;
             string secondOperand;
             string[] parts = str.Split(' ');
-            if (parts.Length >= 2)
+            if (parts.Length != 1)
             {
                 Stack<string> myStack = new Stack<string>();
                 for (int i = 0; i < parts.Length; i++)
@@ -25,11 +25,12 @@ namespace CPE200Lab1
                     }
                     if (isOperator(parts[i]))
                     {
-                        if (parts[i] == "1/x" || parts[i] == "√" && myStack.Count >= 1)
+                        if (parts[i] == "1/x" || parts[i] == "√")
                         {
-                            fristOperand = myStack.Pop();
-                            myStack.Push(unaryCalculate(parts[i], fristOperand));
+                            secondOperand = myStack.Pop();
+                            myStack.Push(unaryCalculate(parts[i], secondOperand));
                         }
+                        
                         else
                         {
                             if (myStack.Count >= 2)

@@ -23,7 +23,11 @@ namespace CPE200Lab1
                 case "X":
                 case "÷":
                 case "%":
-                   
+                case "√":
+                case "1/x":
+                
+
+
                     return true;
             }
             return false;
@@ -60,17 +64,26 @@ namespace CPE200Lab1
                         else
                         {
                             parts = result.ToString().Split('.');
+                            string.Format(parts[1], "G29");
+
                             // if integer part length is already break max output, return error
                             if (parts[0].Length > maxOutputSize)
                             {
                                 return "E";
                             }
-                            string.Format(parts[1], "G29");
-                            // calculate remaining space for fractional part.
-                            remainLength = maxOutputSize - parts[0].Length - 1;
-                            string result2 = parts[0] + "." + parts[1];
-                            return string.Format(result2, ("N" + remainLength));
+                            else if (parts[1].Length + parts[0].Length > maxOutputSize)
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                return result.ToString("N" + remainLength);
+                            }
+                            else
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                string result2 = parts[0] + "." + parts[1];
 
+                                return string.Format(result2, "N" + remainLength);
+
+                            }
                         }
                     }
                 case "1/x":
@@ -88,17 +101,27 @@ namespace CPE200Lab1
                         else
                         {
                             parts = result.ToString().Split('.');
+                            string.Format(parts[1], "G29");
+
                             // if integer part length is already break max output, return error
                             if (parts[0].Length > maxOutputSize)
                             {
                                 return "E";
                             }
-                            string.Format(parts[1], "G29");
-                            // calculate remaining space for fractional part.
-                            remainLength = maxOutputSize - parts[0].Length - 1;
-                            string result2 = parts[0] + "." + parts[1];
-                            return string.Format(result2, ("N" + remainLength));
-                            
+                            else if (parts[1].Length + parts[0].Length > maxOutputSize)
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                return result.ToString("N" + remainLength);
+                            }
+                            else
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                string result2 = parts[0] + "." + parts[1];
+
+                                return string.Format(result2, "N" + remainLength);
+
+                            }
+
                         }
                     }
                     break;
@@ -133,26 +156,27 @@ namespace CPE200Lab1
                         else
                         {
                             parts = result.ToString().Split('.');
+                            string.Format(parts[1], "G29");
+
                             // if integer part length is already break max output, return error
                             if (parts[0].Length > maxOutputSize)
                             {
                                 return "E";
                             }
-                            string.Format(parts[1], "G29");
-                            string.Format(parts[1], "");
-                            // calculate remaining space for fractional part.
-                            remainLength = maxOutputSize - parts[0].Length - 1;
-                            string result2 = parts[0] + "." + parts[1];
+                            else if(parts[1].Length + parts[0].Length > maxOutputSize)
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                return result.ToString("N" + remainLength);
+                            }
+                            else
+                            {
+                                remainLength = maxOutputSize - parts[0].Length - 1;
+                                string result2 = parts[0] + "." + parts[1];
                             
                              return string.Format(result2, "N"+remainLength);
-                            
 
+                            }
                         }
-
-
-
-
-
                     }
                     break;
                 case "%":

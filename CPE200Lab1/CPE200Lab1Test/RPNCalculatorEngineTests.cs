@@ -24,6 +24,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("-1", r.Process("2 3 -"));
             Assert.AreEqual("-6", r.Process("3 -2 X"));
             Assert.AreEqual("-2", r.Process("-4 2 ÷"));
+           
         }
 
         [TestMethod()]
