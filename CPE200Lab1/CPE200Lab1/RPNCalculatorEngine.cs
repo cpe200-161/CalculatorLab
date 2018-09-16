@@ -6,12 +6,34 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine 
     {
-        public string Process(string str)
+        public string RPNProcess(string str)
         {
-            // your code here
-            return "E";
+            string[] parts = str.Split(' ');
+            Stack<string> number = new Stack<string>();
+            for(int i = 0;i < str.Length/2 ; i++)
+            {
+                if(isNumber(parts[i]))
+                {
+                    number.Push(parts[i]);
+                }
+                if (isOperator(parts[i]))
+                {
+                    if(number.Count < 2)
+                    {
+                        return "E";
+                    }else
+                    {
+                        number.Push(calculate(parts[i], number.Pop(), number.Pop()));
+                    }
+                }
+            }
+            return number.Pop();
+
+
+
+            //return Process(str);
         }
     }
 }
