@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNFROM : ExtendForm
+    class RPNForm : ExtendForm
     {
         
-        public RPNFROM()
+        public RPNForm()
         {
            
         }
         protected override CalculatorEngine Engine()
         {
-            return new RPNCALCULATORENGINE();
+            return new RPNCalculatorEngine();
         }
     }
 }
