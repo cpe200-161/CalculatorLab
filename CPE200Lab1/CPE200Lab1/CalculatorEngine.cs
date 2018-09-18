@@ -18,13 +18,13 @@ namespace CPE200Lab1
 			return lblDisplay;
 		}
 
-		private bool isNumber(string str)
+		public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
