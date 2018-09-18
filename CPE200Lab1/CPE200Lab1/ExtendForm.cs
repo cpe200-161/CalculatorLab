@@ -15,12 +15,14 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
+		public string memory = null;
+		private bool isMemory = false;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -34,6 +36,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -109,6 +112,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+			isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -165,5 +169,37 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
-    }
+
+		private void btnMemory(object sender, EventArgs e)
+		{
+			string operate = ((Button)sender).Text;
+			switch(operate)
+			{
+				case "MS":
+					string result = engine.Process(lblDisplay.Text);
+					if (result is "E")
+					{
+						lblDisplay.Text = "Error";
+					}
+					else
+					{
+						lblDisplay.Text = result;
+					}
+					memory = result;
+					isSpaceAllowed = true;
+					isMemory = true;
+					break;
+
+				case "MR":
+					lblDisplay.Text = memory;
+					break;
+
+				case "MC":
+					memory = null;
+					isMemory = false;
+					break;
+			}
+
+		}
+	}
 }
