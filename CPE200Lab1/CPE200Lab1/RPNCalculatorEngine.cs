@@ -11,7 +11,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -31,23 +31,30 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    string st, nd;
-                    nd = numbers.Peek();
+                    string firstnumber, secondnumber;
+                    secondnumber = numbers.Peek();
                     numbers.Pop();
-                    st = numbers.Peek();
+                    firstnumber = numbers.Peek();
                     numbers.Pop();
-                    numbers.Push(calculate(parts[i], st, nd, 8));
+                    numbers.Push(calculate(parts[i], firstnumber, secondnumber, 8));
+
                 }
             }
             if (numbers.Count == 1)
             {
-                return numbers.Peek();
+                if (parts[1] == "√" || parts[1] == "1/x")
+                {
+                    string firstnumber;
+                    firstnumber = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(unaryCalculate(parts[1], firstnumber));
+                }
+                    return numbers.Peek();
             }
             else
             {
                 return "E";
             }
-            return "E";
         }
     }
 }
