@@ -16,7 +16,7 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private double memMory = 0;
-        private RPNCalculatorEngine engine;        
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
@@ -25,8 +25,9 @@ namespace CPE200Lab1
         }
 
         private bool isOperator(char str)
-        {            
-            switch (str) {
+        {
+            switch (str)
+            {
                 case '+':
                 case '-':
                 case 'X':
@@ -40,7 +41,7 @@ namespace CPE200Lab1
         {
             double retNum;
             return Double.TryParse(str, out retNum);
-        }        
+        }
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -71,7 +72,7 @@ namespace CPE200Lab1
             isContainDot = false;
 
             lblDisplay.Text += " " + ((Button)sender).Text + " ";
-            isSpaceAllowed = false;            
+            isSpaceAllowed = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -85,7 +86,8 @@ namespace CPE200Lab1
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
             }
@@ -110,7 +112,8 @@ namespace CPE200Lab1
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
-            } else
+            }
+            else
             {
                 lblDisplay.Text = result;
             }
@@ -131,14 +134,16 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
+            }
+            else if (current[current.Length - 1] is '-')
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current + "-";
             }
@@ -151,7 +156,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if (!isContainDot)
             {
                 isContainDot = true;
                 lblDisplay.Text += ".";
@@ -161,11 +166,11 @@ namespace CPE200Lab1
 
         private void btnSpace_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            if(isSpaceAllowed)
+            if (isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
@@ -179,11 +184,11 @@ namespace CPE200Lab1
 
         private void memory_Show(object sender, EventArgs e)
         {
-            if(memMory != 0)
+            if (memMory != 0)
             {
                 lblDisplay.Text = memMory.ToString();
                 isSpaceAllowed = true;
-            }            
+            }
         }
 
         private void memory_Save(object sender, EventArgs e)
@@ -202,56 +207,17 @@ namespace CPE200Lab1
         }
 
         private void sQrt_Click(object sender, EventArgs e)
-        {                        
-            string[] memBers = lblDisplay.Text.Split(' ');
-
-            if (memBers.Length < 2 && isNumber(memBers[0]))
-            {                
-                lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(memBers[0]))).ToString();
-                return;
-            } else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
-            {                
-                memBers[memBers.Length - 1] = (Math.Sqrt(Convert.ToDouble(memBers[memBers.Length - 1]))).ToString();
-                
-                for (int i = 0; i < memBers.Length; i++)
-                {
-                    if(i == 0)
-                    {
-                        lblDisplay.Text = memBers[0];
-                    }
-                    else
-                    {
-                        lblDisplay.Text += " " + memBers[i];
-                    }                    
-                }
-                return;
-            } else {
-                string result = engine.Process(lblDisplay.Text);
-                if (result is "E")
-                {
-                    lblDisplay.Text = "Error";
-                    return;
-                }
-                else
-                {                    
-                    lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(result))).ToString();
-                    return;
-                }
-            }
-        }     
-
-        private void oneOverx_Click(object sender, EventArgs e)
         {
             string[] memBers = lblDisplay.Text.Split(' ');
 
             if (memBers.Length < 2 && isNumber(memBers[0]))
             {
-                lblDisplay.Text = (1 / Convert.ToDouble(memBers[0])).ToString();                
+                lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(memBers[0]))).ToString();
                 return;
             }
             else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
             {
-                memBers[memBers.Length - 1] = (1 / Convert.ToDouble(memBers[memBers.Length - 1])).ToString();               
+                memBers[memBers.Length - 1] = (Math.Sqrt(Convert.ToDouble(memBers[memBers.Length - 1]))).ToString();
 
                 for (int i = 0; i < memBers.Length; i++)
                 {
@@ -276,7 +242,49 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    lblDisplay.Text = (1 / Convert.ToDouble(result)).ToString();                    
+                    lblDisplay.Text = (Math.Sqrt(Convert.ToDouble(result))).ToString();
+                    return;
+                }
+            }
+        }
+
+        private void oneOverx_Click(object sender, EventArgs e)
+        {
+            string[] memBers = lblDisplay.Text.Split(' ');
+
+            if (memBers.Length < 2 && isNumber(memBers[0]))
+            {
+                lblDisplay.Text = (1 / Convert.ToDouble(memBers[0])).ToString();
+                return;
+            }
+            else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]))
+            {
+                memBers[memBers.Length - 1] = (1 / Convert.ToDouble(memBers[memBers.Length - 1])).ToString();
+
+                for (int i = 0; i < memBers.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        lblDisplay.Text = memBers[0];
+                    }
+                    else
+                    {
+                        lblDisplay.Text += " " + memBers[i];
+                    }
+                }
+                return;
+            }
+            else
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                    return;
+                }
+                else
+                {
+                    lblDisplay.Text = (1 / Convert.ToDouble(result)).ToString();
                     return;
                 }
             }
@@ -291,6 +299,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = (Convert.ToDouble(memBers[0]) / 100).ToString();
                 return;
             }
+
             else if (memBers.Length >= 2 && isNumber(memBers[memBers.Length - 1]) && isNumber(memBers[memBers.Length - 2]))
             {
                 memBers[memBers.Length - 1] = (Convert.ToDouble(memBers[memBers.Length - 1]) / 100 * Convert.ToDouble(memBers[memBers.Length - 2])).ToString();

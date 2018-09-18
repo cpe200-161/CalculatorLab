@@ -22,7 +22,6 @@ namespace CPE200Lab1
 
             if (numBers.Length < 3 || !isNumber(numBers[0]))
             {
-                sizeStack = 0;
                 return "E";
             }
 
@@ -34,19 +33,24 @@ namespace CPE200Lab1
                     sizeStack++;
                 }
                 else if (isOperator(numBers[i]))
-                {                    
-                    opeRator = numBers[i];                    
+                {
+                    opeRator = numBers[i];
                     if (sizeStack != 0)
                     {
-                        secondOperand = numbersStack.Pop();
-                        sizeStack--;
                         if (sizeStack < 1)
                         {
-                            sizeStack = 0;
                             return "E";
                         }
-                        firstOperand = numbersStack.Pop();
-                        sizeStack--;
+                        try
+                        {
+                            secondOperand = numbersStack.Pop();
+                            firstOperand = numbersStack.Pop();
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
+                        sizeStack -= 2;
                         numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand));
                         sizeStack++;
                     }
@@ -55,14 +59,13 @@ namespace CPE200Lab1
 
             if (sizeStack == 1)
             {
-                sizeStack = 0;
                 return numbersStack.Pop();
             }
             else
             {
-                sizeStack = 0;
                 return "E";
             }
+
         }
     }
 }
