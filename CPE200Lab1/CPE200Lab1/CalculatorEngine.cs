@@ -53,10 +53,6 @@ namespace CPE200Lab1
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
-                        /*if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }*/
                         for(int i=0;i<maxOutputSize-parts[0].Length-1;i++)
                         {
                             floatingForm += "#";
@@ -65,13 +61,14 @@ namespace CPE200Lab1
                         return result.ToString("0."+floatingForm);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    //if(operand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
                         string floatingForm = "";
 
-                        result = (1.0 / Convert.ToDouble(operand));
+                        result = Convert.ToDouble(calculate("÷","1",operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
@@ -86,9 +83,12 @@ namespace CPE200Lab1
                         // trim the fractional part gracefully. =
                         return result.ToString("0." + floatingForm);
                     }
-                    break;
+                    catch(Exception)
+                    {
+                        return "E";
+                    }
             }
-            return "E";
+            return"";
         }
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -102,13 +102,12 @@ namespace CPE200Lab1
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
-                    {
                         double result;
                         string[] parts;
                         string floatingForm="";
-
+                    try
+                    {
+                        if (secondOperand == "0") throw new Exception();
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -124,7 +123,10 @@ namespace CPE200Lab1
                         // trim the fractional part gracefully. =
                         return result.ToString("0." + floatingForm);
                     }
-                    break;
+                    catch(Exception)
+                    {
+                        return "E";
+                    }
                 case "%":
                     //your code here
                     string results;

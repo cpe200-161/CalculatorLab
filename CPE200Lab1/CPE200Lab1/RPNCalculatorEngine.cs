@@ -18,20 +18,26 @@ namespace CPE200Lab1
             while (i<parts.Length)
             {
                 string firstOperand="", secondOperand="";
-                //s.Push(str[i].ToString());
                 if (isOperator(parts[i]))
                 {
                     if (NumStack.Count >= 2)
                     {
-                        if (isNumber(NumStack.Peek()))
+                        try
                         {
-                            secondOperand = NumStack.Pop();
                             if (isNumber(NumStack.Peek()))
                             {
-                                firstOperand = NumStack.Pop();
-                                string result = calculate(parts[i], firstOperand, secondOperand);
-                                NumStack.Push(result);
+                                secondOperand = NumStack.Pop();
+                                if (isNumber(NumStack.Peek()))
+                                {
+                                    firstOperand = NumStack.Pop();
+                                    string result = calculate(parts[i], firstOperand, secondOperand);
+                                    NumStack.Push(result);
+                                }
                             }
+                        }
+                        catch(Exception)
+                        {
+                            return "E";
                         }
                     }
                     else
@@ -47,12 +53,6 @@ namespace CPE200Lab1
             }
             if ((NumStack.Count == 1)&&(parts.Length>2))return NumStack.Peek();
             else return "E";
-            /*string a="";
-            for(int j=0;j<parts.Length;j++)
-            {
-                a += parts[j]+' ';
-            }
-            return a;*/
         }
     }
 }

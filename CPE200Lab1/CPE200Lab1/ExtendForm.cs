@@ -122,10 +122,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            /*if (isNumberPart)
-            {
-                return;
-            }*/
             string[] parts = lblDisplay.Text.Split(' ');
             string result = engine.calculate("X", parts[parts.Length - 1],"-1");
             lblDisplay.Text = "";
@@ -177,7 +173,6 @@ namespace CPE200Lab1
             }
             string operate = ((Button)sender).Text;
             string[] parts;
-            //if (lblDisplay.Text[lblDisplay.Text.Length - 1] == ' ') lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
             parts = lblDisplay.Text.Split(' ');
             if(!engine.isNumber(parts[parts.Length - 1]))
             {
@@ -238,7 +233,6 @@ namespace CPE200Lab1
             }
             string operate = ((Button)sender).Text;
             string[] parts;
-            //if (lblDisplay.Text[lblDisplay.Text.Length - 1] == ' ') lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
             parts = lblDisplay.Text.Split(' ');
             if (parts.Length is 1) return;
             if(!engine.isNumber(parts[parts.Length - 2])||!engine.isNumber(parts[parts.Length - 1]))
