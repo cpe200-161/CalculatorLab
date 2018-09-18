@@ -212,23 +212,31 @@ namespace CPE200Lab1
         }
         private void btnPercen_Click(object sender, EventArgs e)
         {
-            string percen_val;
-            if (lblDisplay.Text.Length == 1)
+            if(lblDisplay.Text is "Error")
             {
-                percen_val = engine.calculate("%", "1", lblDisplay.Text, 8).ToString();
-                lblDisplay.Text = percen_val;
+                return;
             }
-            else if (lblDisplay.Text.Length > 1)
+            string operate = ((Button)sender).Text;
+            string[] parts;
+            parts = lblDisplay.Text.Split(' ');
+            if (parts.Length is 1) return;
+            if (!engine.isNumber(parts[parts.Length - 2]) || !engine.isNumber(parts[parts.Length - 1]))
             {
-                string result = engine.Process(lblDisplay.Text);
-                if (result is "E")
+                return;
+            }
+            string result = engine.calculate(operate, parts[parts.Length - 2], parts[parts.Length - 1]);
+            if(result is "E"||result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = "";
+                for(int i = 0; i < parts.Length - 1; i++)
                 {
-                    lblDisplay.Text = "Error";
+                    lblDisplay.Text += parts[i] + " ";
                 }
-                else
-                {
-                    percen_val = engine.calculate("%", "1", result, 8).ToString();
-                }
+                lblDisplay.Text += result;
             }
         }
     }
