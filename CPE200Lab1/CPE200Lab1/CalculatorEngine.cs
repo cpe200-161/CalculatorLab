@@ -45,6 +45,7 @@ namespace CPE200Lab1
             switch (operate)
             {
                 case "√":
+                    try
                     {
                         double result;
                         string[] parts;
@@ -63,6 +64,10 @@ namespace CPE200Lab1
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength).Contains(".") ?
                             result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
+                    }
+                    catch (Exception ex)
+                    {
+                        return "E";
                     }
                 case "1/x":
                     if (operand != "0")

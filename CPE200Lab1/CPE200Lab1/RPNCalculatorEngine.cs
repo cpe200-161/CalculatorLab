@@ -28,10 +28,20 @@ namespace CPE200Lab1
 
                 else
                 {
-                    if ((text == "+" || text == "-" || text == "X" || text == "÷" || text == "%") && numStack.Count >= 2)
+                    if (text == "+" || text == "-" || text == "X" || text == "÷" || text == "%")
                     {
-                        string second = numStack.Pop();
-                        string first = numStack.Pop();
+                        string first = null, second = null;
+
+                        try
+                        {
+                            second = numStack.Pop();
+                            first = numStack.Pop();
+                        }
+                        catch (Exception ex)
+                        {
+                            return "E";
+                        }
+
                         if (text == "%")
                         {
                             numStack.Push(first);
@@ -39,9 +49,18 @@ namespace CPE200Lab1
                         numStack.Push(calculate(text, first, second));
                     }
 
-                    else if ((text == "√" || text == "1/x") && numStack.Count >= 1)
+                    else if (text == "√" || text == "1/x")
                     {
-                        string num = numStack.Pop();
+                        string num = null;
+
+                        try
+                        {
+                            num = numStack.Pop();
+                        }
+                        catch (Exception ex)
+                        {
+                            return "E";
+                        }
                         numStack.Push(unaryCalculate(text, num));
                     }
 
@@ -52,12 +71,20 @@ namespace CPE200Lab1
                 }
             }
 
-            if (numStack.Count != 1)
+            if (numStack.Count == 1)
             {
-                return "E";
+                try
+                {
+                    return numStack.Peek();
+                }
+                catch (Exception ex)
+                {
+                    return "E";
+                }
             }
 
-            return numStack.Peek();
+            return "E";
+            
         }
     }
 }
