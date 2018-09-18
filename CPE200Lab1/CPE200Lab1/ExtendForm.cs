@@ -79,7 +79,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            // check if the last one is operator
             string current = lblDisplay.Text;
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
@@ -174,12 +173,12 @@ namespace CPE200Lab1
         }
         private void btnRoot_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text.Length == 1)
-            {
+             if (lblDisplay.Text.Length == 1)
+             {
                 lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
-            }
-            else if (lblDisplay.Text.Length > 1)
-            {
+             }
+             else if (lblDisplay.Text.Length > 1)
+             {
                 string result = engine.Process(lblDisplay.Text);
                 if (result is "E")
                 {
@@ -187,17 +186,14 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    lblDisplay.Text = Math.Sqrt(Convert.ToDouble(result)).ToString();
+                   lblDisplay.Text = Math.Sqrt(Convert.ToDouble(result)).ToString();
                 }
-            } 
+             }
         }
         private void btnOver_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text.Length == 1)
-            {
-                lblDisplay.Text = engine.calculate("÷", "1", lblDisplay.Text, 8).ToString();
-            }
-            else if (lblDisplay.Text.Length > 1)
+            
+            if (lblDisplay.Text.Length >= 1)
             {
                 string result = engine.Process(lblDisplay.Text);
                 if (result is "E")

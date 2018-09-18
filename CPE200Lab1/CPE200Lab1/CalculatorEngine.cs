@@ -60,7 +60,6 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        //return result.ToString("N" + remainLength);
                         Str_result = result.ToString();
                         if (Str_result.Contains("."))
                         {
@@ -73,13 +72,12 @@ namespace CPE200Lab1
                         return Str_result;
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
                         int remainLength;
                         string Str_result;
-
                         result = (1.0 / Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -91,7 +89,6 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        // return result.ToString("N" + remainLength);
                         Str_result = result.ToString();
                         if (Str_result.Contains("."))
                         {
@@ -110,52 +107,57 @@ namespace CPE200Lab1
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
-            switch (operate)
+            try
             {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-                        string Str_result;
+                switch (operate)
+                {
 
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                    case "+":
+                        return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                    case "-":
+                        return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                    case "X":
+                        return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                    case "÷":
+                        // Not allow devide be zero
+                        if (secondOperand != "0")
                         {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        // return result.ToString("N" + remainLength);
-                        Str_result = result.ToString();
-                        if (Str_result.Contains("."))
-                        {
-                            Str_result = Str_result.TrimEnd('0');
-                            if (Str_result.EndsWith("."))
+                            double result;
+                            string[] parts;
+                            int remainLength;
+                            string Str_result;
+                            result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                            // split between integer part and fractional part
+                            parts = result.ToString().Split('.');
+                            // if integer part length is already break max output, return error
+                            if (parts[0].Length > maxOutputSize)
                             {
-                                Str_result = Str_result.TrimEnd('.');
+                                return "E";
                             }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            Str_result = result.ToString();
+                            if (Str_result.Contains("."))
+                            {
+                                Str_result = Str_result.TrimEnd('0');
+                                if (Str_result.EndsWith("."))
+                                {
+                                    Str_result = Str_result.TrimEnd('.');
+                                }
+                            }
+                            return Str_result;
                         }
-                        return Str_result;
-                    }
-                    break;
-                case "%":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
-                    break;
+                        break;
+                    case "%":
+                        return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
+                        break;
+                }
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             return "E";
         }
     }
