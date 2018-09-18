@@ -212,9 +212,11 @@ namespace CPE200Lab1
         }
         private void btnPercen_Click(object sender, EventArgs e)
         {
+            string percen_val;
             if (lblDisplay.Text.Length == 1)
             {
-                lblDisplay.Text = engine.calculate("%", "1", lblDisplay.Text, 8).ToString();
+                percen_val = engine.calculate("%", "1", lblDisplay.Text, 8).ToString();
+                lblDisplay.Text = percen_val;
             }
             else if (lblDisplay.Text.Length > 1)
             {
@@ -225,7 +227,7 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    lblDisplay.Text = engine.calculate("%", "1", result, 8).ToString();
+                    percen_val = engine.calculate("%", "1", result, 8).ToString();
                 }
             }
         }

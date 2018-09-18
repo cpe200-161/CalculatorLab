@@ -152,8 +152,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    
-                    return 
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
                     break;
             }
             
