@@ -8,12 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public override string Process(string str)
         {
             string[] parts = str.Split(' ');
             Stack<string> cha = new Stack<string>();
             string s1, s2, s3;
-            bool checkemty = false;
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -38,14 +37,11 @@ namespace CPE200Lab1
             }
             if (cha.Count() == 1)
             {
-                //cha.Pop();
+            
                 return cha.Peek();
                
             }
-            /*if (!checkemty)
-            {
-                return "E";
-            }*/
+          
             else
             {
                 return "E";
