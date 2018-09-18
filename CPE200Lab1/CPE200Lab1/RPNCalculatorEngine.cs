@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str) 
+        public new string Process(string str)
         {
             string keep;
             String firstOperand;
@@ -24,19 +24,21 @@ namespace CPE200Lab1
                 return "E";
             }
 
+
+
             for (int i = 0; i < numBers.Length; i++)
             {
-                
-                if (isNumber(numBers[i]))    
+
+                if (isNumber(numBers[i]))
                 {
-                    
+
                     numbersStack.Push(numBers[i]);
                     sizeStack++;
-                   
+
                 }
-                else if(isOperator(numBers[i]))
+                else if (isOperator(numBers[i]))
                 {
-                    
+
                     opeRator = numBers[i];
                     Console.WriteLine("Enter operator");
                     if (sizeStack != 0)
@@ -45,35 +47,38 @@ namespace CPE200Lab1
                         secondOperand = numbersStack.Pop();
                         if (opeRator == "%" && sizeStack == 1)
                         {
-                            numbersStack.Push(engine.calculate(opeRator, "1",secondOperand, 8));
+                            numbersStack.Push(engine.calculate(opeRator, "1", secondOperand, 8));
                             return numbersStack.Pop();
                         }
                         sizeStack--;
                         if (opeRator == "√" || opeRator == "1/x")
                         {
-                            Console.WriteLine("Enter unarycalculate SecondOperand "+secondOperand+"Operator "+opeRator);
+
                             numbersStack.Push(engine.unaryCalculate(opeRator, secondOperand, 8));
-                            Console.WriteLine("Complete!");
                             sizeStack++;
-                            
+
                         }
-                        if (sizeStack < 1)
+
+                        try
                         {
-                            sizeStack = 0;
+                            firstOperand = numbersStack.Pop();
+                        }
+                        catch (Exception ex)
+                        {
                             return "E";
                         }
-                        firstOperand = numbersStack.Pop();
-                        
-                        if (opeRator== "√")
+
+
+                        if (opeRator == "√")
                         {
                             numbersStack.Push(firstOperand);
                         }
                         else if (opeRator == "+" || opeRator == "-" || opeRator == "X" || opeRator == "÷")
                         {
-                 
+
                             sizeStack--;
                             numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
-                            
+
                             sizeStack++;
                         }
                         else if (opeRator == "%")
@@ -98,6 +103,8 @@ namespace CPE200Lab1
                 sizeStack = 0;
                 return "E";
             }
+
+
 
         }
     }

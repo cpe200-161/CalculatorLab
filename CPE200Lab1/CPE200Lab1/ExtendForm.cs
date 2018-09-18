@@ -29,7 +29,8 @@ namespace CPE200Lab1
 
         private bool isOperator(char ch)
         {
-            switch(ch) {
+            switch (ch)
+            {
                 case '+':
                 case '-':
                 case 'X':
@@ -48,7 +49,7 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            
+
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -75,11 +76,11 @@ namespace CPE200Lab1
             }
             isNumberPart = false;
             isContainDot = false;
-            
+
             lblDisplay.Text += " " + ((Button)sender).Text + " ";
             RPNengine.Process(lblDisplay.Text);
             isSpaceAllowed = false;
-            
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -93,7 +94,8 @@ namespace CPE200Lab1
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
             }
@@ -118,7 +120,8 @@ namespace CPE200Lab1
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
-            } else
+            }
+            else
             {
                 lblDisplay.Text = result;
                 isSpaceAllowed = true;
@@ -139,14 +142,16 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
+            }
+            else if (current[current.Length - 1] is '-')
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current + "-";
             }
@@ -159,7 +164,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if (!isContainDot)
             {
                 isContainDot = true;
                 lblDisplay.Text += ".";
@@ -169,11 +174,11 @@ namespace CPE200Lab1
 
         private void btnSpace_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            if(isSpaceAllowed)
+            if (isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
 
@@ -222,11 +227,12 @@ namespace CPE200Lab1
             }
             else if (isNumber(keep[keep.Length - 1]))
             {
-                keep[keep.Length - 1] = Math.Sqrt(Convert.ToDouble(keep[keep.Length-1])).ToString(); ;
+                keep[keep.Length - 1] = Math.Sqrt(Convert.ToDouble(keep[keep.Length - 1])).ToString(); ;
                 for (int i = 0; i < keep.Length; i++)
                 {
                     if (i == 0) { lblDisplay.Text = keep[i]; }
-                    else {
+                    else
+                    {
                         lblDisplay.Text = lblDisplay.Text + " " + keep[i];
                     }
 
@@ -234,10 +240,10 @@ namespace CPE200Lab1
                 isSpaceAllowed = true;
             }
         }
-//wanna fix
+        //wanna fix
         private void one_overX_Click(object sender, EventArgs e)
         {
-            string [] keep = lblDisplay.Text.Split(' ');
+            string[] keep = lblDisplay.Text.Split(' ');
             if (keep.Length == 1)
             {
                 keep[0] = (1.0 / Convert.ToDouble(keep[0])).ToString();
@@ -246,7 +252,7 @@ namespace CPE200Lab1
             }
             else if (isNumber(keep[keep.Length - 1]) && keep.Length > 1)
             {
-                keep[keep.Length - 1] = (1 / Convert.ToDouble(keep[keep.Length-1])).ToString(); 
+                keep[keep.Length - 1] = (1 / Convert.ToDouble(keep[keep.Length - 1])).ToString();
                 //string keep2 = (1 / Convert.ToDouble(keep[keep.Length - 1])).ToString();
                 //keep[keep.Length - 1] = keep2;
                 for (int i = 0; i < keep.Length; i++)
@@ -269,29 +275,29 @@ namespace CPE200Lab1
         private void Percent_Click(object sender, EventArgs e)
         {
             string[] keep = (lblDisplay.Text).Split(' ');
-            if (keep.Length ==1)
+            if (keep.Length == 1)
             {
-                keep[0] = (Convert.ToDouble(keep[0])/100).ToString();
+                keep[0] = (Convert.ToDouble(keep[0]) / 100).ToString();
                 lblDisplay.Text = keep[0];
                 isSpaceAllowed = true;
             }
-            else if (isNumber(keep[keep.Length-1])&& isNumber(keep[keep.Length - 2]))
+            else if (isNumber(keep[keep.Length - 1]) && isNumber(keep[keep.Length - 2]))
             {
                 keep[keep.Length - 1] = (Convert.ToDouble(keep[keep.Length - 1]) * (Convert.ToDouble(keep[keep.Length - 2]) / 100)).ToString();
-                for(int i = 0; i < keep.Length; i++)
+                for (int i = 0; i < keep.Length; i++)
                 {
                     if (i == 0) { lblDisplay.Text = keep[0]; }
                     else
                     {
                         lblDisplay.Text = lblDisplay.Text + " " + keep[i];
                     }
-                    
+
                 }
                 isSpaceAllowed = true;
             }
-            
 
-            
+
+
         }
     }
 }
