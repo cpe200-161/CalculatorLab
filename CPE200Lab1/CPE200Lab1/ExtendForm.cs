@@ -15,12 +15,16 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        float Memory;
+        string operate;
+        bool MemoryOperater;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
+
         }
 
         private bool isOperator(char ch)
@@ -65,8 +69,8 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
+                lblDisplay.Text += " " + ((Button)sender).Text  ;
+                isSpaceAllowed = true;
             }
         }
 
@@ -165,5 +169,33 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "M+":
+                    Memory = Memory + float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "M-":
+                    Memory = Memory - float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "MS":
+                    Memory = float.Parse(lblDisplay.Text);
+                    MemoryOperater = true;
+                    break;
+                case "MC":
+                    Memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Memory.ToString();
+                    MemoryOperater = true;
+                    break;
+            }
+
+        }
+
     }
 }
