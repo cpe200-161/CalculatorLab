@@ -15,12 +15,13 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private int count_number;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -31,6 +32,7 @@ namespace CPE200Lab1
                 case 'X':
                 case '÷':
                     return true;
+                
             }
             return false;
         }
@@ -50,6 +52,7 @@ namespace CPE200Lab1
                 isNumberPart = true;
                 isContainDot = false;
             }
+            
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
         }
@@ -125,18 +128,22 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
+            }
+            else if (current[current.Length - 1] is '-')
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
-                lblDisplay.Text = current + "-";
+
+                lblDisplay.Text = "-" + current;
             }
             isSpaceAllowed = false;
+
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -163,6 +170,73 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+        private void btnRoot_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length == 1)
+            {
+                lblDisplay.Text = Math.Sqrt(Convert.ToDouble(lblDisplay.Text)).ToString();
+            }
+            else if (lblDisplay.Text.Length > 1)
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = Math.Sqrt(Convert.ToDouble(result)).ToString();
+                }
+            } 
+        }
+        private void btnOver_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text.Length == 1)
+            {
+                lblDisplay.Text = engine.calculate("÷", "1", lblDisplay.Text, 8).ToString();
+            }
+            else if (lblDisplay.Text.Length > 1)
+            {
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = engine.calculate("÷", "1",result,8).ToString();
+                }
+            }
+        }
+        private void btnPercen_Click(object sender, EventArgs e)
+        {
+            if(lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string operate = ((Button)sender).Text;
+            string[] parts;
+            parts = lblDisplay.Text.Split(' ');
+            if (parts.Length is 1) return;
+            if (!engine.isNumber(parts[parts.Length - 2]) || !engine.isNumber(parts[parts.Length - 1]))
+            {
+                return;
+            }
+            string result = engine.calculate(operate, parts[parts.Length - 2], parts[parts.Length - 1]);
+            if(result is "E"||result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = "";
+                for(int i = 0; i < parts.Length - 1; i++)
+                {
+                    lblDisplay.Text += parts[i] + " ";
+                }
+                lblDisplay.Text += result;
             }
         }
     }
