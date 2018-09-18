@@ -10,10 +10,11 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
+            if(str[str.Length-1] == ' ') str = str.Substring(0,str.Length-1);
             Stack<string> number_stack = new Stack<string>();
             string[] numbers = str.Split(' ');
             int count_oper=0,count_num=0;
-            foreach(string number in numbers)
+            foreach (string number in numbers)
             {
                 if (isOperator(number))
                 {
@@ -30,7 +31,6 @@ namespace CPE200Lab1
                 else
                 {
                     count_num += 1;
-                    
                     number_stack.Push(number);
                 }
             }
