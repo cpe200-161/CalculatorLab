@@ -20,6 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine RPNengine;
 
         private void resetAll()
         {
