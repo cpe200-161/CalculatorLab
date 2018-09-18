@@ -20,14 +20,14 @@ namespace CPE200Lab1
             {
                 if (isOperator(text)  )
                 {
-                    if (numbers.Count >=2  )
+                    try
                     {
                         secondOperand = numbers.Pop();
                         firstOperand = numbers.Pop();
                         ansWer = calculate(text, firstOperand, secondOperand);
                         numbers.Push(ansWer);
                     }
-                    else
+                    catch
                     {
                         return "E";
                     }
