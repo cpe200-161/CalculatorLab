@@ -61,7 +61,6 @@ namespace CPE200Lab1
                         return result.ToString("0."+floatingForm);
                     }
                 case "1/x":
-                    //if(operand != "0")
                     try
                     {
                         double result;
