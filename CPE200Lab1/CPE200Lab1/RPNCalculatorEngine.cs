@@ -10,7 +10,6 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
-            //your code here
             Stack<string> number = new Stack<string>();
             string[] parts = str.Split(' ');
             for(int i=0; i<parts.Length; i++)
@@ -21,17 +20,17 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]) == true)
                 {
-                    if (number.Count < 2)
-                    {
-                        return "E";
-                    }
-                    else
+                    try
                     {
                         string secondOperand = number.Pop();
                         string firstOperand = number.Pop();
                         string result = calculate(parts[i], firstOperand, secondOperand);
                         number.Push(result);
                     }
+                    catch (Exception ex)
+                    {
+                        return "E";
+                    }      
                 }
             }
             if(number.Count == 1)

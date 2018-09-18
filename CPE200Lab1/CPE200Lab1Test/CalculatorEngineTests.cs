@@ -242,6 +242,18 @@ namespace CPE200Lab1.Tests
             actual = engine.unaryCalculate("1/x", operand);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void UnaryCalculate_WrongFormat_Test()
+        {
+            string operand = "qwerty";
+            string expected = "E";
+            string actual;
+
+            CalculatorEngine engine = new CalculatorEngine();
+            actual = engine.unaryCalculate("1/x", operand);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
 
