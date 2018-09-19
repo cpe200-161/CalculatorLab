@@ -45,6 +45,12 @@ namespace CPE200Lab1
                         Console.WriteLine("yy");
                         return "E";
                     }
+                    //else if(s == "%")
+                    //{
+                    //    firstOP = RPNStack.Pop().ToString();
+                    //    secondOP = RPNStack.Peek().ToString();
+                    //    RPNStack.Push(calculate(s, firstOP, secondOP));
+                    //}
                     else
                     {
                         Console.WriteLine("aaaaaa");
