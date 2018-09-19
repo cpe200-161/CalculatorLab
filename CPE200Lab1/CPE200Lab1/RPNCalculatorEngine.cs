@@ -33,11 +33,23 @@ namespace CPE200Lab1
                         firstOP = rpnStack.Pop().ToString();
                         rpnStack.Push(calculate(rpnstring, firstOP, secondOP));
                     }
+                }
+                    if (rpnStack.Count == 1)
+                    {
+                        if (strArray[1] == "√" || strArray[1] == "1/x")
+                        {
+                            string firstnumber;
+                            firstnumber = rpnStack.Peek().ToString();
+                            rpnStack.Pop();
+                            rpnStack.Push(unaryCalculate(strArray[1], firstnumber));
+                        }
+                        return rpnStack.Peek().ToString();
+                    }
                     else
                     {
                         return "E";
                     }
-                }
+                
             }
             if (rpnStack.Count == 1)
             {
