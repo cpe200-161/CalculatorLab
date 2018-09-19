@@ -30,6 +30,8 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+
                     return true;
             }
             return false;
@@ -67,6 +69,19 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        private void btnOneOperator_Click(object sender, EventArgs e)
+        {
+            string result = engine.unaryCalculate(((Button)sender).Text, lblDisplay.Text);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
             }
         }
 
