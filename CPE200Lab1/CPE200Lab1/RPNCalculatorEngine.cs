@@ -11,7 +11,7 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
-            Console.WriteLine("I'm here");
+            Console.WriteLine("here");
             string firstOp, secondOp;
             string[] strArray = str.Split(' ');
 
@@ -40,8 +40,9 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
+                      break;
                 }
-                  
+                        
             }
             if (rpnStack.Count == 1)
             {
