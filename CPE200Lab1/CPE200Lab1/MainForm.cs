@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Collections;
+ 
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
@@ -36,6 +37,8 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+
+
             memory = 0;
             engine = new CalculatorEngine();
             resetAll();

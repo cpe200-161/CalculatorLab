@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -59,13 +59,14 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString()).ToString("G29");
                     }
                 case "1/x":
                     if(operand != "0")
                     {
                         double result;
                         string[] parts;
+
                         int remainLength;
 
                         result = (1.0 / Convert.ToDouble(operand));
@@ -79,7 +80,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString()).ToString("G29");
                     }
                     break;
             }
@@ -115,7 +116,9 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString()).ToString("G29");
+                        
+
                     }
                     break;
                 case "%":
