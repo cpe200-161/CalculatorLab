@@ -14,7 +14,7 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void Process_Basic_Test()
         {
-            RPNCalculatorEngine r = new RPNCalculatorEngine();
+            RpnCalculatorEngine r = new RpnCalculatorEngine();
             Assert.AreEqual("2", r.Process("1 1 +"));
             Assert.AreEqual("1", r.Process("3 2 -"));
             Assert.AreEqual("6", r.Process("3 2 X"));
@@ -29,7 +29,7 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void Process_Complex_Test()
         {
-            RPNCalculatorEngine r = new RPNCalculatorEngine();
+            RpnCalculatorEngine r = new RpnCalculatorEngine();
             Assert.AreEqual("8", r.Process("1 3 + 2 X"));
             Assert.AreEqual("5", r.Process("1 3 2 + X"));
             Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
@@ -38,7 +38,7 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void Process_Error_Test()
         {
-            RPNCalculatorEngine r = new RPNCalculatorEngine();
+            RpnCalculatorEngine r = new RpnCalculatorEngine();
             Assert.AreEqual("E", r.Process("1"));
             Assert.AreEqual("E", r.Process("1 +"));
             Assert.AreEqual("E", r.Process("1 + 1"));
