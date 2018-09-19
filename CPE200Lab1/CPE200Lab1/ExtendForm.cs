@@ -73,7 +73,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                if (!isAfterOperand)
+                if (!isAfterOperand || ((Button)sender).Text== "√" || ((Button)sender).Text == "%" || ((Button)sender).Text == "1/x")
                 {
                     lblDisplay.Text += " " + ((Button)sender).Text;
                 }
