@@ -21,6 +21,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "√":
+                case "1/x":
+                case "%":
                     return true;
             }
             return false;
@@ -58,6 +61,20 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
+                        if (remainLength > 0)
+                        {
+                            string resultroot = result.ToString();
+                            char right = resultroot[resultroot.Length - 1];
+                            double temp = Char.GetNumericValue(right);
+                            double rightMost = Convert.ToDouble(temp);
+                            if (rightMost > 5)
+                            {
+                                rightMost++;
+                                string rightMostS = rightMost.ToString();
+                                return result + rightMostS;
+                            }
+                            return resultroot;
+                        }
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength);
                     }
@@ -78,13 +95,19 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        while(remainLength>0)
+                        if(remainLength>0)
                         {
-                        if (parts[1]=="0")
-                        {
-                            parts[1].Length = parts[1].Length - 1;
-                            return result.ToString();
-                        }
+                            string resultbyx = result.ToString();
+                                char right = resultbyx[resultbyx.Length - 1];
+                                double temp = Char.GetNumericValue(right);
+                                double rightMost = Convert.ToDouble(temp);
+                                if (rightMost > 5)
+                                {
+                                    rightMost++;
+                                    string rightMostS = rightMost.ToString();
+                                    return result + rightMostS;
+                                }
+                                return resultbyx;
                         }
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength);

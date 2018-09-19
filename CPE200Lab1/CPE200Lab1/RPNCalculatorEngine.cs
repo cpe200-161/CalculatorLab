@@ -56,6 +56,21 @@ namespace CPE200Lab1
                             if (CalculatorStack.Count == 0) return "E";
                             summaryresult = Double.Parse(CalculatorStack.Pop()) / Double.Parse(firstOperand);
                             break;
+                        case "√":
+                            if (CalculatorStack.Count == 0) return "E";
+                            firstOperand = CalculatorStack.Pop();
+                            summaryresult = Math.Sqrt(Double.Parse(firstOperand));
+                            break;
+                        case "1/x":
+                            if (CalculatorStack.Count == 0) return "E";
+                            firstOperand = CalculatorStack.Pop();
+                            summaryresult = 1.0/(Double.Parse(firstOperand));
+                            break;
+                        case "%":
+                            if (CalculatorStack.Count == 0) return "E";
+                            firstOperand = CalculatorStack.Pop();
+                            summaryresult = (Double.Parse(CalculatorStack.Pop())*(Double.Parse(firstOperand)))/100.0 ;
+                            break;
                     }
                     CalculatorStack.Push((summaryresult).ToString());
                 }

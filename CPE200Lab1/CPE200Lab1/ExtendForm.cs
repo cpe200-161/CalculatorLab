@@ -31,6 +31,8 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '√':
+                case '%':
                     return true;
             }
             return false;
@@ -73,7 +75,7 @@ namespace CPE200Lab1
             {
                 if (!isAfterOperand)
                 {
-                    lblDisplay.Text += " " + ((Button)sender).Text ;
+                    lblDisplay.Text += " " + ((Button)sender).Text;
                 }
                 else {
                     lblDisplay.Text += ((Button)sender).Text ;
@@ -111,6 +113,7 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            isAfterOperand = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
