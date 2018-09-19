@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Generic; //that no pat in code
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace CPE200Lab1
 {
@@ -17,9 +18,10 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         private void resetAll()
         {
@@ -29,15 +31,26 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
+            secondOperand = null;
         }
-
-      
-
+       
         public MainForm()
         {
             InitializeComponent();
+            string testString = "4 8 -";
+            string [] testStringArray = testString.Split(' ');
+
+            foreach (string s in testStringArray)
+            {
+                Console.WriteLine(s);
+            }
+
+            System.Collections.Stack testStack = new Stack();
+            testStack.Push(10);
+            //Console.WriteLine(testStack.Peek());//peek = return the object to the top o stack
+
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
             resetAll();
         }
 
@@ -126,8 +139,10 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here
+                case "%": //**************!!!!!!!!!!!!!!!!
+                          // your code here
+                    firstOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
                     break;
             }
             isAllowBack = false;

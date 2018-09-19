@@ -424,6 +424,7 @@
         private System.Windows.Forms.Button btnMM;
         private System.Windows.Forms.Button btnSqr;
         private System.Windows.Forms.Button btnOox;
+        //private CalculatorEngine;
     }
 }
 
