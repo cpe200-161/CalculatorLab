@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -18,8 +19,9 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string prev_operate;
         private double memory;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         private void resetAll()
         {
@@ -36,9 +38,12 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+       
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
             resetAll();
+           
+           
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -88,6 +93,7 @@ namespace CPE200Lab1
             }
             else
             {
+                
                 lblDisplay.Text = result;
             }
 
@@ -103,7 +109,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
+            if(firstOperand != null && ((Button)sender).Text != "%")
             {
                 string secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
@@ -116,13 +122,23 @@ namespace CPE200Lab1
                     lblDisplay.Text = result;
                 }
             }
-            operate = ((Button)sender).Text;
+            if (((Button)sender).Text =="%")
+            {
+                prev_operate = operate;
+                operate = ((Button)sender).Text;
+            }
+            else
+            {
+                operate = ((Button)sender).Text;
+            }
+            
             switch (operate)
             {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
@@ -140,7 +156,8 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(operate, firstOperand, secondOperand,prev_operate);
+            
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
