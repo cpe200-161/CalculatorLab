@@ -32,9 +32,7 @@ namespace CPE200Lab1
                         secondOP = rpnStack.Pop().ToString();
                         firstOP = rpnStack.Pop().ToString();
                         rpnStack.Push(calculate(rpnstring, firstOP, secondOP));
-                    }
-                }
-                    if (rpnStack.Count == 1)
+                    }if (rpnStack.Count == 1)
                     {
                         if (strArray[1] == "√" || strArray[1] == "1/x")
                         {
@@ -49,6 +47,12 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
+                }
+                    
+                    //else
+                    //{
+                    //    return "E";
+                    //}
                 
             }
             if (rpnStack.Count == 1)
