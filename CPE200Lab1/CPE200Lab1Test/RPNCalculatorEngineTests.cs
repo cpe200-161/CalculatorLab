@@ -26,7 +26,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("-2", r.Process("-4 2 ÷"));
         }
 
-        [TestMethod()]
+       [TestMethod()]
         public void Process_Complex_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
@@ -35,7 +35,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
         }
 
-        [TestMethod()]
+       [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
