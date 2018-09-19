@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -36,6 +37,7 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+          
             memory = 0;
             engine = new CalculatorEngine();
             resetAll();
