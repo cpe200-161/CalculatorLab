@@ -32,9 +32,9 @@ namespace CPE200Lab1
                     {
                         rpnStack.Push(s);
                     }
-                    else if (rpnStack.Count > 1)
+                    else if (isOperator(s))
                     {
-                        if (isOperator(s))
+                        if (rpnStack.Count > 1)
                         {
                             secondOp = rpnStack.Pop().ToString();
                             firstOp = rpnStack.Pop().ToString();
@@ -47,11 +47,10 @@ namespace CPE200Lab1
                                 rpnStack.Push(calculate(s, firstOp, secondOp));
                             }
                         }
-                    }
-                    else
-                    {
+                        else
                         return "E";
                     }
+                    
                 }
                 if (rpnStack.Count == 1)
                 {
