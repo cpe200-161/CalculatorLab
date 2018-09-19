@@ -140,8 +140,8 @@ namespace CPE200Lab1
                             return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
                         case "÷":
                             return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
-                          
-                
+                        case "":  
+                            return (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
                     }
                     break;
             }

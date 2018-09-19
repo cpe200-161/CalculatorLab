@@ -75,6 +75,8 @@ namespace CPE200Lab1
         private void UnaryOperator_Click(object sender, EventArgs e)
         {
             string result = engine.unaryCalculate(((Button)sender).Text,lblDisplay.Text);
+            isNumberPart = false;
+            isContainDot = false;
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

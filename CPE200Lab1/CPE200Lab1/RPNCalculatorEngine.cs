@@ -13,7 +13,7 @@ namespace CPE200Lab1
         {
             //string testString = "4 8 -";
             
-            string firstOp, seconfOp,operate="";
+            string firstOp, seconfOp;
             string[] StrArr = str.Split(' ');
             
             Stack rpnStack = new Stack();
@@ -32,30 +32,22 @@ namespace CPE200Lab1
                     //{
                     try
                     {
+                       
+
+                        seconfOp = rpnStack.Pop().ToString();
+                            
                         if (s == "%")
                         {
-                            opera te = s;
+                            firstOp = rpnStack.Peek().ToString();
                         }
                         else
                         {
-
-                            seconfOp = rpnStack.Pop().ToString();
                             firstOp = rpnStack.Pop().ToString();
-                            if (operate == "%")
-                            {
-                                rpnStack.Push(calculate(operate, firstOp, seconfOp, s));
-                                operate = "";
-                            }
-                            else
-                            {
-
-                                rpnStack.Push(calculate(s, firstOp, seconfOp));
-                            }
-
-
-
                         }
-                       
+                           
+                          rpnStack.Push(calculate(s, firstOp, seconfOp));
+                             
+                  
                         //}
                     } catch (Exception e)
                     {
@@ -82,6 +74,7 @@ namespace CPE200Lab1
             }
             else
             {
+                Console.WriteLine("test");
                 return "E";
             }
         }
