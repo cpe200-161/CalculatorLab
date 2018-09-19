@@ -15,7 +15,7 @@ namespace CPE200Lab1
             Console.WriteLine("TEST");
             Stack RPNStack = new Stack();
             string firstOP, secondOP;
-            string[] splitStr = str.Split(' ');       
+            string[] splitStr = str.Split(' ');
 
             foreach (string s in splitStr)
             {
@@ -24,27 +24,34 @@ namespace CPE200Lab1
                 {
                     RPNStack.Push(s);
                 }
-                else if (isOperator(s) || isUnary(s))
+                else if (isUnary(s))
                 {
-                    if (RPNStack.Count <= 1)
+                    Console.WriteLine("unary");
+                    if (RPNStack.Count < 1)
                     {
                         return "E";
                     }
-                    else if (isOperator(s) && !isUnary(s))
-                    {
-                        secondOP = RPNStack.Pop().ToString();
-                        firstOP = RPNStack.Pop().ToString();
-                        RPNStack.Push(calculate(s, firstOP, secondOP));
-                    }
                     else
-                    {                
+                    {
+                        Console.WriteLine("mmmmmm");
                         firstOP = RPNStack.Pop().ToString();
                         RPNStack.Push(unaryCalculate(s, firstOP));
                     }
                 }
-                else
+                else if (isOperator(s))
                 {
-                    return "E";
+                    if (RPNStack.Count <= 1)
+                    {
+                        Console.WriteLine("yy");
+                        return "E";
+                    }
+                    else
+                    {
+                        Console.WriteLine("aaaaaa");
+                        secondOP = RPNStack.Pop().ToString();
+                        firstOP = RPNStack.Pop().ToString();
+                        RPNStack.Push(calculate(s, firstOP, secondOP));
+                    }
                 }
             }
             if (RPNStack.Count == 1)

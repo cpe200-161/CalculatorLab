@@ -35,17 +35,6 @@ namespace CPE200Lab1
             return false;
         }
 
-        private bool isUnary(string ch)
-        {
-            switch (ch)
-            {
-                case "1/x":
-                case "√":
-                    return true;
-            }
-            return false;
-        }
-
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -65,22 +54,6 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private void btnUnaryOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isUnary((current[current.Length - 2]).ToString()))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
-        }
-
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -91,8 +64,12 @@ namespace CPE200Lab1
             isContainDot = false;
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            {                
+                lblDisplay.Text += " " + ((Button)sender).Text;
+                if(((Button)sender).Text != "%")
+                {
+                    lblDisplay.Text += " ";
+                }
                 isSpaceAllowed = false;
             }
         }

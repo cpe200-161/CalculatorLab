@@ -21,14 +21,15 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
         }
 
-        protected bool isUnary(string ch)
+        protected bool isUnary(string str)
         {
-            switch (ch)
+            switch (str)
             {
                 case "1/x":
                 case "√":
@@ -71,7 +72,7 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         //return result.ToString("N" + remainLength);
-                        return Convert.ToDouble(result.ToString("N"+remainLength)).ToString("G29");
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
                     }
                 case "1/x":
                     if(operand != "0")
@@ -92,7 +93,7 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         //return result.ToString("N" + remainLength);
-                        return Convert.ToDouble(result.ToString("N"+remainLength)).ToString("G29");
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
             }
@@ -129,11 +130,11 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         //return result.ToString("N" + remainLength);
-                        return Convert.ToDouble(result.ToString("N"+remainLength)).ToString("G29");
+                        return Convert.ToDouble(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
                 case "%":
-                    return (((Convert.ToDouble(secondOperand)) / 100) * Convert.ToDouble(firstOperand)).ToString("G29");
+                    return (((Convert.ToDouble(secondOperand)) / 100) * Convert.ToDouble(firstOperand)).ToString();
                     //your code here
                     //break;
             }
