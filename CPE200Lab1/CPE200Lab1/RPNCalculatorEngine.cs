@@ -14,6 +14,7 @@ namespace CPE200Lab1
             string[] strArray = str.Split(' ');
             Stack rpnStack = new Stack();
              string firstOp, secOp;
+
             foreach (string s in strArray)
             {
                 if (isNumber(s))
@@ -35,6 +36,23 @@ namespace CPE200Lab1
                    rpnStack.Push(calculate(s, firstOp, secOp));
                 }
                 
+            }
+
+            if (rpnStack.Count == 1)
+            {
+                if (strArray[1] == "1/x" || strArray[1] == "√")
+                {
+                    string cal;
+                    cal = rpnStack.Peek().ToString();
+                    rpnStack.Pop();
+                    rpnStack.Push(unaryCalculate(cal,strArray[1]));
+
+                }
+                return rpnStack.Peek().ToString();
+            }
+            else
+            {
+                return "E";
             }
 
             if (rpnStack.Count == 1)

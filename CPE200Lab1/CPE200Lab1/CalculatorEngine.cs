@@ -21,6 +21,10 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "1/x":
+                case "√":
+                case "%":
+                
                     return true;
             }
             return false;
@@ -118,9 +122,26 @@ namespace CPE200Lab1
                         return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29"); //use G29 to remove excess Zero in result
                     }
                     break;
+
                 case "%":
-                    //your code here
+                    if (secondOperand != "0")
+                    {
+                        double result;
+                        string[] parts;
+                        int remainlength;
+
+                        result= (((Convert.ToDouble(secondOperand)) / 100) * Convert.ToDouble(firstOperand));
+                        parts = result.ToString().Split('.');
+                        if (parts[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainlength = maxOutputSize - parts[0].Length - 1;
+                        return decimal.Parse(result.ToString("N" + remainlength)).ToString("G29");
+                    }
                     break;
+                    
+
             }
             return "E";
         }

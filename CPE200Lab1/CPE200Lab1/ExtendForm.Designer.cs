@@ -51,6 +51,7 @@
             this.btnSpace = new System.Windows.Forms.Button();
             this.PercentBTN = new System.Windows.Forms.Button();
             this.RootBTN = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -313,27 +314,42 @@
             this.PercentBTN.Location = new System.Drawing.Point(642, 129);
             this.PercentBTN.Margin = new System.Windows.Forms.Padding(4);
             this.PercentBTN.Name = "PercentBTN";
-            this.PercentBTN.Size = new System.Drawing.Size(117, 165);
+            this.PercentBTN.Size = new System.Drawing.Size(117, 79);
             this.PercentBTN.TabIndex = 42;
             this.PercentBTN.Text = "%";
             this.PercentBTN.UseVisualStyleBackColor = true;
+            this.PercentBTN.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // RootBTN
             // 
             this.RootBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RootBTN.Location = new System.Drawing.Point(642, 302);
+            this.RootBTN.Location = new System.Drawing.Point(642, 388);
             this.RootBTN.Margin = new System.Windows.Forms.Padding(4);
             this.RootBTN.Name = "RootBTN";
-            this.RootBTN.Size = new System.Drawing.Size(117, 165);
+            this.RootBTN.Size = new System.Drawing.Size(117, 79);
             this.RootBTN.TabIndex = 43;
             this.RootBTN.Text = "√";
             this.RootBTN.UseVisualStyleBackColor = true;
+            this.RootBTN.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(642, 216);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 164);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "1/x";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 474);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.RootBTN);
             this.Controls.Add(this.PercentBTN);
             this.Controls.Add(this.btnSpace);
@@ -390,5 +406,6 @@
         private System.Windows.Forms.Button btnSpace;
         private System.Windows.Forms.Button PercentBTN;
         private System.Windows.Forms.Button RootBTN;
+        private System.Windows.Forms.Button button1;
     }
 }
