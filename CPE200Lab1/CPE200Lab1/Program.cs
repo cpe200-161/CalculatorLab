@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;//**
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,13 @@ namespace CPE200Lab1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ExtendForm());
+            Application.Run(new ExtendForm());//run form
+
+            //close form
+            //System.Collection Stack
+           /* Stack testStack = new Stack();
+            testStack.Push(5);
+            Console.WriteLine(testStack.Peek());*/
         }
     }
 }
