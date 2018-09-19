@@ -326,7 +326,7 @@
             this.button2.TabIndex = 43;
             this.button2.Text = "1/x";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.UnaryOperator_Click);
+            this.button2.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button3
             // 
@@ -336,7 +336,7 @@
             this.button3.TabIndex = 44;
             this.button3.Text = "√";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.UnaryOperator_Click);
+            this.button3.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // ExtendForm
             // 

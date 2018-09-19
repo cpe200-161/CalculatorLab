@@ -35,17 +35,29 @@ namespace CPE200Lab1
                        
 
                         seconfOp = rpnStack.Pop().ToString();
-                            
-                        if (s == "%")
+                        if (s == "√" || s == "1/x")
                         {
-                            firstOp = rpnStack.Peek().ToString();
+                            rpnStack.Push(unaryCalculate(s,seconfOp));
                         }
                         else
                         {
-                            firstOp = rpnStack.Pop().ToString();
+
+
+                            if (s == "%")
+                            {
+                                firstOp = rpnStack.Peek().ToString();
+                            }
+                            else
+                            {
+                                firstOp = rpnStack.Pop().ToString();
+                            }
+                            rpnStack.Push(calculate(s, firstOp, seconfOp));
                         }
-                           
-                          rpnStack.Push(calculate(s, firstOp, seconfOp));
+                            /* if (str.l<3)
+                        {
+                             calculate(s, firstOp, seconfOp);
+                        }*/
+                         
                              
                   
                         //}

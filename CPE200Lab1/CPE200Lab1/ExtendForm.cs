@@ -72,7 +72,7 @@ namespace CPE200Lab1
             }
         }
         
-        private void UnaryOperator_Click(object sender, EventArgs e)
+      /* private void UnaryOperator_Click(object sender, EventArgs e)
         {
             string result = engine.unaryCalculate(((Button)sender).Text,lblDisplay.Text);
             isNumberPart = false;
@@ -85,7 +85,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-        }
+        }*/
             private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
