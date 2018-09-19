@@ -30,17 +30,28 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-
-                    string firstOP = stack.Pop().ToString();
-                    string secondOp = stack.Pop().ToString();
-                    if (s == "-"|| s == "÷")
+                   
+                    if (s == "%")
                     {
-                        stack.Push(calculate(s, secondOp, firstOP));
+                        if (tmp.Length == 3)
+                        {
+                            string secondOp = stack.Pop().ToString();
+                            string firstOP = stack.Pop().ToString();
+                            stack.Push(calculate(s, firstOP, secondOp));
+                        }
+                        else
+                        {
+                            string secondOp = stack.Pop().ToString();
+                            string firstOP = stack.Peek().ToString();
+                            stack.Push(calculate(s, firstOP, secondOp));
+                        }                       
                     }
                     else
                     {
-                        stack.Push(calculate(s, firstOP, secondOp));
-                    }
+                        string firstOP = stack.Pop().ToString();
+                        string secondOp = stack.Pop().ToString();
+                        stack.Push(calculate(s, secondOp, firstOP));
+                    }                  
                 }
             }
             // your code here

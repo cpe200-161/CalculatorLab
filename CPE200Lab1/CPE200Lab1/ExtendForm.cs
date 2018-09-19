@@ -16,6 +16,7 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
+        private int spacePoint = 0; //variable to store index of last space in lblDisplay
 
         public ExtendForm()
         {
@@ -65,7 +66,11 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
+                if (((Button)sender).Text != "%")
+                {
+                    lblDisplay.Text += " "; 
+                }
                 isSpaceAllowed = false;
             }
         }
@@ -164,6 +169,34 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
+        }
+
+        private void btnUnaryCalculate_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < lblDisplay.Text.Length; i++)
+            {
+                if(lblDisplay.Text[i]==' ')
+                {
+                    spacePoint = i;
+                }
+            }
+            string tmp = ""; //string to store last digit on lblDisplay.Text
+            for(int i = spacePoint; i < lblDisplay.Text.Length; i++)
+            {
+                if(lblDisplay.Text[i]!=' ')
+                {
+                    tmp += lblDisplay.Text[i];
+                }               
+            }
+            if (spacePoint != 0)
+            {
+                lblDisplay.Text = lblDisplay.Text.Remove(spacePoint + 1, lblDisplay.Text.Length - 1 - spacePoint);
+            }
+            else
+            {
+                lblDisplay.Text = "";
+            }
+            lblDisplay.Text += engine.unaryCalculate(((Button)sender).Text, tmp);
         }
     }
 }
