@@ -49,6 +49,9 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
+            this.btnOox = new System.Windows.Forms.Button();
+            this.btnSqr = new System.Windows.Forms.Button();
+            this.btnPercent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -131,7 +134,7 @@
             // btnPlus
             // 
             this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(388, 315);
+            this.btnPlus.Location = new System.Drawing.Point(294, 315);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(88, 64);
             this.btnPlus.TabIndex = 31;
@@ -276,19 +279,55 @@
             // btnSpace
             // 
             this.btnSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpace.Location = new System.Drawing.Point(294, 315);
+            this.btnSpace.Location = new System.Drawing.Point(388, 315);
             this.btnSpace.Name = "btnSpace";
-            this.btnSpace.Size = new System.Drawing.Size(88, 64);
+            this.btnSpace.Size = new System.Drawing.Size(179, 64);
             this.btnSpace.TabIndex = 41;
             this.btnSpace.Text = "Space";
             this.btnSpace.UseVisualStyleBackColor = true;
             this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
             // 
+            // btnOox
+            // 
+            this.btnOox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOox.Location = new System.Drawing.Point(479, 175);
+            this.btnOox.Name = "btnOox";
+            this.btnOox.Size = new System.Drawing.Size(88, 64);
+            this.btnOox.TabIndex = 44;
+            this.btnOox.Text = "1/x";
+            this.btnOox.UseVisualStyleBackColor = true;
+            this.btnOox.Click += new System.EventHandler(this.UnaryOperator_Click);
+            // 
+            // btnSqr
+            // 
+            this.btnSqr.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSqr.Location = new System.Drawing.Point(479, 105);
+            this.btnSqr.Name = "btnSqr";
+            this.btnSqr.Size = new System.Drawing.Size(88, 64);
+            this.btnSqr.TabIndex = 43;
+            this.btnSqr.Text = "√";
+            this.btnSqr.UseVisualStyleBackColor = true;
+            this.btnSqr.Click += new System.EventHandler(this.UnaryOperator_Click);
+            // 
+            // btnPercent
+            // 
+            this.btnPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPercent.Location = new System.Drawing.Point(479, 245);
+            this.btnPercent.Name = "btnPercent";
+            this.btnPercent.Size = new System.Drawing.Size(88, 64);
+            this.btnPercent.TabIndex = 42;
+            this.btnPercent.Text = "%";
+            this.btnPercent.UseVisualStyleBackColor = true;
+            this.btnPercent.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 386);
+            this.ClientSize = new System.Drawing.Size(570, 386);
+            this.Controls.Add(this.btnOox);
+            this.Controls.Add(this.btnSqr);
+            this.Controls.Add(this.btnPercent);
             this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -340,5 +379,8 @@
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
+        private System.Windows.Forms.Button btnOox;
+        private System.Windows.Forms.Button btnSqr;
+        private System.Windows.Forms.Button btnPercent;
     }
 }
