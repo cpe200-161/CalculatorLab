@@ -21,9 +21,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                 case "1/x":
                 case "√":
-                case "%":
                 
                     return true;
             }
@@ -36,7 +36,8 @@ namespace CPE200Lab1
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            } 
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }

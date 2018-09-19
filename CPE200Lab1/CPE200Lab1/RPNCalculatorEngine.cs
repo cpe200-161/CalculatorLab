@@ -12,6 +12,7 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] strArray = str.Split(' ');
+            if (str.Length < 3) return "E";
             Stack rpnStack = new Stack();
              string firstOp, secOp;
 
@@ -24,10 +25,30 @@ namespace CPE200Lab1
 
                 else if (isOperator(s))
                 {
+                    
+                    if (s == "1/x" || s == "√")
+                    {
+                        string cal;
+                        
+                        cal = rpnStack.Pop().ToString();
+                        
+                        return unaryCalculate(s,cal).ToString();
+
+                    }
+
                     if (rpnStack.Count > 1)
                     {
+                        if (s == "%")
+                        {
+                            secOp = rpnStack.Pop().ToString();
+                            firstOp = rpnStack.Peek().ToString();
+                           return (calculate(s,firstOp,secOp));
+                        }
+                        else
+                        {
                         secOp = rpnStack.Pop().ToString();
                         firstOp = rpnStack.Pop().ToString();
+                        }
                     }
                     else
                     {
@@ -38,36 +59,18 @@ namespace CPE200Lab1
                 
             }
 
+
             if (rpnStack.Count == 1)
             {
-                if (strArray[1] == "1/x" || strArray[1] == "√")
-                {
-                    string cal;
-                    cal = rpnStack.Peek().ToString();
-                    rpnStack.Pop();
-                    rpnStack.Push(unaryCalculate(cal,strArray[1]));
-
-                }
                 return rpnStack.Peek().ToString();
             }
-            else
-            {
-                return "E";
-            }
-
-            if (rpnStack.Count == 1)
-            {
-                if (strArray.Length == 1) //use this if to check length of display if there was only one character it will return E to display
-                {
-                    return "E";
-                }
-                return decimal.Parse(rpnStack.Peek().ToString()).ToString("G29"); //this use to display a number to match test case 
-            }
+     
             else
             {
                 return "E";
             }
             
         }
+        }
     }
-}
+
