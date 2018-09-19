@@ -11,7 +11,6 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
-            
             Stack rpnStack = new Stack();
             string firstOp, secondOp;
             string[] strArray = str.Split(' ');
@@ -33,9 +32,9 @@ namespace CPE200Lab1
                     {
                         rpnStack.Push(s);
                     }
-                    else if (rpnStack.Count > 1)
+                    else if (isOperator(s))
                     {
-                        if (isOperator(s))
+                        if (rpnStack.Count > 1)
                         {
                             secondOp = rpnStack.Pop().ToString();
                             firstOp = rpnStack.Pop().ToString();
@@ -48,22 +47,22 @@ namespace CPE200Lab1
                                 rpnStack.Push(calculate(s, firstOp, secondOp));
                             }
                         }
+                        else
+                            return "E";
                     }
-                    else
-                    {
-                        return "E";
-                    }
+
+
                 }
-                    if (rpnStack.Count == 1)
-                    {
-                        return decimal.Parse(rpnStack.Peek().ToString()).ToString("G29");
-                    }
-                    else
-                    {
-                        return "E";
-                    }
+                if (rpnStack.Count == 1)
+                {
+                    return decimal.Parse(rpnStack.Peek().ToString()).ToString("G29");
                 }
+                else
+                {
+                    return "E";
+                }
+
             }
         }
     }
-
+}

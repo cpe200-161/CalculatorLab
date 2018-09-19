@@ -306,6 +306,7 @@
             this.Percent.TabIndex = 43;
             this.Percent.Text = "%";
             this.Percent.UseVisualStyleBackColor = true;
+            this.Percent.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // Squareroot
             // 
@@ -348,7 +349,6 @@
             this.Controls.Add(this.btn7);
             this.Name = "ExtendForm";
             this.Text = "ExtendForm";
-            this.Load += new System.EventHandler(this.ExtendForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
