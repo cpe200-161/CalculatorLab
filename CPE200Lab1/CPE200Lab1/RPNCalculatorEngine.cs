@@ -11,15 +11,16 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
+
             Console.WriteLine("here");
             string firstOp, secondOp;
             string[] strArray = str.Split(' ');
-
+            Stack rpnStack = new Stack();
             if(strArray.Length < 3)
             {
                 return "E"; 
             }
-            Stack rpnStack = new Stack();
+            
 
             foreach (string s in strArray)
             {
@@ -40,7 +41,7 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                      break;
+                   
                 }
                         
             }
