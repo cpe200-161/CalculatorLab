@@ -49,6 +49,9 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
+            this.divide1X = new System.Windows.Forms.Button();
+            this.Percent = new System.Windows.Forms.Button();
+            this.Squareroot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -284,11 +287,44 @@
             this.btnSpace.UseVisualStyleBackColor = true;
             this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
             // 
+            // divide1X
+            // 
+            this.divide1X.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.divide1X.Location = new System.Drawing.Point(482, 105);
+            this.divide1X.Name = "divide1X";
+            this.divide1X.Size = new System.Drawing.Size(88, 64);
+            this.divide1X.TabIndex = 42;
+            this.divide1X.Text = "1/x";
+            this.divide1X.UseVisualStyleBackColor = true;
+            // 
+            // Percent
+            // 
+            this.Percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Percent.Location = new System.Drawing.Point(482, 175);
+            this.Percent.Name = "Percent";
+            this.Percent.Size = new System.Drawing.Size(88, 64);
+            this.Percent.TabIndex = 43;
+            this.Percent.Text = "%";
+            this.Percent.UseVisualStyleBackColor = true;
+            // 
+            // Squareroot
+            // 
+            this.Squareroot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Squareroot.Location = new System.Drawing.Point(482, 245);
+            this.Squareroot.Name = "Squareroot";
+            this.Squareroot.Size = new System.Drawing.Size(88, 64);
+            this.Squareroot.TabIndex = 44;
+            this.Squareroot.Text = "√";
+            this.Squareroot.UseVisualStyleBackColor = true;
+            // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 386);
+            this.ClientSize = new System.Drawing.Size(608, 401);
+            this.Controls.Add(this.Squareroot);
+            this.Controls.Add(this.Percent);
+            this.Controls.Add(this.divide1X);
             this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -312,6 +348,7 @@
             this.Controls.Add(this.btn7);
             this.Name = "ExtendForm";
             this.Text = "ExtendForm";
+            this.Load += new System.EventHandler(this.ExtendForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +377,8 @@
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
+        private System.Windows.Forms.Button divide1X;
+        private System.Windows.Forms.Button Percent;
+        private System.Windows.Forms.Button Squareroot;
     }
 }
