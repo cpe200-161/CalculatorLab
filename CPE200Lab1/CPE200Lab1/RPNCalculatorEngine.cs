@@ -11,39 +11,61 @@ namespace CPE200Lab1
         public new string Process(string str)
         {
             Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
+            List<string> parts;
+            try
+            {
+                if (str == null) ;
+                parts = str.Split(' ').ToList<string>();
+            }
+            catch(Exception)
+            {
+                return "E";
+            }
             string result;
             string firstOperand, secondOperand;
-
             foreach (string token in parts)
             {
-                if (isNumber(token))
-                {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    if (rpnStack.Count > 1)
+                    if (isNumber(token))
                     {
-                        secondOperand = rpnStack.Pop();
-                        firstOperand = rpnStack.Pop();
-                        result = calculate(token, firstOperand, secondOperand, 4);
+                        rpnStack.Push(token);
+                    }
+                    else if (isOperator(token))
+                    {
+                        //FIXME, what if there is only one left in stack?
+                        try
+                        {
+                            secondOperand = rpnStack.Pop();
+                            firstOperand = rpnStack.Pop();
+                            result = calculate(token, firstOperand, secondOperand, 6);
+                        }
+                        catch (Exception)
+                        {
+                            result = "E";
+                        }
                         if (result is "E")
                         {
                             return result;
                         }
                         rpnStack.Push(result);
                     }
-                }
+                        else if(token == "")
+                        {
+                        }
+                    else
+                    {
+                         return "E";
+                    }
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            if (rpnStack.Count == 1)
+            if(rpnStack.Count == 1)
             {
+                if ((Double.Parse(rpnStack.Peek())).ToString() != rpnStack.Peek())
+                {
+                    return "E";
+                }
                 result = rpnStack.Pop();
                 return result;
-            }
-            else
+            }else
             {
                 return "E";
             }
