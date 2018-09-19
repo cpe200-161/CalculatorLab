@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -26,7 +26,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        private string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -97,6 +97,7 @@ namespace CPE200Lab1
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
+                    return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
                     // Not allow devide be zero
                     if (secondOperand != "0")
                     {
@@ -119,6 +120,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
+
                     //your code here
                     break;
             }
