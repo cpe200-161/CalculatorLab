@@ -49,6 +49,9 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
+            this.persent = new System.Windows.Forms.Button();
+            this.squa = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -284,11 +287,47 @@
             this.btnSpace.UseVisualStyleBackColor = true;
             this.btnSpace.Click += new System.EventHandler(this.btnSpace_Click);
             // 
+            // persent
+            // 
+            this.persent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.persent.Location = new System.Drawing.Point(482, 105);
+            this.persent.Name = "persent";
+            this.persent.Size = new System.Drawing.Size(88, 64);
+            this.persent.TabIndex = 42;
+            this.persent.Text = "%";
+            this.persent.UseVisualStyleBackColor = true;
+            this.persent.Click += new System.EventHandler(this.btnBinaryOperator_Click);
+            // 
+            // squa
+            // 
+            this.squa.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.squa.Location = new System.Drawing.Point(482, 175);
+            this.squa.Name = "squa";
+            this.squa.Size = new System.Drawing.Size(88, 64);
+            this.squa.TabIndex = 43;
+            this.squa.Text = "√";
+            this.squa.UseVisualStyleBackColor = true;
+            this.squa.Click += new System.EventHandler(this.btnUnaryOperator_Click);
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(482, 245);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(88, 64);
+            this.button3.TabIndex = 44;
+            this.button3.Text = "1/x";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnUnaryOperator_Click);
+            // 
             // ExtendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 386);
+            this.ClientSize = new System.Drawing.Size(617, 386);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.squa);
+            this.Controls.Add(this.persent);
             this.Controls.Add(this.btnSpace);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
@@ -340,5 +379,8 @@
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.Button btnSpace;
+        private System.Windows.Forms.Button persent;
+        private System.Windows.Forms.Button squa;
+        private System.Windows.Forms.Button button3;
     }
 }
