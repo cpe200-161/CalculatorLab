@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Collections;
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
@@ -36,6 +36,15 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+            string teststring = "4 8 -";
+            string[] teststringArr = teststring.Split(' ');
+            Stack testStack = new Stack();
+
+            foreach (string s in teststringArr)
+            {
+                Console.WriteLine(s);
+            }
+
             memory = 0;
             engine = new CalculatorEngine();
             resetAll();
