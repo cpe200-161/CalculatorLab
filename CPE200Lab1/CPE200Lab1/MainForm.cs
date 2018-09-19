@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -19,7 +20,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         private void resetAll()
         {
@@ -36,8 +37,21 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+
+            /*
+            string testString = "4 8 -";
+            string[] teststringArray = testString.Split(' ');
+            Stack testStack = new Stack();
+
+            foreach (string s in teststringArray)
+            {
+                Console.WriteLine(s);
+            }
+            testStack.Push(teststringArray);
+            */
+            //Console.WriteLine(testStack.Peek());
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
             resetAll();
         }
 
