@@ -186,7 +186,7 @@ namespace CPE200Lab1.Tests
             string expected = "-2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            CalculatorEngine.engine = new RPNCalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
