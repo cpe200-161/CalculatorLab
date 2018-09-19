@@ -10,6 +10,8 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
+            string firstOperand;
+            string secondOprand;
             // your code here
             return "E";
         }
