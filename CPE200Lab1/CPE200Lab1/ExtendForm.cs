@@ -79,8 +79,8 @@ namespace CPE200Lab1
                 }
                 else {
                     lblDisplay.Text += ((Button)sender).Text ;
+                    isAfterOperand = true;
                 }
-                isAfterOperand = true;
                 isSpaceAllowed = false;
             }
         }

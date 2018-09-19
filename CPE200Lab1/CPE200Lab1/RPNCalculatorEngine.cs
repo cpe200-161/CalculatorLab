@@ -69,7 +69,9 @@ namespace CPE200Lab1
                         case "%":
                             if (CalculatorStack.Count == 0) return "E";
                             firstOperand = CalculatorStack.Pop();
-                            summaryresult = (Double.Parse(CalculatorStack.Pop())*(Double.Parse(firstOperand)))/100.0 ;
+                            string percent = CalculatorStack.Pop();
+                            summaryresult = (Double.Parse(percent)*(Double.Parse(firstOperand)))/100.0 ;
+                            CalculatorStack.Push((percent).ToString());
                             break;
                     }
                     CalculatorStack.Push((summaryresult).ToString());
