@@ -6,36 +6,41 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine
+    public class CalculatorEngine 
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str) //protected = only your children can be use
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+        
+           
+                case "%":
                     return true;
-            }
+            } 
             return false;
         }
 
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            } else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
+                if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                {
+                    return "E";
+                }
+                else
+                {
+                    return calculate(parts[1], parts[0], parts[2], 4);
+                }
+            
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -79,7 +84,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString()).ToString("G29");
                     }
                     break;
             }
@@ -119,8 +124,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)/100).ToString();
             }
             return "E";
         }

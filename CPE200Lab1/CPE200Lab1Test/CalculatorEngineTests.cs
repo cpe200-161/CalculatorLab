@@ -52,7 +52,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(0.0, Convert.ToDouble(expected) - Convert.ToDouble(actual));
         }
 
         [TestMethod()]
@@ -176,7 +176,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(0.0, Convert.ToDouble(expected)-Convert.ToDouble(actual));   
         }
         [TestMethod()]
         public void Calculate_BasicNegativeDivide_Test()
@@ -188,7 +188,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(0.0, Convert.ToDouble(expected) - Convert.ToDouble(actual));
         }
         [TestMethod()]
         public void Calculate_DivideByZero_Test()
@@ -216,7 +216,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.unaryCalculate("√", operand);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(0.0, Convert.ToDouble(expected) - Convert.ToDouble(actual));
         }
 
         [TestMethod()]
@@ -228,7 +228,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.unaryCalculate("1/x", operand);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(0.0, Convert.ToDouble(expected) - Convert.ToDouble(actual));
         }
 
         [TestMethod()]
