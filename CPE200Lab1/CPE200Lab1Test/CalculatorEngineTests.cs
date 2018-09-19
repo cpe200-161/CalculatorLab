@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CPE200Lab1.Tests
 {
     [TestClass()]
-    public class CalculatorEngineTest
+    public class CalculatorEngineTest //supperclass
     {
         //
         // Test process()
@@ -17,7 +17,7 @@ namespace CPE200Lab1.Tests
             string expected = "3";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            CalculatorEngine engine = new CalculatorEngine(); //
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -64,6 +64,7 @@ namespace CPE200Lab1.Tests
 
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
+            Console.WriteLine(actual);
             Assert.AreEqual(expected, actual);
         }
 
@@ -209,7 +210,7 @@ namespace CPE200Lab1.Tests
         //
         [TestMethod()]
         public void UnaryCalculate_BasicSquareRoot_Test()
-        {
+         {
             string operand = "4";
             string expected = "2";
             string actual;

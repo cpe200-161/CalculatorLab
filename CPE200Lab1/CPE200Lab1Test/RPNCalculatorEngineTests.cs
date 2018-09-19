@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CPE200Lab1.Tests
 {
     [TestClass()]
-    public class RPNCalculatorEngineTests
+    public  class RPNCalculatorEngineTests :CalculatorEngine//subclass
     {
         [TestMethod()]
         public void Process_Basic_Test()
