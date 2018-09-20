@@ -34,6 +34,11 @@ namespace CPE200Lab1
                         cal.Push(first);
                         cal.Push(calculate(parts[i], first, second));
                     }
+                    else if (parts[i] == "√" || parts[i] == "1/x")
+                    {
+                        first = cal.Pop();
+                        cal.Push(unaryCalculate(parts[i], first));
+                    }
                     else
                     {
                         second = cal.Pop();
