@@ -12,8 +12,12 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string one,two,sum;
-            Stack myStack = new Stack();
+            Stack <string> myStack = new Stack <string>();
             string[] parts = str.Split(' ');
+
+            List<string> partsWithoutSpace = parts.ToList<string>();
+            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
+            parts = partsWithoutSpace.ToArray();
 
             for (int i = 0; i < parts.Length; i++)
             {
@@ -21,12 +25,29 @@ namespace CPE200Lab1
                 {
                     myStack.Push(parts[i]);
                 }
-                else if (isOperator(parts[i]) && myStack.Count >= 2)
+                else if (isOperator(parts[i]))
                 {
-                    two = myStack.Pop().ToString();
-                    one = myStack.Pop().ToString();
-                    sum = calculate(parts[i], one, two);
-                    myStack.Push(sum);
+                    if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
+                    {
+                        two = myStack.Pop();
+                        one = myStack.Pop();
+                        sum = calculate(parts[i], one, two);
+                        myStack.Push(sum);
+                    }
+                    else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
+                    {
+                        one = myStack.Pop();
+                        myStack.Push(unaryCalculate(parts[i], one));
+                    }
+                    else if (parts[i] == "%")
+                    {
+                        two = myStack.Pop();
+                        one = myStack.Pop();
+                        myStack.Push(one);
+                        myStack.Push(calculate(parts[i], one, two));
+
+                    }
+                    else return "E";
                 }
                 else
                 {
@@ -35,7 +56,7 @@ namespace CPE200Lab1
             }
             if (myStack.Count==1)
             {   
-                return myStack.Pop().ToString();
+                return myStack.Pop();
             }
             else
             {
