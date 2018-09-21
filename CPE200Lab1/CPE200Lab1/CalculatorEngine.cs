@@ -31,7 +31,7 @@ namespace CPE200Lab1
             switch (str)
             {
                 case "√":
-                case "1/x":
+                case "(1/x)":
                     return true;
             }
             return false;
@@ -73,7 +73,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength).TrimEnd('0','.');
                         
                     }
-                case "1/x":
+                case "(1/x)":
                     if(operand != "0")
                     {
                         double result;
@@ -131,8 +131,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
             }
             return "E";
         }

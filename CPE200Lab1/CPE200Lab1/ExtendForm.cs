@@ -30,6 +30,8 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case '√':
                     return true;
             }
             return false;
@@ -65,9 +67,10 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+               lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -170,5 +173,6 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
     }
 }

@@ -18,6 +18,7 @@ namespace CPE200Lab1
             //check every string in parts
             foreach(string p in parts)
             {
+                Console.WriteLine(p);
                 if (isOperator(p))
                 { 
                     //when doing operator stack must have at least 2 item
@@ -26,10 +27,23 @@ namespace CPE200Lab1
                         return "E";
                     }
 
-                    String num2 = (String)myStack.Pop();
-                    String num1 = (String)myStack.Pop();
+                    if(p == "%")
+                    {
+                        String percentage = (String)myStack.Pop();
+                        String takePeek = (String)myStack.Peek();
 
-                    myStack.Push(calculate(p, num1, num2));
+                        Console.WriteLine(calculate(p, takePeek, percentage));
+                        myStack.Push(calculate(p, takePeek, percentage));
+                    }
+                    else
+                    {
+                        String num2 = (String)myStack.Pop();
+                        String num1 = (String)myStack.Pop();
+
+                        myStack.Push(calculate(p, num1, num2));
+                    }
+
+
 
                 }
                 else if (isNumber(p))
@@ -46,6 +60,7 @@ namespace CPE200Lab1
                     }
 
                     String num = (String)myStack.Pop();
+
                     myStack.Push(unaryCalculate(p, num));
                 }
             }
