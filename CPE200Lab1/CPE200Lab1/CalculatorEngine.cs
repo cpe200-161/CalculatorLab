@@ -32,6 +32,7 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
+            
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
@@ -50,7 +51,6 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -106,7 +106,8 @@ namespace CPE200Lab1
                             double result;
                             string[] parts;
                             int remainLength;
-
+                        try
+                        {
                             result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                             // split between integer part and fractional part
                             parts = result.ToString().Split('.');
@@ -120,11 +121,23 @@ namespace CPE200Lab1
                             // trim the fractional part gracefully. =
                             return result.ToString("G" + remainLength);
                         }
+                        catch (Exception)
+                        {
+                            return "E";
+                        }
+                        }
                     
                     break;
                 case "%":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();//your code here
-                    break;
+                    try
+                    {
+                        return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();//your code here
+                    }
+                    catch(Exception)
+                    {
+                        return "E";
+                    }
+                 
             }
             return "E";
         }
