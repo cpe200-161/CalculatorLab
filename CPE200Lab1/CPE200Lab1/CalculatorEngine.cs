@@ -12,7 +12,6 @@ namespace CPE200Lab1
         protected bool isContainDot = false;
         protected bool isSpaceAllowed = false;
         private string display = "0";
-        private int position = 0;
         protected bool isNumber(string str)
         {
             double retNum;

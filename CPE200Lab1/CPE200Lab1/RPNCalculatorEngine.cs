@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         protected override string Process(string str)
         {
             //if (isSpaceAllowed || str is null) return str;
             string[] parts = str.Split(' ');
-            if (parts.Length == 1) return str;
             Stack<string> operands = new Stack<string>();
             string result;
             for (int i = 0; i < parts.Length; i++)
