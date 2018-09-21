@@ -8,13 +8,23 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+		private bool isNumberPart = false;
+		private bool isContainDot = false;
+		private bool isSpaceAllowed = false;
+		public string lblDisplay = "0";
+
+		public String screen ()
+		{
+			return lblDisplay;
+		}
+
+		public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -26,7 +36,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        protected virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -124,5 +134,142 @@ namespace CPE200Lab1
             }
             return "E";
         }
-    }
+
+		public void amount_click(string num)
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (lblDisplay is "0")
+			{
+				lblDisplay = "";
+			}
+			if (!isNumberPart)
+			{
+				isNumberPart = true;
+				isContainDot = false;
+			}
+			lblDisplay += num;
+			isSpaceAllowed = true;
+		}
+
+		public void clean()
+		{
+			lblDisplay = "0";
+			isContainDot = false;
+			isNumberPart = false;
+			isSpaceAllowed = false;
+		}
+
+		public void space()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (isSpaceAllowed)
+			{
+				lblDisplay += " ";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void Dot()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (!isContainDot)
+			{
+				isContainDot = true;
+				lblDisplay += ".";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void sign()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			if (isNumberPart)
+			{
+				return;
+			}
+			string current = lblDisplay;
+			if (current is "0")
+			{
+				lblDisplay = "-";
+			}
+			else if (current[current.Length - 1] is '-')
+			{
+				lblDisplay = current.Substring(0, current.Length - 1);
+				if (lblDisplay is "")
+				{
+					lblDisplay = "0";
+				}
+			}
+			else
+			{
+				lblDisplay = current + "-";
+			}
+			isSpaceAllowed = false;
+		}
+
+		public void two_operator(string bi)
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			isNumberPart = false;
+			isContainDot = false;
+			string current = lblDisplay;
+			if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+			{
+				lblDisplay += " " + bi + " ";
+				isSpaceAllowed = false;
+			}
+		}
+
+		public void back()
+		{
+			if (lblDisplay is "Error")
+			{
+				return;
+			}
+			// check if the last one is operator
+			string current = lblDisplay;
+			if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+			{
+				lblDisplay = current.Substring(0, current.Length - 3);
+			}
+			else
+			{
+				lblDisplay = current.Substring(0, current.Length - 1);
+			}
+			if (lblDisplay is "")
+			{
+				lblDisplay = "0";
+			}
+		}
+
+		public void balance()
+		{
+			string result = Process(lblDisplay);
+			if (result is "E")
+			{
+				lblDisplay = "Error";
+			}
+			else
+			{
+				lblDisplay = result;
+			}
+		}
+
+
+	}
 }
