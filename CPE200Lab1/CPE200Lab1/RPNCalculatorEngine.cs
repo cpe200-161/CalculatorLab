@@ -18,12 +18,15 @@ namespace CPE200Lab1
             string[] parts = str.Split(' ');
             System.Console.WriteLine("parts.length is " + parts.Length);
             Stack stack = new Stack();
-            for(int i = 0; i < parts.Length-1; i++)
+            for(int i = 0; i < parts.Length; i++)
             {
+                System.Console.WriteLine("parts = " + parts[i]);
                 if(parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")
                 {
-                    if(stack.Count >= 2)
+                    System.Console.WriteLine("In condition operation");
+                    if (stack.Count >= 2)
                     {
+                        System.Console.WriteLine("In condition stack.Count >= 2");
                         secondOperand = stack.Pop().ToString();
                         firstOperand = stack.Pop().ToString();
                         stack.Push(calculate(parts[i], firstOperand, secondOperand, 4));
@@ -31,6 +34,7 @@ namespace CPE200Lab1
                     }
                     else
                     {
+                        System.Console.WriteLine("Not In condition stack.Count >= 2");
                         return "E";
                     }
                     
