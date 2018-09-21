@@ -14,10 +14,12 @@ namespace CPE200Lab1
             string fristOperand;
             string secondOperand;
             string[] parts = str.Split(' ');
-            if (parts.Length != 1)
-            {
+            
+            
                 Stack<string> myStack = new Stack<string>();
                 for (int i = 0; i < parts.Length; i++)
+                {
+                try
                 {
                     if (isNumber(parts[i]))
                     {
@@ -27,43 +29,40 @@ namespace CPE200Lab1
                     {
                         if (parts[i] == "1/x" || parts[i] == "√")
                         {
+
                             secondOperand = myStack.Pop();
                             myStack.Push(unaryCalculate(parts[i], secondOperand));
                         }
-                        
+
                         else
                         {
-                            if (myStack.Count >= 2)
-                            {
-                                secondOperand = myStack.Pop();
-                                fristOperand = myStack.Pop();
-                                myStack.Push(calculate(parts[i], fristOperand, secondOperand));
-                            }
-                            else
-                            {
-                                return "E";
-                            }
+
+                            secondOperand = myStack.Pop();
+                            fristOperand = myStack.Pop();
+                            myStack.Push(calculate(parts[i], fristOperand, secondOperand));
+
 
 
                         }
 
                     }
                 }
+                catch(Exception)
+                {
+                    return "E";
+                }
+                    
+                }
                 if (myStack.Count == 1)
                 {
-                    return myStack.Pop();
+                    return myStack.Pop(); 
                 }
                 else
                 {
                     return "E";
                 }
-
+                
             }
-            else
-            {
-                return "E";
-            }
-
-        }
     }
 }
+

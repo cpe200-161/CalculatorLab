@@ -35,19 +35,21 @@ namespace CPE200Lab1
 
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            try
+            {
+                string[] parts = str.Split(' ');
+                return calculate(parts[1], parts[0], parts[2], 4);
+
+            }
+            catch(IndexOutOfRangeException)
             {
                 return "E";
             }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
+            
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
-        {
+        { 
             switch (operate)
             {
                 case "√":
@@ -63,6 +65,7 @@ namespace CPE200Lab1
                         }
                         else
                         {
+
                             parts = result.ToString().Split('.');
                             string.Format(parts[1], "G29");
 
@@ -87,7 +90,7 @@ namespace CPE200Lab1
                         }
                     }
                 case "1/x":
-                    if (operand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
@@ -124,6 +127,10 @@ namespace CPE200Lab1
 
                         }
                     }
+                    catch (Exception)
+                    {
+                        return "E";
+                    }
                     break;
             }
             return "E";
@@ -141,14 +148,16 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
                         int remainLength;
-                       
 
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                        
+                            result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                        
+                       
                         if (result % 1 == 0)
                         {
                             return result.ToString();
@@ -177,6 +186,10 @@ namespace CPE200Lab1
 
                             }
                         }
+                    }
+                    catch (Exception)
+                    {
+                        return "E";
                     }
                     break;
                 case "%":

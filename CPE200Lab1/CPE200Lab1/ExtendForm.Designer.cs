@@ -65,7 +65,7 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnBack.Location = new System.Drawing.Point(428, 14);
+            this.btnBack.Location = new System.Drawing.Point(403, 10);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(126, 93);
@@ -81,10 +81,10 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnClear.Location = new System.Drawing.Point(13, 117);
+            this.btnClear.Location = new System.Drawing.Point(12, 102);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(146, 64);
+            this.btnClear.Size = new System.Drawing.Size(167, 64);
             this.btnClear.TabIndex = 38;
             this.btnClear.Text = "C";
             this.btnClear.UseCompatibleTextRendering = true;
@@ -97,7 +97,7 @@
             this.btnDivide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDivide.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDivide.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDivide.Location = new System.Drawing.Point(363, 446);
+            this.btnDivide.Location = new System.Drawing.Point(336, 387);
             this.btnDivide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDivide.Name = "btnDivide";
             this.btnDivide.Size = new System.Drawing.Size(97, 75);
@@ -113,10 +113,10 @@
             this.btnEqual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEqual.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEqual.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEqual.Location = new System.Drawing.Point(469, 361);
+            this.btnEqual.Location = new System.Drawing.Point(432, 313);
             this.btnEqual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEqual.Name = "btnEqual";
-            this.btnEqual.Size = new System.Drawing.Size(98, 243);
+            this.btnEqual.Size = new System.Drawing.Size(97, 221);
             this.btnEqual.TabIndex = 35;
             this.btnEqual.Text = "=";
             this.btnEqual.UseCompatibleTextRendering = true;
@@ -129,7 +129,7 @@
             this.btnDot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDot.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDot.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDot.Location = new System.Drawing.Point(246, 446);
+            this.btnDot.Location = new System.Drawing.Point(228, 387);
             this.btnDot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDot.Name = "btnDot";
             this.btnDot.Size = new System.Drawing.Size(109, 75);
@@ -145,7 +145,7 @@
             this.btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn0.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn0.Location = new System.Drawing.Point(131, 446);
+            this.btn0.Location = new System.Drawing.Point(120, 387);
             this.btn0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(109, 75);
@@ -161,7 +161,7 @@
             this.btnSign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSign.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSign.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSign.Location = new System.Drawing.Point(14, 446);
+            this.btnSign.Location = new System.Drawing.Point(12, 387);
             this.btnSign.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSign.Name = "btnSign";
             this.btnSign.Size = new System.Drawing.Size(109, 75);
@@ -177,7 +177,7 @@
             this.btnPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlus.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPlus.Location = new System.Drawing.Point(364, 191);
+            this.btnPlus.Location = new System.Drawing.Point(336, 165);
             this.btnPlus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(97, 75);
@@ -193,7 +193,7 @@
             this.btn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn3.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn3.Location = new System.Drawing.Point(246, 361);
+            this.btn3.Location = new System.Drawing.Point(228, 313);
             this.btn3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(109, 75);
@@ -209,7 +209,7 @@
             this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn2.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn2.Location = new System.Drawing.Point(131, 361);
+            this.btn2.Location = new System.Drawing.Point(120, 313);
             this.btn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(109, 75);
@@ -225,7 +225,7 @@
             this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn1.Location = new System.Drawing.Point(14, 361);
+            this.btn1.Location = new System.Drawing.Point(12, 313);
             this.btn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(109, 75);
@@ -241,7 +241,7 @@
             this.btnMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinus.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMinus.Location = new System.Drawing.Point(364, 276);
+            this.btnMinus.Location = new System.Drawing.Point(336, 239);
             this.btnMinus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(97, 75);
@@ -257,7 +257,7 @@
             this.btn6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn6.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn6.Location = new System.Drawing.Point(246, 276);
+            this.btn6.Location = new System.Drawing.Point(228, 239);
             this.btn6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(109, 75);
@@ -273,7 +273,7 @@
             this.btn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn5.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn5.Location = new System.Drawing.Point(130, 276);
+            this.btn5.Location = new System.Drawing.Point(120, 239);
             this.btn5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(109, 75);
@@ -289,7 +289,7 @@
             this.btn4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn4.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn4.Location = new System.Drawing.Point(13, 276);
+            this.btn4.Location = new System.Drawing.Point(12, 239);
             this.btn4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(109, 75);
@@ -305,7 +305,7 @@
             this.btnMultiply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMultiply.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMultiply.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMultiply.Location = new System.Drawing.Point(363, 361);
+            this.btnMultiply.Location = new System.Drawing.Point(336, 313);
             this.btnMultiply.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMultiply.Name = "btnMultiply";
             this.btnMultiply.Size = new System.Drawing.Size(97, 75);
@@ -321,7 +321,7 @@
             this.btn9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn9.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn9.Location = new System.Drawing.Point(247, 191);
+            this.btn9.Location = new System.Drawing.Point(228, 165);
             this.btn9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(109, 75);
@@ -337,7 +337,7 @@
             this.btn8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn8.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn8.Location = new System.Drawing.Point(130, 191);
+            this.btn8.Location = new System.Drawing.Point(120, 165);
             this.btn8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(109, 75);
@@ -353,7 +353,7 @@
             this.btn7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn7.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn7.Location = new System.Drawing.Point(13, 191);
+            this.btn7.Location = new System.Drawing.Point(12, 165);
             this.btn7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(109, 75);
@@ -367,9 +367,9 @@
             // 
             this.lblDisplay.AutoSize = true;
             this.lblDisplay.BackColor = System.Drawing.Color.DimGray;
-            this.lblDisplay.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplay.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplay.ForeColor = System.Drawing.Color.White;
-            this.lblDisplay.Location = new System.Drawing.Point(16, 14);
+            this.lblDisplay.Location = new System.Drawing.Point(11, 4);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDisplay.MinimumSize = new System.Drawing.Size(390, 0);
             this.lblDisplay.Name = "lblDisplay";
@@ -384,10 +384,10 @@
             this.btnSpace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpace.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSpace.Location = new System.Drawing.Point(14, 529);
+            this.btnSpace.Location = new System.Drawing.Point(12, 461);
             this.btnSpace.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSpace.Name = "btnSpace";
-            this.btnSpace.Size = new System.Drawing.Size(341, 75);
+            this.btnSpace.Size = new System.Drawing.Size(325, 73);
             this.btnSpace.TabIndex = 41;
             this.btnSpace.Text = "Space";
             this.btnSpace.UseCompatibleTextRendering = true;
@@ -400,7 +400,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(483, 117);
+            this.button1.Location = new System.Drawing.Point(458, 102);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 64);
@@ -416,7 +416,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(404, 117);
+            this.button2.Location = new System.Drawing.Point(388, 102);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(71, 64);
@@ -432,7 +432,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(167, 117);
+            this.button3.Location = new System.Drawing.Point(178, 102);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(71, 64);
@@ -448,7 +448,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(246, 117);
+            this.button4.Location = new System.Drawing.Point(248, 102);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(71, 64);
@@ -464,7 +464,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(325, 117);
+            this.button5.Location = new System.Drawing.Point(318, 102);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(71, 64);
@@ -480,7 +480,7 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button9.Location = new System.Drawing.Point(363, 529);
+            this.button9.Location = new System.Drawing.Point(336, 459);
             this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(97, 75);
@@ -496,7 +496,7 @@
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button10.Location = new System.Drawing.Point(469, 191);
+            this.button10.Location = new System.Drawing.Point(432, 165);
             this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(97, 75);
@@ -512,7 +512,7 @@
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button11.Location = new System.Drawing.Point(469, 276);
+            this.button11.Location = new System.Drawing.Point(432, 239);
             this.button11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(97, 75);
@@ -527,7 +527,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(579, 613);
+            this.ClientSize = new System.Drawing.Size(540, 543);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
