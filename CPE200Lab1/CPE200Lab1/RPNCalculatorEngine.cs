@@ -8,21 +8,12 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        private bool isNotOrdinary(string str)
-        {
-            switch (str)
-            {
-                case "√":
-                case "1/x":
-                    return true;
-            }
-            return false;
-        } 
-
         public new string Process(string str)
         {
-            Stack<string> number = new Stack<string>();
+            string firstOperand;
+            string secondOperand;
             string[] parts = str.Split(' ');
+            Stack<string> number = new Stack<string>();
 
             for (int i = 0; i < parts.Length; i++)
             {
@@ -37,25 +28,30 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    string secondOperand = number.Pop();
-                    number.Push(calculate(parts[i], number.Pop(), secondOperand));
+                    secondOperand = number.Pop();
+                    firstOperand = number.Pop();
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
 
                 else if (parts[i] == "%")
                 {
                     if(parts[i+1] == "+" || parts[i+1] == "-")
                     {
-                        number.Push(calculate(parts[i], number.Pop(), number.Peek()));
+                        secondOperand = number.Peek();
+                        firstOperand = number.Pop();
+                        number.Push(calculate(parts[i], firstOperand, secondOperand));
                     }
                     else
                     {
-                        number.Push(calculate(parts[i], number.Pop(), null));
+                        firstOperand = number.Pop();
+                        number.Push(calculate(parts[i], firstOperand, null));
                     }
                 }
 
-                else if (isNotOrdinary(parts[i]))
+                else if (parts[i] == "1/x" || parts[i] == "√")
                 {
-                    number.Push(unaryCalculate(parts[i], number.Pop()));
+                    firstOperand = number.Pop();
+                    number.Push(unaryCalculate(parts[i], firstOperand));
                 }
             }
 
