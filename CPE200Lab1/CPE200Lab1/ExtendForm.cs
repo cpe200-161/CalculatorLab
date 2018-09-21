@@ -177,10 +177,45 @@ namespace CPE200Lab1
 
         private void btnSingleOperator_Click(object sender, EventArgs e)
         {
+            string opt = ((Button)sender).Text;
+            string result = engine.unaryCalculate(opt, lblDisplay.Text, 4);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";
+            }else
+            {
+                lblDisplay.Text = result;
+            }
+        }
+        /*private void btnMemory_Click(object sender, EventArgs e)
+        {
             if (lblDisplay.Text is "Error")
             {
                 return;
-            }else if()
-        }
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+            mem = ((Button)sender).Text;
+            switch (mem)
+            {
+                case "MS":
+                    memory = (Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "M+":
+                    memory = memory + (Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "M-":
+                    memory = memory - (Convert.ToDouble(lblDisplay.Text));
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
+            }
+        }*/
     }
 }
