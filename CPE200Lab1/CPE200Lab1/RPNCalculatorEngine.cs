@@ -6,41 +6,39 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         public override string Process(string str)
         {
             string[] parts = str.Split(' ');
-
-            Stack<string> operands = new Stack<string>();
+            Stack<string> numberandoperands = new Stack<string>();
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
                 {
-                    operands.Push(parts[i]);
+                    numberandoperands.Push(parts[i]);
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (operands.Count < 2)
+                    if (numberandoperands.Count < 2)
                     {
                         return "E";
                     }
-                    string op2 = operands.Pop();
-                    string op1 = operands.Pop();
-                    string result = calculate(parts[i], op1, op2, 4);
+                    string operands2 = numberandoperands.Pop();
+                    string operands1 = numberandoperands.Pop();
+                    string result = calculate(parts[i], operands1, operands2, 4);
                     if (result is "E")
                     {
                         return result;
                     }
-                    operands.Push(result);
+                    numberandoperands.Push(result);
                 }
             }
-
-            if (operands.Count > 1)
+            if (numberandoperands.Count > 1)
             {
                 return "E";
             }
-            return operands.Pop();
+            return numberandoperands.Pop();
         }
 
         public override void handleSpace()
