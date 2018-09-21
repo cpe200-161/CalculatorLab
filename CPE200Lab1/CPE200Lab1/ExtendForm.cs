@@ -78,12 +78,19 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            try
             {
-                lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
+                if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+                {
+                    lblDisplay.Text = current.Substring(0, current.Length - 3);
+                }
+                else
+                {
+                    lblDisplay.Text = current.Substring(0, current.Length - 1);
+                }
+            }
+            catch(ArgumentOutOfRangeException ex)
+            { 
             }
             if (lblDisplay.Text is "")
             {
