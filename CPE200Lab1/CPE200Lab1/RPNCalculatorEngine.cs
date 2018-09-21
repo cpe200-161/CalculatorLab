@@ -32,7 +32,8 @@ namespace CPE200Lab1
 
             if (!(isNumber(parts[0]) && isOperator2(parts[1]) && isNumber(parts[2])))
             {
-                return cct.Peek();
+                 return cct.Peek();             
+         
             } else
             {
                 return "E";
