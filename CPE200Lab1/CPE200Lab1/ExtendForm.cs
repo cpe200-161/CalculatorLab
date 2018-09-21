@@ -12,7 +12,6 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
-
         private CalculatorEngine engine;
 
         public ExtendForm()

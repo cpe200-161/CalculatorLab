@@ -8,7 +8,6 @@ namespace CPE200Lab1
 {
     static class Program
     {
-       
         [STAThread]
         static void Main()
         {
