@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine
+    public class CalaulatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -59,7 +59,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G" + remainLength);
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +79,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G" + remainLength);
                     }
                     break;
             }
@@ -115,11 +115,12 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G" + remainLength);
                     }
                     break;
                 case "%":
                     //your code here
+                    return ((Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)) / 100).ToString();
                     break;
             }
             return "E";
