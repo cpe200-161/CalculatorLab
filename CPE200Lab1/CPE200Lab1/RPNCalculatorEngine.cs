@@ -19,7 +19,7 @@ namespace CPE200Lab1
            // if(strArray)
             // your code here
             Stack fristob = new Stack();
-
+             
 
             foreach(string save in strArray)
             {
@@ -29,19 +29,30 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(save))
                 {
-                    if (fristob.Count > 1)
+                    if (save == "1/x" || save == "√")
                     {
-                        value = fristob.Pop().ToString();
-                        value2 = fristob.Pop().ToString();
+                        value = (fristob.Pop()).ToString();
+                        fristob.Push(unaryCalculate(save, value, 8));
                     }
                     else
                     {
-                        return "E";
-                    }
-                    Console.WriteLine(value);
-                    Console.WriteLine(value2);
-                    fristob.Push(calculate(save, value2, value, 8));
+                        if (fristob.Count > 1)
+                        {
+                            value = fristob.Pop().ToString();
+                            value2 = fristob.Pop().ToString();
+                        }
+                        else
+                        {
+                            return "E";
+                        }
 
+                        if(save =="-" || save == "÷")
+
+                        //fristob.Push(calculate(save, value2, value, 8));
+                    }
+                    
+                    //
+                   
                 }
                 
             }
