@@ -8,33 +8,31 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        string stnum, secnum, resultback;
+        string stnum, secnum, resultback;                       // declare string 
         public string Process(string str)
         {
-            // your code here
-
-            Stack<string> cct = new Stack<string>();
+            Stack<string> cct = new Stack<string>();            // your code here
             string[] parts = str.Split(' ');
 
-            for (int i = 0; i < parts.Length - 1; i++)
+            for (int i = 0; i < parts.Length - 1; i++)        
             {
-                if (isNumber(parts[i]))
+                if (isNumber(parts[i]))                     // only number
                 {
                     cct.Push(parts[i]);
                 }
-                if (isOperator(parts[i]))
+                if (isOperator(parts[i]))                  // if sign
                 {
 
-                    secnum = cct.Pop();
-                    stnum = cct.Pop();
-                    resultback = Calculate(parts[i], stnum, secnum, 4);
-                    cct.Push(resultback);
+                    secnum = cct.Pop();                    // set second number
+                    stnum = cct.Pop();                      //ser first number
+                    resultback = Calculate(parts[i], stnum, secnum, 4);     // calculating
+                    cct.Push(resultback);                   // save answer
                 }
             }
 
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
-                return cct.Peek();
+                return cct.Peek();                  // show answer
 
             }
             else
@@ -47,3 +45,4 @@ namespace CPE200Lab1
     
     }
 }
+ 
