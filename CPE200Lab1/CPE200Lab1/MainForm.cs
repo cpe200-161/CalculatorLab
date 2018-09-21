@@ -127,8 +127,6 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    //string secondOperand = lblDisplay.Text;
-                    
                     break;
             }
             isAllowBack = false;
