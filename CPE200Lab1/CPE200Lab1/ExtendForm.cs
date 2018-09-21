@@ -15,21 +15,24 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        private bool isOperator(string str)
         {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
+            switch(str) {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "%":
+                case "1/x":
+                case "√":
                     return true;
             }
             return false;
@@ -63,7 +66,7 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -78,7 +81,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
             } else
