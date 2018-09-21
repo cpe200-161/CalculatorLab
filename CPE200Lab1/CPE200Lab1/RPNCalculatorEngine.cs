@@ -14,50 +14,43 @@ namespace CPE200Lab1
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
             double number;
-            foreach(string part in parts)
+            try
             {
-                if (double.TryParse(part,out number))
+                foreach (string part in parts)
                 {
-                    stack.Push(number.ToString());
-                }
-                else
-                {
-                    switch (part)
+                    if (double.TryParse(part, out number))
                     {
-                        case "+":
-                        case "-":
-                        case "X":
-                        case "÷":
-                        case "%":
-                            string first,second;
-                            if (stack.Count >= 2)
-                            {
+                        stack.Push(number.ToString());
+                    }
+                    else
+                    {
+                        switch (part)
+                        {
+                            case "+":
+                            case "-":
+                            case "X":
+                            case "÷":
+                            case "%":
+                                string first, second;
                                 second = stack.Pop();
                                 first = stack.Pop();
-                            }
-                            else
-                            {
-                                return "E";
-                            }
-                            stack.Push(calculate(part,first,second));
-                            break;
-                        case "1/x":
-                        case "√":
-                            string n;
-                            if(stack.Count >= 1)
-                            {
+                                stack.Push(calculate(part, first, second));
+                                break;
+                            case "1/x":
+                            case "√":
+                                string n;
                                 n = stack.Pop();
-                            }
-                            else
-                            {
-                                return "E";
-                            }
-                            stack.Push(unaryCalculate(part, n));
-                            break;
+                                stack.Push(unaryCalculate(part, n));
+                                break;
+                        }
                     }
                 }
             }
-            if(stack.Count == 1)
+            catch (InvalidOperationException)
+            {
+                return "E";
+            }
+            if (stack.Count == 1)
             {
                 return stack.Pop();
             }
@@ -68,3 +61,56 @@ namespace CPE200Lab1
         }
     }
 }
+
+/*
+foreach(string part in parts)
+        {
+            if (double.TryParse(part, out number))
+            {
+                stack.Push(number.ToString());
+            }
+            else
+            {
+                switch (part)
+                {
+                    case "+":
+                    case "-":
+                    case "X":
+                    case "÷":
+                    case "%":
+                        string first, second;
+                        if (stack.Count >= 2)
+                        {
+                            second = stack.Pop();
+                            first = stack.Pop();
+                        }
+                        else
+                        {
+                            return "E";
+                        }
+                        stack.Push(calculate(part, first, second));
+                        break;
+                    case "1/x":
+                    case "√":
+                        string n;
+                        if(stack.Count >= 1)
+                        {
+                            n = stack.Pop();
+                        }
+                        else
+                        {
+                            return "E";
+                        }
+                        stack.Push(unaryCalculate(part, n));
+                        break;
+                }
+            }
+        }
+        if(stack.Count == 1)
+        {
+            return stack.Pop();
+        }
+        else
+        {
+            return "E";
+        }*/

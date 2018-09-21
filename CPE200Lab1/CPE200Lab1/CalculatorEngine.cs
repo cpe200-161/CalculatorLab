@@ -28,15 +28,15 @@ namespace CPE200Lab1
 
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            try
             {
-                return "E";
-            } else
-            {
+                string[] parts = str.Split(' ');
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
-
+            catch(IndexOutOfRangeException)
+            {
+                return "E";
+            }
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -128,7 +128,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
@@ -162,7 +162,10 @@ namespace CPE200Lab1
                             }
                         }
                     }
-                    break;
+                    catch(Exception)
+                    {
+                        return "E";
+                    }
                 case "%":
                     //your code here
                     return (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
