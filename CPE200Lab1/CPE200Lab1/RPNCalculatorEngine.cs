@@ -22,36 +22,60 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                case "√":
+                case "1/X":
                     return true;
             }
             return false;
         }
+
         public string Process(string str)
         {
-            Stack<string> RPNstack = new Stack<string>();
+            string firstOperand;
+            string secondOperand;
             string[] parts = str.Split(' ');
-            string[] Number = { };
-            if (!(isNumber(parts[0]) && isNumber(parts[1]) && isOperator(parts[2])))
+            Stack<string> number = new Stack<string>();
+            if(parts.Length < 3)
             {
                 return "E";
             }
-            else
+            for (int i = 0; i < parts.Length; i++)
             {
-                foreach(string element in parts)
+                if (isNumber(parts[i]))
                 {
-                    if (isNumber(element))
-                    {
-                        RPNstack.Push(element);
-                    }
-                    else
-                    {
-                        for(int i = 0; i < 2;i++)
-                        {
-                            Number[i] = RPNstack.Pop();
-                        }
-                        return calculate(element, Number[0], Number[1]);
-                    }
+                    number.Push(parts[i]);
                 }
+
+                else if (isOperator(parts[i]))
+                {
+                    if (number.Count < 2)
+                    {
+                        return "E";
+                    }
+                    secondOperand = number.Pop();
+                    firstOperand = number.Pop();
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));
+                }
+
+                else if (parts[i] == "%")
+                {
+                    secondOperand = number.Pop();
+                    firstOperand = number.Pop();
+                    number.Push(firstOperand);
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));
+                }
+
+                else if (parts[i] == "1/x" || parts[i] == "√")
+                {
+                    firstOperand = number.Pop();
+                    number.Push(unaryCalculate(parts[i], firstOperand));
+                }
+            }
+
+            if (number.Count == 1)
+            {
+                return number.Pop();
             }
             return "E";
         }
