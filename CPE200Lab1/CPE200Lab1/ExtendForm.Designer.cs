@@ -49,7 +49,8 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnSpace = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            
+this.SuspendLayout();
             // 
             // btnBack
             // 
