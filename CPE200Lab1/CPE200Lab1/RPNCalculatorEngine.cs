@@ -13,17 +13,17 @@ namespace CPE200Lab1
         {
             string[] parts = str.Split(' ');
             Stack number = new Stack();
-
-            List<string> withoutspace = parts.ToList<string>();
-            withoutspace.RemoveAll(p => string.IsNullOrEmpty(p));
-            parts = withoutspace.ToArray();
-
-            if(isNumber(parts[0]) && isOperator(parts[1]))
+            try
             {
+                List<string> withoutspace = parts.ToList<string>();
+                withoutspace.RemoveAll(p => string.IsNullOrEmpty(p));
+                parts = withoutspace.ToArray();
+            }catch(Exception ex)
+            {
+
                 return "E";
             }
-            else
-            {
+
             for(int i = 0;i < parts.Length ; i++)
             {
                 if (isNumber(parts[i]))
@@ -32,15 +32,17 @@ namespace CPE200Lab1
                 }
                 if (isOperator(parts[i]))
                 {
-                    if(number.Count < 2)
+                    try
+                    {
+                     string second = number.Pop().ToString();
+                     string first = number.Pop().ToString();
+                     number.Push(calculate(parts[i],first , second));
+
+                    }catch (Exception ex)
                     {
                         return "E";
-                    }else
-                    {
-                        string second = number.Pop().ToString();
-                        string first = number.Pop().ToString();
-                        number.Push(calculate(parts[i],first , second));
                     }
+                    
                 }
             }
             if(number.Count > 1)
@@ -48,11 +50,6 @@ namespace CPE200Lab1
                     return "E";
                 }
             return number.Pop().ToString();
-
-            }
-
-
-
         }
     }
 }
