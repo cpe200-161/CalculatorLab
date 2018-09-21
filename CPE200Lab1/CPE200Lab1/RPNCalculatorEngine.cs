@@ -29,24 +29,26 @@ namespace CPE200Lab1
 
 
             foreach (string i in parts) 
+            {
+                if (isNumber(i))
                 {
-                    if (isNumber(i))
-                    {
-                        s.Push(i);
-
-                    }
-                    else if(isOperator(i))
-                    {
-                        v1 = s.Pop();
-                        v2 = s.Pop();
-                        s.Push(calculate(i, v2, v1 ));
-                    }
-
+                    s.Push(i);
 
                 }
+                else if (isOperator(i))
+                {
+                    v1 = s.Pop();
+                    v2 = s.Pop();
+                    s.Push(calculate(i, v2, v1));
+                }
 
-                return s.Peek();
-            
+
+                
+            }
+
+            return s.Peek();
+
+
         }
 
         
