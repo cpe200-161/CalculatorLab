@@ -11,7 +11,50 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             // your code here
-            return "E";
+            string Num1;
+            string Num2;
+            string[] space = str.Split(' ');
+            Stack<string> number = new Stack<string>();
+
+            for(int i = 0; i < space.Length; i++)
+            {
+                if (isOperator(space[i]))
+                {
+                    if (number.Count < 2)
+                    {
+                        if (space[i] == "1/x" || space[i] == "√")
+                        {
+                            Num1 = number.Pop();
+                            number.Push(unaryCalculate(space[i], Num1));
+                        }
+                        else return "E";
+                    }
+                    else if(space[i] == "1/x" || space[i] == "√")
+                    {
+                        Num1 = number.Pop();
+                        number.Push(unaryCalculate(space[i], Num1));
+                    }
+                    else if(space[i] == "%")
+                    {
+                        Num2 = number.Pop();
+                        Num1 = number.Pop();
+                        number.Push(Num1);
+                        number.Push(calculate(space[i], Num1, Num2));
+                    }
+                    else
+                    {
+                        Num2 = number.Pop();
+                        Num1 = number.Pop();
+                        number.Push(calculate(space[i], Num1, Num2));
+                    }
+                }
+                else if(isNumber(space[i]))
+                {
+                    number.Push(space[i]);
+                }
+            }
+            if (number.Count == 1) return number.Pop();
+            else return "E";
         }
     }
 }
