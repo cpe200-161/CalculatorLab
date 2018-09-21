@@ -41,9 +41,10 @@ namespace CPE200Lab1
                     }
                     else if (parts[i] == "%")
                     {
+                        string second = myStack.Pop();
                         string first = myStack.Pop();
-                        string second = myStack.Peek();
-                        myStack.Push(calculate(parts[i], second, first, 4));
+                        myStack.Push(first);
+                        myStack.Push(calculate(parts[i], first, second, 4));
                     }
 
                 }
