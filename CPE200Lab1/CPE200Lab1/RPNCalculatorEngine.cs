@@ -11,33 +11,65 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             // your code here
-            Stack<string> numStack = new Stack<string>();
-            string first, secound;
-            string[] parts = str.Split(' ');
-            Console.WriteLine(parts);
+            string[] parts;
+            Stack<string> myStack = new Stack<string>();
+            parts = str.Split(' ');
 
-            for(int i = 0; i < parts.Length; i++)
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (isOperator(parts[i]))
-                {
-                    if (numStack.Count < 2) return "E";
-                }
                 if (isNumber(parts[i]))
                 {
-                    numStack.Push(parts[i]);
+                    myStack.Push(parts[i]);
+
                 }
                 else if (isOperator(parts[i]))
                 {
-                    first = (string)numStack.Pop();
-                    secound = (string)numStack.Pop();
-                    numStack.Push(calculate(parts[i], secound, first, 4));
+                    if (myStack.Count == 0)
+                    {
+                        return "E";
+                    }
+                    else if (myStack.Count == 1)
+                    {
+                        string first = myStack.Pop();
+                        myStack.Push(unaryCalculate(parts[i], first, 4));
+                    }
+                    else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%")
+                    {
+                        string first = myStack.Pop();
+                        string second = myStack.Pop();
+                        myStack.Push(calculate(parts[i], second, first, 4));
+                    }
+                    else if (parts[i] == "%")
+                    {
+                        string first = myStack.Pop();
+                        string second = myStack.Peek();
+                        myStack.Push(calculate(parts[i], second, first, 4));
+                    }
+
                 }
 
             }
-            if (numStack.Count == 1) {
-                return (string)numStack.Pop();
+            if (myStack.Count == 1)
+            {
+                return myStack.Pop();
             }
             return "E";
         }
+        private bool isOperator(string str)
+        {
+            switch (str)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "√":
+                case "1/x":
+                case "%":
+                    return true;
+            }
+            return false;
+        }
     }
 }
+

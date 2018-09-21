@@ -21,7 +21,7 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                    return true;
+                return true;
             }
             return false;
         }

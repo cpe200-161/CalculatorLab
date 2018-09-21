@@ -15,12 +15,14 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        private CalculatorEngine engine;
+        private RPNCalculatorEngine RPN;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            engine = new CalculatorEngine();
+            RPN = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,7 +32,8 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
-                    return true;
+                case '%':
+                return true;
             }
             return false;
         }
@@ -53,7 +56,7 @@ namespace CPE200Lab1
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
         }
-
+        
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -104,11 +107,14 @@ namespace CPE200Lab1
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
+                result = RPN.Process(lblDisplay.Text);
+                if (result is "E") lblDisplay.Text = "Error";
+                else lblDisplay.Text = result;
             } else
             {
                 lblDisplay.Text = result;
             }
+            isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -165,6 +171,5 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
-
     }
 }
