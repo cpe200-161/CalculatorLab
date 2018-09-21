@@ -32,6 +32,7 @@ namespace CPE200Lab1
                     Num1 = myStack.Pop();
                     myStack.Push(calculate(parts[i], Num1, Num2));
                 }
+
                 if(isOperatorUnary(parts[i]))
                 {
                     if (myStack.Count < 1)
