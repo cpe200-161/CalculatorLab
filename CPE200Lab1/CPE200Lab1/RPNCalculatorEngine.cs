@@ -13,10 +13,10 @@ namespace CPE200Lab1
             // your code here
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
-            int number;
+            double number;
             foreach(string part in parts)
             {
-                if (int.TryParse(part,out number))
+                if (double.TryParse(part,out number))
                 {
                     stack.Push(number.ToString());
                 }
@@ -28,17 +28,11 @@ namespace CPE200Lab1
                         case "-":
                         case "X":
                         case "÷":
+                        case "%":
                             string first,second;
-                            if(stack.Count != 0)
+                            if (stack.Count >= 2)
                             {
                                 second = stack.Pop();
-                            }
-                            else
-                            {
-                                return "E";
-                            }
-                            if (stack.Count != 0)
-                            {
                                 first = stack.Pop();
                             }
                             else
@@ -47,8 +41,19 @@ namespace CPE200Lab1
                             }
                             stack.Push(calculate(part,first,second));
                             break;
-                        default:
-                            return "E";
+                        case "1/x":
+                        case "√":
+                            string n;
+                            if(stack.Count >= 1)
+                            {
+                                n = stack.Pop();
+                            }
+                            else
+                            {
+                                return "E";
+                            }
+                            stack.Push(unaryCalculate(part, n));
+                            break;
                     }
                 }
             }
