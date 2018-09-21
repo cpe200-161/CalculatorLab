@@ -35,17 +35,10 @@ namespace CPE200Lab1
 
                 else if (parts[i] == "%")
                 {
-                    if(parts[i+1] == "+" || parts[i+1] == "-")
-                    {
-                        secondOperand = number.Peek();
-                        firstOperand = number.Pop();
-                        number.Push(calculate(parts[i], firstOperand, secondOperand));
-                    }
-                    else
-                    {
-                        firstOperand = number.Pop();
-                        number.Push(calculate(parts[i], firstOperand, null));
-                    }
+                    secondOperand = number.Pop();
+                    firstOperand = number.Pop();
+                    number.Push(firstOperand);
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
 
                 else if (parts[i] == "1/x" || parts[i] == "√")
@@ -59,7 +52,6 @@ namespace CPE200Lab1
             {
                 return number.Pop();
             }
-
             return "E";
         }
     }
