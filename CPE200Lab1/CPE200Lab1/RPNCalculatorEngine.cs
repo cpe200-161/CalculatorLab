@@ -18,7 +18,7 @@ namespace CPE200Lab1
             {
                 if(isOperator(parts[i]))
                 {
-                    if (cal.Count == 0 || cal.Count == 1)
+                    if (cal.Count < 2)
                     {
                         if (parts[i] == "√" || parts[i] == "1/x")
                         {
