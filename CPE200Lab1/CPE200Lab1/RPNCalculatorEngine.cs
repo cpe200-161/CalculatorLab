@@ -40,14 +40,7 @@ namespace CPE200Lab1
                 }
 
             }
-            /*if(rpnStack.Count == 1)
-            {
-                return decimal.Parse(rpnStack.Peek().ToString()).ToString("G29");
-            }
-            else
-            {
-                return "E";
-            }*/
+            
             if (rpnStack.Count == 1)
             {
                 if (strArray[1] == "√" || strArray[1] == "1/x")
