@@ -115,7 +115,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
+                        
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -130,8 +130,8 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-                case "%":
-                    //your code here
+                case "%"
+                    //your code here (not have percent button)
                     break;
             }
             return "E";
