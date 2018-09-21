@@ -10,10 +10,10 @@ namespace CPE200Lab1
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
+        public bool isSpaceAllowed = false;
        
 
-        private string display = "0";
+        string display = "0";
 
         public virtual string Display()
         {

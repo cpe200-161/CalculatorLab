@@ -14,7 +14,7 @@ namespace CPE200Lab1
             
             
         }
-        protected virtual CalculatorEngine Engine()
+        protected override CalculatorEngine Engine()
         {
             return new RPNCalculatorEngine();
         }
