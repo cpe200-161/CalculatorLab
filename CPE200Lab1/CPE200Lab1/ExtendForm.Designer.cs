@@ -296,6 +296,7 @@
             this.divide1X.TabIndex = 42;
             this.divide1X.Text = "1/x";
             this.divide1X.UseVisualStyleBackColor = true;
+            this.divide1X.Click += new System.EventHandler(this.btnUnaryOperator_Click);
             // 
             // Percent
             // 
@@ -317,6 +318,7 @@
             this.Squareroot.TabIndex = 44;
             this.Squareroot.Text = "√";
             this.Squareroot.UseVisualStyleBackColor = true;
+            this.Squareroot.Click += new System.EventHandler(this.btnUnaryOperator_Click);
             // 
             // ExtendForm
             // 
