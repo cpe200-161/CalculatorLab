@@ -15,7 +15,7 @@ namespace CPE200Lab1
             string mun1, mun2, mun3, mun4;
             
             Stack<string> myStack = new Stack<string>();
-            string res = "0";
+            
 
             string[] parts = str.Split(' ');
 
@@ -33,7 +33,7 @@ namespace CPE200Lab1
                     mun1 = myStack.Pop();
                     mun4 = calculate(parts[i], mun1, mun2, 4);
                     myStack.Push(mun4);
-                    res = calculate(parts[i], mun1, mun2, 4);
+                    
                 }
                 
             }
