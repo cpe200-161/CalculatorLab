@@ -37,6 +37,7 @@ namespace CPE200Lab1
         }
         private bool isUnaryOperator(string strc)
         {
+
             switch (strc)
             {
                 case "√":

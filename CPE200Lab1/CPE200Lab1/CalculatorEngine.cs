@@ -40,9 +40,10 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            List<string> partsWithoutSpace = parts.ToList<string>();
+            List<string> partsWithoutSpace = parts.ToList();
             partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
             parts = partsWithoutSpace.ToArray();
+
             if (parts.Length == 2)
             {
                 if (isNumber(parts[0]) && isUnaryOperator(parts[1]))
@@ -126,22 +127,24 @@ namespace CPE200Lab1
             {
                 case "√":
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
+                       
+                    double result;
+                    string[] parts;
+                    int remainLength;
 
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("G" + remainLength);
+                    result = Math.Sqrt(Convert.ToDouble(operand));
+                    // split between integer part and fractional part
+                    parts = result.ToString().Split('.');
+                    // if integer part length is already break max output, return error
+                    if (parts[0].Length > maxOutputSize)
+                    {
+                        return "E";
+                    }
+                    // calculate remaining space for fractional part.
+                    remainLength = maxOutputSize - parts[0].Length - 1;
+                    // trim the fractional part gracefully. =
+                    return result.ToString("G" + remainLength);
+
                     }
                 case "1/x":
                     if(operand != "0")

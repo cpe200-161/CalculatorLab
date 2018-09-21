@@ -17,7 +17,7 @@ namespace CPE200Lab1
             string first, second, result;
             string[] parts = str.Split(' ');           
 
-            List<string> partsWithoutSpace = parts.ToList<string>();
+            List<string> partsWithoutSpace = parts.ToList();
             partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
             parts = partsWithoutSpace.ToArray();
 
@@ -28,7 +28,10 @@ namespace CPE200Lab1
                     {
                         RPNcalc.Push(element);
                     }
-                    else if (isUnaryOperator(element) || (isOperator(element) && RPNcalc.Count >= 2))
+                    //else if (isUnaryOperator(element) || (isOperator(element) && RPNcalc.Count >= 2))
+                    else if (isUnaryOperator(element) || isOperator(element))
+                    {
+                    try
                     {
                         if (element == "%")
                         {
@@ -51,10 +54,16 @@ namespace CPE200Lab1
                             RPNcalc.Push(result);
                         }
                     }
-                    else
+                    catch(Exception ex)
                     {
+                        Console.WriteLine("An error occurred : " + ex.ToString());
                         return "E";
                     }
+                }
+                    //else
+                    //{
+                    //    return "E";
+                    //}
                 }
             if (RPNcalc.Count == 1)
             {
