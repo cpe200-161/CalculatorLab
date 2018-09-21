@@ -10,6 +10,7 @@ namespace CPE200Lab1
     {
 
         private string v1, v2;
+
         public override string Process(string str)
         {
             // your code here
@@ -24,22 +25,29 @@ namespace CPE200Lab1
                 {
                     s.Push(i);
 
-                }
-                else if (isOperator(i))
+                }else if (isOperator(i))
+
                 {
-                    v1 = s.Pop();
-                    v2 = s.Pop();
-                    s.Push(calculate(i, v2, v1));
+                    if (s.Count > 1)
+                    {
+                        v1 = s.Pop();
+                        v2 = s.Pop();
+                        s.Push(calculate(i, v2, v1));
+                    }
+                    else
+                        return "E";
+
                 }
 
 
 
             }
-
-            if (s.Count < 1)
+            if(s.Count > 1)
             {
                 return "E";
             }
+
+            
 
             return s.Peek();
 
