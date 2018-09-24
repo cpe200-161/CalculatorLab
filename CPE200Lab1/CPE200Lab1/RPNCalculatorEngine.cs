@@ -32,14 +32,17 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (Operands.Count < 2)
+                    try
+                    {
+                        string secondOperand = Operands.Pop();
+                        string firstOperand = Operands.Pop();
+                        string result = calculate(parts[i], firstOperand, secondOperand);
+                        Operands.Push(result);
+                    }
+                    catch (Exception e)
                     {
                         return "E";
                     }
-                    string secondOperand = Operands.Pop();
-                    string firstOperand = Operands.Pop();
-                    string result = calculate(parts[i], firstOperand, secondOperand);
-                    Operands.Push(result);
                 }
                 else if (isUnaryCalculate(parts[i]))
                 {
