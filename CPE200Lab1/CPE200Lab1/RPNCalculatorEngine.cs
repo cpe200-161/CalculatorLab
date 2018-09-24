@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    /// <summary>
+    /// Provide method for calculate with RPN style.
+    /// </summary>
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// Check that is unary operator.
+        /// </summary>
+        /// <param name="str">
+        /// The string going to check.
+        /// </param>
+        /// <returns>
+        /// Return true if string id unary operator, otherwise return false.
+        /// </returns>
         public bool isUnaryCalculate(string str)
         {
             switch(str)
@@ -19,6 +31,15 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        /// Calculate with RPN style calculation.
+        /// </summary>
+        /// <param name="str">
+        /// The string of RPN style.
+        /// </param>
+        /// <returns>
+        /// The string of result.
+        /// </returns>
         public string Process(string str)
         {
             // your code here
