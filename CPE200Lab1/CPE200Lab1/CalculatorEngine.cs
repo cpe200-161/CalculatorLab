@@ -175,7 +175,6 @@ namespace CPE200Lab1
         public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
-            
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
