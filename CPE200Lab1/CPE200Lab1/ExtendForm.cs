@@ -13,15 +13,15 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        protected bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private string memoryNumber = "0";
-        private RPNCalculatorEngine engine;
+        protected RPNCalculatorEngine myEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -102,7 +102,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -170,7 +170,7 @@ namespace CPE200Lab1
         private void buttonUnary_Click(object sender, EventArgs e)
         {
             string operateU = ((Button)sender).Text;
-            string result = engine.ProcessUnary(operateU, lblDisplay.Text);
+            string result = myEngine.ProcessUnary(operateU, lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -183,7 +183,7 @@ namespace CPE200Lab1
         private void buttonPercent_Click(object sender, EventArgs e)
         {
             string operate = ((Button)sender).Text;
-            string result = engine.ProcessPercent(lblDisplay.Text);
+            string result = myEngine.ProcessPercent(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -198,7 +198,7 @@ namespace CPE200Lab1
         private void buttonMemory_Click(object sender, EventArgs e)
         {
             string operate = ((Button)sender).Text;
-            string result = engine.ProcessMemory(operate, lblDisplay.Text, memoryNumber);
+            string result = myEngine.ProcessMemory(operate, lblDisplay.Text, memoryNumber);
             memoryNumber = result;
             if(operate == "MR")
             {

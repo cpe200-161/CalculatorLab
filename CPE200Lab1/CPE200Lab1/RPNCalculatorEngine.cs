@@ -6,37 +6,37 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public string Process(string str)
+        protected Stack<string> myStack = new Stack<string>();
+        public string calculate(string oper)
         {
             //your code here
-            Stack<string> number = new Stack<string>();
-            string[] parts = str.Split(' ');
+            string[] parts = oper.Split(' ');
             for(int i=0; i<parts.Length; i++)
             {
                 if (isNumber(parts[i]) == true)
                 {
-                    number.Push(parts[i]);
+                    myStack.Push(parts[i]);
                 }
                 else if (isOperator(parts[i]) == true)
                 {
-                    if (number.Count < 2)
+                    if (myStack.Count < 2)
                     {
                         return "E";
                     }
                     else
                     {
-                        string secondOperand = number.Pop();
-                        string firstOperand = number.Pop();
+                        string secondOperand = myStack.Pop();
+                        string firstOperand = myStack.Pop();
                         string result = calculate(parts[i], firstOperand, secondOperand);
-                        number.Push(result);
+                        myStack.Push(result);
                     }
                 }
             }
-            if(number.Count == 1)
+            if(myStack.Count == 1)
             {
-                return number.Pop();
+                return myStack.Pop();
             }
             else
             {
@@ -49,7 +49,7 @@ namespace CPE200Lab1
         {
             string[] parts = str.Split(' ');
             int i = parts.Length - 1;
-            parts[i] = unaryCalculate(operate, parts[i]);
+            parts[i] = calculate(operate, parts[i]);
             string AllString = parts[0];
             for(int j = 1; j < parts.Length; j++)
             {
