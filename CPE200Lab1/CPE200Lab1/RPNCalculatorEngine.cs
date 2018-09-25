@@ -30,14 +30,16 @@ namespace CPE200Lab1
                     
                     if (isOperator(number))
                     {
-                        if (numberStack.Count > 1)
-                        {
+                        try {
                         string secondNumber = numberStack.Pop();
                         string firstNumber = numberStack.Pop();
                         string answer = calculate(number, firstNumber, secondNumber);
                         numberStack.Push(answer);
                         }
-                        else return "E";
+                        catch (InvalidOperationException)
+                        { 
+                         return "E";
+                        }
                     }
                     else if (isOperatorX(number) && numberStack.Count >= 1)
                     {
@@ -50,9 +52,12 @@ namespace CPE200Lab1
                 
 
                 }
-            
+
+
+
             if (numberStack.Count == 1) return numberStack.Pop();
-                 else return "E";
+            else return "E";
+            
 
 
 
