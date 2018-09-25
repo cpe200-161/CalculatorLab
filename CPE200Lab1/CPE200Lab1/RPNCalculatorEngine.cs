@@ -18,7 +18,7 @@ namespace CPE200Lab1
             string ansWer;
             foreach (string text in part)
             {
-                if (isOperator(text)  )
+                if (isOperator(text))
                 {
                     try
                     {
@@ -27,30 +27,30 @@ namespace CPE200Lab1
                         ansWer = calculate(text, firstOperand, secondOperand);
                         numbers.Push(ansWer);
                     }
-                    catch
+                    catch (Exception)
                     {
                         return "E";
                     }
                 }
                 else if (isNumber(text))
                 {
-                    
+
                     numbers.Push(text);
-                    
+
                 }
-                else if(text == "√" || text =="1/x")
+                else if (text == "√" || text == "1/x")
                 {
                     ansWer = unaryCalculate(text, numbers.Pop());
                     numbers.Push(ansWer);
                 }
-                else 
+                else
                 {
                     return "E";
                 }
             }
-            if (numbers.Count == 1 )
+            if (numbers.Count == 1)
             {
-                return numbers.Peek();
+                return numbers.Pop();
             }
             else
             {
