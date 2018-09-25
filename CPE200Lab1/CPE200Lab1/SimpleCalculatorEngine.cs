@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class SimpleCalculatorEngine
+    public class SimpleCalculatorEngine : CalculatorEngine
     {
         protected double firstOperand, secondOperand;
 
         public void setFirstOperand (string num)
         {
-
+            firstOperand = double.Parse(num);
         }
 
         public void setSecondOperand(string num)
         {
-
+            secondOperand = double.Parse(num);
         }
 
         public string calculate(string oper)

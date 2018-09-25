@@ -12,41 +12,38 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        protected Stack<string> myStack;
+
         public string calculate(string oper)
         {
-            return oper;
-        }
+            myStack = new Stack<string>();
 
-        public string Process(string str)
-        {
-            protected Stack<string> numStack = new Stack<string>();
-
-            string[] numSet = str.Split(' ');
+            string[] numSet = oper.Split(' ');
 
             foreach(string text in numSet)
             {
                 if (isNumber(text))
                 {
-                    numStack.Push(text);
+                    myStack.Push(text);
                 }
 
                 else
                 {
-                    if ((text == "+" || text == "-" || text == "X" || text == "÷" || text == "%") && numStack.Count >= 2)
+                    if ((text == "+" || text == "-" || text == "X" || text == "÷" || text == "%") && myStack.Count >= 2)
                     {
-                        string second = numStack.Pop();
-                        string first = numStack.Pop();
+                        string second = myStack.Pop();
+                        string first = myStack.Pop();
                         if (text == "%")
                         {
-                            numStack.Push(first);
+                            myStack.Push(first);
                         }
-                        numStack.Push(calculate(text, first, second));
+                        myStack.Push(calculate(text, first, second));
                     }
 
-                    else if ((text == "√" || text == "1/x") && numStack.Count >= 1)
+                    else if ((text == "√" || text == "1/x") && myStack.Count >= 1)
                     {
-                        string num = numStack.Pop();
-                        numStack.Push(unaryCalculate(text, num));
+                        string num = myStack.Pop();
+                        myStack.Push(calculate(text, num));
                     }
 
                     else
@@ -56,12 +53,12 @@ namespace CPE200Lab1
                 }
             }
 
-            if (numStack.Count != 1)
+            if (myStack.Count != 1)
             {
                 return "E";
             }
 
-            return numStack.Peek();
+            return myStack.Peek();
         }
     }
 }
