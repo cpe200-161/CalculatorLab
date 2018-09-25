@@ -18,7 +18,7 @@ namespace CPE200Lab1
             if (strArray.Length == 1) { return "E"; }
            // if(strArray)
             // your code here
-            Stack fristob = new Stack();
+            Stack <string> fristob = new Stack<string>();
              
 
             foreach(string save in strArray)
@@ -31,8 +31,16 @@ namespace CPE200Lab1
                 {
                     if (save == "1/x" || save == "√")
                     {
-                        value = (fristob.Pop()).ToString();
+                        value = fristob.Pop();
                         fristob.Push(unaryCalculate(save, value, 8));
+                    }
+                    else if(save == "%")
+                    {
+                        value2 = fristob.Pop().ToString();
+                        value = fristob.Peek().ToString();
+                        
+                        fristob.Push(calculate(save, value, value2, 8));
+
                     }
                     else
                     {
@@ -46,13 +54,13 @@ namespace CPE200Lab1
                             return "E";
                         }
 
-                        if(save =="-" || save == "÷")
+                       // if (save == "-" || save == "÷") ;
 
-                        //fristob.Push(calculate(save, value2, value, 8));
+                        fristob.Push(calculate(save, value2, value, 8));
                     }
-                    
-                    //
                    
+                    //
+
                 }
                 
             }
