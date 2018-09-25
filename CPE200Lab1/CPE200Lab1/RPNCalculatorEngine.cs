@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine :CalculatorEngine
     {
+        /// <summary>
+        /// input equation for calculate
+        /// </summary>
+        /// <param name="str">equation for caculate </param>
+        /// <returns>result of equation</returns>
         public string Process(string str)
         {
             string firstOperand;
@@ -24,16 +29,18 @@ namespace CPE200Lab1
                 }
                 else if(isOperator(list))
                 {
-                    if (Operands.Count < 2 && list!="%" && list!= "√" && list != "1/X")
-                    {
-                        return "E";
-                    }
                     if (list == "+" || list == "-" || list == "X" || list == "÷")
                     {
-                        secondOperand = Operands.Pop();
-                        firstOperand = Operands.Pop();
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
+                        try
+                        {
+                            secondOperand = Operands.Pop();
+                            firstOperand = Operands.Pop();
+                            result = calculate(list, firstOperand, secondOperand);
+                            Operands.Push(result);
+                        }catch(Exception e)
+                        {
+                            return "E";
+                        }
                     }
                     else if(list == "%")
                     {
