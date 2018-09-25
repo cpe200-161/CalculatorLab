@@ -103,7 +103,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -181,13 +181,13 @@ namespace CPE200Lab1
                     lblDisplay.Text = member;
                     break;
                 case "MS":
-                    member = engine.Process(lblDisplay.Text);
+                    member = engine.calculate(lblDisplay.Text);
                     break;
                 case "M+":
-                    member = (float.Parse(member) + float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                    member = (float.Parse(member) + float.Parse(engine.calculate(lblDisplay.Text))).ToString();
                     break;
                 case "M-":
-                    member = (float.Parse(member) - float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                    member = (float.Parse(member) - float.Parse(engine.calculate(lblDisplay.Text))).ToString();
                     break;
             }
         }

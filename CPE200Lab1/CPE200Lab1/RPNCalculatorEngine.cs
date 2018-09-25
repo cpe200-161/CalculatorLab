@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public string Process(string str)
+        protected Stack<string> myStack;
+
+        public string calculate(string oper)
         {
-            // your code here
-            Stack<string> number = new Stack<string>();
-            string[] part = str.Split(' ');
+            myStack = new Stack<string>();
+            string[] part = oper.Split(' ');
             string firstOp;
             string seccondOp;
             
@@ -24,31 +25,38 @@ namespace CPE200Lab1
             {
                 if (isNumber(text))
                 {
-                    number.Push(text);
+                    myStack.Push(text);
                 }
-                else if(isOperator(text) && number.Count >= 2)
+                else if(isOperator(text) && myStack.Count >= 2)
                 {
-                    seccondOp = number.Pop();
-                    firstOp = number.Pop();
+                    seccondOp = myStack.Pop();
+                    firstOp = myStack.Pop();
                     if(text == "%")
                     {
-                        number.Push(firstOp);
+                        myStack.Push(firstOp);
                     }
-                    number.Push(calculate(text, firstOp, seccondOp));
+                    myStack.Push(calculate(text, firstOp, seccondOp));
                 }
-                else if(isOperator2(text) && number.Count >= 1)
+                else try
                 {
-                    string num = number.Pop();
-                    number.Push(unaryCalculate(text, num));
+                    string num = myStack.Pop();
+                    myStack.Push(calculate(text, num));
                 }
-                else
+                catch (Exception)
                 {
                     return "E";
                 }
             }
-            if(number.Count == 1)
+            if(myStack.Count == 1)
             {
-                return number.Peek();
+                try
+                {
+                   return myStack.Peek();
+                }
+                catch (Exception)
+                {
+                    return "E";
+                }
             }
             return "E";
         }
