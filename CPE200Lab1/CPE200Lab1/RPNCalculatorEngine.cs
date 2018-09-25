@@ -9,6 +9,12 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// process to calculate 2 number which input 
+        /// </summary>
+        /// <param name="str">str is string  input to process</param>
+        /// 
+        /// <returns>result of equations</returns>
         public string Process(string str)
         {
             string value;
@@ -44,12 +50,12 @@ namespace CPE200Lab1
                     }
                     else
                     {
-                        if (fristob.Count > 1)
+                        try
                         {
                             value = fristob.Pop().ToString();
                             value2 = fristob.Pop().ToString();
                         }
-                        else
+                        catch
                         {
                             return "E";
                         }
