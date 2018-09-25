@@ -6,12 +6,65 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        
+        public override string Process(string str)
         {
-            // your code here
-            return "E";
+            Stack<string> numberStack = new Stack<string>();
+            string[] numbers = str.Split(' ');
+            if (numbers.Length < 3 || isOperator(numbers[0]) || isOperator(numbers[1]))
+            {
+                return "E";
+            }
+
+            foreach (string number in numbers)
+                {
+                    if (isNumber(number))
+                    {
+                        numberStack.Push(number);
+                    }
+                    
+                    if (isOperator(number))
+                    {
+                        try {
+                        string secondNumber = numberStack.Pop();
+                        string firstNumber = numberStack.Pop();
+                        string answer = calculate(number, firstNumber, secondNumber);
+                        numberStack.Push(answer);
+                        }
+                        catch (InvalidOperationException)
+                        { 
+                         return "E";
+                        }
+                    }
+                    else if (isOperatorX(number) )
+                    {
+                        try
+                        {
+                        string UOperand = numberStack.Pop();
+                        string answer = unaryCalculate(number, UOperand);
+                        numberStack.Push(answer);
+                        }
+                        catch (InvalidOperationException) {
+                        return "E";
+                        }
+                    }
+
+                
+
+                }
+
+
+
+            if (numberStack.Count == 1) return numberStack.Pop();
+            else return "E";
+            
+
+
+
         }
+        
+
     }
 }

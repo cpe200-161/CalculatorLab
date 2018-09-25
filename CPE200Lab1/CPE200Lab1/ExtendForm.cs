@@ -16,11 +16,15 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine RPN;
+          
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RPN = new RPNCalculatorEngine();
+            
         }
 
         private bool isOperator(char ch)
@@ -30,6 +34,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':               
                     return true;
             }
             return false;
@@ -53,7 +58,19 @@ namespace CPE200Lab1
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
         }
-
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
+        {
+            string digit = ((Button)sender).Text;
+            switch (digit)
+            {
+                case "√":
+                    lblDisplay.Text += " " + "√";
+                    break;
+                case "1/x":
+                    lblDisplay.Text += " " + "1/x";
+                    break;
+            }
+        }
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -63,7 +80,8 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+           
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2 ]))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -101,7 +119,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPN.Process(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -165,5 +183,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        
     }
 }
