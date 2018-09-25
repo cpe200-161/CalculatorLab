@@ -6,11 +6,60 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
-            // your code here
+            Stack<string> stack = new Stack<string>();
+            string[] data = str.Split(' ');
+
+            if (data.Length < 3 || data.Length % 2 == 0 || isOperator(data[0]) || isOperator(data[1]))
+            {
+                return "E";
+            }
+            else
+            {
+                foreach (string number in data)
+                {
+                    if (isNumber(number))
+                    {
+                        stack.Push(number);
+                    }
+                    else if (isOperator(number)) //&& stack.Count > 1)
+                    {
+                        try
+                        {
+                            string secondOperand = stack.Pop();
+                            string firstOperand = stack.Pop();
+                            string result = calculate(number, firstOperand, secondOperand);
+                            stack.Push(result);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
+                        
+
+                    }
+                    else if (isOperator1(number)) //&& stack.Count >= 1)
+                    {
+                        try
+                        {
+                            string Operand = stack.Pop();
+                            string result2 = unaryCalculate(number, Operand);
+                            stack.Push(result2);
+                        }
+                        catch(InvalidOperationException)
+                        {
+                            return "E";
+                        }
+                    }
+                }
+                if (stack.Count == 1)
+                {
+                    return stack.Peek();
+                }
+            }
             return "E";
         }
     }
