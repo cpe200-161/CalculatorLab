@@ -17,7 +17,7 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string operate;
+        protected string operate;
         private double memory;
         protected SimpleCalculatorEngine myEngine;
 
