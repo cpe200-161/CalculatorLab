@@ -8,10 +8,18 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine : TheCalculatorEngine
     {
-
-        public string calculate(string str)
+        protected double firstOperand,secondOperand;
+        public void setFirstOperand(string num)
         {
-            string[] parts = str.Split(' ');
+            firstOperand= Convert.ToDouble(num);
+        }
+        public void setSecondOperand(string num)
+        {
+            secondOperand = Convert.ToDouble(num);
+        }
+        public string calculate(string oper)
+        {
+            string[] parts = oper.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";

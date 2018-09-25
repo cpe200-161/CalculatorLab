@@ -9,10 +9,10 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : TheCalculatorEngine 
     {
         String memory;
-        public string Process(string str)
+        public string calculate(string oper)
         {
             Stack<string> myStack = new Stack<string>();
-            string[] parts = str.Split(' ');
+            string[] parts = oper.Split(' ');
             bool beforeopereter=false,checkmemory=false,checkoperate=false;
             foreach (string number in parts)
             {
