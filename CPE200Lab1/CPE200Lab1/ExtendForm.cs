@@ -15,14 +15,14 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private TheCalculatorEngine engine;
         private RPNCalculatorEngine RPN;
           
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new TheCalculatorEngine();
             RPN = new RPNCalculatorEngine();
             
         }
@@ -119,7 +119,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = RPN.Process(lblDisplay.Text);
+            string result = RPN.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";

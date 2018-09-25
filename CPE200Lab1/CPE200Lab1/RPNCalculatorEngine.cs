@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         
        
-        public override string Process(string str)
+        public override string calculate(string str)
         {
             Stack<string> numberStack = new Stack<string>();
             
