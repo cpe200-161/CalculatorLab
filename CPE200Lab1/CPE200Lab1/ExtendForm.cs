@@ -16,12 +16,12 @@
             private bool isContainDot = false;
             private bool isSpaceAllowed = false;
             private double memoryValue = 0;
-            private CalculatorEngine engine;
+            
             private RPNCalculatorEngine RPN;
             public ExtendForm()
             {
                 InitializeComponent();
-                engine = new CalculatorEngine();
+                
                 RPN = new RPNCalculatorEngine();
 
             }
@@ -104,7 +104,8 @@
 
             private void btnEqual_Click(object sender, EventArgs e)
             {
-                string result = RPN.Process(lblDisplay.Text);
+                
+                string result = RPN.calculate(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";
@@ -156,17 +157,20 @@
                 }
             }
 
-            private void btnSpace_Click(object sender, EventArgs e)
+        private void btnSpace_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
             {
-                if(lblDisplay.Text is "Error")
-                {
-                    return;
-                }
-                if(isSpaceAllowed)
-                {
-                    lblDisplay.Text += " ";
-                    isSpaceAllowed = false;
-                }
+                return;
+            }
+            if (isSpaceAllowed)
+            {
+                lblDisplay.Text += " ";
+                isSpaceAllowed = false;
+            }
+        
+                    
+                
             }
 
             private void buttonUnary(object sender, EventArgs e)

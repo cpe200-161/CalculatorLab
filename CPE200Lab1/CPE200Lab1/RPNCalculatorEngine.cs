@@ -9,23 +9,24 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        protected Stack<string> myStack;
+        public string calculate(string str)
         {
-            Stack<string> numbers = new Stack<string>();
+            myStack = new Stack<string>();
             string[] part = str.Split(' ');
             string secondOperand;
             string firstOperand;
             string ansWer;
             foreach (string text in part)
             {
-                if (isOperator(text)  )
+                if (isOperator(text))
                 {
-                    if (numbers.Count >=2  )
+                    if (myStack.Count >= 2)
                     {
-                        secondOperand = numbers.Pop();
-                        firstOperand = numbers.Pop();
+                        secondOperand = myStack.Pop();
+                        firstOperand = myStack.Pop();
                         ansWer = calculate(text, firstOperand, secondOperand);
-                        numbers.Push(ansWer);
+                        myStack.Push(ansWer);
                     }
                     else
                     {
@@ -34,23 +35,23 @@ namespace CPE200Lab1
                 }
                 else if (isNumber(text))
                 {
-                    
-                    numbers.Push(text);
-                    
+
+                    myStack.Push(text);
+
                 }
-                else if(text == "√" || text =="1/x")
+                else if (text == "√" || text == "1/x")
                 {
-                    ansWer = unaryCalculate(text, numbers.Pop());
-                    numbers.Push(ansWer);
+                    ansWer = calculate(text, myStack.Pop());
+                    myStack.Push(ansWer);
                 }
-                else 
+                else
                 {
                     return "E";
                 }
             }
-            if (numbers.Count == 1 )
+            if (myStack.Count == 1)
             {
-                return numbers.Peek();
+                return myStack.Peek();
             }
             else
             {
