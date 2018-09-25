@@ -127,7 +127,6 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
                     break;
             }
             isAllowBack = false;
@@ -183,7 +182,6 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            // already contain negative sign
             if (lblDisplay.Text.Length is 8)
             {
                 return;
