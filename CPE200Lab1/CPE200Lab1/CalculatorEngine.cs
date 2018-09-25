@@ -8,13 +8,22 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+		/// <summary>
+		/// Check string is double number 
+		/// </summary>
+		/// <param name="str">String for check</param>
+		/// <returns>True is number or false if isn't number</returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
-        public bool isOperator(string str)
+		/// <summary>
+		/// Check string is Operator
+		/// </summary>
+		/// <param name="str">String for check</param>
+		/// <returns>True is Operator or false isn't Operator</returns>
+		public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -28,8 +37,12 @@ namespace CPE200Lab1
             }
             return false;
         }
-
-        public string Process(string str)
+		/// <summary>
+		/// check equation model and return result
+		/// </summary>
+		/// <param name="str">String for check equation model</param>
+		/// <returns>The result of the equation or Error if worng equation model</returns>
+		public string Process(string str)
         {
 			try
 			{
@@ -48,7 +61,12 @@ namespace CPE200Lab1
 				return "E";
 			}
 		}
-
+		/// <summary>
+		/// Division and return result
+		/// </summary>
+		/// <param name="firstOperand">first number for division</param>
+		/// <param name="secondOperand">second number for division</param>
+		/// <returns>will return Error if division by zero || return result of division two number when do not division by zero</returns>
 		public string safeDevision(string firstOperand, string secondOperand)
 		{
 			double result;
@@ -77,6 +95,13 @@ namespace CPE200Lab1
 				return resultNew.ToString();
 			}
 		}
+		/// <summary>
+		/// Unary calculate
+		/// </summary>
+		/// <param name="operate">operater for calculate</param>
+		/// <param name="operand">number for calculate</param>
+		/// <param name="maxOutputSize"></param>
+		/// <returns>result of unary calculate</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -118,7 +143,14 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+		/// <summary>
+		/// calculate of two number and return result
+		/// </summary>
+		/// <param name="operate"> Operator for calculate</param>
+		/// <param name="firstOperand">first number for calculate</param>
+		/// <param name="secondOperand">second number for calculate</param>
+		/// <param name="maxOutputSize">fix max lenght number of result</param>
+		/// <returns>result calculate of two double number</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)

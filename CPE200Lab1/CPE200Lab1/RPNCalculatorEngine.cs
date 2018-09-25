@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine:CalculatorEngine
     {
+		/// <summary>
+		/// Calculate and check RPN equation
+		/// </summary>
+		/// <param name="str">String for check</param>
+		/// <returns>result RPN equation calculate</returns>
 		public string Process(string str)
 		{
 			string[] RPNparts = str.Split(' ');
