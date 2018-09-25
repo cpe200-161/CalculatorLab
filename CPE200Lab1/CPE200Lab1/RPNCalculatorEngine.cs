@@ -16,34 +16,44 @@ namespace CPE200Lab1
             
             
             string[] numbers = str.Split(' ');
-           
-                foreach (string number in numbers)
+            if (numbers.Length < 3 || isOperator(numbers[0]) || isOperator(numbers[1]))
+            {
+                return "E";
+            }
+
+            foreach (string number in numbers)
                 {
                     if (isNumber(number))
                     {
                         numberStack.Push(number);
                     }
-                    else
-                    if (isOperator(number) && numberStack.Count > 1)
+                    
+                    if (isOperator(number))
                     {
+                        if (numberStack.Count > 1)
+                        {
                         string secondNumber = numberStack.Pop();
-                        string firstNumber  = numberStack.Pop();
+                        string firstNumber = numberStack.Pop();
                         string answer = calculate(number, firstNumber, secondNumber);
                         numberStack.Push(answer);
+                        }
+                        else return "E";
                     }
-                    else if(isOperatorX(number) && numberStack.Count>=1)
+                    else if (isOperatorX(number) && numberStack.Count >= 1)
                     {
                         string UOperand = numberStack.Pop();
                         string answer = unaryCalculate(number, UOperand);
                         numberStack.Push(answer);
 
                     }
-                    else if (numberStack.Count == 1) return numberStack.Pop();
 
+                
 
                 }
-               
-           return "E";
+            
+            if (numberStack.Count == 1) return numberStack.Pop();
+                 else return "E";
+
 
 
         }
