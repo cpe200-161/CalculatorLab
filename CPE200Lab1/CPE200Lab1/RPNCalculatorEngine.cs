@@ -38,7 +38,7 @@ namespace CPE200Lab1
                     first = Stacknumber.Pop();
                     checkoperate = true;
                     beforeopereter = true;
-                    Stacknumber.Push(unaryCalculate(number, first));
+                    Stacknumber.Push(calculate(number, first));
                 }
                 else if (number== "1/x")
                 {
@@ -46,7 +46,7 @@ namespace CPE200Lab1
                     first = Stacknumber.Pop();
                     checkoperate = true;
                     beforeopereter = true;
-                    Stacknumber.Push(unaryCalculate(number,first));
+                    Stacknumber.Push(calculate(number,first));
                 }
                 else if (number == "%")
                 {
