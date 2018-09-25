@@ -9,12 +9,9 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : CalculatorEngine
     {
         
-       
         public override string Process(string str)
         {
             Stack<string> numberStack = new Stack<string>();
-            
-            
             string[] numbers = str.Split(' ');
             if (numbers.Length < 3 || isOperator(numbers[0]) || isOperator(numbers[1]))
             {
