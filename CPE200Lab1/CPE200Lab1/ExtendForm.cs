@@ -19,13 +19,13 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         private double sum;
         private string temp;
-        private TheCalculatorEngine engine;
-        private RPNCalculatorEngine myEngine;
+        
+        protected RPNCalculatorEngine myEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new TheCalculatorEngine();
+            
             myEngine = new RPNCalculatorEngine();
         }
 
