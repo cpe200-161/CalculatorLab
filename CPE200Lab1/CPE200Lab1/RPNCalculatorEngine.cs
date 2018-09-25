@@ -42,7 +42,7 @@ namespace CPE200Lab1
                     else if (isOperatorX(number) && numberStack.Count >= 1)
                     {
                         string UOperand = numberStack.Pop();
-                        string answer = unaryCalculate(number, UOperand);
+                        string answer = calculate(number, UOperand);
                         numberStack.Push(answer);
 
                     }
@@ -52,7 +52,7 @@ namespace CPE200Lab1
                 }
             
             if (numberStack.Count == 1) return numberStack.Pop();
-                 else return "E";
+            else return "E";
 
 
 
