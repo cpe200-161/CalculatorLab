@@ -16,14 +16,12 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private bool isequal = false;
-        private CalculatorEngine engine;
-        private RPNCalculatorEngine rpnEngine;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-            rpnEngine = new RPNCalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -68,11 +66,6 @@ namespace CPE200Lab1
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
-            if (isequal)
-            {
-                lblDisplay.Text = "";
-                isequal = false;
-            }
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -120,17 +113,8 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = null;
-            string[] parts = lblDisplay.Text.Split(' ');
-
-            if (engine.isOperator(parts[1]))
-            {
-                result = engine.Process(lblDisplay.Text);
-            }
-            else
-            {
-                result = rpnEngine.Process(lblDisplay.Text);
-            }
+            string result = engine.Process(lblDisplay.Text);
+            
             if (result is "E")
             {
                 lblDisplay.Text = "Error";

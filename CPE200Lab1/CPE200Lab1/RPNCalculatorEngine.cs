@@ -8,6 +8,13 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// calculate postfix type 
+        /// use stack push number then pop it when input is operator use 2 number and 1 operator 
+        /// put it to function calculate in CalculateEngine class for solve a result then return it to output in Extendform
+        /// </summary>
+        /// <param name="str">str had input form lbldisplay.text then split it to parts </param>
+        /// <returns>return answer of calculate but if wrong this function will return E then out put to user "ERROR"</returns>
         public string Process(string str)
         {
             // your code here
@@ -15,13 +22,7 @@ namespace CPE200Lab1
 
             string secondOperand = null;
             string firstOperand = null;
-            string answer = null;
             string[] parts = str.Split(' ');
-
-            if (!(isNumber(parts[0]) && isNumber(parts[1])))
-            {
-                return "E";
-            }
 
             for (int i = 0; i < parts.Length; i++)
             {
@@ -34,35 +35,40 @@ namespace CPE200Lab1
                 {
                     number.Push(parts[i]);
                 }
-               
                 else if(isOperator(parts[i]))
                 {
-                    if (number.Count < 2)
-                    {
-                        return "E";
-                    }
                     if (parts[i] == "1/x" || parts[i] == "√")
                     {
                         secondOperand = number.Pop();
                         number.Push(unaryCalculate(parts[i], secondOperand));
                         continue;
                     }
+                    
                     if (parts[i] == "%")
                     {
-                        secondOperand = number.Pop();
-                        firstOperand = number.Peek();
-                        number.Push(calculate(parts[i], firstOperand, secondOperand));
+                        try
+                        {
+                            secondOperand = number.Pop();
+                            firstOperand = number.Peek();
+                            number.Push(calculate(parts[i], firstOperand, secondOperand));
+                        }
+                        catch
+                        {
+                            number.Push(calculate(parts[i],"1", secondOperand));
+                        }
+                        
                         continue;
                     }
+                    try
+                    {
                         secondOperand = number.Pop();
                         firstOperand = number.Pop();
-                        answer = calculate(parts[i], firstOperand, secondOperand);
-                        number.Push(answer);
-                    
-                }
-                else
-                {
-                    return "E";
+                        number.Push(calculate(parts[i], firstOperand, secondOperand));
+                    }
+                    catch(Exception e)
+                    {
+                        return "E";
+                    }
                 }
             }
 
@@ -71,7 +77,7 @@ namespace CPE200Lab1
                 return "E";
             }
 
-            return answer;
+            return number.Peek();
         }
     }
 }
