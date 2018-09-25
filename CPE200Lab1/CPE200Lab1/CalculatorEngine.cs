@@ -62,7 +62,7 @@ namespace CPE200Lab1
         /// <param name="operate">operator for calculate</param>
         /// <param name="operand">Number for calculate</param>
         /// <param name="maxOutputSize">Length of number</param>
-        /// <returns></returns>
+        /// <returns>result</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -86,7 +86,7 @@ namespace CPE200Lab1
         /// <param name="firstOperand">the first number for calculate</param>
         /// <param name="secondOperand">the second number for calculate</param>
         /// <param name="maxOutputSize">Length of number</param>
-        /// <returns></returns>
+        /// <returns>result</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
