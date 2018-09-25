@@ -25,13 +25,24 @@ namespace CPE200Lab1
 						if (token == "√" || token == "1/x")
 						{
 							myStack.Push(unaryCalculate(token, myStack.Pop()));
-							break;
 						}
-						string secondOperand = myStack.Pop();
-						if (token == "%")
-							myStack.Push(calculate(token, myStack.Peek(), secondOperand));
 						else
-							myStack.Push(calculate(token, myStack.Pop(), secondOperand));
+						{
+							string secondOperand = myStack.Pop();
+							if (token == "%")
+							{
+								if (myStack.Count == 0)
+								{
+									myStack.Push(calculate(token, "1", secondOperand));
+								}
+								else
+								{
+									myStack.Push(calculate(token, myStack.Peek(), secondOperand));
+								}
+							}
+							else
+								myStack.Push(calculate(token, myStack.Pop(), secondOperand));
+						}
 					}
 					catch (Exception e)
 					{

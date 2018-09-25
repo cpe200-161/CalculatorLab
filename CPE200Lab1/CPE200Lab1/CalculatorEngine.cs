@@ -31,12 +31,19 @@ namespace CPE200Lab1
 
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-			if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
+			try
 			{
-				return calculate(parts[1], parts[0], parts[2], 4);
+				string[] parts = str.Split(' ');
+				if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+				{
+					return "E";
+				}
+				else
+				{
+					return calculate(parts[1], parts[0], parts[2], 4);
+				}
 			}
-			else
+			catch (Exception e)
 			{
 				return "E";
 			}
@@ -65,7 +72,10 @@ namespace CPE200Lab1
 				return result.ToString();
 			}
 			else
-				return result.ToString();
+			{
+				resultNew = Convert.ToDouble(result.ToString("N" + remainLength));
+				return resultNew.ToString();
+			}
 		}
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -74,7 +84,8 @@ namespace CPE200Lab1
                 case "√":
                     {
                         double result;
-                        string[] parts;
+						double resultNew;
+						string[] parts;
                         int remainLength;
 
                         result = Math.Sqrt(Convert.ToDouble(operand));
@@ -88,8 +99,12 @@ namespace CPE200Lab1
 						{
 							return result.ToString();
 						}
-                        return result.ToString("N" + remainLength);
-                    }
+						else
+						{
+							resultNew = Convert.ToDouble(result.ToString("N" + remainLength));
+							return resultNew.ToString();
+						}
+					}
                 case "1/x":
 					try
 					{
