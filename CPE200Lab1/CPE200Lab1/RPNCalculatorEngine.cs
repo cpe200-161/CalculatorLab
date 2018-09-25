@@ -11,7 +11,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public new string calculate(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -47,9 +47,9 @@ namespace CPE200Lab1
                     string firstnumber;
                     firstnumber = numbers.Peek();
                     numbers.Pop();
-                    numbers.Push(unaryCalculate(parts[1], firstnumber));
+                    numbers.Push(calculate(parts[1], firstnumber));
                 }
-                    return numbers.Peek();
+                return numbers.Peek();
             }
             else
             {
