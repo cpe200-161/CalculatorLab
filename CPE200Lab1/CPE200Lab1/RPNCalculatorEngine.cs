@@ -13,29 +13,52 @@ namespace CPE200Lab1
             Stack<string> stack = new Stack<string>();
             string[] data = str.Split(' ');
 
-            foreach (string number in data)
+            if (data.Length < 3 || data.Length % 2 == 0 || isOperator(data[0]) || isOperator(data[1]))
             {
-                if (isNumber(number))
+                return "E";
+            }
+            else
+            {
+                foreach (string number in data)
                 {
-                    stack.Push(number);
+                    if (isNumber(number))
+                    {
+                        stack.Push(number);
+                    }
+                    else if (isOperator(number)) //&& stack.Count > 1)
+                    {
+                        try
+                        {
+                            string secondOperand = stack.Pop();
+                            string firstOperand = stack.Pop();
+                            string result = calculate(number, firstOperand, secondOperand);
+                            stack.Push(result);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
+                        
+
+                    }
+                    else if (isOperator1(number)) //&& stack.Count >= 1)
+                    {
+                        try
+                        {
+                            string Operand = stack.Pop();
+                            string result2 = unaryCalculate(number, Operand);
+                            stack.Push(result2);
+                        }
+                        catch(InvalidOperationException)
+                        {
+                            return "E";
+                        }
+                    }
                 }
-                else if (isOperator(number) && stack.Count > 1) //
-                {
-                    string secondOperand = stack.Pop();
-                    string firstOperand = stack.Pop();
-                    string result = calculate(number, firstOperand, secondOperand);
-                    stack.Push(result);
-                }
-                else if (isOperator1(number) && stack.Count >= 1)
-                {
-                    string Operand = stack.Pop();
-                    string result2 = unaryCalculate(number, Operand);
-                    stack.Push(result2);
-                }
-                else if (stack.Count == 1)
+                if (stack.Count == 1)
                 {
                     return stack.Peek();
-                }      
+                }
             }
             return "E";
         }
