@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        public bool isNumber(string str)
+        private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -16,7 +16,8 @@ namespace CPE200Lab1
 
         public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -29,15 +30,17 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
 
         }
+
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -64,7 +67,7 @@ namespace CPE200Lab1
                         if (Str_result.Contains("."))
                         {
                             Str_result = Str_result.TrimEnd('0');
-                            if(Str_result.EndsWith("."))
+                            if (Str_result.EndsWith("."))
                             {
                                 Str_result = Str_result.TrimEnd('.');
                             }
