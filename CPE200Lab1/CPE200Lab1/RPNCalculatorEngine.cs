@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public new string Process(string str) 
+        protected Stack<string> myStack = new Stack<string>();
+        protected bool hasDot;
+        protected string oper;
+
+        public new string calculate(string str) 
         {
             string keep;
             String firstOperand;
             String secondOperand;
             String opeRator;
             int sizeStack = 0;
-            CalculatorEngine engine = new CalculatorEngine();
-            Stack<string> numbersStack = new Stack<string>();
+            TheCalculatorEngine engine = new TheCalculatorEngine();
+            
             string[] numBers = str.Split(' ');
 
             if (numBers.Length < 3)
@@ -30,7 +34,7 @@ namespace CPE200Lab1
                 if (isNumber(numBers[i]))    
                 {
                     
-                    numbersStack.Push(numBers[i]);
+                    myStack.Push(numBers[i]);
                     sizeStack++;
                    
                 }
@@ -42,17 +46,17 @@ namespace CPE200Lab1
                     if (sizeStack != 0)
                     {
 
-                        secondOperand = numbersStack.Pop();
+                        secondOperand = myStack.Pop();
                         if (opeRator == "%" && sizeStack == 1)
                         {
-                            numbersStack.Push(engine.calculate(opeRator, "1",secondOperand, 8));
-                            return numbersStack.Pop();
+                            myStack.Push(engine.calculate(opeRator, "1",secondOperand, 8));
+                            return myStack.Pop();
                         }
                         sizeStack--;
                         if (opeRator == "√" || opeRator == "1/x")
                         {
                             Console.WriteLine("Enter unarycalculate SecondOperand "+secondOperand+"Operator "+opeRator);
-                            numbersStack.Push(engine.unaryCalculate(opeRator, secondOperand, 8));
+                            myStack.Push(engine.calculate(opeRator, secondOperand, 8));
                             Console.WriteLine("Complete!");
                             sizeStack++;
                             
@@ -62,17 +66,17 @@ namespace CPE200Lab1
                             sizeStack = 0;
                             return "E";
                         }
-                        firstOperand = numbersStack.Pop();
+                        firstOperand = myStack.Pop();
                         
                         if (opeRator== "√")
                         {
-                            numbersStack.Push(firstOperand);
+                            myStack.Push(firstOperand);
                         }
                         else if (opeRator == "+" || opeRator == "-" || opeRator == "X" || opeRator == "÷")
                         {
                  
                             sizeStack--;
-                            numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
+                            myStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
                             
                             sizeStack++;
                         }
@@ -80,7 +84,7 @@ namespace CPE200Lab1
                         {
                             sizeStack--;
                             keep = firstOperand;
-                            numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
+                            myStack.Push(engine.calculate(opeRator, firstOperand, secondOperand, 8));
                             firstOperand = keep;
                             sizeStack++;
                         }
@@ -91,7 +95,7 @@ namespace CPE200Lab1
             if (sizeStack == 1)
             {
                 sizeStack = 0;
-                return numbersStack.Pop();
+                return myStack.Pop();
             }
             else
             {

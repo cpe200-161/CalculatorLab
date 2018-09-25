@@ -12,19 +12,21 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
+        protected bool hasDot;
+        protected string oper;
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private double sum;
         private string temp;
-        private CalculatorEngine engine;
-        private RPNCalculatorEngine RPNengine;
+        private TheCalculatorEngine engine;
+        private RPNCalculatorEngine myEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-            RPNengine = new RPNCalculatorEngine();
+            engine = new TheCalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -63,7 +65,7 @@ namespace CPE200Lab1
                 isContainDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
-            RPNengine.Process(lblDisplay.Text);
+            myEngine.calculate(lblDisplay.Text);
             isSpaceAllowed = true;
         }
 
@@ -77,7 +79,7 @@ namespace CPE200Lab1
             isContainDot = false;
             
             lblDisplay.Text += " " + ((Button)sender).Text + " ";
-            RPNengine.Process(lblDisplay.Text);
+            myEngine.calculate(lblDisplay.Text);
             isSpaceAllowed = false;
             
         }
@@ -114,7 +116,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = RPNengine.Process(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -189,7 +191,7 @@ namespace CPE200Lab1
         private void Memory_recall_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = sum.ToString();
-            RPNengine.Process(lblDisplay.Text);
+            myEngine.calculate(lblDisplay.Text);
             isSpaceAllowed = true;
         }
 
