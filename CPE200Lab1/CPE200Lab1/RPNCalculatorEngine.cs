@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine 
+    public class RPNCalculatorEngine : TheCalculatorEngine 
     {
         String memory;
         public string Process(string str)
         {
-            Stack<string> Stacknumber = new Stack<string>();
+            Stack<string> myStack = new Stack<string>();
             string[] parts = str.Split(' ');
             bool beforeopereter=false,checkmemory=false,checkoperate=false;
             foreach (string number in parts)
@@ -19,43 +19,43 @@ namespace CPE200Lab1
                 if (isOperator(number))
                 {
                     string first, second;
-                    if (Stacknumber.Count < 2 && checkoperate == false)
+                    if (myStack.Count < 2 && checkoperate == false)
                     {
                         return "E";
                     }
-                    first = Stacknumber.Pop();
-                    second = Stacknumber.Pop();
-                    Stacknumber.Push(calculate(number, second, first));
+                    first = myStack.Pop();
+                    second = myStack.Pop();
+                    myStack.Push(calculate(number, second, first));
                     beforeopereter = true;
                 }
                 else if(isNumber(number)) 
                 {
-                    Stacknumber.Push(number);
+                    myStack.Push(number);
                 }
                 else if(number == "√")
                 {
                     string first;
-                    first = Stacknumber.Pop();
+                    first = myStack.Pop();
                     checkoperate = true;
                     beforeopereter = true;
-                    Stacknumber.Push(calculate(number, first));
+                    myStack.Push(calculate(number, first));
                 }
                 else if (number== "1/x")
                 {
                     string first;
-                    first = Stacknumber.Pop();
+                    first = myStack.Pop();
                     checkoperate = true;
                     beforeopereter = true;
-                    Stacknumber.Push(calculate(number,first));
+                    myStack.Push(calculate(number,first));
                 }
                 else if (number == "%")
                 {
                     beforeopereter = true;
                     string first, second;
-                    first = Stacknumber.Pop();
-                    second = Stacknumber.Pop();
+                    first = myStack.Pop();
+                    second = myStack.Pop();
                     //Stacknumber.Push(second);
-                    Stacknumber.Push(calculate(number, second, first));
+                    myStack.Push(calculate(number, second, first));
                 }
                 
                 switch (number)
@@ -71,28 +71,28 @@ namespace CPE200Lab1
                         break;
                     case "MS":
                         beforeopereter = true;
-                        memory = Stacknumber.Pop();
-                        Stacknumber.Push(memory);
+                        memory = myStack.Pop();
+                        myStack.Push(memory);
                         checkmemory = true;
                         break;
                     case "M+":
                         String kebmemory1;
                         checkmemory = true;
-                        kebmemory1 = (Convert.ToDouble(Stacknumber.Pop()) + Convert.ToDouble(memory)).ToString();
+                        kebmemory1 = (Convert.ToDouble(myStack.Pop()) + Convert.ToDouble(memory)).ToString();
                         beforeopereter = true;
                         memory = kebmemory1;
                         break;
                     case "M-":
                         String kebmemory2;
                         checkmemory = true;
-                        kebmemory2 = (Convert.ToDouble(memory) - Convert.ToDouble(Stacknumber.Pop())).ToString();
+                        kebmemory2 = (Convert.ToDouble(memory) - Convert.ToDouble(myStack.Pop())).ToString();
                         beforeopereter = true;
                         memory = kebmemory2;
                         break;
                 }
 
             }
-            if (Stacknumber.Count > 1 || beforeopereter == false)
+            if (myStack.Count > 1 || beforeopereter == false)
             {
                 return "E";
             }
@@ -103,7 +103,7 @@ namespace CPE200Lab1
             }
             else
             {
-                return Stacknumber.Pop();
+                return myStack.Pop();
             }
             
         }
