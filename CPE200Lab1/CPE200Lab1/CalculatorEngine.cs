@@ -75,7 +75,7 @@ namespace CPE200Lab1
                         return Str_result;
                     }
                 case "1/x":
-                    if (operand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
@@ -103,6 +103,10 @@ namespace CPE200Lab1
                         }
                         return Str_result;
                     }
+                    catch (Exception)
+                    {
+                        return "E";
+                    }
                     break;
             }
             return "E";
@@ -123,7 +127,7 @@ namespace CPE200Lab1
                         return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                     case "÷":
                         // Not allow devide be zero
-                        if (secondOperand != "0")
+                        try
                         {
                             double result;
                             string[] parts;
@@ -150,6 +154,10 @@ namespace CPE200Lab1
                                 }
                             }
                             return Str_result;
+                        }
+                        catch (Exception)
+                        {
+                            return "E";
                         }
                         break;
                     case "%":
