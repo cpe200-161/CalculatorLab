@@ -13,9 +13,11 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        protected bool isContainDot = false;
+        protected string oper;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
+        protected RPNCalculatorEngine myEngine;
         public string memory = "0";
 
         public ExtendForm()
@@ -78,7 +80,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            // check if the last one is operator
             string current = lblDisplay.Text;
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {

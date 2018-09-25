@@ -12,10 +12,14 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        public string calculate(string oper)
+        {
+            return oper;
+        }
+
         public string Process(string str)
         {
-            // your code here
-            Stack<string> numStack = new Stack<string>();
+            protected Stack<string> numStack = new Stack<string>();
 
             string[] numSet = str.Split(' ');
 

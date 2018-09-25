@@ -12,14 +12,15 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
-        private bool hasDot;
+        protected bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string operate;
+        protected string operate;
         private double memory;
         private CalculatorEngine engine;
+        protected SimpleCalculatorEngine myEngine;
 
         private void resetAll()
         {
@@ -29,9 +30,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
-        }
-
-      
+        }   
 
         public MainForm()
         {
