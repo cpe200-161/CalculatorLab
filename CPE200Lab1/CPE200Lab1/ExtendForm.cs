@@ -15,12 +15,13 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
+        public string memory = "0";
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,6 +31,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -65,7 +67,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
                 isSpaceAllowed = false;
             }
         }
@@ -163,6 +165,39 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        public void mFunction(object sender, EventArgs e)
+        {
+            string mfc = ((Button)sender).Text;
+
+            if (float.TryParse((engine.Process(lblDisplay.Text)), out float f))
+            {
+                if (mfc == "MC")
+                {
+                    memory = "0";
+                }
+
+                else if (mfc == "MR")
+                {
+                    lblDisplay.Text = memory;
+                }
+
+                else if (mfc == "MS")
+                {
+                    memory = engine.Process(lblDisplay.Text);
+                }
+
+                else if (mfc == "M+")
+                {
+                    memory = (float.Parse(memory) + float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                }
+
+                else if (mfc == "M-")
+                {
+                    memory = (float.Parse(memory) - float.Parse(engine.Process(lblDisplay.Text))).ToString();
+                }
             }
         }
     }
