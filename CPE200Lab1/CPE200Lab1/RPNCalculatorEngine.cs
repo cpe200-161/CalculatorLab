@@ -38,12 +38,17 @@ namespace CPE200Lab1
                          return "E";
                         }
                     }
-                    else if (isOperatorX(number) && numberStack.Count >= 1)
+                    else if (isOperatorX(number) )
                     {
+                        try
+                        {
                         string UOperand = numberStack.Pop();
                         string answer = unaryCalculate(number, UOperand);
                         numberStack.Push(answer);
-
+                        }
+                        catch (InvalidOperationException) {
+                        return "E";
+                        }
                     }
 
                 
