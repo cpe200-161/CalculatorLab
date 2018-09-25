@@ -33,7 +33,17 @@ namespace CPE200Lab1
             List<string> parts = str.Split(' ').ToList<string>();
             string result;
             //As long as we have more than one part
-            
+            if (parts.Count == 1)
+            {
+                result = parts[0];
+                for(int i = 0; i < result.Length; i++)
+                {
+                    if (isOperator(result[i].ToString()))
+                    {
+                        return "E";
+                    }
+                }
+            }
             while (parts.Count > 1)
             {
                 //Check if the first three is ready for calcuation
