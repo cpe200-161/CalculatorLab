@@ -9,7 +9,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public string Process(string str, bool useRPN)
         {
             System.Console.WriteLine("In process RPN");
             // your code here
