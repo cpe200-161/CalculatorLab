@@ -24,32 +24,27 @@ namespace CPE200Lab1
             {
                 if (isNumber(token))
                 {
-                    //if (token.Contains("+-X÷") && token.Contains("1234567890"))
-                    //{
-                    //    return "E";
-                    //}
-                    //else
                     rpnStack.Push(token);
-                    
                 }
                 else if (isOperator(token))
                 {
-                    if (rpnStack.Count() <= 1)
-                    {
-                        return "E";
-                    }
-                    else
                     //FIXME, what if there is only one left in stack?
+                    try
                     {
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
-                        result = calculate(token, firstOperand, secondOperand, 8);
-                        if (result is "E")
-                        {
-                            return result;
-                        }
-                        rpnStack.Push(result);
                     }
+                    catch (Exception errorMessage)
+                    {
+                        Console.WriteLine(errorMessage);
+                        return "E";
+                    }
+                    result = calculate(token, firstOperand, secondOperand, 8);
+                    if (result is "E")
+                    {
+                        return result;
+                    }
+                    rpnStack.Push(result);
                 }
                 else if (token != "")
                 {
@@ -62,7 +57,7 @@ namespace CPE200Lab1
             }
             else
             {
-                if(Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
+                if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
                 {
                     return "E";
                 }
