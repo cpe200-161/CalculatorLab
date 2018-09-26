@@ -32,14 +32,19 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(token))
                 {
-                    if (rpnStack.Count <= 1)
+
+
+                    //FIXME, what if there is only one left in stack?
+                    try
                     {
+                    secondOperand = rpnStack.Pop();
+                    firstOperand = rpnStack.Pop();
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine(ex);
                         return "E";
                     }
 
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
                     result = calculate(token, firstOperand, secondOperand);
                     if (result is "E")
                     {
@@ -55,13 +60,15 @@ namespace CPE200Lab1
             }
             if (rpnStack.Count == 1)
             {
+
+
                 if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
                 {
                     return "E";
                 }
                 result = rpnStack.Pop();
                 return Convert.ToDecimal(result).ToString("0.####");
-                //return "E";
+                
             }
             else
             {
