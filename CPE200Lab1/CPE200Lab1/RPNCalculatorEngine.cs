@@ -19,10 +19,6 @@ namespace CPE200Lab1
 
 
                 System.Collections.Stack rpnStack = new Stack();
-            if (strArr.Length >= 3)
-            {
-
-
                 foreach (string s in strArr)
                 {
                     Console.WriteLine(s);
@@ -31,26 +27,41 @@ namespace CPE200Lab1
 
                         rpnStack.Push(s); //adding somthing to stack
 
-                        if (s == "%")
+                        /*if (isNumber(s))
                         {
-                            Secondoperand = rpnStack.Pop().ToString();
-                            Firstoperand = rpnStack.Pop().ToString();
-                            Secondoperand = ((Convert.ToDouble(Firstoperand)) * (Convert.ToDouble(Secondoperand)) / 100).ToString();
-                            rpnStack.Push(Firstoperand);
-                            rpnStack.Push(Secondoperand);
-                        }
-                        else
+                            rpnStack.Push(s);
+                        }*/
+                        if (isOperator(s))
                         {
-                            if (isOperator(s))
-                            {
-                                Secondoperand = rpnStack.Pop().ToString();
-                                Firstoperand = rpnStack.Pop().ToString();
-                                rpnStack.Push(calculate(s, Firstoperand, Secondoperand));
-                            }
-                        }
 
-                    }
-                    if (isOperator(s) && s != "%") //stack first in , last out
+                        }
+                        if (s == "√" || s == "1/X")
+                        {
+                            Firstoperand = rpnStack.Pop().ToString();
+                            rpnStack.Push(Firstoperand);
+                            rpnStack.Push(unaryCalculate(s, Firstoperand));
+                            Console.WriteLine(rpnStack.Count);
+                        }
+                    /*if (s == "%")
+                     {
+                         Secondoperand = rpnStack.Pop().ToString();
+                         Firstoperand = rpnStack.Pop().ToString();
+                         Secondoperand = ((Convert.ToDouble(Firstoperand)) * (Convert.ToDouble(Secondoperand)) / 100).ToString();
+                         rpnStack.Push(Firstoperand);
+                         rpnStack.Push(Secondoperand);
+                     }
+                     else
+                     {
+                         if (isOperator(s))
+                         {
+                             Secondoperand = rpnStack.Pop().ToString();
+                             Firstoperand = rpnStack.Pop().ToString();
+                             rpnStack.Push(calculate(s, Firstoperand, Secondoperand));
+                         }
+                     }**/
+
+                    }/*s != "%"*/
+                    if (isOperator(s)) //stack first in , last out
                     {
                         if (rpnStack.Count > 1)
                         {
@@ -64,9 +75,7 @@ namespace CPE200Lab1
                         }
                     }
                 }
-            }
-            else 
-            {
+          /*
                 foreach (string s in strArr)
                 {
 
@@ -86,10 +95,8 @@ namespace CPE200Lab1
                         Console.WriteLine(rpnStack.Count);
                     }
                 }
-            }
-            
-
-            
+         */   
+                        
             if (rpnStack.Count == 1 && strArr.Length >= 3)
             {
                 return decimal.Parse(rpnStack.Peek().ToString()).ToString("G29");

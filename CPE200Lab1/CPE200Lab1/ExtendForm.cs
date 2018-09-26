@@ -15,7 +15,6 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private bool isOpeator = false;
         private RPNCalculatorEngine engine;
 
         public ExtendForm()
@@ -31,8 +30,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
-                case '%':
-        
+                        
                     return true;
             }
             return false;

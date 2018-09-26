@@ -18,7 +18,7 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string secondOperand;
+       // private string secondOperand;
         private string operate;
         private double memory;
         private RPNCalculatorEngine engine;
@@ -31,7 +31,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
-            secondOperand = null;
+            //secondOperand = null;
         }
        
         public MainForm()
@@ -142,7 +142,7 @@ namespace CPE200Lab1
                 case "%": //**************!!!!!!!!!!!!!!!!
                           // your code here
                     firstOperand = lblDisplay.Text;
-                    secondOperand = lblDisplay.Text;
+                 // secondOperand = lblDisplay.Text;
                     break;
             }
             isAllowBack = false;

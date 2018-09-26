@@ -9,6 +9,9 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine //supper class
     {
+        public object secondoperand { get; private set; }
+        public string firstoperand { get; private set; }
+
         public bool isNumber(string str) //protected used by child os subclass
         {
             double retNum;
@@ -132,10 +135,33 @@ namespace CPE200Lab1
                     break;
                 case "%"://****
                          //your code here
-                    break; 
-
+                    double result;
+                    System.Collections.Stack strStack = new Stack();
+                    if (operate == "%")
+                    {
+                        secondoperand = strStack.Pop().ToString();
+                        firstoperand = strStack.Pop().ToString();
+                        secondOperand = ((Convert.ToDouble(firstoperand)) * (Convert.ToDouble(secondoperand)) / 100).ToString();
+                        strStack.Push(firstoperand);
+                        strStack.Push(secondoperand);
+                    }
+                    else
+                    {
+                        if (isOperator(operate))
+                        {
+                            secondoperand = strStack.Pop().ToString();
+                            firstoperand = strStack.Pop().ToString();
+                            strStack.Push(calculate(operate, firstoperand, secondoperand));
+                        }
+                        break;
+                    }
             }
             return "E";
+        }
+
+        private object calculate(string operate, string firstoperand, object secondoperand)
+        {
+            throw new NotImplementedException();
         }
     }
 }
