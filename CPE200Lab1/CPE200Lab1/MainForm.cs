@@ -10,8 +10,9 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form //class name
     {
+        //field
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -19,7 +20,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private CalculatorEngine engine; 
+
 
         private void resetAll()
         {
@@ -32,7 +34,7 @@ namespace CPE200Lab1
         }
 
       
-
+        //constructor
         public MainForm()
         {
             InitializeComponent();
@@ -41,6 +43,7 @@ namespace CPE200Lab1
             resetAll();
         }
 
+        //method
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
