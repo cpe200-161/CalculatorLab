@@ -9,20 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CPE200Lab1
-{
+{                       //class name
     public partial class ExtendForm : Form
-    {
+    { 
+        //fields
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
 
+
+        //constructor
         public ExtendForm()
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
         }
 
+        //methods
         private bool isOperator(char ch)
         {
             switch(ch) {
