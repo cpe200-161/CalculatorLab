@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace CPE200Lab1
 {
@@ -17,16 +18,24 @@ namespace CPE200Lab1
 
             foreach (string token in parts)
             {
+
+                if (parts.Count == 1 && parts.Count == 0)
+                {
+                    return "E";
+                }
+                
                 if (isNumber(token))
                 {
                     rpnStack.Push(token);
                 }
+               
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
+
                     secondOperand = rpnStack.Pop();
                     firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
+                    result = calculate(token, firstOperand, secondOperand, 6);
                     if (result is "E")
                     {
                         return result;
@@ -40,3 +49,4 @@ namespace CPE200Lab1
         }
     }
 }
+
