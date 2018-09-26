@@ -21,6 +21,9 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                case "1/x":
+                case "√":
                     return true;
             }
             return false;
@@ -160,7 +163,7 @@ namespace CPE200Lab1
 
                             return (100 * Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
                     }
-                        
+                    return (Convert.ToDouble(firstOperand) / 100).ToString();   
                     break;
             }
             return "E";
