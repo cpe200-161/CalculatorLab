@@ -26,11 +26,11 @@ namespace CPE200Lab1
 
             foreach (string token in parts)
             {
-                if (isNumber(token))
+                         if (isNumber(token))
                 {
                     rpnStack.Push(token);
                 }
-                else if (isOperator(token))
+                         else if (isOperator(token))
                 {
                     if (rpnStack.Count <= 1)
                     {
@@ -47,23 +47,23 @@ namespace CPE200Lab1
                     }
                     rpnStack.Push(result);
                 }
-                else if (token != "")
+                         else if (token != "")
                 {
                     return "E";
                 }
 
             }
-            if (rpnStack.Count == 1)
+                     if (rpnStack.Count == 1)
             {
-                if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
+                     if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
                 {
                     return "E";
                 }
                 result = rpnStack.Pop();
                 return Convert.ToDecimal(result).ToString("0.####");
                 //return "E";
-            }
-            else
+                }
+                 else
             {
                 return "E";
             }
