@@ -10,8 +10,15 @@ namespace CPE200Lab1
     {
         protected bool isNumber(string str)
         {
-            double retNum;
-            return Double.TryParse(str, out retNum);
+            if (str.Contains("+-X÷"))
+            {
+                return false;
+            }
+            else
+            {
+                double retNum;
+                return Double.TryParse(str, out retNum);
+            }            
         }
 
         protected bool isOperator(string str)
