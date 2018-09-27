@@ -33,7 +33,7 @@ namespace CPE200Lab1
 
                     try
                     {
-                    secondOperand = rpnStack.Pop();
+                    secondOperand = rpnStack.Pop(); 
                     firstOperand = rpnStack.Pop();
                     }
                     catch (Exception ex)
@@ -55,12 +55,12 @@ namespace CPE200Lab1
             if (rpnStack.Count == 1)
             {
 
-                if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek())
+                if (Convert.ToDecimal(rpnStack.Peek()).ToString() != rpnStack.Peek()) 
                 {
                     return "E";
                 }
                 result = rpnStack.Pop();
-                return Convert.ToDecimal(result).ToString("0.####");
+                return Convert.ToDecimal(result).ToString("0.####"); //make the out put match the testcase i try to use G29 but it doesn't work
 
             }
             else
