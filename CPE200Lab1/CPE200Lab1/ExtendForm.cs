@@ -37,7 +37,7 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
+             if (lblDisplay.Text is "Error")
             {
                 return;
             }
@@ -63,7 +63,11 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = ((Button)sender).Text + " ";
+            }
+            else if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
