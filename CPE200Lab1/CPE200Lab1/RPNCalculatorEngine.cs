@@ -8,7 +8,8 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public string calculate(string str)
+
         {
             if(str == null || str == "")
             {
