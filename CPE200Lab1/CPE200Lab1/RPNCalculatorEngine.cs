@@ -10,53 +10,52 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : CalculatorEngine
     {
         public string Process(string str)
-        {
-            string firstOp, secondOp;
-            string[] strArray = str.Split(' ');
-            Stack rpnStack = new Stack();
-            if (strArray.Length < 3)
             {
-                return "E";
-            }
-            foreach (string s in strArray)
-            {
-                Console.WriteLine(s);
-                if (isNumber(s))
+                string firstOp, secondOp;
+                string[] strArray = str.Split(' ');
+                Stack rpnStack = new Stack();
+                if (strArray.Length < 3)
                 {
-                    rpnStack.Push(s);
+                    return "E";
                 }
-                else if (isOperator(s))
+                foreach (string s in strArray)
                 {
-                    if (rpnStack.Count >= 2)
+                    Console.WriteLine(s);
+                    if (isNumber(s))
                     {
-                        secondOp = rpnStack.Pop().ToString();
-                        firstOp = rpnStack.Pop().ToString();
-                        rpnStack.Push(calculate(s, firstOp, secondOp));
+                        rpnStack.Push(s);
                     }
-                    else
+                    else if (isOperator(s))
                     {
-                        return "E";
+                        if (rpnStack.Count >= 2)
+                        {
+                            secondOp = rpnStack.Pop().ToString();
+                            firstOp = rpnStack.Pop().ToString();
+                            rpnStack.Push(calculate(s, firstOp, secondOp));
+                        }
+                        else
+                        {
+                            return "E";
+                        }
                     }
+
                 }
 
-            }
-            
-            if (rpnStack.Count == 1)
-            {
-                if (strArray[1] == "√" || strArray[1] == "1/x")
+                if (rpnStack.Count == 1)
                 {
-                    string firstnumber;
-                    firstnumber = rpnStack.Peek().ToString();
-                    rpnStack.Pop();
-                    rpnStack.Push(unaryCalculate(strArray[1], firstnumber));
+                    if (strArray[1] == "√" || strArray[1] == "1/x")
+                    {
+                        string firstnumber;
+                        firstnumber = rpnStack.Peek().ToString();
+                        rpnStack.Pop();
+                        rpnStack.Push(unaryCalculate(strArray[1], firstnumber));
+                    }
+                    return rpnStack.Peek().ToString();
                 }
-                return rpnStack.Peek().ToString();
+                else
+                {
+                    return "E";
+                }
             }
-            else
-            {
-                return "E";
-            }
-            return "E";
         }
     }
-}
