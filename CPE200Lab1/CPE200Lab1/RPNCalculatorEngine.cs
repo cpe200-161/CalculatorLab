@@ -13,17 +13,23 @@ namespace CPE200Lab1
         {
             Stack mystack = new Stack();
             string first, second;
-            string[] parts = str.Split(' ');
-            Console.WriteLine(parts);
+            string[] parts = str.Split(' ');         
 
             for (int i = 0; i < parts.Length; i++)
             {
+                
                 if (isOperator(parts[i]))
                 {
                     if (mystack.Count < 2) return "E";
                 }
 
                 if (isNumber(parts[i])) mystack.Push(parts[i]);
+                else if (parts[i] == "%")
+                {
+                    first = (string)mystack.Pop();
+                    second = (string)mystack.Peek();
+                    mystack.Push(calculate(parts[i], second, first, 4));
+                }
                 else if (isOperator(parts[i]))
                 {
                     first = (string)mystack.Pop();

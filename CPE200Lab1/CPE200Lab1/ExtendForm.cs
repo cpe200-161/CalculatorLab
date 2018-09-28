@@ -21,6 +21,7 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+  
         }
 
         private bool isOperator(char ch)
@@ -30,6 +31,8 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case '√':
                     return true;
             }
             return false;
