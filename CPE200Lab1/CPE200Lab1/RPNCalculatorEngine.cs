@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Calculating using RPN calculator 
@@ -15,7 +15,7 @@ namespace CPE200Lab1
         /// <param name="str"> The string of RPN style calculation </param>
         /// <returns> Resulf of string </returns>
 
-        public string Process(string str)
+        public string calculate(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] part = str.Split(' ');
@@ -46,7 +46,7 @@ namespace CPE200Lab1
                 }
                 else if (text == "√" || text == "1/x")
                 {
-                    ansWer = unaryCalculate(text, numbers.Pop());
+                    ansWer = calculate(text, numbers.Pop());
                     numbers.Push(ansWer);
                 }
                 else
