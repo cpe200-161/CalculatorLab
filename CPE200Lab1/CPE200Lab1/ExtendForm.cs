@@ -15,21 +15,23 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
         {
             switch(ch) {
-                case '+':
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case 'x':
+                case '√':
                     return true;
             }
             return false;
@@ -109,6 +111,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
