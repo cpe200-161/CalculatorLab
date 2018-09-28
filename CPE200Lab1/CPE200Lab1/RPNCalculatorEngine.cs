@@ -4,45 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
+/// <summary>
+/// 
+/// </summary>
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+
+    public class RPNCalculatorEngine: BasicCalculatorEngine
     {
-        public new string Process(string str)
+        /// <summary>
+        /// Calculate engine
+        /// </summary>
+        /// <param name="oper">input str is string</param>
+        /// <returns></returns>
+        public new string calculate(string oper)         
         {
             string[] parts;
             Stack myStack = new Stack();
-            parts = str.Split(' ');
-            
-            for (int i = 0;i< parts.Length; i++){
-                if (isNumber(parts[i]))
+            parts = oper.Split(' '); 
+            for (int i = 0;i< parts.Length; i++){  
+                if (isNumber(parts[i])) 
                 {
-                    myStack.Push(parts[i]);
+                    myStack.Push(parts[i]); 
                     
                 }
-                else if(isOperator(parts[i])) 
+                else if(isOperator(parts[i]))
                 {
-                    if (myStack.Count == 0)
+                    try 
+                    {
+                         if (myStack.Count == 1) 
+                        {
+                            string firstOperand = myStack.Pop().ToString();
+                            myStack.Push(calculate(parts[i], firstOperand, 4));
+
+                        }
+                        else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%") 
+                        {
+                            string firstOperand = myStack.Pop().ToString();
+                            string secondOperand = myStack.Pop().ToString();
+                            myStack.Push(calculate(parts[i], secondOperand, firstOperand, 4));
+                        }
+                        else if (parts[i] == "%") 
+                        {
+                            string firstOperand = myStack.Pop().ToString();
+                            string secondOperand = myStack.Peek().ToString();
+                            myStack.Push(calculate(parts[i], secondOperand, firstOperand, 4));
+                        }
+                    }
+                    catch
                     {
                         return "E";
-                    }
-                    else if (myStack.Count == 1)
-                    {
-                        string first = myStack.Pop().ToString();
-                        myStack.Push(unaryCalculate(parts[i], first, 4));
-
-                    }
-                    else if (parts[i] != "√" && parts[i] != "1/x" && parts[i]!="%" ) 
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Pop().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }else if (parts[i] == "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Peek().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
                     }
                  
                 }
@@ -53,9 +64,14 @@ namespace CPE200Lab1
                 return myStack.Pop().ToString();
             }
                 
-            // your code here
+            
             return "E";
         }
+        /// <summary>
+        /// check is Operator
+        /// </summary>
+        /// <param name="str">input str is string</param>
+        /// <returns></returns>
         private bool isOperator(string str)
         {
             switch (str)
