@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public string Calculate(string str)
         {
             Stack<string> rpnStack = new Stack<string>();
             List<string> parts ;
@@ -28,8 +28,7 @@ namespace CPE200Lab1
                 }
             }
 
-
-           
+                       
             foreach (string token in parts)
             {
                 if (isNumber(token))
@@ -43,13 +42,13 @@ namespace CPE200Lab1
                     {
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
-                    } 
-                    catch(Exception e) {
+                    }
+                    catch (Exception e)
+                    {
                         return "E";
                     }
 
-
-                    result = calculate(token, firstOperand, secondOperand, 4);
+                    result = NewMethod(firstOperand, secondOperand, token);
                     if (result is "E")
                     {
                         return result;
@@ -80,6 +79,11 @@ namespace CPE200Lab1
             }
 
             return decimal.Parse(result.ToString()).ToString("0.####");
+        }
+
+        private string NewMethod(string firstOperand, string secondOperand, string token)
+        {
+            return Calculate(token, firstOperand, secondOperand, 4);
         }
     }
 }
