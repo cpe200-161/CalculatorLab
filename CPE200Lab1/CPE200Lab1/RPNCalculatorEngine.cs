@@ -7,69 +7,76 @@ using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        /// <summary>
+        /// process pop number to calculate 2 number which input or 1 number for loot and 1/x
+        /// </summary>
+        /// <param name="str">str is string  input to process</param>
+        /// 
+        /// <returns>result of equations</returns>
+        public string Process(string str)
         {
-            string[] parts;
-            Stack myStack = new Stack();
-            parts = str.Split(' ');
-
-            for (int i = 0; i < parts.Length ; i++)
-            {
-                if (isNumber(parts[i]))
-                {
-                    myStack.Push(parts[i]);
-                }
-                else if (isOperator(parts[i]))
-                {
-                    if (myStack.Count == 0)
-                    {
-                        return "E";
-                    }
-                    else if (myStack.Count == 1)
-                    {
-                        string first = myStack.Pop().ToString();
-                        myStack.Push(unaryCalculate(parts[i], first, 4));
-                    }
-                    else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Pop().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Peek().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }
-                }
-            }
-            if (myStack.Count == 1)
-            {
-                return myStack.Pop().ToString();
-            }
+            string value;
+            string value2;
+            string oper;
+            string[] strArray = str.Split(' ');
+            if (strArray.Length == 1) { return "E"; }
+            // if(strArray)
             // your code here
-            return "E";
-        }
+            Stack<string> fristob = new Stack<string>();
 
-        private bool isOperator(string str)
-        {
-            switch (str)
+            foreach (string save in strArray)
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "√":
-                case "1/x":
-                case "%":
+                if (isNumber(save))
+                {
+                    fristob.Push(save);
+                }
+                else if (isOperator(save))
+                {
+                    if (save == "1/x" || save == "√")
+                    {
 
+                        value = fristob.Pop();
 
-                    return true;
+                        fristob.Push(unaryCalculate(save, value));
+                    }
+                    else if (save == "%")
+                    {
+                        value2 = fristob.Pop().ToString();
+                        value = fristob.Peek().ToString();
+
+                        fristob.Push(calculate(save, value, value2, 8));
+                    }
+                    else
+                    {
+                        try
+                        {
+                            value = fristob.Pop().ToString();
+                            value2 = fristob.Pop().ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            return "E";
+                        }
+                        // if (save == "-" || save == "÷") ;
+                        fristob.Push(calculate(save, value2, value, 8));
+                    }
+
+                    //
+                }
+
             }
-            return false;
+            if (fristob.Count == 1)
+            {
+                return fristob.Pop().ToString();
+            }
+            else
+            {
+                return "E";
+            }
+
         }
     }
 }
