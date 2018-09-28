@@ -22,34 +22,59 @@ namespace CPE200Lab1
             {
                 if(parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")
                 {
-                    if(stack.Count >= 2)
+                    //if(stack.Count >= 2)
+                    //{
+                    //    secondOperand = stack.Pop().ToString();
+                    //    firstOperand = stack.Pop().ToString();
+                    //    stack.Push(calculate(parts[i], firstOperand, secondOperand, 4));
+                    //    isCal = true;
+                    //}
+                    //else
+                    //{
+                    //    return "E";
+                    //}
+
+                    try
                     {
                         secondOperand = stack.Pop().ToString();
                         firstOperand = stack.Pop().ToString();
                         stack.Push(calculate(parts[i], firstOperand, secondOperand, 4));
                         isCal = true;
                     }
-                    else
+                    catch(InvalidOperationException e)
                     {
+                        Console.WriteLine("{0} exception caught.", e);
                         return "E";
                     }
-                    
+
                 }
                 else
                 {
                     stack.Push(parts[i]);
                 }
             }
-            if (stack.Count != 1 || isCal == false)
-            {
-                return "E";
-            }
-            else
+            //if (stack.Count != 1 || isCal == false)
+            //{
+            //    return "E";
+            //}
+            //else
+            //{
+            //    return stack.Pop().ToString();
+            //}
+
+            try
             {
                 return stack.Pop().ToString();
             }
+
+            catch (InvalidOperationException e)
+            {
+                System.Console.WriteLine("Exception caught." + e.Message);
+                Console.WriteLine("{0} exception caught.", e);
+                return "E";
+            }
         }
 
-        
+
     }
 }
