@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        protected Stack<string> myStack;
         public string Process(string str)
         {
             // your code here
+            
             string fristOperand;
             string secondOperand;
             string[] parts = str.Split(' ');
             
-            
-                Stack<string> myStack = new Stack<string>();
+                 myStack = new Stack<string>();
                 for (int i = 0; i < parts.Length; i++)
                 {
                 try
@@ -31,7 +32,7 @@ namespace CPE200Lab1
                         {
 
                             secondOperand = myStack.Pop();
-                            myStack.Push(unaryCalculate(parts[i], secondOperand));
+                            myStack.Push(caculate(parts[i], secondOperand));
                         }
 
                         else
