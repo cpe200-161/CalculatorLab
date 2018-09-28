@@ -9,35 +9,59 @@ namespace CPE200Lab1
 
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
+        string stnum, secnum, resultback,result,oper;                       // declare string 
 
-            foreach (string token in parts)
+        public override string Process(string str)
+        {
+
+            if(str == "" || str == null || str =="+1")
             {
-                if (isNumber(token))
+                return "E";
+            }
+            Stack<string> cct = new Stack<string>();            // your code here
+            string[] parts = str.Split(' ');
+
+            for (int i = 0; i < parts.Length; i++)        
+            {
+                
+                if (isNumber(parts[i]))                     // only number
                 {
-                    rpnStack.Push(token);
+                    cct.Push(parts[i]);
                 }
-                else if (isOperator(token))
+                if (isOperator(parts[i]))                  // if sign
                 {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                    if (cct.Count > 1)
                     {
-                        return result;
+                        secnum = cct.Pop();                    // set second number
+                        stnum = cct.Pop();                      //ser first number
+                        resultback = Calculate(parts[i], stnum, secnum, 4);     // calculating
+                        cct.Push(resultback);                   // save answer
                     }
-                    rpnStack.Push(result);
+                    else
+                    {
+                        return "E";                       
+                    }
                 }
+                else if(parts[i] == "++" || parts[i] == "--"|| parts[i] == "XX" || parts[i] == "//" ||
+                        parts[i] == "+-" || parts[i] == "+X" || parts[i] == "+/" || parts[i] == "-+" ||
+                        parts[i] == "-*" || parts[i] == "-/" || parts[i] == "/+" || parts[i] == "/-" ||
+                        parts[i] == "/*" )
+                {
+                    break;
+                }
+                
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            if(cct.Count >1 || cct.Count == 0)
+            {
+                return "E";
+            }
+            else
+            {
+                result = cct.Pop();
+                return result;
+            }
+            
         }
     }
     /*
@@ -48,6 +72,8 @@ namespace CPE200Lab1
             // your code here
             return "E";
         }
+    
     }
     */
 }
+ 
