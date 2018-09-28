@@ -360,7 +360,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 666);
+            this.ClientSize = new System.Drawing.Size(393, 666);
             this.Controls.Add(this.btnOox);
             this.Controls.Add(this.btnSqr);
             this.Controls.Add(this.btnMM);
