@@ -8,10 +8,20 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        public readonly object result;
         public override string Process(string str)
         {
+
+            if (str == null || str == "")
+            {
+                return "E";
+            }
             string[] parts = str.Split(' ');
             Stack<string> operands = new Stack<string>();
+            if (!isOperator(parts[3])
+            {
+
+            }
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -34,13 +44,22 @@ namespace CPE200Lab1
                     operands.Push(result);
                 }
             }
+            //FIXME, what if there is more than one, or zero, items in the stack?
             if (operands.Count > 1)
             {
                 return "E";
             }
-            return operands.Pop();
-        }
-
+            try
+            {
+                return operands.Pop();
+            }
+            catch
+            {
+                return "E";
+            }
+             return Convert.ToDouble(result).ToString("0.####");
+            }
+           
 
         /*public override void handleSpace()
         {
@@ -50,6 +69,6 @@ namespace CPE200Lab1
 
         }*/
     }
-    */
+    
 }
 

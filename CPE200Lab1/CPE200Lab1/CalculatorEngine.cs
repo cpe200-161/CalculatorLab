@@ -30,6 +30,7 @@ namespace CPE200Lab1
         public virtual string Process(string str)
         {
             //Split input string to multiple parts by space
+            
             List<string> parts = str.Split(' ').ToList<string>();
             string result;
             //As long as we have more than one part
