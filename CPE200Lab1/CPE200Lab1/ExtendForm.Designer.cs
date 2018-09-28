@@ -346,6 +346,7 @@
             this.button6.TabIndex = 51;
             this.button6.Text = "M+";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button7
             // 
@@ -356,6 +357,7 @@
             this.button7.TabIndex = 50;
             this.button7.Text = "M-";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button8
             // 
@@ -366,6 +368,7 @@
             this.button8.TabIndex = 49;
             this.button8.Text = "MS";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button9
             // 
@@ -376,6 +379,7 @@
             this.button9.TabIndex = 48;
             this.button9.Text = "MR";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // button10
             // 
@@ -386,6 +390,7 @@
             this.button10.TabIndex = 47;
             this.button10.Text = "MC";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.btnMemory_Click);
             // 
             // ExtendForm
             // 

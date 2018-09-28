@@ -17,6 +17,7 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
         private RPNCalculatorEngine RPNengine;
+        private double memory = 0;
 
         public ExtendForm()
         {
@@ -32,6 +33,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -103,20 +105,28 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
-            if (result is "E")
+            try
             {
-                result = RPNengine.Process(lblDisplay.Text);
-                if(result is "E")
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
                 {
-                    lblDisplay.Text = "Error";
-                }else
+                    result = RPNengine.Process(lblDisplay.Text);
+                    if (result is "E")
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                }
+                else
                 {
                     lblDisplay.Text = result;
                 }
-            } else
+            }catch
             {
-                lblDisplay.Text = result;
+                lblDisplay.Text = lblDisplay.Text;
             }
         }
 
@@ -187,35 +197,34 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
         }
-        /*private void btnMemory_Click(object sender, EventArgs e)
+        private void btnMemory_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            mem = ((Button)sender).Text;
+            string mem = ((Button)sender).Text;
             switch (mem)
             {
                 case "MS":
                     memory = (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
                     break;
                 case "MC":
                     memory = 0;
                     break;
                 case "M+":
                     memory = memory + (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
                     break;
                 case "M-":
                     memory = memory - (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
                     break;
                 case "MR":
                     lblDisplay.Text = memory.ToString();
                     break;
             }
-        }*/
+        }
     }
 }

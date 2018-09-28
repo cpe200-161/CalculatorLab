@@ -40,50 +40,57 @@ namespace CPE200Lab1
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
-            switch (operate)
+            try
             {
-                case "√":
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                switch (operate)
+                {
+                    case "√":
                         {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("G" + remainLength);
-                    }
-                case "1/x":
-                    if(operand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
+                            double result;
+                            string[] parts;
+                            int remainLength;
 
-                        result = (1.0 / Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
+                            result = Math.Sqrt(Convert.ToDouble(operand));
+                            // split between integer part and fractional part
+                            parts = result.ToString().Split('.');
+                            // if integer part length is already break max output, return error
+                            if (parts[0].Length > maxOutputSize)
+                            {
+                                return "E";
+                            }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            return result.ToString("G" + remainLength);
                         }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("G" + remainLength);
-                    }
-                    break;
+                    case "1/x":
+                        if (operand != "0")
+                        {
+                            double result;
+                            string[] parts;
+                            int remainLength;
+
+                            result = (1.0 / Convert.ToDouble(operand));
+                            // split between integer part and fractional part
+                            parts = result.ToString().Split('.');
+                            // if integer part length is already break max output, return error
+                            if (parts[0].Length > maxOutputSize)
+                            {
+                                return "E";
+                            }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            return result.ToString("G" + remainLength);
+                        }
+                        break;
+                }
+                return "E";
             }
-            return "E";
+            catch
+            {
+                return "E";
+            }
         }
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
