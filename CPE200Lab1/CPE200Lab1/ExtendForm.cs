@@ -16,6 +16,7 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
+		
 
         public ExtendForm()
         {
@@ -101,6 +102,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
@@ -125,6 +127,7 @@ namespace CPE200Lab1
                 return;
             }
             string current = lblDisplay.Text;
+			
             if (current is "0")
             {
                 lblDisplay.Text = "-";
@@ -133,7 +136,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
-                    lblDisplay.Text = "0";
+                    lblDisplay.Text = "-";
                 }
             } else
             {

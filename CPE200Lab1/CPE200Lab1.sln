@@ -29,7 +29,7 @@ Global
 		{0E964631-C30F-4089-ADD6-D2F374C1E02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E964631-C30F-4089-ADD6-D2F374C1E02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E964631-C30F-4089-ADD6-D2F374C1E02D}.Release|Any CPU.Build.0 = Release|Any CPU
-
+>>>>>>>>> Temporary merge branch 2
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,45 +9,58 @@ namespace CPE200Lab1
 
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
+		public override string Process(string str)
+		{
+			if(str == ""||str == null)
+			{
+				return "E";
+			}
+			string first, second, four;
+			Stack<string> rpn = new Stack<string>();
 
-            foreach (string token in parts)
-            {
-                if (isNumber(token))
-                {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
-                    {
-                        return result;
-                    }
-                    rpnStack.Push(result);
-                }
-            }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
-        }
-    }
-    /*
-    public class RPNCalculatorEngine
-    {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
-        }
-    }
-    */
-}
+			string[] parts = str.Split(' ');
+			if((parts.Length == 1||parts.Length == 2)&&parts[0] != "0")
+			{
+				return "E";
+			}
+			for (int i = 0; i < parts.Length; i++)
+			{
+				if (isNumber(parts[i]))
+				{
+						rpn.Push(parts[i]);
+				}
+				else if (isOperator(parts[i]))
+				{
+					try
+					{
+						second = rpn.Pop();
+						first = rpn.Pop();
+						four = calculate(parts[i], first, second, 4);
+					}
+					catch (Exception)
+					{
+						return "E";
+					}			
+						rpn.Push(four);	
+				}
+				else if(parts[i] == "++")
+				{
+					return "E";
+				}
+			}
+
+
+				if (rpn.Count == 1)
+				{
+						four = rpn.Pop();
+						return four;
+
+				}
+				else
+				{
+					return "E";
+				}
+			}
+		}
+	}
+
