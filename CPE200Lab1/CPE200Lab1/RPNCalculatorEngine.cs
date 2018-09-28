@@ -6,12 +6,60 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        /// <summary>
+        /// Calculated by RPN style calculation.
+        /// </summary>
+        /// <param name="str">The string of RPN style calculation.</param>
+        /// <returns>The result of string.</returns>
         public string Process(string str)
         {
-            // your code here
-            return "E";
+            string firstnum;
+            string secondnum;
+            string[] parts = str.Split(' ');
+            Stack<string> number = new Stack<string>();
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (isOperator(parts[i]))
+                {
+                    if (number.Count < 2)
+                    {
+                        if (parts[i] == "1/x" || parts[i] == "√")
+                        {
+                            firstnum = number.Pop();
+                            number.Push(calculate(parts[i], firstnum));
+                        }
+                        else return "E";
+                    }
+                    else if (parts[i] == "1/x" || parts[i] == "√")
+                    {
+                        firstnum = number.Pop();
+                        number.Push(calculate(parts[i], firstnum));
+                    }
+                    else if (parts[i] == "%")
+                    {
+                        secondnum = number.Pop();
+                        firstnum = number.Pop();
+                        number.Push(firstnum);
+                        number.Push(calculate(parts[i], firstnum, secondnum));
+                    }
+                    else
+                    {
+                        secondnum = number.Pop();
+                        firstnum = number.Pop();
+                        number.Push(calculate(parts[i], firstnum, secondnum));
+                    }
+
+                }
+                else if (isNumber(parts[i]))
+                {
+                    number.Push(parts[i]);
+                }
+            }
+            if (number.Count == 1) return number.Pop();
+            else return "E";
         }
     }
 }

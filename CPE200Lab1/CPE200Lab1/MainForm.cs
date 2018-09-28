@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace CPE200Lab1
 {
@@ -36,6 +37,13 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
+            String testString = "4 8 -";
+            string[] testStringArr = testString.Split(' ');
+            Stack rpnStack = new Stack();
+            foreach (string s in testStringArr)
+            {
+                Console.WriteLine(s);
+            }
             memory = 0;
             engine = new CalculatorEngine();
             resetAll();
@@ -81,7 +89,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
