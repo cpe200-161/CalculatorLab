@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
 
         public string calculate(string oper)
