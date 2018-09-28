@@ -127,7 +127,6 @@ namespace CPE200Lab1
         /// <param name="secondOperand">is second number</param>
         /// <param name="maxOutputSize">max number of return string</param>
         /// <returns></returns>
-
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)

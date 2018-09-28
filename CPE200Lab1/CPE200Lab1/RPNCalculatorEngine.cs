@@ -15,7 +15,6 @@ namespace CPE200Lab1
         /// <param name="str">str is string  input to process</param>
         /// 
         /// <returns>result of equations</returns>
-        
         public string Process(string str)
         {
             Stack<string> numbers = new Stack<string>();
