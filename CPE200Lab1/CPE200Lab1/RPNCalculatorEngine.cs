@@ -9,6 +9,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">str is string input</param>
+        /// <returns>result</returns>
         public new string Process(string str)
         {
             // your code here
@@ -56,6 +61,11 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">str is string input</param>
+        /// <returns>true or false</returns>
         private bool isOperator(string str)
         {
             switch (str)
