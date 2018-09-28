@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     public class CalculatorEngine
+
+
     {
+        //protected double firstOperand;
+        //protected double secondOperand;
         private bool isNumber(string str)
         {
             double retNum;

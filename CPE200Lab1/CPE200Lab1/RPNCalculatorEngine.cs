@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : /*BasicCalculatorEngine*/CalculatorEngine
     {
         private bool isNumber(string str)
         {
@@ -55,41 +55,42 @@ namespace CPE200Lab1
                     number.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
 
-                /*else if (parts[i] == "%")
+                else if (parts[i] == "%")
                 {
-                    secondOperand = number.Pop();
+                    /*secondOperand = number.Pop();
                     firstOperand = number.Pop();
                     number.Push(firstOperand);
-                    number.Push(calculate(parts[i], firstOperand, secondOperand));
-                }*/
-                try
-                {
-                    secondOperand = number.Pop();
-                    firstOperand = number.Pop();
-                    number.Push(firstOperand);
-                    number.Push(calculate(parts[i], firstOperand, secondOperand));
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));*/
+                    try
+                    {
+                        secondOperand = number.Pop();
+                        firstOperand = number.Pop();
+                        number.Push(firstOperand);
+                        number.Push(calculate(parts[i], firstOperand, secondOperand));
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        System.Console.WriteLine("{0} exception caught", e);
+                        return "E";
+                    }
                 }
-                catch(InvalidOperationException e)
+                
+                else if (parts[i] == "1/x" || parts[i] == "√")
                 {
-                    System.Console.WriteLine("{0} exception caught", e);
-                    return "E";
+                    /*firstOperand = number.Pop();
+                    number.Push(unaryCalculate(parts[i], firstOperand));*/
+                    try
+                    {
+                        firstOperand = number.Pop();
+                        number.Push(unaryCalculate(parts[i], firstOperand));
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        System.Console.WriteLine("{0} exception caught", e);
+                        return "E";
+                    }
                 }
-
-                /*else if (parts[i] == "1/x" || parts[i] == "√")
-                {
-                    firstOperand = number.Pop();
-                    number.Push(unaryCalculate(parts[i], firstOperand));
-                }*/
-                try
-                {
-                    firstOperand = number.Pop();
-                    number.Push(unaryCalculate(parts[i], firstOperand));
-                }
-                catch(InvalidOperationException e)
-                {
-                    System.Console.WriteLine("{0} exception caught", e);
-                    return "E";
-                }
+                
             }
 
             if (number.Count == 1)
