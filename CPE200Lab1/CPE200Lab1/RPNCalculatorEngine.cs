@@ -37,16 +37,16 @@ namespace CPE200Lab1
                     }
                     else if (list == "%")
                     {
-                        if (Operands.Count == 1)
+                        try
+                        {
+                            secondOperand = Operands.Pop();
+                            firstOperand = Operands.Peek();
+                        }catch(Exception a)
                         {
                             secondOperand = Operands.Pop();
                             firstOperand = "1";
                         }
-                        else
-                        {
-                            secondOperand = Operands.Pop();
-                            firstOperand = Operands.Peek();
-                        }
+
                         result = calculate(list, firstOperand, secondOperand);
                         Operands.Push(result);
                     }
