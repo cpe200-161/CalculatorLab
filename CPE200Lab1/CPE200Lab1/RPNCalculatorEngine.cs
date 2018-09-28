@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+
     public class RPNCalculatorEngine : CalculatorEngine
     {
 
@@ -42,17 +43,18 @@ namespace CPE200Lab1
 
 
             }
-            if(s.Count > 1)
-            {
-                return "E";
-            }
-
-            
-
-            return s.Peek();
-
-
-
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
+        }
+    }
+    /*
+    public class RPNCalculatorEngine
+    {
+        public string Process(string str)
+        {
+            // your code here
+            return "E";
         }
         
 
@@ -60,6 +62,7 @@ namespace CPE200Lab1
 
   
     }
+    */
 }
 
             
