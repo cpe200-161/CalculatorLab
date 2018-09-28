@@ -15,12 +15,13 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private bool useRPN = false;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -97,11 +98,21 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            useRPN = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = "";
+            System.Console.WriteLine(lblDisplay.Text);
+            if(useRPN)
+            {
+               result = engine.Process(lblDisplay.Text, useRPN);
+            }
+            else
+            {
+               result = engine.Process(lblDisplay.Text);
+            }
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -163,7 +174,47 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+                useRPN = true;
             }
+        }
+
+        
+
+        private void btnUnaryOperatorE2_Click(object sender, EventArgs e)
+        {
+            string current = lblDisplay.Text;
+
+            if (isNumberPart)
+            {
+                string[] parts = current.Split(' ');
+                
+                if (parts.Length == 3)
+                {
+                    parts[2] = engine.unaryCalculate(((Button)sender).Text, parts[2], lblDisplay.Text.Length);
+                    lblDisplay.Text = parts[0] + " " + parts[1] + " " + parts[2];
+                }
+                else if(parts.Length == 1)
+                {
+                    parts[0] = engine.unaryCalculate(((Button)sender).Text, current, lblDisplay.Text.Length);
+                    lblDisplay.Text = parts[0];
+                }
+                else
+                    return;
+            }
+
+
+
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+            string current = lblDisplay.Text;
+            string[] parts = current.Split(' ');
+            if (parts.Length == 3)
+            {
+                lblDisplay.Text = parts[0] + " " + parts[1] + " " +  engine.calculate(((Button)sender).Text, parts[0], parts[2], 8);
+            }
+
         }
     }
 }
