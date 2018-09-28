@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public new string Process(string str)
+        /// <summary>
+        /// Processing the RPN style calculation.
+        /// </summary>
+        /// <param name="str"> String of RPN style expression.</param>
+        /// <returns> The string of result</returns>
+        public string calculate(string str)
         {
             string firstOperand;
             string secondOperand;
-            string[] parts = str.Split(' ');
             Stack<string> number = new Stack<string>();
+            string[] parts = str.Split(' ');
 
             for (int i = 0; i < parts.Length; i++)
             {
@@ -44,7 +49,7 @@ namespace CPE200Lab1
                 else if (parts[i] == "1/x" || parts[i] == "√")
                 {
                     firstOperand = number.Pop();
-                    number.Push(unaryCalculate(parts[i], firstOperand));
+                    number.Push(calculate(parts[i], firstOperand));
                 }
             }
 
