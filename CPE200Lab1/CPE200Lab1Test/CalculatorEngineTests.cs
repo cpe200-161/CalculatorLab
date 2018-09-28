@@ -18,7 +18,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod()]
@@ -29,7 +29,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod()]
@@ -40,7 +40,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod()]
@@ -51,7 +51,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -63,7 +63,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -75,7 +75,7 @@ namespace CPE200Lab1.Tests
             string actual;
 
             CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.Process(input);
+            actual = engine.ProcessCal(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -244,4 +244,3 @@ namespace CPE200Lab1.Tests
         }
     }
 }
-
