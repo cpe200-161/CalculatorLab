@@ -296,6 +296,7 @@
             this.btnOox.TabIndex = 44;
             this.btnOox.Text = "1/x";
             this.btnOox.UseVisualStyleBackColor = true;
+            this.btnOox.Click += new System.EventHandler(this.btnunaryCalculate_Click);
             // 
             // btnSqr
             // 
@@ -306,6 +307,7 @@
             this.btnSqr.TabIndex = 43;
             this.btnSqr.Text = "√";
             this.btnSqr.UseVisualStyleBackColor = true;
+            this.btnSqr.Click += new System.EventHandler(this.btnunaryCalculate_Click);
             // 
             // btnPercent
             // 
@@ -316,6 +318,7 @@
             this.btnPercent.TabIndex = 42;
             this.btnPercent.Text = "%";
             this.btnPercent.UseVisualStyleBackColor = true;
+            this.btnPercent.Click += new System.EventHandler(this.btnunaryCalculate_Click);
             // 
             // ExtendForm
             // 

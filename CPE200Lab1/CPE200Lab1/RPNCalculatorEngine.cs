@@ -22,9 +22,6 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                case "%":
-                case "√":
-                case "1/X":
                     return true;
             }
             return false;
@@ -58,18 +55,40 @@ namespace CPE200Lab1
                     number.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
 
-                else if (parts[i] == "%")
+                /*else if (parts[i] == "%")
+                {
+                    secondOperand = number.Pop();
+                    firstOperand = number.Pop();
+                    number.Push(firstOperand);
+                    number.Push(calculate(parts[i], firstOperand, secondOperand));
+                }*/
+                try
                 {
                     secondOperand = number.Pop();
                     firstOperand = number.Pop();
                     number.Push(firstOperand);
                     number.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
+                catch(InvalidOperationException e)
+                {
+                    System.Console.WriteLine("{0} exception caught", e);
+                    return "E";
+                }
 
-                else if (parts[i] == "1/x" || parts[i] == "√")
+                /*else if (parts[i] == "1/x" || parts[i] == "√")
                 {
                     firstOperand = number.Pop();
                     number.Push(unaryCalculate(parts[i], firstOperand));
+                }*/
+                try
+                {
+                    firstOperand = number.Pop();
+                    number.Push(unaryCalculate(parts[i], firstOperand));
+                }
+                catch(InvalidOperationException e)
+                {
+                    System.Console.WriteLine("{0} exception caught", e);
+                    return "E";
                 }
             }
 

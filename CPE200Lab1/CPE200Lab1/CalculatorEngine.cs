@@ -21,21 +21,23 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                case "%":
-                case "√":
-                case "1/X":
                     return true;
             }
             return false;
         }
 
-        public string Process(string str)
+        public string Process(string str,string x)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else if (x == "%")
+            {
+                return calculate(parts[1], parts[0], calculate(x, parts[0], parts[2], 4), 4);
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
