@@ -145,7 +145,8 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+                string result = engine.calculate(operate, firstOperand, secondOperand);
+            
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

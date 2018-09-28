@@ -16,7 +16,8 @@ namespace CPE200Lab1
 
         private bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -31,14 +32,25 @@ namespace CPE200Lab1
 
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            try
+            {
+                string[] parts = str.Split(' ');
+                if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                {
+                    return "E";
+                }
+                else
+                {
+                    return calculate(parts[1], parts[0], parts[2], 4);
+                }
+            }
+            catch (IndexOutOfRangeException)
             {
                 return "E";
-            } else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
+
             }
+
+
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -49,7 +61,7 @@ namespace CPE200Lab1
                     {
                         double result;
                         string[] parts;
-                        int remainLength;                                                
+                        int remainLength;
                         result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -68,7 +80,7 @@ namespace CPE200Lab1
                         return result.ToString("N0");
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -133,7 +145,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    
+
                     return (Convert.ToDouble(firstOperand) * ((Convert.ToDouble(secondOperand)) / 100)).ToString();
                     break;
             }
