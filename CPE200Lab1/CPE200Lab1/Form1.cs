@@ -278,7 +278,7 @@ namespace CPE200Lab1
                     dotsign = true;
             }
 
-            if (dotsign = true)
+            if (dotsign == true)
             {
                 lblDisplay.Text += '.';
                 dotsign = false;
