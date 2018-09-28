@@ -16,7 +16,8 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
-        private RPNCalculatorEngine RPN;
+        private RPNCalculatorEngine RPN; 
+        //Add RPN for RPNCalculator
 
         public ExtendForm()
         {
@@ -104,7 +105,8 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.Process(lblDisplay.Text); 
+            //change is RPN when engine error
             if (result is "E")
             {
                 result = RPN.Process(lblDisplay.Text);
