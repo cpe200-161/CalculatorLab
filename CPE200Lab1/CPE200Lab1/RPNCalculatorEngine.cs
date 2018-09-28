@@ -11,8 +11,24 @@ namespace CPE200Lab1
     {
         public new string Process(string str)
         {
+            /*if(str == "" || str == null)
+            {
+                return "E";
+            }*/
             Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
+            List<string> parts;
+            try
+            {
+                parts = str.Split(' ').ToList<string>();
+                if(parts.Count <=2 && str != "0")
+                {
+                    return "E";
+                }
+            }
+            catch(NullReferenceException e)
+            {
+                return "E";
+            }
             string result;
             string firstOperand, secondOperand;
 
@@ -25,19 +41,46 @@ namespace CPE200Lab1
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
+                    try
+                    {
+                        secondOperand = rpnStack.Pop();
+                        firstOperand = rpnStack.Pop();
+                    }
+                    catch(InvalidOperationException e)
+                    {
+                        return "E";
+                    }
+                    result = Calculate(token, firstOperand, secondOperand);
                     if (result is "E")
                     {
                         return result;
                     }
                     rpnStack.Push(result);
                 }
+                else if(!isOperator(token) && token != "")
+                {
+                    return "E";
+                }
+                
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            
+            try
+            {
+                result = rpnStack.Pop();
+                if(rpnStack.Count != 0)
+                {
+                    return "E";
+                }
+            }
+            catch(Exception e)
+            {
+                return "E";
+            }
+            
+                return Convert.ToDecimal(result).ToString("0.####");
+            
+            
         }
     }
     /*
