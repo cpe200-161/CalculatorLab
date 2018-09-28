@@ -27,27 +27,33 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
+                    try
                     {
-                        two = myStack.Pop();
-                        one = myStack.Pop();
-                        sum = calculate(parts[i], one, two);
-                        myStack.Push(sum);
-                    }
-                    else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
-                    {
-                        one = myStack.Pop();
-                        myStack.Push(unaryCalculate(parts[i], one));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        two = myStack.Pop();
-                        one = myStack.Pop();
-                        myStack.Push(one);
-                        myStack.Push(calculate(parts[i], one, two));
+                        if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
+                        {
+                            two = myStack.Pop();
+                            one = myStack.Pop();
+                            sum = calculate(parts[i], one, two);
+                            myStack.Push(sum);
+                        }
+                        else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
+                        {
+                            one = myStack.Pop();
+                            myStack.Push(unaryCalculate(parts[i], one));
+                        }
+                        else if (parts[i] == "%")
+                        {
+                            two = myStack.Pop();
+                            one = myStack.Pop();
+                            myStack.Push(one);
+                            myStack.Push(calculate(parts[i], one, two));
 
+                        }
+                        else return "E";
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine("EXE" + ex.ToString());
                     }
-                    else return "E";
                 }
                 else
                 {

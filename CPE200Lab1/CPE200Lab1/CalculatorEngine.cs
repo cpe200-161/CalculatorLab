@@ -101,7 +101,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    try//if (secondOperand != "0")
                     {
                         double result;
                         string[] parts;
@@ -119,6 +119,11 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         return result.ToString("G" + remainLength);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("EXE" + ex.ToString());
                     }
                     break;
                 case "%":
