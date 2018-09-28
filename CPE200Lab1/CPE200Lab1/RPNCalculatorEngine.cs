@@ -9,7 +9,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-
+        /// <summary>
+        /// Process to Calculate regular operator and unary operator using Reverse Polish notation.
+        /// </summary>
+        /// <param name="str"> String from display </param>
+        /// <returns> Element in stack if only one element left in stack; Otherwise, return "E"; </returns>
         public string Process(string str)
         {
             Stack RPNcalc = new Stack();
@@ -60,6 +64,7 @@ namespace CPE200Lab1
                         return "E";
                     }
                 }
+                    
                     //else
                     //{
                     //    return "E";

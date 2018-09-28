@@ -202,9 +202,6 @@ namespace CPE200Lab1
                         // trim the fractional part gracefully. =
 
                         return result.ToString("G" + remainLength);
-                        
-
-
                     }
                     break;
                 case "%":
