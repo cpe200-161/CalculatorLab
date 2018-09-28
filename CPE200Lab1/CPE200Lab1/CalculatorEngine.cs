@@ -38,7 +38,9 @@ namespace CPE200Lab1
                 if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
                     return "E";
-                } else
+                }
+                
+                else
                 {
                     //Calculate the first three
                     result = calculate(parts[1], parts[0], parts[2], 4);
@@ -46,9 +48,11 @@ namespace CPE200Lab1
                     parts.RemoveRange(0, 3);
                     // Put back the result
                     parts.Insert(0, result);
+
                 }
             }
-            return parts[0];
+
+                return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -71,7 +75,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
                 case "1/x":
                     if(operand != "0")
@@ -91,7 +95,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
             }
@@ -110,24 +114,31 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    try
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                        if (secondOperand != "0")
                         {
-                            return "E";
+                            double result;
+                            string[] parts;
+                            int remainLength;
+
+                            result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                            // split between integer part and fractional part
+                            parts = result.ToString().Split('.');
+                            // if integer part length is already break max output, return error
+                            if (parts[0].Length > maxOutputSize)
+                            {
+                                return "E";
+                            }
+                            // calculate remaining space for fractional part.
+                            remainLength = maxOutputSize - parts[0].Length - 1;
+                            // trim the fractional part gracefully. =
+                            return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                         }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                    }
+                    catch (OverflowException)
+                    {
+                        return "E";
                     }
                     break;
                 case "%":
