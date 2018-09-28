@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+
     public class RPNCalculatorEngine : CalculatorEngine
     {
         string stnum, secnum, resultback;                       // declare string 
@@ -29,20 +30,21 @@ namespace CPE200Lab1
                     cct.Push(resultback);                   // save answer
                 }
             }
-
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return cct.Peek();                  // show answer
-
-            }
-            else
-            {
-                return "E";
-
-            }
-
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
+        }
+    }
+    /*
+    public class RPNCalculatorEngine
+    {
+        public string Process(string str)
+        {
+            // your code here
+            return "E";
         }
     
     }
+    */
 }
  
