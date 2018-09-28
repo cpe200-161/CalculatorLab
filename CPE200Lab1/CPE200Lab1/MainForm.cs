@@ -21,6 +21,9 @@ namespace CPE200Lab1
         private double memory;
         private CalculatorEngine engine;
 
+        /// <summary>
+        /// take all boolean to default and output = 0
+        /// </summary>
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -41,6 +44,11 @@ namespace CPE200Lab1
             resetAll();
         }
 
+        /// <summary>
+        /// take input from button and send to display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -69,6 +77,11 @@ namespace CPE200Lab1
             isAfterOperater = false;
         }
 
+        /// <summary>
+        /// take one input operator and show on display 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -81,7 +94,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -93,6 +106,11 @@ namespace CPE200Lab1
 
         }
 
+        /// <summary>
+        /// take normal operator and show on display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -133,6 +151,11 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
+        /// <summary>
+        /// process all sentence in display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -151,6 +174,7 @@ namespace CPE200Lab1
             }
             isAfterEqual = true;
         }
+
 
         private void btnDot_Click(object sender, EventArgs e)
         {
@@ -172,7 +196,12 @@ namespace CPE200Lab1
                 hasDot = true;
             }
         }
-
+        
+        /// <summary>
+        /// change number on display to (-1) * that number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -196,12 +225,22 @@ namespace CPE200Lab1
                 lblDisplay.Text = "-" + lblDisplay.Text;
             }
         }
-
+        /// <summary>
+        /// set all boolean to default and set diaplay to 0 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
         }
 
+
+        /// <summary>
+        /// delete one last char on display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")

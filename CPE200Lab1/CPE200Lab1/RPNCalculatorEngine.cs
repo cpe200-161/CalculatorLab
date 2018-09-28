@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    /// <summary>
+    /// class ลูกของ CalculatorEngine จะใช้คำนวนแบบ เครื่องหมายอยู่ขางหลัง
+    /// </summary>
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        /// <summary>
+        /// แยกออกมาจาก calculate เพราะ มี่ input เหมือนกันแต่คำนวณต่างกัน
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <returns></returns>
         public string calculatePersent (string operate ,string firstOperand,string secondOperand)
         {
             switch(operate)
@@ -27,6 +37,11 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        /// <summary>
+        /// คำนวณ input แบบ RPN
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -49,6 +64,7 @@ namespace CPE200Lab1
                 }
                 if (isOperator(parts[i]))
                 {
+                    // catch exception if number can't push or pop
                     try
                     {
                         
@@ -56,7 +72,7 @@ namespace CPE200Lab1
                         {
                             case "1/x":
                             case "√":
-                                number.Push(unaryCalculate(parts[i] , number.Pop().ToString(),8));
+                                number.Push(calculate(parts[i] , number.Pop().ToString() , 8));
                                 break;
                             case "+":
                             case "-":
@@ -64,7 +80,7 @@ namespace CPE200Lab1
                             case "÷":
                                 string second = number.Pop().ToString();
                                 string first = number.Pop().ToString();
-                                number.Push(calculate(parts[i],first , second));
+                                number.Push(calculate(parts[i] , first , second));
                                 break;
                             case "%":
                                 if(i == (parts.Length - 1) || number.Count == 1 || isNumber(parts[i+1]))
