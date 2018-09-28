@@ -42,7 +42,10 @@ namespace CPE200Lab1
                         return "E";                       
                     }
                 }
-                else if(parts[i] == "++")
+                else if(parts[i] == "++" || parts[i] == "--"|| parts[i] == "XX" || parts[i] == "//" ||
+                        parts[i] == "+-" || parts[i] == "+X" || parts[i] == "+/" || parts[i] == "-+" ||
+                        parts[i] == "-*" || parts[i] == "-/" || parts[i] == "/+" || parts[i] == "/-" ||
+                        parts[i] == "/*" )
                 {
                     break;
                 }
