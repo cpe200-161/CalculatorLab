@@ -10,7 +10,7 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : CalculatorEngine
     {
         /// <summary>
-        /// process to calculate 2 number which input 
+        /// process pop number to calculate 2 number which input or 1 number for loot and 1/x
         /// </summary>
         /// <param name="str">str is string  input to process</param>
         /// 
@@ -37,8 +37,11 @@ namespace CPE200Lab1
                 {
                     if (save == "1/x" || save == "√")
                     {
-                        value = fristob.Pop();
-                        fristob.Push(unaryCalculate(save, value, 8));
+                       
+                            value = fristob.Pop();
+                      
+                        fristob.Push(unaryCalculate(save, value));
+
                     }
                     else if(save == "%")
                     {
@@ -55,8 +58,9 @@ namespace CPE200Lab1
                             value = fristob.Pop().ToString();
                             value2 = fristob.Pop().ToString();
                         }
-                        catch
+                        catch(Exception ex)
                         {
+                            Console.WriteLine(ex);
                             return "E";
                         }
 
@@ -70,16 +74,17 @@ namespace CPE200Lab1
                 }
                 
             }
-            if (fristob.Count == 1)
-            {
-                return Convert.ToDecimal(fristob.Peek()).ToString("G29");
-            }
-            else
-            {
+               if (fristob.Count == 1)
+                {
+                return fristob.Pop().ToString();
+                }
+                else
+                {
 
-                return "E";
+                    return "E";
 
-            }
+                }
+            
         }
     }
 }
