@@ -9,7 +9,12 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         protected Stack<string> myStack;
-        public string Process(string str)
+        /// <summary>
+        /// Get string to process 
+        /// </summary>
+        /// <param calculate ="str"></param>
+        /// <returns>string</returns>
+        public string calculate(string str)
         {
             // your code here
             
