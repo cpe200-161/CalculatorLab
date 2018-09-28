@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Calculated by RPN style calculation.
@@ -29,14 +29,14 @@ namespace CPE200Lab1
                         if (parts[i] == "1/x" || parts[i] == "√")
                         {
                             firstnum = number.Pop();
-                            number.Push(unaryCalculate(parts[i], firstnum));
+                            number.Push(calculate(parts[i], firstnum));
                         }
                         else return "E";
                     }
                     else if (parts[i] == "1/x" || parts[i] == "√")
                     {
                         firstnum = number.Pop();
-                        number.Push(unaryCalculate(parts[i], firstnum));
+                        number.Push(calculate(parts[i], firstnum));
                     }
                     else if (parts[i] == "%")
                     {
