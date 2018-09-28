@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// Calculate in RPN calculation.
+        /// </summary>
+        /// <param name="str"> String 0f operand and operate. </param>
+        /// <returns> Result of string in RPN calculation. </returns>
         public string Process(string str)
         {
             string first = null;
@@ -45,6 +50,7 @@ namespace CPE200Lab1
                         {
                             second = cal.Pop();
                             first = cal.Pop();
+
                             cal.Push(calculate(parts[i], first, second));
                         }
                     }

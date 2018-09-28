@@ -8,12 +8,22 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check string is number.
+        /// </summary>
+        /// <param name="str"> String is checked. </param>
+        /// <returns> True if string is number ,false if string isn't number. </returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// Check string is operater.
+        /// </summary>
+        /// <param name="str"> String is checked. </param>
+        /// <returns> True if string is operator ,false if string isn't operator. </returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -29,6 +39,11 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        /// Calculate in RPN calculation.
+        /// </summary>
+        /// <param name="str"> String 0f operand and operate. </param>
+        /// <returns> Result of string in RPN calculation. </returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -41,6 +56,14 @@ namespace CPE200Lab1
             }
 
         }
+
+        /// <summary>
+        /// Calculate with "√" and "1/x".
+        /// </summary>
+        /// <param name="operate"> String of operator. </param>
+        /// <param name="operand"> String of number. </param>
+        /// <param name="maxOutputSize"> Max size of result. </param>
+        /// <returns> Result of calcuate with "√" and "1/x". </returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -89,6 +112,14 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// calculate with "+" ,"-" ,"X" ,"÷" ,"%".
+        /// </summary>
+        /// <param name="operate"> String of operator. </param>
+        /// <param name="firstOperand"> String of first number. </param>
+        /// <param name="secondOperand"> String of second number. </param>
+        /// <param name="maxOutputSize"> Max size of result. </param>
+        /// <returns></returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
