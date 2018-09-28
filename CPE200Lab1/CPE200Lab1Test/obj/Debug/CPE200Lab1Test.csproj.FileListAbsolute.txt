@@ -1,0 +1,17 @@
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\obj\Debug\CPE200Lab1Test.csprojAssemblyReference.cache
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\obj\Debug\CPE200Lab1Test.csproj.CoreCompileInputs.cache
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\CPE200Lab1Test.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\CPE200Lab1Test.pdb
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\CPE200Lab1.exe
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\CPE200Lab1.pdb
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\CPE200Lab1.exe.config
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\obj\Debug\CPE200Lab1Test.csproj.CopyComplete
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\obj\Debug\CPE200Lab1Test.dll
+E:\Work_Etc\เมเจอร์\ปี2\@Github\01\CPE200Lab1\CPE200Lab1Test\obj\Debug\CPE200Lab1Test.pdb
