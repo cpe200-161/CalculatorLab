@@ -36,7 +36,7 @@ namespace CPE200Lab1
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
             result = rpnStack.Pop();
-            return result;
+            return decimal.Parse(result.ToString()).ToString("G29");
         }
     }
 }
