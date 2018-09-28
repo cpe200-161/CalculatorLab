@@ -6,12 +6,91 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public string Process(string str)
+        /// <summary>
+        /// Process Input Number
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>result</returns>
+        public string calculate(string str)
         {
-            // your code here
-            return "E";
+            Stack<string> st = new Stack<string>();
+            string[] part = str.Split(' ');
+            String sum, n1, n2;
+
+            for (int i = 0; i < part.Length; i++)
+            {
+                if (isNumber(part[i]))
+                {
+                    st.Push(part[i]);
+                }
+
+                if (isOperator(part[i]))
+                {
+
+
+                    if (st.Count >= 2)
+                    {
+                        try
+                        {
+                            if (part[i] == "%")
+                            {
+                                n2 = st.Pop();
+                                n1 = st.Pop();
+                                st.Push(n1);
+                                sum = calculate(part[i], n1, n2);
+                                st.Push(sum);
+                            }
+                            else
+                            {
+                                n2 = st.Pop();
+                                n1 = st.Pop();
+                                sum = calculate(part[i], n1, n2);
+                                st.Push(sum);
+                            }
+
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
+
+                    }
+                    else
+                    {
+                        if (part[i] == "√")
+                        {
+                            n1 = st.Pop();
+                            sum = calculate(part[i], n1);
+                            st.Push(sum);
+                        }
+                        else if (part[i] == "1/x")
+                        {
+                            n1 = st.Pop();
+                            sum = calculate(part[i], n1);
+                            st.Push(sum);
+                        }
+                        else
+                        {
+                            return "E";
+                        }
+
+                    }
+
+                }
+
+
+            }
+            if (st.Count == 1)
+            {
+                return st.Peek();
+            }
+            else
+            {
+                return "E";
+            }
         }
     }
 }
+
