@@ -63,6 +63,7 @@
     <Compile Include="RPNCalculatorEngine.cs" />
     <EmbeddedResource Include="ExtendForm.resx">
       <DependentUpon>ExtendForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

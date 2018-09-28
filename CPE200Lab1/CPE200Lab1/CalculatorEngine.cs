@@ -8,33 +8,56 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                case "√":
+                case "1/x":
                     return true;
             }
             return false;
         }
 
+
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            } else
+            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
+            }
+            else if (isNumber(parts[0]) && parts[1] == "%")
+            {
+                return calculate("%", "1", parts[0]);
+            }
+            else if (isNumber(parts[0]) && parts[1] == "√")
+            {
+                return unaryCalculate(parts[1], parts[0]);
+            }
+            else if (parts.Length > 4 && parts[3] == "%") // 1+2% 
+            {
+                string percent = calculate(parts[3], parts[0], parts[2]);
+                return calculate(parts[1], parts[0], parts[2], 4);
+            }
+            else if (isNumber(parts[0]) && parts[1] == "1/x")
+            {
+                return unaryCalculate(parts[1], parts[0]);
+            }
+            else
+            {
+                return "E";
             }
 
         }
@@ -59,10 +82,11 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
+                        //แก้return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -79,7 +103,8 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
+                        //("G" + remainLength);//แก้ เป็น"G"
                     }
                     break;
             }
@@ -96,6 +121,8 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                case "%":
+                    return ((Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)) / 100).ToString();
                 case "÷":
                     // Not allow devide be zero
                     if (secondOperand != "0")
@@ -115,11 +142,9 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
+                        //return result.ToString("G" + remainLength);//แก้เป็น G
                     }
-                    break;
-                case "%":
-                    //your code here
                     break;
             }
             return "E";
