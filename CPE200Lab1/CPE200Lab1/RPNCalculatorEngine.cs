@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public string Process(string str)
+        protected Stack<string> myStack;
+
+        public string calculate(string str)
         {
-            // your code here
-            Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
             double number;
+            myStack = new Stack<string>();
             try
             {
                 foreach (string part in parts)
                 {
                     if (double.TryParse(part, out number))
                     {
-                        stack.Push(number.ToString());
+                        myStack.Push(number.ToString());
                     }
                     else
                     {
@@ -32,15 +33,15 @@ namespace CPE200Lab1
                             case "÷":
                             case "%":
                                 string first, second;
-                                second = stack.Pop();
-                                first = stack.Pop();
-                                stack.Push(calculate(part, first, second));
+                                second = myStack.Pop();
+                                first = myStack.Pop();
+                                myStack.Push(calculate(part, first, second));
                                 break;
                             case "1/x":
                             case "√":
                                 string n;
-                                n = stack.Pop();
-                                stack.Push(unaryCalculate(part, n));
+                                n = myStack.Pop();
+                                myStack.Push(calculate(part, n));
                                 break;
                         }
                     }
@@ -50,9 +51,9 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-            if (stack.Count == 1)
+            if (myStack.Count == 1)
             {
-                return stack.Pop();
+                return myStack.Pop();
             }
             else
             {
@@ -61,56 +62,3 @@ namespace CPE200Lab1
         }
     }
 }
-
-/*
-foreach(string part in parts)
-        {
-            if (double.TryParse(part, out number))
-            {
-                stack.Push(number.ToString());
-            }
-            else
-            {
-                switch (part)
-                {
-                    case "+":
-                    case "-":
-                    case "X":
-                    case "÷":
-                    case "%":
-                        string first, second;
-                        if (stack.Count >= 2)
-                        {
-                            second = stack.Pop();
-                            first = stack.Pop();
-                        }
-                        else
-                        {
-                            return "E";
-                        }
-                        stack.Push(calculate(part, first, second));
-                        break;
-                    case "1/x":
-                    case "√":
-                        string n;
-                        if(stack.Count >= 1)
-                        {
-                            n = stack.Pop();
-                        }
-                        else
-                        {
-                            return "E";
-                        }
-                        stack.Push(unaryCalculate(part, n));
-                        break;
-                }
-            }
-        }
-        if(stack.Count == 1)
-        {
-            return stack.Pop();
-        }
-        else
-        {
-            return "E";
-        }*/
