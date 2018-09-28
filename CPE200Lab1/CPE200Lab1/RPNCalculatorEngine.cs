@@ -23,31 +23,35 @@ namespace CPE200Lab1
 
                 if (isOperator(part[i]))
                 {
-                    if (st.Count < 2)
+                    if (st.Count >= 2)
                     {
-                        return "E";
-                    }
-
-                    if (part[i] == "√")
-                    {
-                        n1 = st.Pop();
-                        sum = unaryCalculate(part[i], n1);
-                        st.Push(sum);
-                    }
-                    else if (part[i] == "1/x")
-                    {
-                        n1 = st.Pop();
-                        sum = unaryCalculate(part[i], n1);
-                        st.Push(sum);
-                    }
-                    else
-                    {
-
                         n2 = st.Pop();
                         n1 = st.Pop();
                         sum = calculate(part[i], n1, n2);
                         st.Push(sum);
+
                     }
+                    else
+                    {
+                        if (part[i] == "√")
+                        {
+                            n1 = st.Pop();
+                            sum = unaryCalculate(part[i], n1);
+                            st.Push(sum);
+                        }
+                        else if (part[i] == "1/x")
+                        {
+                            n1 = st.Pop();
+                            sum = unaryCalculate(part[i], n1);
+                            st.Push(sum);
+                        }
+                        else 
+                        {
+                            return "E";
+                        }
+
+                    }
+                    
                 }
 
 
