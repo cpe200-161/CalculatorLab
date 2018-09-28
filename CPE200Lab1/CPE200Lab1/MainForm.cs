@@ -81,7 +81,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculator(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -129,6 +129,8 @@ namespace CPE200Lab1
                 case "%":
                     // your code here
                     break;
+                
+
             }
             isAllowBack = false;
         }

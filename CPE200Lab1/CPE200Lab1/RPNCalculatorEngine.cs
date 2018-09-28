@@ -7,9 +7,21 @@ using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalaulatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public new string Process(string str)
+        
+        private bool symbol(string str)
+        {
+            switch (str)
+            {
+                case "1/x":
+                case "√":
+                    return true;
+            }
+            return false;
+        }
+        
+        public new string calculate(string str)
         {
             // your code here
             Stack<string> RPN = new Stack<string>();
@@ -19,23 +31,41 @@ namespace CPE200Lab1
             withoutspace.RemoveAll(p => string.IsNullOrEmpty(p));
             parts = withoutspace.ToArray();
 
-            for (int i=0;i < parts.Length; i++)
+            for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
                 {
                     RPN.Push(parts[i]);
                 }
-                else if(isOperator(parts[i]) && RPN.Count >= 2)
+                else if (isOperator(parts[i]))
+                {
+                    try
+                    {
+                        num2 = RPN.Pop();
+                        num1 = RPN.Pop();
+                        RPN.Push(calculate(parts[i], num1, num2));
+
+                    }
+                    catch(Exception ex)
+                    {
+                        return "E";
+                    }
+                    
+                }
+                else if (parts[i] == "%")
                 {
                     num2 = RPN.Pop();
-                    num1 = RPN.Pop();
-                    ans = calculate(parts[i], num1, num2);
-                    RPN.Push(ans);
+                    num1 = RPN.Peek();
+                    RPN.Push(calculate(parts[i], num1, num2));
+
                 }
-                else
+                else if (symbol(parts[i]))
                 {
-                    return "E";
+                    RPN.Push(calculator(parts[i], RPN.Pop()));
                 }
+                    
+                
+                
             }
             if(RPN.Count == 1)
             {
@@ -46,7 +76,8 @@ namespace CPE200Lab1
                 return "E";
             }
 
-            //return "E";
+            
+            
         }
     }
 }

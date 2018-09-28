@@ -16,6 +16,7 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
+        
 
         public ExtendForm()
         {
@@ -23,13 +24,16 @@ namespace CPE200Lab1
             engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        private bool isOperator(string ch)
         {
             switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "1/x":
+                case "√":
+                case "%":
                     return true;
             }
             return false;
@@ -56,6 +60,7 @@ namespace CPE200Lab1
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
+            
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -63,9 +68,13 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator((current[current.Length - 2]).ToString()))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                if(current[current.Length -1] != ' ')
+                {
+                    lblDisplay.Text += " ";
+                }
+                lblDisplay.Text += ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
         }
@@ -78,7 +87,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator((current[current.Length - 2]).ToString()))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
             } else
@@ -102,7 +111,8 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -110,6 +120,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -166,5 +177,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        
     }
 }
