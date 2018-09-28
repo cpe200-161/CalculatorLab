@@ -5,9 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
-{
+{   
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check wether imputis a number 
+        /// </summary>
+        /// <param name="str">input string</param>
+        /// <returns></returns>
         public bool isNumber(string str)
         {
             double retNum;

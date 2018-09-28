@@ -22,7 +22,18 @@ namespace CPE200Lab1
                     myStack.Push(parts[i]);
                 }
 
-                if (isOperator(parts[i]))
+                /*if (parts[i] == "%")
+                {
+                    if (myStack.Count < 2)
+                    {
+                        return "E";
+                    }
+                    Num2 = myStack.Pop();
+                    Num1 = myStack.Peek();
+                    myStack.Push(calculate(parts[i], Num1, Num2));
+                }
+                else */
+                if(isOperator(parts[i]))
                 {
                     if (myStack.Count < 2)
                     {
