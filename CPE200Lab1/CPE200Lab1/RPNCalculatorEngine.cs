@@ -49,7 +49,7 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    result = calculate(token, firstOperand, secondOperand);
+                    result = Calculate(token, firstOperand, secondOperand);
                     if (result is "E")
                     {
                         return result;

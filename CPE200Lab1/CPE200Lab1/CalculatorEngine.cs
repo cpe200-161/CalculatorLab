@@ -41,7 +41,7 @@ namespace CPE200Lab1
                 } else
                 {
                     //Calculate the first three
-                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    result = Calculate(parts[1], parts[0], parts[2], 4);
                     //Remove the first three
                     parts.RemoveRange(0, 3);
                     // Put back the result
@@ -50,7 +50,7 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string Calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -98,7 +98,7 @@ namespace CPE200Lab1
             return "E";
         }
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string Calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
