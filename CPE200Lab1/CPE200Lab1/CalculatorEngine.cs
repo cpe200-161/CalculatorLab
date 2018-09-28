@@ -13,10 +13,10 @@ namespace CPE200Lab1
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
         protected bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -24,31 +24,6 @@ namespace CPE200Lab1
                     return true;
             }
             return false;
-        }
-
-        public string Process(string str)
-        {
-            //Split input string to multiple parts by space
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            //As long as we have more than one part
-            while(parts.Count > 1)
-            {
-                //Check if the first three is ready for calcuation
-                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-                {
-                    return "E";
-                } else
-                {
-                    //Calculate the first three
-                    result = calculate(parts[1], parts[0], parts[2], 4);
-                    //Remove the first three
-                    parts.RemoveRange(0, 3);
-                    // Put back the result
-                    parts.Insert(0, result);
-                }
-            }
-            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -74,7 +49,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -97,7 +72,6 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -125,9 +99,9 @@ namespace CPE200Lab1
                             return "E";
                         }
                         // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        remainLength = maxOutputSize - parts[0].Length + 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
                 case "%":
