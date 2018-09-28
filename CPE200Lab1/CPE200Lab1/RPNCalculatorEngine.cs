@@ -9,31 +9,32 @@ namespace CPE200Lab1
 
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public override string Process(string str)
         {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
-
-            foreach (string token in parts)
+            string[] parts = str.Split(' ');
+            Stack<string> cha = new Stack<string>();
+            string s1, s2, s3;
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(token))
+                if (isNumber(parts[i]))
                 {
-                    rpnStack.Push(token);
+                    cha.Push(parts[i]);
                 }
-                else if (isOperator(token))
+
+                else if (isOperator(parts[i]))
                 {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                    if (cha.Count() < 2)
                     {
-                        return result;
+                        return "E";
                     }
-                    rpnStack.Push(result);
+                    s2 = cha.Pop();
+                    s1 = cha.Pop();
+                    s3 = calculate(parts[i], s1, s2, 4);
+                    cha.Push(s3);
+
+
                 }
+
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
             result = rpnStack.Pop();
@@ -48,6 +49,7 @@ namespace CPE200Lab1
             // your code here
             return "E";
         }
+
     }
     */
 }
