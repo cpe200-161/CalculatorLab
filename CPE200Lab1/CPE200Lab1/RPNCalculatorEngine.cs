@@ -9,7 +9,12 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">str is string input</param>
+        /// <returns>result</returns>
+        public new string Process(string str)
             {
                 string firstOp, secondOp;
                 string[] strArray = str.Split(' ');

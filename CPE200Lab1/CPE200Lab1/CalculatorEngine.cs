@@ -8,13 +8,23 @@ using System.Collections;
 namespace CPE200Lab1
 {
     public class CalculatorEngine
-    {
-        protected bool isNumber(string str)
+    {       /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="str"></param>
+            /// <returns>return number</returns>
+        public bool isNumber(string str)
         {
+            
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">this is boolean check str is operator</param>
+        /// <returns></returns>
         protected bool isOperator(string str)
         {
             switch (str)
@@ -28,10 +38,15 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">str is string  input to process</param>
+        /// <returns>result of equations</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
+            
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
@@ -42,6 +57,13 @@ namespace CPE200Lab1
             }
 
         }
+        /// <summary>
+        /// this is function to calculate 1/x and loot
+        /// </summary>
+        /// <param name="operate">is string to save a operator</param>
+        /// <param name="operand">is string of number to calaulate</param>
+        /// <param name="maxOutputSize">max number of return string</param>
+        /// <returns>result result</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -50,7 +72,7 @@ namespace CPE200Lab1
                     double result;
                     string[] parts;
                     int remainLength;
-
+                    
                     result = Math.Sqrt(Convert.ToDouble(operand));
                     // split between integer part and fractional part
                     parts = result.ToString().Split('.');
@@ -85,7 +107,14 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        /// <summary>
+        /// this is function to calaulate +,-,*,/,%
+        /// </summary>
+        /// <param name="operate">is string to save a operater</param>
+        /// <param name="firstOperand">is first number </param>
+        /// <param name="secondOperand">is second number</param>
+        /// <param name="maxOutputSize">max number of return string</param>
+        /// <returns>return result</returns>
         public string calculate(string operate, string firstOperand = "0", string secondOperand = "0", int maxOutputSize = 8)
         {
             switch (operate)
@@ -117,7 +146,7 @@ namespace CPE200Lab1
                         // trim the fractional part gracefully. =
                         return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
-                    catch(Exception E)
+                    catch(Exception )
                     {
                         return "E";
                     }
