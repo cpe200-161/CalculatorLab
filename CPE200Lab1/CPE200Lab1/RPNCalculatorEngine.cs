@@ -19,7 +19,7 @@ namespace CPE200Lab1
             {
                 case "1/x":
                 case "√":
-                
+
                     return true;
             }
             return false;
@@ -34,7 +34,7 @@ namespace CPE200Lab1
                 case "X":
                 case "÷":
                 case "%":
-                    
+
                     return true;
             }
             return false;
@@ -44,60 +44,74 @@ namespace CPE200Lab1
         {
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
-            if (parts.Length == 1)
+            try
             {
-                return "E";
-            }
-            for (int i = 0; i < parts.Length; i++)
-            {
-                if (isNumber(parts[i]))
+                for (int i = 0; i < parts.Length; i++)
                 {
-                    stack.Push(parts[i]);
-                }
-                else if (OnlyOneOperand(parts[i]))
-                {
-                    string first;
-                    first = stack.Peek();
-                    stack.Pop();
-                    stack.Push(unaryCalculate(parts[i], first, 8));
-                }
-                else if (parts[i] == "%")
-                {
-                    string first, second;
-                    if (stack.Count < 2)
+                    if (isNumber(parts[i]))
                     {
-                        return "E";
+                        stack.Push(parts[i]);
                     }
-                    second = stack.Peek();
-                    stack.Pop();
-                    first = stack.Peek();
-                    stack.Pop();
-                    stack.Push(calculate(parts[i],first, second, 8));
-                }
-                else if (isOperator(parts[i]))
-                {
-                    if (stack.Count < 2)
+                    else if (OnlyOneOperand(parts[i]))
                     {
-                        return "E";
+                        string first;
+                        first = stack.Peek();
+                        stack.Pop();
+                        stack.Push(unaryCalculate(parts[i], first, 8));
                     }
-                    string first, second;
-                    second = stack.Peek();
-                    stack.Pop();
-                    first = stack.Peek();
-                    stack.Pop();
-                    stack.Push(calculate(parts[i], first, second, 8));
-                }
+                    else if (parts[i] == "%")
+                    {
+                        try
+                        {
+                            string first, second;
+                            second = stack.Peek();
+                            stack.Pop();
+                            first = stack.Peek();
+                            stack.Pop();
+                            stack.Push(calculate(parts[i], first, second, 8));
+                        }
+                        catch (Exception)
+                        {
+                            return "E";
+                        }
 
+                    }
+                    else if (isOperator(parts[i]))
+                    {
+
+                        try
+                        {
+                            string first, second;
+                            second = stack.Peek();
+                            stack.Pop();
+                            first = stack.Peek();
+                            stack.Pop();
+                            stack.Push(calculate(parts[i], first, second, 8));
+                        }
+                        catch (Exception)
+                        {
+                            return "E";
+                        }
+
+                    }
+
+                }
+                if (stack.Count == 1)
+                {
+                    return stack.Peek();
+                }
+                else
+                {
+                    return "E";
+                }
             }
-            if (stack.Count == 1)
-            {
-                return stack.Peek();
-            }
-            else
+            catch (Exception)
             {
                 return "E";
             }
-            
+
+
+
         }
     }
 }
