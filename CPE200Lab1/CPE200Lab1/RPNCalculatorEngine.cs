@@ -3,64 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
-        /// 
+        /// Calculated by RPN style calculation.
         /// </summary>
-        /// <param name="str">str is string input</param>
-        /// <returns>result</returns>
-        public new string Process(string str)
+        /// <param name="str">The string of RPN style calculation.</param>
+        /// <returns>The result of string.</returns>
+        public string Process(string str)
+        {
+            string firstnum;
+            string secondnum;
+            string[] parts = str.Split(' ');
+            Stack<string> number = new Stack<string>();
+
+            for (int i = 0; i < parts.Length; i++)
             {
-                string firstOp, secondOp;
-                string[] strArray = str.Split(' ');
-                Stack rpnStack = new Stack();
-                if (strArray.Length < 3)
+                if (isOperator(parts[i]))
                 {
-                    return "E";
-                }
-                foreach (string s in strArray)
-                {
-                    Console.WriteLine(s);
-                    if (isNumber(s))
+                    if (number.Count < 2)
                     {
-                        rpnStack.Push(s);
+                        if (parts[i] == "1/x" || parts[i] == "√")
+                        {
+                            firstnum = number.Pop();
+                            number.Push(calculate(parts[i], firstnum));
+                        }
+                        else return "E";
                     }
-                    else if (isOperator(s))
+                    else if (parts[i] == "1/x" || parts[i] == "√")
                     {
-                        if (rpnStack.Count >= 2)
-                        {
-                            secondOp = rpnStack.Pop().ToString();
-                            firstOp = rpnStack.Pop().ToString();
-                            rpnStack.Push(calculate(s, firstOp, secondOp));
-                        }
-                        else
-                        {
-                            return "E";
-                        }
+                        firstnum = number.Pop();
+                        number.Push(calculate(parts[i], firstnum));
+                    }
+                    else if (parts[i] == "%")
+                    {
+                        secondnum = number.Pop();
+                        firstnum = number.Pop();
+                        number.Push(firstnum);
+                        number.Push(calculate(parts[i], firstnum, secondnum));
+                    }
+                    else
+                    {
+                        secondnum = number.Pop();
+                        firstnum = number.Pop();
+                        number.Push(calculate(parts[i], firstnum, secondnum));
                     }
 
                 }
-
-                if (rpnStack.Count == 1)
+                else if (isNumber(parts[i]))
                 {
-                    if (strArray[1] == "√" || strArray[1] == "1/x")
-                    {
-                        string firstnumber;
-                        firstnumber = rpnStack.Peek().ToString();
-                        rpnStack.Pop();
-                        rpnStack.Push(unaryCalculate(strArray[1], firstnumber));
-                    }
-                    return rpnStack.Peek().ToString();
-                }
-                else
-                {
-                    return "E";
+                    number.Push(parts[i]);
                 }
             }
+            if (number.Count == 1) return number.Pop();
+            else return "E";
         }
     }
+}
