@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Process to Calculate regular operator and unary operator using Reverse Polish notation.
         /// </summary>
         /// <param name="str"> String from display </param>
         /// <returns> Element in stack if only one element left in stack; Otherwise, return "E"; </returns>
-        public string Process(string str)
+ 
+        public string calculate(string str)
         {
-            Stack RPNcalc = new Stack();
+            Stack myStack = new Stack();
 
             string first, second, result;
             string[] parts = str.Split(' ');           
@@ -30,32 +31,31 @@ namespace CPE200Lab1
                 {
                     if (isNumber(element))
                     {
-                        RPNcalc.Push(element);
+                        myStack.Push(element);
                     }
-                    //else if (isUnaryOperator(element) || (isOperator(element) && RPNcalc.Count >= 2))
                     else if (isUnaryOperator(element) || isOperator(element))
                     {
                     try
                     {
                         if (element == "%")
                         {
-                            second = RPNcalc.Pop().ToString();
-                            first = RPNcalc.Peek().ToString();
+                            second = myStack.Pop().ToString();
+                            first = myStack.Peek().ToString();
                             result = calculate(element, first, second);
-                            RPNcalc.Push(result);
+                            myStack.Push(result);
                         }
                         else if (element == "√" || element == "1/x")
                         {
-                            second = RPNcalc.Pop().ToString();
-                            result = unaryCalculate(element, second);
-                            RPNcalc.Push(result);
+                            second = myStack.Pop().ToString();
+                            result = calculate(element, second);
+                            myStack.Push(result);
                         }
                         else
                         {
-                            second = RPNcalc.Pop().ToString();
-                            first = RPNcalc.Pop().ToString();
+                            second = myStack.Pop().ToString();
+                            first = myStack.Pop().ToString();
                             result = calculate(element, first, second);
-                            RPNcalc.Push(result);
+                            myStack.Push(result);
                         }
                     }
                     catch(Exception ex)
@@ -63,16 +63,11 @@ namespace CPE200Lab1
                         Console.WriteLine("An error occurred : " + ex.ToString());
                         return "E";
                     }
+                    }                 
                 }
-                    
-                    //else
-                    //{
-                    //    return "E";
-                    //}
-                }
-            if (RPNcalc.Count == 1)
+            if (myStack.Count == 1)
             {
-                return RPNcalc.Pop().ToString();
+                return myStack.Pop().ToString();
             }
             else
             {
