@@ -29,7 +29,7 @@ namespace CPE200Lab1
                 {
                     try
                     {
-                        if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
+                        if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")) //&& myStack.Count >= 2)
                         {
                             two = myStack.Pop();
                             one = myStack.Pop();
@@ -49,11 +49,14 @@ namespace CPE200Lab1
                             myStack.Push(calculate(parts[i], one, two));
 
                         }
-                        else return "E";
-                    }catch(Exception ex)
-                    {
-                        Console.WriteLine("EXE" + ex.ToString());
                     }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("EXE " + ex.ToString());
+                        return "E";
+                    }
+                        
+                    
                 }
                 else
                 {

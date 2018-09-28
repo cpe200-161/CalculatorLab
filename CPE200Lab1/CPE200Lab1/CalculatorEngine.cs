@@ -101,7 +101,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    try//if (secondOperand != "0")
+                    if (secondOperand != "0")
                     {
                         double result;
                         string[] parts;
@@ -121,10 +121,7 @@ namespace CPE200Lab1
                         return result.ToString("G" + remainLength);
 
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("EXE" + ex.ToString());
-                    }
+                    
                     break;
                 case "%":
                     //your code here
