@@ -48,6 +48,10 @@ namespace CPE200Lab1
                     parts.Insert(0, result);
                 }
             }
+            if (!(isNumber(parts[0])))
+            {
+                return "E";
+            }
             return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -71,7 +75,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N0");
                     }
                 case "1/x":
                     if(operand != "0")
@@ -91,7 +95,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N");
                     }
                     break;
             }
@@ -127,7 +131,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N0");
                     }
                     break;
                 case "%":
