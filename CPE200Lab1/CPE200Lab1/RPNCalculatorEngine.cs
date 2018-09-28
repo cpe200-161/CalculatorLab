@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// Calculated by RPN style calculation.
+        /// </summary>
+        /// <param name="str">The string of RPN style calculation.</param>
+        /// <returns>The result of string.</returns>
         public string Process(string str)
         {
             string firstnum;

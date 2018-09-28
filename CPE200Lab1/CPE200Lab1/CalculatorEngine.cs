@@ -8,12 +8,22 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check this string is number.
+        /// </summary>
+        /// <param name="str">string will be check</param>
+        /// <returns>If sting is number,return true.Otherwise return flase.</returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// Check this string is operator.
+        /// </summary>
+        /// <param name="str">string will be check</param>
+        /// <returns>If sting is operator,return true.Otherwise,return flase</returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -29,6 +39,11 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        /// Calculated by normal style calculation.
+        /// </summary>
+        /// <param name="str">Normal string </param>
+        /// <returns>The result of string.</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -42,6 +57,14 @@ namespace CPE200Lab1
             }
 
         }
+
+        /// <summary>
+        /// Calculate (square root) and (1 over x) with one string.
+        /// </summary>
+        /// <param name="operate">Operator for calculation.</param>
+        /// <param name="operand">String is operanded. </param>
+        /// <param name="maxOutputSize">Define maximum number of digit that is the result</param>
+        /// <returns>The result of string.</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -51,6 +74,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
+                       
                         result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -89,6 +113,14 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// Calculate plus,minus,multiply,divide with two strings.
+        /// </summary>
+        /// <param name="operate">Operator for calculation</param>
+        /// <param name="firstOperand">First string is operanded.</param>
+        /// <param name="secondOperand">Second string is operanded.</param>
+        /// <param name="maxOutputSize">Define maximum number of digit that is the result</param>
+        /// <returns>The result of string.</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
