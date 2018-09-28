@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         public string Process(string str)
         {
             Stack mystack = new Stack();
             string first, second;
-            string[] parts = str.Split(' ');         
+            string[] parts = str.Split(' ');
 
             for (int i = 0; i < parts.Length; i++)
             {
-                
+
                 if (isOperator(parts[i]))
                 {
                     if (mystack.Count < 2) return "E";
@@ -39,10 +39,10 @@ namespace CPE200Lab1
                 else if (parts[i] == "√" || parts[i] == "1/x")
                 {
                     first = (string)mystack.Pop();
-                    mystack.Push(unaryCalculate(parts[i], first, 4));
+                    mystack.Push(calculator(parts[i], first, 4));
                 }
-            }           
-            if(mystack.Count==1) return (string)mystack.Pop();
+            }
+            if (mystack.Count == 1) return (string)mystack.Pop();
 
             return "E";
         }

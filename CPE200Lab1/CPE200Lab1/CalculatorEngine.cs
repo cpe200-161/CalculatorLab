@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine
+    public class BasicCalculatorEngine
     {
         public bool isNumber(string str)
         {
@@ -47,11 +47,11 @@ namespace CPE200Lab1
 
 
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculator(string oper, string firstOperand, int maxOutputSize = 8)
         {
             try
             {
-                switch (operate)
+                switch (oper)
                 {
                     case "√":
                         {
@@ -59,7 +59,7 @@ namespace CPE200Lab1
                             string[] parts;
                             int remainLength;
 
-                            result = Math.Sqrt(Convert.ToDouble(operand));
+                            result = Math.Sqrt(Convert.ToDouble(firstOperand));
                             // split between integer part and fractional part
                             parts = result.ToString().Split('.');
                             // if integer part length is already break max output, return error
@@ -73,13 +73,13 @@ namespace CPE200Lab1
                             return result.ToString();
                         }
                     case "1/x":
-                        if (operand != "0")
+                        if (firstOperand != "0")
                         {
                             double result;
                             string[] parts;
                             int remainLength;
-                            if (Convert.ToDouble(operand) == 0) return "E";
-                            result = (1.0 / Convert.ToDouble(operand));
+                            if (Convert.ToDouble(firstOperand) == 0) return "E";
+                            result = (1.0 / Convert.ToDouble(firstOperand));
                             // split between integer part and fractional part
                             parts = result.ToString().Split('.');
                             // if integer part length is already break max output, return error
@@ -102,11 +102,11 @@ namespace CPE200Lab1
             return "E";
         }
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string oper, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {           
                 try
             {
-                switch (operate)
+                switch (oper)
                 {
                     case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
