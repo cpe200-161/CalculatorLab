@@ -128,6 +128,11 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+
+                    break;
+                case "√":
+                    firstOperand = lblDisplay.Text;
+                    firstOperand = (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
                     break;
             }
             isAllowBack = false;
