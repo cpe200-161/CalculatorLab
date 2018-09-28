@@ -32,8 +32,11 @@ namespace CPE200Lab1
                     {
                         secondOperand = Operands.Pop();
                         firstOperand = Operands.Pop();
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
+                        
+                       
+                            result = calculate(list, firstOperand, secondOperand);
+                            Operands.Push(result);
+                        
                     }
                     else if (list == "%")
                     {
