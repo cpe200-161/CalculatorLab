@@ -43,7 +43,16 @@ namespace CPE200Lab1
                     myStack.Push(unaryCalculate(parts[i], Num1));
                 }
             }
-            result = myStack.Peek();
+
+            try
+            {
+                result = myStack.Peek();
+            }
+            catch (InvalidOperationException)
+            {
+                return "E";
+            }
+
             if (myStack.Count != 1)
             {
                 return "E";
