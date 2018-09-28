@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+
+
         public string Process(string str)
         {
             // your code here
@@ -22,17 +24,6 @@ namespace CPE200Lab1
                     myStack.Push(parts[i]);
                 }
 
-                /*if (parts[i] == "%")
-                {
-                    if (myStack.Count < 2)
-                    {
-                        return "E";
-                    }
-                    Num2 = myStack.Pop();
-                    Num1 = myStack.Peek();
-                    myStack.Push(calculate(parts[i], Num1, Num2));
-                }
-                else */
                 if(isOperator(parts[i]))
                 {
                     if (myStack.Count < 2)
@@ -51,7 +42,7 @@ namespace CPE200Lab1
                         return "E";
                     }
                     Num1 = myStack.Pop();
-                    myStack.Push(unaryCalculate(parts[i], Num1));
+                    myStack.Push(calculate(parts[i], Num1));
                 }
             }
 
