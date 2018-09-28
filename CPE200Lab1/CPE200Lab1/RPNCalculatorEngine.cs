@@ -9,7 +9,11 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         protected Stack<string> myStack;
-
+        /// <summary>
+        /// Input string to calculate with RPNform
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>First Number of Stack</returns>
         public string calculate(string str)
         {
             string[] parts = str.Split(' ');
