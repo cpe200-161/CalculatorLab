@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     /// <summary>
-    /// All the main calculate method belong here
+    /// All main calculate method belong here
     /// </summary>
 
     public class BasicCalculatorEngine

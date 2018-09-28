@@ -10,21 +10,20 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-
     /// <summary>
     /// A Form for normal calculator
     /// </summary>
 
     public partial class MainForm : Form
     {
-        private bool hasDot;
+        protected bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
         private string oper;
         private double memory;
-        private CalculatorEngine myEngine;
+        protected CalculatorEngine myEngine;
 
         private void resetAll()
         {

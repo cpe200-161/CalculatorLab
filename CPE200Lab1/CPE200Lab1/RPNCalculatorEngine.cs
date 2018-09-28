@@ -10,15 +10,19 @@ namespace CPE200Lab1
     public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
-        /// All relate RPNCalculator code belong here
+        /// RPNCalculator
+        /// calculate with rpn order
+        /// such as 1 1 + , 2 3 - 4 * 5 +
         /// </summary>
         /// <param name="oper"></param>
         /// <returns></returns>
 
+        protected Stack myStack;
+        
         public string calculate(string oper)
         {
             string[] parts = oper.Split(' ');
-            Stack myStack = new Stack();
+            myStack = new Stack();
 
             try
             {

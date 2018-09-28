@@ -13,8 +13,8 @@ namespace CPE200Lab1
 
     public class CalculatorEngine : BasicCalculatorEngine
     {
-        private Double firstOperand;
-        private Double secondOperand;
+        protected double firstOperand;
+        protected double secondOperand;
 
         public void setFirstOperand(string num)
         {
