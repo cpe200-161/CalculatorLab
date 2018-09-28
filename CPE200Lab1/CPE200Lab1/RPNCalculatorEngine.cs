@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Process Input Number
         /// </summary>
         /// <param name="str"></param>
         /// <returns>result</returns>
-        public string Process(string str)
+        public string calculate(string str)
         {
             Stack<string> st = new Stack<string>();
             string[] part = str.Split(' ');
@@ -62,13 +62,13 @@ namespace CPE200Lab1
                         if (part[i] == "√")
                         {
                             n1 = st.Pop();
-                            sum = unaryCalculate(part[i], n1);
+                            sum = calculate(part[i], n1);
                             st.Push(sum);
                         }
                         else if (part[i] == "1/x")
                         {
                             n1 = st.Pop();
-                            sum = unaryCalculate(part[i], n1);
+                            sum = calculate(part[i], n1);
                             st.Push(sum);
                         }
                         else
