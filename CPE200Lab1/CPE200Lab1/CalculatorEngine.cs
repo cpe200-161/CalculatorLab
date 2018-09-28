@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    /// <summary>
+    /// normal Calculator to calculate simple expression
+    /// such as 1+1 2*5 3-15
+    /// </summary>
 
     public class CalculatorEngine : BasicCalculatorEngine
     {

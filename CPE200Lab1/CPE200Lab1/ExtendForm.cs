@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
+
+    /// <summary>
+    /// A Form for RPNCalculator 
+    /// </summary>
+
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;

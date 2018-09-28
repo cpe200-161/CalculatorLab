@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
+
+    /// <summary>
+    /// A Form for normal calculator
+    /// </summary>
+
     public partial class MainForm : Form
     {
         private bool hasDot;
