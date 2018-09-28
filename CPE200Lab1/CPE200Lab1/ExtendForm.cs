@@ -106,10 +106,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = RPN.Process(lblDisplay.Text);
+            string result = RPN.calculate(lblDisplay.Text);
             if (result is "E")
             {
-                result = RPN.Process(lblDisplay.Text);
+                result = RPN.calculate(lblDisplay.Text);
                 if (result is "E") lblDisplay.Text = "Error";
                 else lblDisplay.Text = result;
             }

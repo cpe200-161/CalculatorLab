@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Calculating using RPN calculator 
         /// </summary>
-        /// <param name="str"> The string of RPN style calculation </param>
+        /// <param name="oper"> The string of RPN style calculation </param>
         /// <returns> Resulf of string </returns>
-        public new string Process(string str)
+        public new string calculate(string oper)
         {
             string one, two, sum;
             Stack<string> myStack = new Stack<string>();
-            string[] parts = str.Split(' ');
+            string[] parts = oper.Split(' ');
 
             List<string> partsWithoutSpace = parts.ToList<string>();
             partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
@@ -41,7 +41,7 @@ namespace CPE200Lab1
                     else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
                     {
                         one = myStack.Pop();
-                        myStack.Push(unaryCalculate(parts[i], one));
+                        myStack.Push(calculate(parts[i], one));
                     }
                     else if (parts[i] == "%")
                     {
