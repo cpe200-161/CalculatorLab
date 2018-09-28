@@ -8,12 +8,22 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// check Input is Number 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>true if the repersent a Number</returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// check Input is Operator 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>true if the repersent a Operator </returns>
         public bool isOperator(string str)
         {
             switch (str)
@@ -30,7 +40,11 @@ namespace CPE200Lab1
             return false;
         }
 
-
+        /// <summary>
+        /// Process Input Number
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns> Result from calculate</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -46,7 +60,7 @@ namespace CPE200Lab1
             {
                 return unaryCalculate(parts[1], parts[0]);
             }
-            else if(parts.Length > 4 && parts[3] == "%") // 1+2% 
+            else if(parts.Length >= 4 && parts[3] == "%") // 1+2% 
             {
                 string percent = calculate(parts[3], parts[0], parts[2]);
                 return calculate(parts[1], parts[0], parts[2], 4);
@@ -61,6 +75,13 @@ namespace CPE200Lab1
             }  
 
         }
+        /// <summary>
+        /// Calculate 1 Input
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="operand"></param>
+        /// <param name="maxOutputSize"></param>
+        /// <returns>Result from unaryCalculate</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -83,7 +104,7 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         return result.ToString();
-                        //แก้return result.ToString("N" + remainLength);
+                        
                     }
                 case "1/x":
                     if (operand != "0")
@@ -104,12 +125,20 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         return result.ToString();
-                        //("G" + remainLength);//แก้ เป็น"G"
+                        
                     }
                     break;
             }
             return "E";
         }
+        /// <summary>
+        /// Calculate 2 Input
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <param name="maxOutputSize"></param>
+        /// <returns>Result from calculate</returns>
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
@@ -123,6 +152,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "%":
                     return ( (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)) / 100).ToString();
+                   
                 case "÷":
                     // Not allow devide be zero
                     if (secondOperand != "0")
@@ -143,7 +173,7 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         return result.ToString();
-                        //return result.ToString("G" + remainLength);//แก้เป็น G
+                        
                     }
                     break;
             }

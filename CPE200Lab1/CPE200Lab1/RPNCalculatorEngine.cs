@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// Process Input Number
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>result</returns>
         public string Process(string str)
         {
             Stack<string> st = new Stack<string>();
@@ -23,12 +28,33 @@ namespace CPE200Lab1
 
                 if (isOperator(part[i]))
                 {
+
+
                     if (st.Count >= 2)
                     {
-                        n2 = st.Pop();
-                        n1 = st.Pop();
-                        sum = calculate(part[i], n1, n2);
-                        st.Push(sum);
+                        try
+                        {
+                            if (part[i] == "%")
+                            {
+                                n2 = st.Pop();
+                                n1 = st.Pop();
+                                st.Push(n1);
+                                sum = calculate(part[i], n1, n2);
+                                st.Push(sum);
+                            }
+                            else
+                            {
+                                n2 = st.Pop();
+                                n1 = st.Pop();
+                                sum = calculate(part[i], n1, n2);
+                                st.Push(sum);
+                            }
+
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
 
                     }
                     else
@@ -45,13 +71,13 @@ namespace CPE200Lab1
                             sum = unaryCalculate(part[i], n1);
                             st.Push(sum);
                         }
-                        else 
+                        else
                         {
                             return "E";
                         }
 
                     }
-                    
+
                 }
 
 
