@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CPE200Lab1
+{
+    class RPNFrom : ExtendForm
+    {
+        
+
+        public RPNFrom()
+        {
+            
+            
+        }
+
+        protected override CalculatorEngine  Engine()
+        {
+            return new RPNCalculatorEngine();
+        }
+
+
+    }
+}

@@ -7,16 +7,153 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     public class CalculatorEngine
+
     {
-        private bool isNumber(string str)
+        protected bool isNumberPart = false;
+        protected bool isContainDot = false;
+        protected bool isSpaceAllowed = false;
+        private string display = "0";
+
+        public string Display()
+        {
+            return display;
+        }
+
+        public void Btnum(string m)
+        {
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += m;
+            isSpaceAllowed = true;
+
+
+        }
+
+        public virtual void BtEq_click()
+        {
+            string result = Process(display);
+            if (result is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result;
+            }
+
+
+        }
+
+        public void BtBinaryOper_Click(string n)
+        {
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+            {
+                display += " " + n + " ";
+                isSpaceAllowed = false;
+            }
+
+        }
+
+
+
+        public void BtBack_Click()
+        {
+            // check if the last one is operator
+            string current = display;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is "")
+            {
+                display = "0";
+            }
+
+        }
+
+        public void BtClear_Click()
+        {
+            display = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+
+        }
+
+        public void BtSign__Click()
+        {
+
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                display = current.Substring(0, current.Length - 1);
+                if (display is "")
+                {
+                    display = "0";
+                }
+            }
+            else
+            {
+                display = current + "-";
+            }
+            isSpaceAllowed = false;
+
+        }
+
+        public virtual void BtSpace_Click()
+        {
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void BtDot_Click()
+        {
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+
+        }
+
+
+
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -26,13 +163,14 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -62,7 +200,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -120,7 +258,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    break;
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
+
             }
             return "E";
         }

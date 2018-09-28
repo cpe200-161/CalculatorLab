@@ -272,6 +272,7 @@
             this.lblDisplay.TabIndex = 40;
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
             // 
             // btnSpace
             // 
@@ -312,6 +313,7 @@
             this.Controls.Add(this.btn7);
             this.Name = "ExtendForm";
             this.Text = "ExtendForm";
+            this.Load += new System.EventHandler(this.ExtendForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
