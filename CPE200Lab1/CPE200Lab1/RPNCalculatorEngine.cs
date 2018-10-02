@@ -18,7 +18,7 @@ namespace CPE200Lab1
             }
             string[] parts = str.Split(' ');
             Stack<string> operands = new Stack<string>();
-            if (!isOperator(parts[3])
+            if (!isOperator(parts[3]))
             {
 
             }
