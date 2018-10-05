@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -49,7 +49,7 @@ namespace CPE200Lab1
                         int remainLength;
 
                         result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
+                        string strResult = result.ToString();
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
                         if (parts[0].Length > maxOutputSize)
@@ -59,7 +59,15 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        if (strResult.Contains("."))
+                        {
+                            strResult = strResult.TrimEnd('0');
+                            if (strResult.EndsWith("."))
+                            {
+                                strResult = strResult.TrimEnd('.');
+                            }
+                        }
+                        return strResult;
                     }
                 case "1/x":
                     if(operand != "0")
@@ -69,7 +77,7 @@ namespace CPE200Lab1
                         int remainLength;
 
                         result = (1.0 / Convert.ToDouble(operand));
-                        // split between integer part and fractional part
+                        string strResult = result.ToString();
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
                         if (parts[0].Length > maxOutputSize)
@@ -79,7 +87,15 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        if (strResult.Contains("."))
+                        {
+                            strResult = strResult.TrimEnd('0');
+                            if (strResult.EndsWith("."))
+                            {
+                                strResult = strResult.TrimEnd('.');
+                            }
+                        }
+                        return strResult;
                     }
                     break;
             }
@@ -106,6 +122,7 @@ namespace CPE200Lab1
 
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
+                        string strResult = result.ToString();
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
                         if (parts[0].Length > maxOutputSize)
@@ -115,7 +132,15 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        if (strResult.Contains("."))
+                        {
+                            strResult = strResult.TrimEnd('0');
+                            if (strResult.EndsWith("."))
+                            {
+                                strResult = strResult.TrimEnd('.');
+                            }
+                        }
+                        return strResult;
                     }
                     break;
                 case "%":
