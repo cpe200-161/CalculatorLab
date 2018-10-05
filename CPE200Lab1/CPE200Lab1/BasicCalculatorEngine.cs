@@ -3,21 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : BasicCalculatorEngine
+    public class BasicCalculatorEngine
     {
-        protected double firstOperand;
-        protected double secondOperand;
-        public void setFirstOperand(string num)
-        {
-            firstOperand = Convert.ToDouble(num);
-        }
-        public void setSecondOperand(string num)
-        {
-            secondOperand = Convert.ToDouble(num);
-        }
         /// <summary>
         /// Check that is string of number 
         /// </summary>
@@ -53,11 +42,11 @@ namespace CPE200Lab1
         /// <summary>
         /// Calculating using a regular calculator
         /// </summary>
-        /// <param name="oper"> The string of normal style calculation </param>
+        /// <param name="str"> The string of normal style calculation </param>
         /// <returns> Resulf of string </returns>
-        public string calculate(string oper)
+        public string calculate(string str)
         {
-            string[] parts = oper.Split(' ');
+            string[] parts = str.Split(' ');
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
