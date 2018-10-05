@@ -20,7 +20,7 @@ namespace CPE200Lab1
                     count_oper += 1;
                     if (count_num <= count_oper || count_num == 1)
                     {
-                        return "Good";
+                        return "E";
                     }
                     string secondOperand = number_stack.Pop();
                     string firstOperand = number_stack.Pop();
