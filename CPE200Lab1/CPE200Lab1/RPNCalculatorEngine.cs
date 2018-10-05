@@ -6,31 +6,38 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         public string Process(string str)
         {
-            Stack<string> sTack = new Stack<string>();
-            string[] parts = str.ToString().Split(' ');
-            string firstOp, secondOp;
-            string result;
-            int numCount = 0, operCount = 0;
-            foreach(string part in parts)
+            Stack<string> number_stack = new Stack<string>();
+            string[] numbers = str.Split(' ');
+            int count_oper = 0, count_num = 0;
+            foreach (string number in numbers)
             {
-                if (isNumber(part))
+                if (isOperator(number))
                 {
-                    sTack.Push(part);
-                }
-                if (isOperator(part))
+                    count_oper += 1;
+                    if (count_num <= count_oper || count_num == 1)
+                    {
+                        return "Good";
+                    }
+                    string secondOperand = number_stack.Pop();
+                    string firstOperand = number_stack.Pop();
+                    string result = calculate(number, firstOperand, secondOperand);
+                    number_stack.Push(result);
+               }
+                else
                 {
-                    secondOp = sTack.Pop();
-                    firstOp = sTack.Pop();
-                    result = calculate(part, firstOp, secondOp);
-                    sTack.Push(result);
+                    count_num += 1;
+                    number_stack.Push(number);
                 }
             }
-
-            return sTack.Pop();
+           if(count_num == 1 || count_oper > count_num - 1)
+            {
+                return "E";
+            }
+            return number_stack.Pop();
         }
     }
 }
