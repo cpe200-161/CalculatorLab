@@ -20,22 +20,29 @@ namespace CPE200Lab1
                     count_oper += 1;
                     if (count_num <= count_oper || count_num == 1)
                     {
-                        return "Good";
+                        return "E";
                     }
                     string secondOperand = number_stack.Pop();
                     string firstOperand = number_stack.Pop();
                     string result = calculate(number, firstOperand, secondOperand);
                     number_stack.Push(result);
                }
+               else if (number == "√" || number == "1/x")
+                {
+                    count_oper += 1;
+                    string Operand = number_stack.Pop();
+                    string result = unaryCalculate(number, Operand);
+                    number_stack.Push(result);
+                }
                 else
                 {
                     count_num += 1;
                     number_stack.Push(number);
                 }
             }
-           if(count_num == 1 || count_oper > count_num - 1)
+           if((count_num == 1 || count_oper > count_num - 1)&&count_oper == 0)
             {
-                return "E";
+                return number_stack.Count.ToString();
             }
             return number_stack.Pop();
         }

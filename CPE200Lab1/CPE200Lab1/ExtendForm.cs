@@ -30,6 +30,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -111,6 +112,8 @@ namespace CPE200Lab1
             }
         }
 
+
+
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -164,6 +167,16 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSign_Percent(object sender, EventArgs e)
+        {
+
         }
     }
 }
