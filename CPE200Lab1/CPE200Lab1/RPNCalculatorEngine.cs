@@ -6,48 +6,39 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-
     public class RPNCalculatorEngine : CalculatorEngine
-    {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
-
-            foreach (string token in parts)
-            {
-                if (isNumber(token))
-                {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
-                    {
-                        return result;
-                    }
-                    rpnStack.Push(result);
-                }
-            }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
-        }
-    }
-    /*
-    public class RPNCalculatorEngine
     {
         public string Process(string str)
         {
-            // your code here
-            return "E";
+            if (str[str.Length - 1] == ' ') str = str.Substring(0, str.Length - 1);
+            Stack<string> number_stack = new Stack<string>();
+            string[] numbers = str.Split(' ');
+            int count_oper = 0, count_num = 0;
+            foreach (string number in numbers)
+            {
+                if (isOperator(number))
+                {
+                    count_oper += 1;
+                    if (count_num <= count_oper || count_num == 1)
+                    {
+                        return "E";
+                    }
+                    string secondOperand = number_stack.Pop();
+                    string firstOperand = number_stack.Pop();
+                    string result = calculate(number, firstOperand, secondOperand);
+                    number_stack.Push(result);
+                }
+                else
+                {
+                    count_num += 1;
+                    number_stack.Push(number);
+                }
+            }
+            if (count_num == 1 || count_oper < count_num - 1)
+            {
+                return "E";
+            }
+            return number_stack.Pop();
         }
     }
-    */
 }
