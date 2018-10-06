@@ -46,7 +46,7 @@ namespace CPE200Lab1
             }
             if ((count_num == 1 || count_oper > count_num - 1) && count_oper == 0 || number_stack.Count!=1)
             {
-                return "E";
+                 return "E";
             }
             return number_stack.Pop();
         }
