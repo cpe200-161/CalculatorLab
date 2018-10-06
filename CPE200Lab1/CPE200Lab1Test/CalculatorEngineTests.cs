@@ -1,7 +1,6 @@
 ﻿using CPE200Lab1;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace CPE200Lab1.Tests
 {
     [TestClass()]
@@ -16,7 +15,6 @@ namespace CPE200Lab1.Tests
             string input = "1 + 2";
             string expected = "3";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
@@ -27,7 +25,6 @@ namespace CPE200Lab1.Tests
             string input = "5 - 3";
             string expected = "2";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
@@ -38,7 +35,6 @@ namespace CPE200Lab1.Tests
             string input = "5 X 3";
             string expected = "15";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
@@ -49,37 +45,30 @@ namespace CPE200Lab1.Tests
             string input = "6 ÷ 3";
             string expected = "2";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod()]
         public void Process_ErrorDivideByZero_Test()
         {
             string input = "6 ÷ 0";
             string expected = "E";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod()]
         public void Process_ErrorMalformate_Test()
         {
             string input = "1+2";
             string expected = "E";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
-
-
         //
         // Test calculate()
         //
@@ -90,7 +79,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "3";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("+", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -102,7 +90,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "1";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("+", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -114,7 +101,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "1";
             string expected = "1";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -126,7 +112,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "-1";
             string expected = "3";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -137,7 +122,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "-1";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -149,7 +133,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "4";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("X", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -161,7 +144,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "-4";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("X", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -173,7 +155,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "2";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -185,7 +166,6 @@ namespace CPE200Lab1.Tests
             string secondOperand = "2";
             string expected = "-2";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
@@ -197,13 +177,10 @@ namespace CPE200Lab1.Tests
             string secondOperand = "0";
             string expected = "E";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
-
-
         //
         // Test Unary()
         //
@@ -213,35 +190,29 @@ namespace CPE200Lab1.Tests
             string operand = "4";
             string expected = "2";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.unaryCalculate("√", operand);
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod()]
         public void UnaryCalculate_BasicOneOverX_Test()
         {
             string operand = "4";
             string expected = "0.25";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.unaryCalculate("1/x", operand);
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod()]
         public void UnaryCalculate_ErrorOneOverX_Test()
         {
             string operand = "0";
             string expected = "E";
             string actual;
-
             CalculatorEngine engine = new CalculatorEngine();
             actual = engine.unaryCalculate("1/x", operand);
             Assert.AreEqual(expected, actual);
         }
     }
 }
-

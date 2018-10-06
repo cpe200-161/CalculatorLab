@@ -1,0 +1,14 @@
+﻿[10/6/2018 6:34:29 PM Informational] ------ Run test started ------
+[10/6/2018 6:34:33 PM Informational] ========== Run test finished: 31 run (0:00:03.8220288) ==========
+[10/6/2018 6:39:24 PM Informational] ------ Run test started ------
+[10/6/2018 6:39:26 PM Informational] ========== Run test finished: 31 run (0:00:01.8408141) ==========
+[10/6/2018 6:40:19 PM Informational] ------ Run test started ------
+[10/6/2018 6:40:19 PM Informational] ========== Run test finished: 21 run (0:00:00.840026) ==========
+[10/6/2018 6:53:56 PM Warning] Build failed or it was cancelled.
+[10/6/2018 6:54:49 PM Warning] Build failed or it was cancelled.
+[10/6/2018 6:56:04 PM Informational] ------ Run test started ------
+[10/6/2018 6:56:04 PM Informational] ========== Run test finished: 21 run (0:00:00.9527356) ==========
+[10/6/2018 7:08:21 PM Informational] ------ Run test started ------
+[10/6/2018 7:08:22 PM Informational] ========== Run test finished: 21 run (0:00:00.7915232) ==========
+[10/6/2018 7:12:11 PM Informational] ------ Run test started ------
+[10/6/2018 7:12:12 PM Informational] ========== Run test finished: 21 run (0:00:00.8140325) ==========
