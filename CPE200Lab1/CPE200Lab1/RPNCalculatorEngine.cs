@@ -20,7 +20,7 @@ namespace CPE200Lab1
         /// <returns>
         /// Return true if string id unary operator, otherwise return false.
         /// </returns>
-        public bool isUnaryOperator(string str)
+        private bool isUnaryOperator(string str)
         {
             switch(str)
             {
