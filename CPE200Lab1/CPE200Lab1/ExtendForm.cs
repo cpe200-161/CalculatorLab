@@ -13,17 +13,18 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        protected bool hasDot = false;
         private bool isSpaceAllowed = false;
-        private TheCalculatorEngine engine;
-        private RPNCalculatorEngine RPN;
+        protected RPNCalculatorEngine myEngine;
+        protected string oper;
+
           
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new TheCalculatorEngine();
-            RPN = new RPNCalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
+            
             
         }
 
@@ -53,7 +54,7 @@ namespace CPE200Lab1
             if (!isNumberPart)
             {
                 isNumberPart = true;
-                isContainDot = false;
+                hasDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
@@ -78,7 +79,7 @@ namespace CPE200Lab1
                 return;
             }
             isNumberPart = false;
-            isContainDot = false;
+            hasDot = false;
             string current = lblDisplay.Text;
            
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2 ]))
@@ -112,14 +113,14 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            isContainDot = false;
+            hasDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = RPN.calculate(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -163,9 +164,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if(!hasDot)
             {
-                isContainDot = true;
+                hasDot = true;
                 lblDisplay.Text += ".";
                 isSpaceAllowed = false;
             }

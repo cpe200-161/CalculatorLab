@@ -8,11 +8,12 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        
-       
+
+        protected Stack<string> myStack;
+
         public override string calculate(string str)
         {
-            Stack<string> numberStack = new Stack<string>();
+             myStack = new Stack<string>();
             
             
             string[] numbers = str.Split(' ');
@@ -25,25 +26,25 @@ namespace CPE200Lab1
                 {
                     if (isNumber(number))
                     {
-                        numberStack.Push(number);
+                        myStack.Push(number);
                     }
                     
                     if (isOperator(number))
                     {
-                        if (numberStack.Count > 1)
+                        if (myStack.Count > 1)
                         {
-                        string secondNumber = numberStack.Pop();
-                        string firstNumber = numberStack.Pop();
+                        string secondNumber = myStack.Pop();
+                        string firstNumber = myStack.Pop();
                         string answer = calculate(number, firstNumber, secondNumber);
-                        numberStack.Push(answer);
+                        myStack.Push(answer);
                         }
                         else return "E";
                     }
-                    else if (isOperatorX(number) && numberStack.Count >= 1)
+                    else if (isOperatorX(number) && myStack.Count >= 1)
                     {
-                        string UOperand = numberStack.Pop();
+                        string UOperand = myStack.Pop();
                         string answer = calculate(number, UOperand);
-                        numberStack.Push(answer);
+                        myStack.Push(answer);
 
                     }
 
@@ -51,7 +52,7 @@ namespace CPE200Lab1
 
                 }
             
-            if (numberStack.Count == 1) return numberStack.Pop();
+            if (myStack.Count == 1) return myStack.Pop();
             else return "E";
 
 
