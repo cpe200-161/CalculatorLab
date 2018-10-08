@@ -9,7 +9,7 @@ namespace CPE200Lab1
     /// <summary>
     /// Provide method for calculate with RPN style.
     /// </summary>
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         /// <summary>
         /// Check that is unary operator.
