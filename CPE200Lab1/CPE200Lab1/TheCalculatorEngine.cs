@@ -17,7 +17,7 @@ namespace CPE200Lab1
         /// <returns>
         /// Return true if stirng is number, otherwise return false. 
         /// </returns>
-        public bool isNumber(string str)
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -32,7 +32,7 @@ namespace CPE200Lab1
         /// <returns>
         /// Return true if the string is operator, otherwise return false.
         /// </returns>
-        public bool isOperator(string str)
+        protected bool isOperator(string str)
         {
             switch (str)
             {
