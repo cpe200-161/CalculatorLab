@@ -20,7 +20,7 @@ namespace CPE200Lab1
         /// <returns>
         /// Return true if string id unary operator, otherwise return false.
         /// </returns>
-        public bool isUnaryCalculate(string str)
+        public bool isUnaryOperator(string str)
         {
             switch(str)
             {
@@ -40,7 +40,7 @@ namespace CPE200Lab1
         /// <returns>
         /// The string of result.
         /// </returns>
-        public string Process(string str)
+        public string calculate(string str)
         {
             string[] parts = str.Split(' ');
             Stack<string> Operands = new Stack<string>();
@@ -64,9 +64,9 @@ namespace CPE200Lab1
                         return "E";
                     }
                 }
-                else if (isUnaryCalculate(parts[i]))
+                else if (isUnaryOperator(parts[i]))
                 {
-                    Operands.Push(unaryCalculate(parts[i], Operands.Pop()));
+                    Operands.Push(calculate(parts[i], Operands.Pop()));
                 }
                 else if (parts[i] == "%")
                 {
