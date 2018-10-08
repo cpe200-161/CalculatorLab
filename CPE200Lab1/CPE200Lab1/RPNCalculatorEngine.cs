@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine :CalculatorEngine
+    public class RPNCalculatorEngine :TheCalculatoeEngine
     {
-        public string Process(string str)
+        Stack<string> Operands = new Stack<string>();
+
+        public string caculate(string oper)
         {
             string firstOperand;
             string secondOperand;
             string result;
-            string[] parts = str.Split(' ');
-            Stack<string> Operands = new Stack<string>();
-
+            string[] parts = oper.Split(' ');
             foreach(string list in parts)
             {
                 if (isNumber(list))
@@ -53,7 +53,7 @@ namespace CPE200Lab1
                     else
                     {
                         secondOperand = Operands.Pop();
-                        result = unaryCalculate(list, secondOperand);
+                        result = calculate(list, secondOperand);
                         Operands.Push(result);
                     }
                     
