@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine :TheCalculatoeEngine
     {
-        Stack<string> Operands = new Stack<string>();
+        Stack<string> myStack = new Stack<string>();
 
         public string caculate(string oper)
         {
@@ -20,54 +20,56 @@ namespace CPE200Lab1
             {
                 if (isNumber(list))
                 {
-                    Operands.Push(list);
+                    myStack.Push(list);
                 }
-                else if(isOperator(list))
+                else if (isOperator(list))
                 {
-                    if (Operands.Count < 2 && list!="%" && list!= "√" && list != "1/X")
-                    {
-                        return "E";
-                    }
-                    if (list == "+" || list == "-" || list == "X" || list == "÷")
-                    {
-                        secondOperand = Operands.Pop();
-                        firstOperand = Operands.Pop();
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
-                    }
-                    else if(list == "%")
-                    {
-                        if (Operands.Count == 1)
+                    try {
+                        if (list == "+" || list == "-" || list == "X" || list == "÷")
                         {
-                            secondOperand = Operands.Pop();
-                            firstOperand = "1";
+                            secondOperand = myStack.Pop();
+                            firstOperand = myStack.Pop();
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
+                        }
+                        else if (list == "%")
+                        {
+                            if (myStack.Count == 1)
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = "1";
+                            }
+                            else
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = myStack.Peek();
+                            }
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
                         }
                         else
                         {
-                            secondOperand = Operands.Pop();
-                            firstOperand = Operands.Peek();
+                            secondOperand = myStack.Pop();
+                            result = calculate(list, secondOperand);
+                            myStack.Push(result);
                         }
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
+
                     }
-                    else
+                    catch(Exception e)
                     {
-                        secondOperand = Operands.Pop();
-                        result = calculate(list, secondOperand);
-                        Operands.Push(result);
+                        return "E";
                     }
-                    
                 }
             }
-            if (Operands.Count == 1 )
+            if (myStack.Count == 1 )
             {
-                return Operands.Peek();
+                return myStack.Pop();
             }
             else
             {
                 return "E";
             }
             
-        }
+         }
     }
 }

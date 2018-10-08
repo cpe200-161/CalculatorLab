@@ -33,7 +33,7 @@ namespace CPE200Lab1
                     remainLength = maxOutputSize - parts[0].Length - 1;
                     return result.ToString("N" + remainLength);
                 case "1/X":
-                    if (Convert.ToDouble(oper) != 0)
+                    if (Convert.ToDouble(firstOperand) != 0)
                     {
                         result = (1.0 / Convert.ToDouble(firstOperand));
                         parts = result.ToString().Split('.');

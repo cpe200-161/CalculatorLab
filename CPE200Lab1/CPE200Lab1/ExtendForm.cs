@@ -39,7 +39,7 @@ namespace CPE200Lab1
             return false;
         }*/
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -63,12 +63,33 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        /*private void btnBinaryOperator_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
+            if (lblDisplay.Text is "0")
+            {
+                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            }
+            if (isEqual)
+            {
+                lblDisplay.Text = "";
+                isEqual = false;
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                hasDot = false;
+            }
+            lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            isSpaceAllowed = true;
+        }
+
+        /*private void btnBinaryOperator_Click(object sender, EventArgs e)
+        {
+            string result ;
             isNumberPart = false;
             hasDot = false;
             string current = lblDisplay.Text;
@@ -106,6 +127,7 @@ namespace CPE200Lab1
             hasDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            isEqual = false;
         }
 
         private void btnExe_Click(object sender, EventArgs e)
@@ -121,7 +143,7 @@ namespace CPE200Lab1
             isEqual = true;
         }
 
-        /*private void btnSign_Click(object sender, EventArgs e)
+        private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -147,7 +169,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = current + "-";
             }
             isSpaceAllowed = false;
-        }*/
+        }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
@@ -176,5 +198,6 @@ namespace CPE200Lab1
                 hasDot = false;
             }
         }
+
     }
 }
