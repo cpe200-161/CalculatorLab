@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form 
     {
-        private bool hasDot;
+        protected CalculatorEngine myEngine;
+        protected string oper;
+        protected bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private string beforePercent;
+       
 
         private void resetAll()
         {
@@ -37,7 +40,8 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new CalculatorEngine();
+           
+            myEngine = new CalculatorEngine();
             resetAll();
         }
 
@@ -81,7 +85,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = myEngine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -106,7 +110,7 @@ namespace CPE200Lab1
             if(firstOperand != null)
             {
                 string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                string result = myEngine.calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -117,6 +121,7 @@ namespace CPE200Lab1
                 }
             }
             operate = ((Button)sender).Text;
+            beforePercent = operate;
             switch (operate)
             {
                 case "+":
@@ -127,7 +132,10 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    string secondOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = myEngine.calculate(operate, firstOperand, secondOperand, 8);
+                    operate = beforePercent;
                     break;
             }
             isAllowBack = false;
@@ -140,7 +148,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = myEngine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
