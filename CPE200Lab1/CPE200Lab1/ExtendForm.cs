@@ -13,14 +13,16 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        protected bool isContainDot = false;
+        protected string oper;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        protected RPNCalculatorEngine myEngine;
+        public string memory = "0";
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,6 +32,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -65,7 +68,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
                 isSpaceAllowed = false;
             }
         }
@@ -76,7 +79,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            // check if the last one is operator
             string current = lblDisplay.Text;
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
@@ -101,7 +103,8 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            oper = lblDisplay.Text;
+            string result = myEngine.calculate(oper);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -163,6 +166,39 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        public void mFunction(object sender, EventArgs e)
+        {
+            string mfc = ((Button)sender).Text;
+            oper = lblDisplay.Text;
+            if (float.TryParse((myEngine.calculate(oper)), out float f))
+            {
+                if (mfc == "MC")
+                {
+                    memory = "0";
+                }
+
+                else if (mfc == "MR")
+                {
+                    lblDisplay.Text = memory;
+                }
+
+                else if (mfc == "MS")
+                {
+                    memory = myEngine.calculate(oper);
+                }
+
+                else if (mfc == "M+")
+                {
+                    memory = (float.Parse(memory) + float.Parse(myEngine.calculate(oper))).ToString();
+                }
+
+                else if (mfc == "M-")
+                {
+                    memory = (float.Parse(memory) - float.Parse(myEngine.calculate(oper))).ToString();
+                }
             }
         }
     }
