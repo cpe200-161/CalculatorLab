@@ -6,12 +6,63 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
-            // your code here
-            return "E";
+
+            String firstOperand;
+            String secondOperand;
+            String opeRator;
+            int sizeStack = 0;
+            CalculatorEngine engine = new CalculatorEngine();
+
+            Stack<string> numbersStack = new Stack<string>();
+            string[] numBers = str.Split(' ');
+
+            if (numBers.Length < 3 || !isNumber(numBers[0]))
+            {
+                sizeStack = 0;
+                return "E";
+            }
+
+            for (int i = 0; i < numBers.Length; i++)
+            {
+                if (isNumber(numBers[i]))
+                {
+                    numbersStack.Push(numBers[i]);
+                    sizeStack++;
+                }
+                else if (isOperator(numBers[i]))
+                {                    
+                    opeRator = numBers[i];                    
+                    if (sizeStack != 0)
+                    {
+                        secondOperand = numbersStack.Pop();
+                        sizeStack--;
+                        if (sizeStack < 1)
+                        {
+                            sizeStack = 0;
+                            return "E";
+                        }
+                        firstOperand = numbersStack.Pop();
+                        sizeStack--;
+                        numbersStack.Push(engine.calculate(opeRator, firstOperand, secondOperand));
+                        sizeStack++;
+                    }
+                }
+            }
+
+            if (sizeStack == 1)
+            {
+                sizeStack = 0;
+                return numbersStack.Pop();
+            }
+            else
+            {
+                sizeStack = 0;
+                return "E";
+            }
         }
     }
 }
