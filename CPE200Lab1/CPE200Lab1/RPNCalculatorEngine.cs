@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : theCalculatorEngine
     {
-        private CalculatorEngine engine;
+        private theCalculatorEngine engine;
         Stack<string> RPN = new Stack<string>();
         public string firstOperand;
         public string secondOperand;
@@ -65,7 +65,7 @@ namespace CPE200Lab1
                 else if (isNotOperator(element[i]) == 4)
                 {
                     firstOperand = RPN.Pop();
-                    result = engine.unaryCalculate(element[i], firstOperand);
+                    result = engine.calculate(element[i], firstOperand);
                     RPN.Push(result);
                 }
                 else if (isNotOperator(element[i]) == 5)
