@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+    public class RPNCalculatorEngine:TheCalculatorEngine
     {
-		public string Process(string str)
+		private Stack<string> myStack;
+		public string calculate(string oper)
 		{
-			string[] RPNparts = str.Split(' ');
-			Stack<string> myStack = new Stack<string>();
+			string[] RPNparts = oper.Split(' ');
+			myStack = new Stack<string>();
 			foreach (string token in RPNparts)
 			{
 				if (isNumber(token))
@@ -38,10 +39,10 @@ namespace CPE200Lab1
 							myStack.Push(calculate(token, myStack.Peek(), secondOperand));
 							break;
 						case "√":
-							myStack.Push(unaryCalculate(token, myStack.Pop()));
+							myStack.Push(calculate(token, myStack.Pop()));
 							break;
 						case "1/x":
-							myStack.Push(unaryCalculate(token, myStack.Pop()));
+							myStack.Push(calculate(token, myStack.Pop()));
 							break;
 					}
 				}
