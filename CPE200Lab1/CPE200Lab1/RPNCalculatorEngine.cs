@@ -14,7 +14,9 @@ namespace CPE200Lab1
         public string secondOperand;
         public string result;
 
-
+        /// </summary> determine wheter str is not operator </summary>
+        /// <param name="str"> input </param>
+        /// <returns> type of operator ehich is integer </returns>
 
         private int isNotOperator(string str)
         {
@@ -36,6 +38,10 @@ namespace CPE200Lab1
             return 1;
         }
 
+
+    /// <summary> get input from RPN calculator,push number to stack and separate operator then sent to calculate in CalcutorEngine </summary>
+    /// <param name="str"> input </param>
+    /// <returns> result </returns>
         public new string Process(string str)
         {
             engine = new CalculatorEngine();
@@ -45,22 +51,38 @@ namespace CPE200Lab1
             {
                 if (isNotOperator(element[i]) == 1)
                 {
-                    RPN.Push(element[i]);
+                    try
+                    {
+                        RPN.Push(element[i]);
+                    }
+                    catch
+                    {
+                        return "E";
+                    }
                 }
-                else if(isNotOperator(element[i]) == 3)
+                else if (isNotOperator(element[i]) == 3)
                 {
-                    if(element[i+1] == "+" || element[i + 1] == "-")
+                    try
                     {
-                        secondOperand = RPN.Pop();
-                        firstOperand = RPN.Peek();
-                        secondOperand = (float.Parse(firstOperand)*float.Parse(secondOperand)*0.01).ToString();
+
+
+                        if (element[i + 1] == "+" || element[i + 1] == "-")
+                        {
+                            secondOperand = RPN.Pop();
+                            firstOperand = RPN.Peek();
+                            secondOperand = (float.Parse(firstOperand) * float.Parse(secondOperand) * 0.01).ToString();
+                        }
+                        else if (element[i + 1] == "X" || element[i + 1] == "÷")
+                        {
+                            secondOperand = RPN.Pop();
+                            secondOperand = (float.Parse(secondOperand) * 0.01).ToString();
+                        }
+                        RPN.Push(secondOperand);
                     }
-                    else if(element[i + 1] == "X" || element[i + 1] == "÷")
+                    catch
                     {
-                        secondOperand = RPN.Pop();
-                        secondOperand = (float.Parse(secondOperand)*0.01).ToString();
+                        return "E";
                     }
-                    RPN.Push(secondOperand);
                 }
                 else if (isNotOperator(element[i]) == 4)
                 {
@@ -90,6 +112,7 @@ namespace CPE200Lab1
                         return "E";
                     }
                 }
+                
             }
             if (RPN.Count == 1)
             {
