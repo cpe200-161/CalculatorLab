@@ -8,13 +8,23 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        protected  bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+        private string display = "0";
+        
+        protected  virtual bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public virtual  string Display()
+        {
+            return display;
+        }
+
+        public  bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -25,8 +35,116 @@ namespace CPE200Lab1
             }
             return false;
         }
+        public void handleNumber(string n)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (display is "0")
+            {
+               display  = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display  += n;
+            isSpaceAllowed = true;
+        }
+        public void handleBinary(string n)
+        {
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display ;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString() ))
+            {
+                display  += " " + n + " ";
+                isSpaceAllowed = false;
+            }
+        }
+        public void handleBack()
+        {
+            // check if the last one is operator
+            string current = display ;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            {
+                display  = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                 display  = current.Substring(0, current.Length - 1);
+            }
+            if (display  is "")
+            {
+                display = "0";
+            }
+        }
+        public void handleClear()
+        {
+            display  = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+        public void handleEqual()
+        {
+            string result = Process(display );
+            if (result is "E")
+            {
+               display  = "Error";
+            }
+            else
+            {
+                display = result;
+            }
+        }
 
-        public string Process(string str)
+        public void handleSign()
+        {
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display ;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+               display = current.Substring(0, current.Length - 1);
+                if (display  is "")
+                {
+                    display  = "0";
+                }
+            }
+            else
+            {
+               display  = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+       
+        public void handleDot()
+        {
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display  += ".";
+                isSpaceAllowed = false;
+            }
+        }
+        public virtual  void handleSpace()
+        {
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -59,7 +177,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G2" + remainLength);
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +197,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G2" + remainLength);
                     }
                     break;
             }
@@ -115,7 +233,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("G2" + remainLength);
                     }
                     break;
                 case "%":
