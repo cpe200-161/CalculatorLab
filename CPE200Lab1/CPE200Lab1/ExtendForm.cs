@@ -16,13 +16,15 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private bool isAfterEqual = false;
-        private RPNCalculatorEngine engine;
+        protected RPNCalculatorEngine myEngine;
         private double memory=0;
+        protected string oper;
+        protected Boolean hasDot;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -104,7 +106,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -123,7 +125,7 @@ namespace CPE200Lab1
                 return;
             }
             string[] parts = lblDisplay.Text.Split(' ');
-            string result = engine.calculate("X", parts[parts.Length - 1],"-1");
+            string result = myEngine.calculate("X", parts[parts.Length - 1],"-1");
             lblDisplay.Text = "";
             for (int i = 0; i < parts.Length - 1; i++)
             {
@@ -174,11 +176,11 @@ namespace CPE200Lab1
             string operate = ((Button)sender).Text;
             string[] parts;
             parts = lblDisplay.Text.Split(' ');
-            if(!engine.isNumber(parts[parts.Length - 1]))
+            if(!myEngine.isNumber(parts[parts.Length - 1]))
             {
                 return;
             }
-            string result = engine.unaryCalculate(operate, parts[parts.Length-1]);
+            string result = myEngine.calculate(operate, parts[parts.Length-1]);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -199,7 +201,7 @@ namespace CPE200Lab1
         {
             string[] parts;
             parts = lblDisplay.Text.Split(' ');
-            if (!engine.isNumber(parts[parts.Length - 1]))
+            if (!myEngine.isNumber(parts[parts.Length - 1]))
             {
                 return;
             }
@@ -213,10 +215,10 @@ namespace CPE200Lab1
                     lblDisplay.Text += memory.ToString();
                     break;
                 case "M+":
-                    memory = Convert.ToDouble(engine.calculate("+",memory.ToString(), parts[parts.Length - 1]));
+                    memory = Convert.ToDouble(myEngine.calculate("+",memory.ToString(), parts[parts.Length - 1]));
                     break;
                 case "M-":
-                    memory = Convert.ToDouble(engine.calculate("-", memory.ToString(), parts[parts.Length - 1]));
+                    memory = Convert.ToDouble(myEngine.calculate("-", memory.ToString(), parts[parts.Length - 1]));
                     break;
                 case "MS":
                     memory = Convert.ToDouble(parts[parts.Length - 1]);
@@ -235,11 +237,11 @@ namespace CPE200Lab1
             string[] parts;
             parts = lblDisplay.Text.Split(' ');
             if (parts.Length is 1) return;
-            if(!engine.isNumber(parts[parts.Length - 2])||!engine.isNumber(parts[parts.Length - 1]))
+            if(!myEngine.isNumber(parts[parts.Length - 2])||!myEngine.isNumber(parts[parts.Length - 1]))
             {
                 return;
             }
-            string result = engine.calculate(operate, parts[parts.Length - 2],parts[parts.Length-1]);
+            string result = myEngine.calculate(operate, parts[parts.Length - 2],parts[parts.Length-1]);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

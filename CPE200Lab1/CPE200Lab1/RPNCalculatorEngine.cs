@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCaluculatorEngine
     {
-        public string Process(string str)
+        protected Stack<String> myStack;
+
+        public string calculate(string str)
         {
             // your code here
             if (str[str.Length - 1] == ' ') str=str.Substring(0,str.Length-1);
