@@ -15,21 +15,23 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
+        public string member = "0";
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(char ch)
+        public bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -65,7 +67,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
                 isSpaceAllowed = false;
             }
         }
@@ -101,7 +103,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -163,6 +165,30 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        public void mFunction(object sender, EventArgs e)
+        {
+            string mF = ((Button)sender).Text;
+
+            switch (mF)
+            {
+                case "MC":
+                    member = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = member;
+                    break;
+                case "MS":
+                    member = engine.calculate(lblDisplay.Text);
+                    break;
+                case "M+":
+                    member = (float.Parse(member) + float.Parse(engine.calculate(lblDisplay.Text))).ToString();
+                    break;
+                case "M-":
+                    member = (float.Parse(member) - float.Parse(engine.calculate(lblDisplay.Text))).ToString();
+                    break;
             }
         }
     }
