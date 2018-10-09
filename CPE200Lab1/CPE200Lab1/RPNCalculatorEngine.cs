@@ -18,10 +18,6 @@ namespace CPE200Lab1
             }
             string[] parts = str.Split(' ');
             Stack<string> operands = new Stack<string>();
-            if (!isOperator(parts[3]))
-            {
-
-            }
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -49,15 +45,7 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-            try
-            {
                 return operands.Pop();
-            }
-            catch
-            {
-                return "E";
-            }
-             return Convert.ToDouble(result).ToString("0.####");
             }
            
 
