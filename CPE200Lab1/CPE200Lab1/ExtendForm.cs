@@ -15,21 +15,26 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        protected bool hasDot;
+        protected string oper;
+        protected RPNCalculatorEngine myEngine;
+
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
         {
-            switch(ch) {
+            switch (ch)
+            {
                 case '+':
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -101,7 +106,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text); //////
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -165,5 +170,21 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (btn.Text)
+            {
+                case "1/x":
+                    lblDisplay.Text += " " + "1/x";
+                    break;
+                case "√":
+                    lblDisplay.Text += " " + "√";
+                    break;
+            }
+        }
+    
+        
     }
 }
