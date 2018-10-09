@@ -39,8 +39,6 @@ namespace CPE200Lab1
             }
             return operands.Pop();
         }
-
-
         public override void handleSpace()
         {
                 base.handleSpace();
