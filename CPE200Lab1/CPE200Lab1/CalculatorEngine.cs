@@ -20,19 +20,22 @@ namespace CPE200Lab1
             secondOperand = Convert.ToDouble(num);
         }
 
-        public string calculate(string str)
+        public string calculate(string oper)
         {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            switch (oper)
             {
-                return "E";
-            } else
-            {
-                setFirstOperand(parts[0]);
-                setSecondOperand(parts[2]);
-                return calculate(parts[1], Convert.ToString(firstOperand), Convert.ToString(secondOperand), 4);
+                case "%": 
+                case "+":
+                case "-":
+                case "X":
+                case "÷": return calculate(oper, Convert.ToString(firstOperand), Convert.ToString(secondOperand));
+                case "1/X":
+                case "√": 
+                        return calculate(oper, Convert.ToString(firstOperand));
             }
 
+
+            return "E";
         }
 
 

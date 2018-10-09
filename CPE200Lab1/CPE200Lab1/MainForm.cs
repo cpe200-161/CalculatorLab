@@ -16,22 +16,25 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
-        private string firstOperand;
+        private bool isFirst = false;
+        private bool isSecond = false;
         private string oper;
+        private string result;
         private double memory;
         string newOper;
-        string secondOperand;
         private CalculatorEngine myEngine;
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
-            secondOperand = null;
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
-            firstOperand = null;
+            isFirst = false;
+            myEngine.setFirstOperand("0");
+            myEngine.setSecondOperand("0");
+            isSecond = false;
         }
 
         public MainForm()
@@ -80,10 +83,19 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null&& isAfterEqual==false)
+            if(isFirst && isAfterEqual==false)
             {
-                 secondOperand= lblDisplay.Text;
-
+                if (!isSecond)
+                {
+                    myEngine.setSecondOperand(lblDisplay.Text);
+                }
+                else
+                {
+                    result = myEngine.calculate(oper);
+                    myEngine.setFirstOperand(result);
+                    myEngine.setSecondOperand(lblDisplay.Text);
+                }
+                isSecond = true;
             }
             oper = ((Button)sender).Text;
             if (oper != "%")
@@ -98,7 +110,8 @@ namespace CPE200Lab1
                 case "÷":
                 case "√":
                 case "1/X":
-                    firstOperand = lblDisplay.Text;
+                    myEngine.setFirstOperand(lblDisplay.Text);
+                    isFirst = true;
                     isAfterOperater = true;
                     break;
                 case "%":
@@ -106,20 +119,12 @@ namespace CPE200Lab1
             }
             if (isAfterEqual)
             {
-                firstOperand = lblDisplay.Text;
+                myEngine.setFirstOperand(lblDisplay.Text);
                 isAfterEqual = false;
             }else
             {
                 string result;
-                if (oper== "1/X"||oper=="%"||oper== "√")
-                {
-                    result = myEngine.calculate(oper, firstOperand);
-                }
-                else
-                {
-                    result = myEngine.calculate(oper, firstOperand, secondOperand);
-                }
-                
+                result = myEngine.calculate(oper);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -138,8 +143,25 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = myEngine.calculate(newOper, firstOperand, secondOperand);
+            if (isSecond)
+            {
+                if (oper == "%")
+                {
+                    result = myEngine.calculate(oper);
+                    myEngine.setSecondOperand(result);
+                }
+                else
+                {
+                    result = myEngine.calculate(oper);
+                    myEngine.setFirstOperand(result);
+                    myEngine.setSecondOperand(lblDisplay.Text);
+                }
+            }
+            else
+            {
+                myEngine.setSecondOperand(lblDisplay.Text);
+            }
+            result= myEngine.calculate(newOper);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -148,6 +170,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            isSecond = false;
             isAfterEqual = true;
         }
 
