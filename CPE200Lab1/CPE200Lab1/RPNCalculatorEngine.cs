@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         public string Process(string str)
         {
             if(str[str.Length-1] == ' ') str = str.Substring(0,str.Length-1);
-            Stack<string> number_stack = new Stack<string>();
+            Stack<string> myStack = new Stack<string>();
             string[] numbers = str.Split(' ');
             int count_oper=0,count_num=0;
             foreach (string number in numbers)
@@ -23,22 +23,22 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    string secondOperand = number_stack.Pop();
-                    string firstOperand = number_stack.Pop();
+                    string secondOperand = myStack.Pop();
+                    string firstOperand = myStack.Pop();
                     string result = calculate(number, firstOperand, secondOperand);
-                    number_stack.Push(result);
+                    myStack.Push(result);
                 }
                 else
                 {
                     count_num += 1;
-                    number_stack.Push(number);
+                    myStack.Push(number);
                 }
             }
             if (count_num == 1 || count_oper < count_num - 1)
             {
                 return "E";
             }
-            return number_stack.Pop();
+            return myStack.Pop();
         }
     }
 }
