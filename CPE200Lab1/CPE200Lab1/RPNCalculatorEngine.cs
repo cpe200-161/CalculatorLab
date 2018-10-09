@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public new string Process(string str)
+        protected Stack<string> mystack;
+        public string calculate(string str)
         {
-            Stack<string> stack = new Stack<string>();
+            mystack = new Stack<string>();
             string[] data = str.Split(' ');
 
             if (data.Length < 3 || data.Length % 2 == 0 || isOperator(data[0]) || isOperator(data[1]))
@@ -23,41 +24,25 @@ namespace CPE200Lab1
                 {
                     if (isNumber(number))
                     {
-                        stack.Push(number);
+                        mystack.Push(number);
                     }
-                    else if (isOperator(number)) //&& stack.Count > 1)
-                    {
-                        try
-                        {
-                            string secondOperand = stack.Pop();
-                            string firstOperand = stack.Pop();
+                    else if (isOperator(number) && mystack.Count > 1)
+                    {                     
+                            string secondOperand = mystack.Pop();
+                            string firstOperand = mystack.Pop();
                             string result = calculate(number, firstOperand, secondOperand);
-                            stack.Push(result);
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            return "E";
-                        }
-                        
-
+                            mystack.Push(result);
                     }
-                    else if (isOperator1(number)) //&& stack.Count >= 1)
+                    else if (isOperator1(number) && mystack.Count >= 1)
                     {
-                        try
-                        {
-                            string Operand = stack.Pop();
-                            string result2 = unaryCalculate(number, Operand);
-                            stack.Push(result2);
-                        }
-                        catch(InvalidOperationException)
-                        {
-                            return "E";
-                        }
+                            string Operand = mystack.Pop();
+                            string result2 = calculate(number, Operand);
+                            mystack.Push(result2);
                     }
                 }
-                if (stack.Count == 1)
+                if (mystack.Count == 1)
                 {
-                    return stack.Peek();
+                    return mystack.Peek();
                 }
             }
             return "E";
