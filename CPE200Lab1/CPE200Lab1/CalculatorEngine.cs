@@ -108,9 +108,10 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
+                       case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                   // if (secondOperand != "0")
+                   try
                     {
                         double result;
                         string[] parts;
@@ -127,9 +128,16 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        // return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString()).ToString("G29");
                     }
-                    break;
+                    catch(Exception e)
+                    {
+                        return "E";
+                    }
+                    //else { return "E"; }
+            
+                   //break;
                 case "%":
                     //your code here
                     break;
