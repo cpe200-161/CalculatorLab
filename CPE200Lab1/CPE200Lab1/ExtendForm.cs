@@ -105,7 +105,7 @@ namespace CPE200Lab1
             firstOperand = lblDisplay.Text;
             }
 
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -159,10 +159,10 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
-                result = RPNengine.Process(lblDisplay.Text);
+                result = RPNengine.calculate(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";

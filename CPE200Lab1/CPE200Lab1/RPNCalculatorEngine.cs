@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        protected Stack<string> myStack;
         private bool isNumber(string str)
         {
             double retNum;
@@ -40,35 +41,35 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public string calculate(string oper)
         {
-            Stack<string> stack = new Stack<string>();
-            string[] parts = str.Split(' ');
+            myStack = new Stack<string>();
+            string[] parts = oper.Split(' ');
             try
             {
                 for (int i = 0; i < parts.Length; i++)
                 {
                     if (isNumber(parts[i]))
                     {
-                        stack.Push(parts[i]);
+                        myStack.Push(parts[i]);
                     }
                     else if (OnlyOneOperand(parts[i]))
                     {
                         string first;
-                        first = stack.Peek();
-                        stack.Pop();
-                        stack.Push(unaryCalculate(parts[i], first, 8));
+                        first = myStack.Peek();
+                        myStack.Pop();
+                        myStack.Push(calculate(parts[i], first, 8));
                     }
                     else if (parts[i] == "%")
                     {
                         try
                         {
                             string first, second;
-                            second = stack.Peek();
-                            stack.Pop();
-                            first = stack.Peek();
-                            stack.Pop();
-                            stack.Push(calculate(parts[i], first, second, 8));
+                            second = myStack.Peek();
+                            myStack.Pop();
+                            first = myStack.Peek();
+                            myStack.Pop();
+                            myStack.Push(calculate(parts[i], first, second, 8));
                         }
                         catch (Exception)
                         {
@@ -82,11 +83,11 @@ namespace CPE200Lab1
                         try
                         {
                             string first, second;
-                            second = stack.Peek();
-                            stack.Pop();
-                            first = stack.Peek();
-                            stack.Pop();
-                            stack.Push(calculate(parts[i], first, second, 8));
+                            second = myStack.Peek();
+                            myStack.Pop();
+                            first = myStack.Peek();
+                            myStack.Pop();
+                            myStack.Push(calculate(parts[i], first, second, 8));
                         }
                         catch (Exception)
                         {
@@ -96,9 +97,9 @@ namespace CPE200Lab1
                     }
 
                 }
-                if (stack.Count == 1)
+                if (myStack.Count == 1)
                 {
-                    return stack.Peek();
+                    return myStack.Peek();
                 }
                 else
                 {
