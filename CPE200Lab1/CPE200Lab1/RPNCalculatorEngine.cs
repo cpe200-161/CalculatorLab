@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
         /// <summary>
         /// Calculate in RPN calculation.
         /// </summary>
         /// <param name="str"> String 0f operand and operate. </param>
         /// <returns> Result of string in RPN calculation. </returns>
-        public string Process(string str)
+        public string calculate(string str)
         {
             string first = null;
             string second = null;
@@ -30,7 +30,7 @@ namespace CPE200Lab1
                             if (parts[i] == "√" || parts[i] == "1/x")
                             {
                                 first = cal.Pop();
-                                cal.Push(unaryCalculate(parts[i], first));
+                                cal.Push(calculate(parts[i], first));
                             }
                             else return "E";
                         }
@@ -44,7 +44,7 @@ namespace CPE200Lab1
                         else if (parts[i] == "√" || parts[i] == "1/x")
                         {
                             first = cal.Pop();
-                            cal.Push(unaryCalculate(parts[i], first));
+                            cal.Push(calculate(parts[i], first));
                         }
                         else
                         {
