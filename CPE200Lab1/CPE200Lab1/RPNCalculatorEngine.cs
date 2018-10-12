@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         /// <summary>
         /// process pop number to calculate 2 number which input or 1 number for loot and 1/x
@@ -40,7 +40,7 @@ namespace CPE200Lab1
                        
                             value = fristob.Pop();
                       
-                        fristob.Push(unaryCalculate(save, value));
+                        fristob.Push(calculate(save, value));
 
                     }
                     else if(save == "%")
@@ -64,12 +64,12 @@ namespace CPE200Lab1
                             return "E";
                         }
 
-                       // if (save == "-" || save == "÷") ;
+                      
 
                         fristob.Push(calculate(save, value2, value, 8));
                     }
                    
-                    //
+                    
 
                 }
                 
