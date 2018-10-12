@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public string Process(string str)
+        public string calculate(string str)
         {
             Stack<string> number_stack = new Stack<string>();
             string[] numbers = str.Split(' ');
@@ -31,7 +31,7 @@ namespace CPE200Lab1
                 {
                     count_oper += 1;
                     string Operand = number_stack.Pop();
-                    string result = unaryCalculate(number, Operand);
+                    string result = calculator(number, Operand);
                     number_stack.Push(result);
                 }
                 else
@@ -40,11 +40,13 @@ namespace CPE200Lab1
                     number_stack.Push(number);
                 }
             }
-           if((count_num == 1 || count_oper > count_num - 1)&&count_oper == 0)
+           if(number_stack.Count!=1)
             {
-                return number_stack.Count.ToString();
+                return "E" ;
             }
             return number_stack.Pop();
         }
+
+
     }
 }
