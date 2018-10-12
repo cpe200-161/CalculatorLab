@@ -6,98 +6,110 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : /*BasicCalculatorEngine*/CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        private bool isNumber(string str)
+        protected Stack<string> myStack;
+
+        public string calculate(string oper)
         {
             double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        private bool isOperator(string str)
-        {
-            switch (str)
-            {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    return true;
-            }
-            return false;
-        }
-
-        public string Process(string str)
-        {
             string firstOperand;
             string secondOperand;
-            string[] parts = str.Split(' ');
-            Stack<string> number = new Stack<string>();
-            if(parts.Length < 3)
-            {
-                return "E";
-            }
-            for (int i = 0; i < parts.Length; i++)
-            {
-                if (isNumber(parts[i]))
-                {
-                    number.Push(parts[i]);
-                }
+            string[] parts = oper.Split(' ');
+            myStack = new Stack<string>();
 
-                else if (isOperator(parts[i]))
+            if (parts[parts.Length - 1] == "√")
+            {
+                if (Double.TryParse(parts[parts.Length - 2], out retNum) == false || Convert.ToDouble(parts[parts.Length - 2]) < 0)
                 {
-                    if (number.Count < 2)
-                    {
-                        return "E";
-                    }
-                    secondOperand = number.Pop();
-                    firstOperand = number.Pop();
-                    number.Push(calculate(parts[i], firstOperand, secondOperand));
+                    return "E";
                 }
-
-                else if (parts[i] == "%")
-                {
-                    /*secondOperand = number.Pop();
-                    firstOperand = number.Pop();
-                    number.Push(firstOperand);
-                    number.Push(calculate(parts[i], firstOperand, secondOperand));*/
-                    try
-                    {
-                        secondOperand = number.Pop();
-                        firstOperand = number.Pop();
-                        number.Push(firstOperand);
-                        number.Push(calculate(parts[i], firstOperand, secondOperand));
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        System.Console.WriteLine("{0} exception caught", e);
-                        return "E";
-                    }
-                }
-                
-                else if (parts[i] == "1/x" || parts[i] == "√")
-                {
-                    /*firstOperand = number.Pop();
-                    number.Push(unaryCalculate(parts[i], firstOperand));*/
-                    try
-                    {
-                        firstOperand = number.Pop();
-                        number.Push(unaryCalculate(parts[i], firstOperand));
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        System.Console.WriteLine("{0} exception caught", e);
-                        return "E";
-                    }
-                }
-                
+                return calculate("√", parts[parts.Length - 2]);
             }
 
-            if (number.Count == 1)
+            if (parts[parts.Length - 1] == "1/x")
             {
-                return number.Pop();
+                if (Double.TryParse(parts[parts.Length - 2], out retNum) == false)
+                {
+                    return "E";
+                }
+                return calculate("1/x", parts[parts.Length - 2]);
+            }
+
+            if (parts[parts.Length-1] == "%")
+            {
+                /*secondOperand = number.Pop();
+                firstOperand = number.Pop();
+                number.Push(firstOperand);
+                number.Push(calculate(parts[i], firstOperand, secondOperand));*/
+                try
+                {
+                    secondOperand = myStack.Pop();
+                    firstOperand = myStack.Pop();
+                    myStack.Push(firstOperand);
+                    myStack.Push(calculate("%", firstOperand, secondOperand));
+                }
+                catch (InvalidOperationException e)
+                {
+                    System.Console.WriteLine("{0} exception caught", e);
+                    return "E";
+                }
+            }
+
+            if (Double.TryParse(parts[1], out retNum) == false)
+            {
+                string cal;
+
+                if (parts.Length < 3)
+                {
+                    return "E";
+                }
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    myStack.Push(parts[i]);
+                    if (myStack.Count == 3)
+                    {
+                        firstOperand = myStack.Pop();
+                        cal = myStack.Pop();
+                        secondOperand = myStack.Pop();
+                        myStack.Push(calculate(cal, firstOperand, secondOperand));
+                    }
+                }
+                return myStack.Pop();
+            }
+            if(Double.TryParse(parts[1], out retNum) == true)
+            {
+                if (parts.Length < 3)
+                {
+                    return "E";
+                }
+                bool space = false;
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    
+                    space = false;
+                    if (parts[i] == "")
+                    {
+                        space = true;
+                    }
+                    else if(Double.TryParse(parts[i], out retNum))
+                    {
+                        myStack.Push(parts[i]);
+                    }
+                    else if(space == false)
+                    {
+                        secondOperand = myStack.Pop();
+                        System.Console.WriteLine(secondOperand);
+                        firstOperand = myStack.Pop();
+                        System.Console.WriteLine(firstOperand);
+                        myStack.Push(calculate(parts[i], firstOperand, secondOperand));
+                    }
+                }
+                return myStack.Pop();
             }
             return "E";
         }
     }
+
 }

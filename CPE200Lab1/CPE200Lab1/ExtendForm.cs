@@ -12,15 +12,16 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
+        protected bool hasDot = false;
+        protected string oper;
         private bool isNumberPart = false;
-        private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        protected RPNCalculatorEngine myEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -35,7 +36,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -48,26 +49,10 @@ namespace CPE200Lab1
             if (!isNumberPart)
             {
                 isNumberPart = true;
-                isContainDot = false;
+                hasDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
-        }
-
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -94,7 +79,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            isContainDot = false;
+            hasDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
         }
@@ -104,7 +89,7 @@ namespace CPE200Lab1
             string result;
             if (isSpaceAllowed)
             {
-                result = engine.Process(lblDisplay.Text,"1");
+                result = myEngine.calculate(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";
@@ -116,7 +101,7 @@ namespace CPE200Lab1
             }
             else
             {
-                result = engine.Process(lblDisplay.Text);
+                result = myEngine.calculate(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";
@@ -163,9 +148,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if(!hasDot)
             {
-                isContainDot = true;
+                hasDot = true;
                 lblDisplay.Text += ".";
                 isSpaceAllowed = false;
             }
@@ -186,29 +171,27 @@ namespace CPE200Lab1
 
         private void btnunaryCalculate_Click(object sender, EventArgs e)
         {
-            if (((Button)sender).Text == "%")
+            if (lblDisplay.Text is "Error")
             {
-                string current = lblDisplay.Text;
-                string[] parts = current.Split(' ');
-                if (parts.Length == 3)
-                {
-                    lblDisplay.Text = parts[0] + " " + parts[1] + " " + engine.calculate("%", parts[0], parts[2], 4);
-                }
-                    
+                return;
             }
-            else
+            string current = lblDisplay.Text + " " + ((Button)sender).Text + " ";
+            string[] parts = current.Split(' ');
+            parts[parts.Length - 2] = myEngine.calculate(current);
+            
+            lblDisplay.Text = parts[parts.Length-2];
+        }
+
+        private void btnBinaryCalculate_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
             {
-                string current = lblDisplay.Text;
-                string[] parts = current.Split(' ');
-                if (parts.Length == 3)
-                {
-                    lblDisplay.Text = parts[0] + " " + parts[1] + " " + engine.unaryCalculate(((Button)sender).Text,parts[2]);
-                }
-                else
-                {
-                    lblDisplay.Text = engine.unaryCalculate(((Button)sender).Text, lblDisplay.Text);
-                }
+                return;
             }
+            isNumberPart = false;
+            hasDot = false;
+            lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            isSpaceAllowed = false;
         }
     }
 }
