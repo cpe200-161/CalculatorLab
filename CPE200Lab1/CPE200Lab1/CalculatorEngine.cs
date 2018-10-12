@@ -8,13 +8,32 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+        private string display = "0";
+
+        public virtual string Display()
+        {
+            return display;
+        }
+
+
+        public void btnClear_Click2()
+        {
+            display = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
+        protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator2(string str) //OK
         {
             switch(str) {
                 case "+":
@@ -26,10 +45,139 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public void btnNumber_Click2(String Buttt) //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += Buttt;
+            isSpaceAllowed = true;
+            
+        }
+
+        public void btnBinaryOperator_Click2(String Butt2) //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+            if (current[current.Length - 1] != ' ' || isOperator2(current[current.Length - 2].ToString()))
+            {
+                display += " " + Butt2 + " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+       
+
+        public void btnEqual_Click2(string result2) //OK
+        {         
+            if (result2 is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result2;
+            }
+        }
+
+        public void btnSign_Click2() //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                display = current.Substring(0, current.Length - 1);
+                if (display is "")
+                {
+                    display = "0";
+                }
+            }
+            else
+            {
+                display = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+
+        public void btnDot_Click2() //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void btnSpace_Click2() //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void btnBack_Click2() //OK
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            // check if the last one is operator
+            string current = display;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator2(current[current.Length - 2].ToString()))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is "")
+            {
+                display = "0";
+            }
+        }
+
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if(!(isNumber(parts[0]) && isOperator2(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
             } else
@@ -120,6 +268,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+                    return (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand)).ToString();
                     break;
             }
             return "E";
