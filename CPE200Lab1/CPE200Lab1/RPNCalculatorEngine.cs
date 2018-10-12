@@ -7,17 +7,37 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
 
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : NewCalcultor
     {
 
         private string v1, v2;
         private string result;
+        Stack<string> s = new Stack<string>();
 
-        public override string Process(string str)
+
+        protected bool isOperator(string str)
         {
-            // your code here
+            switch (str)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                    return true;
+            }
+            return false;
+        }
+
+        protected bool isNumber(string str)
+        {
+            double retNum;
+            return Double.TryParse(str, out retNum);
+        }
+
+        public new string Process(string str)
+        {
             
-            Stack<string> s = new Stack<string>();
+            
             if (str == null||str == "+1")
             {
                 return "E";
