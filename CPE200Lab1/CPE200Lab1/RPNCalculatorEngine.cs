@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    
     public class RPNCalculatorEngine : CalculatorEngine
-    {
+    {   
+        /// <summary>
+        /// process display
+        /// </summary>
+        /// <param name="str"> equation foe calculate </param>
+        /// <returns> stack for calculate </returns>
         public new string Process(string str)
         {
             Stack<string> rpnStack = new Stack<string>();
