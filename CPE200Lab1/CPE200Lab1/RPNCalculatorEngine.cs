@@ -7,11 +7,31 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
 
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorHead
     {
         string stnum, secnum, resultback,result,oper;                       // declare string 
 
-        public override string Process(string str)
+        protected Stack<string> cct = new Stack<string>();
+
+        protected bool isNumber(string str)
+        {
+            double retNum;
+            return Double.TryParse(str, out retNum);
+        }
+
+        protected bool isOperator(string str)
+        {
+            switch(str) {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                    return true;
+            }
+            return false;
+        }
+
+        public string Process(string str)
         {
 
             if(str == "" || str == null || str =="+1")
@@ -34,7 +54,7 @@ namespace CPE200Lab1
                     {
                         secnum = cct.Pop();                    // set second number
                         stnum = cct.Pop();                      //ser first number
-                        resultback = Calculate(parts[i], stnum, secnum, 4);     // calculating
+                        resultback = calculate(parts[i], stnum, secnum, 4);     // calculating
                         cct.Push(resultback);                   // save answer
                     }
                     else

@@ -6,78 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : CalculatorHead
+    public class CalculatorHead
     {
-        protected double firstOperand;                  // add variables
-        protected double secondOperand;                 
-
-        public void setFirstOperand(String num)         // set 1st num
-        {
-            firstOperand = double.Parse(num);
-        }
-        public void setSecondOperand(String num)        // set 2nd num
-        {
-            secondOperand = double.Parse(num);
-        }
-        public String calculate(String oper)            // if string > error
-        {
-            return "E";
-        }
-
-        protected bool isNumber(string str)
-        {
-            double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        protected bool isOperator(string str)
-        {
-            switch(str) {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    return true;
-            }
-            return false;
-        }
-
-        public virtual string Process(string str)
-        {
-            //Split input string to multiple parts by space
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            //As long as we have more than one part
-            while(parts.Count > 1)
-            {   
-                
-                //Check if the first three is ready for calcuation              
-                if(!(isNumber(parts[0])) && isOperator(parts[1]) && isNumber(parts[2]))
-                {
-                    return "E";
-                } else
-                {
-                    //Calculate the first three
-                    result = Calculate(parts[1], parts[0], parts[2], 4);
-                    //Remove the first three
-                    parts.RemoveRange(0, 3);
-                    // Put back the result
-                    parts.Insert(0, result);
-                }
-            }
-
-            if (!(isNumber(parts[0])))
-            {
-                return "E";
-            }
-            else
-            {
-                return parts[0];
-            }
-           
-           
-        }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -101,7 +32,7 @@ namespace CPE200Lab1
                         return result.ToString("N0");
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -125,7 +56,7 @@ namespace CPE200Lab1
             return "E";
         }
 
-        public string Calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -144,7 +75,7 @@ namespace CPE200Lab1
                         int remainLength;
 
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        
+
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
@@ -152,15 +83,15 @@ namespace CPE200Lab1
                         {
                             return "E";
                         }
-                        else 
+                        else
                         {
                             // calculate remaining space for fractional part
                             remainLength = maxOutputSize - parts[0].Length;
-                         // trim the fractional part gracefully. =
+                            // trim the fractional part gracefully. =
                             return result.ToString("0.####");
 
                         }
-                    
+
                     }
                     break;
                 case "%":
