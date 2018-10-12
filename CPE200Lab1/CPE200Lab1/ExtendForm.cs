@@ -13,14 +13,17 @@ namespace CPE200Lab1
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        private bool hasDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine myEngine;
+        private double memory = 0;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            myEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,12 +33,13 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -48,7 +52,7 @@ namespace CPE200Lab1
             if (!isNumberPart)
             {
                 isNumberPart = true;
-                isContainDot = false;
+                hasDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
@@ -61,7 +65,7 @@ namespace CPE200Lab1
                 return;
             }
             isNumberPart = false;
-            isContainDot = false;
+            hasDot = false;
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
@@ -94,20 +98,35 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            isContainDot = false;
+            hasDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
-            if (result is "E")
+           try
             {
-                lblDisplay.Text = "Error";
-            } else
+                string result = engine.Process(lblDisplay.Text);
+                if (result is "E")
+                {
+                    result = myEngine.Process(lblDisplay.Text);
+                    if (result is "E")
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                }
+            }catch
             {
-                lblDisplay.Text = result;
+                lblDisplay.Text = lblDisplay.Text;
             }
         }
 
@@ -145,9 +164,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if(!hasDot)
             {
-                isContainDot = true;
+                hasDot = true;
                 lblDisplay.Text += ".";
                 isSpaceAllowed = false;
             }
@@ -163,6 +182,48 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        private void btnSingleOperator_Click(object sender, EventArgs e)
+        {
+            string opt = ((Button)sender).Text;
+            string result = engine.unaryCalculate(opt, lblDisplay.Text, 4);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";
+            }else
+            {
+                lblDisplay.Text = result;
+            }
+        }
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string mem = ((Button)sender).Text;
+            switch (mem)
+            {
+                case "MS":
+                    memory = (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
+                    break;
+                case "MC":
+                    memory = 0;
+                    break;
+                case "M+":
+                    memory = memory + (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
+                    break;
+                case "M-":
+                    memory = memory - (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory.ToString();
+                    break;
             }
         }
     }
