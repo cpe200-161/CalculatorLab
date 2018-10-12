@@ -41,6 +41,34 @@ namespace CPE200Lab1
             resetAll();
         }
 
+        private void number_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterEqual)
+            {
+                resetAll();
+            }
+            if (isAfterOperater)
+            {
+                lblDisplay.Text = "0";
+            }
+            if (lblDisplay.Text.Length is 8)
+            {
+                return;
+            }
+            isAllowBack = true;
+            string digit = ((Button)sender).Text;
+            if (lblDisplay.Text is "0")
+            {
+                lblDisplay.Text = "";
+            }
+            lblDisplay.Text += digit;
+            isAfterOperater = false;
+        }
+
         private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
