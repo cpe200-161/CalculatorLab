@@ -17,7 +17,7 @@ namespace CPE200Lab1.Tests
             string expected = "3";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -28,7 +28,7 @@ namespace CPE200Lab1.Tests
             string expected = "2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -39,7 +39,7 @@ namespace CPE200Lab1.Tests
             string expected = "15";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -50,7 +50,7 @@ namespace CPE200Lab1.Tests
             string expected = "2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -62,7 +62,7 @@ namespace CPE200Lab1.Tests
             string expected = "E";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -74,7 +74,7 @@ namespace CPE200Lab1.Tests
             string expected = "E";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.Process(input);
             Assert.AreEqual(expected, actual);
         }
@@ -91,7 +91,7 @@ namespace CPE200Lab1.Tests
             string expected = "3";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("+", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -103,7 +103,7 @@ namespace CPE200Lab1.Tests
             string expected = "1";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("+", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -115,7 +115,7 @@ namespace CPE200Lab1.Tests
             string expected = "1";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -127,7 +127,7 @@ namespace CPE200Lab1.Tests
             string expected = "3";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -138,7 +138,7 @@ namespace CPE200Lab1.Tests
             string expected = "-1";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("-", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -150,7 +150,7 @@ namespace CPE200Lab1.Tests
             string expected = "4";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("X", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -162,7 +162,7 @@ namespace CPE200Lab1.Tests
             string expected = "-4";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("X", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -174,7 +174,7 @@ namespace CPE200Lab1.Tests
             string expected = "2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -186,7 +186,7 @@ namespace CPE200Lab1.Tests
             string expected = "-2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -198,7 +198,7 @@ namespace CPE200Lab1.Tests
             string expected = "E";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
+            basicCalculatorEngine engine = new basicCalculatorEngine();
             actual = engine.calculate("÷", firstOperand, secondOperand);
             Assert.AreEqual(expected, actual);
         }
@@ -214,8 +214,8 @@ namespace CPE200Lab1.Tests
             string expected = "2";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.unaryCalculate("√", operand);
+            basicCalculatorEngine engine = new basicCalculatorEngine();
+            actual = engine.calculate("√", operand);
             Assert.AreEqual(expected, actual);
         }
 
@@ -226,8 +226,8 @@ namespace CPE200Lab1.Tests
             string expected = "0.25";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.unaryCalculate("1/x", operand);
+            basicCalculatorEngine engine = new basicCalculatorEngine();
+            actual = engine.calculate("1/x", operand);
             Assert.AreEqual(expected, actual);
         }
 
@@ -238,8 +238,8 @@ namespace CPE200Lab1.Tests
             string expected = "E";
             string actual;
 
-            CalculatorEngine engine = new CalculatorEngine();
-            actual = engine.unaryCalculate("1/x", operand);
+            basicCalculatorEngine engine = new basicCalculatorEngine();
+            actual = engine.calculate("1/x", operand);
             Assert.AreEqual(expected, actual);
         }
     }
