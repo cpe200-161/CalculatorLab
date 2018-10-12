@@ -24,39 +24,39 @@ namespace CPE200Lab1
             if (strArray.Length == 1) { return "E"; }
            // if(strArray)
             // your code here
-            Stack <string> fristob = new Stack<string>();
+            Stack <string> myStack = new Stack<string>();
              
 
             foreach(string save in strArray)
             {
                 if (isNumber(save))
                 {
-                    fristob.Push(save);
+                    myStack.Push(save);
                 }
                 else if (isOperator(save))
                 {
                     if (save == "1/x" || save == "√")
                     {
                        
-                            value = fristob.Pop();
+                            value = myStack.Pop();
                       
-                        fristob.Push(calculate(save, value));
+                        myStack.Push(calculate(save, value));
 
                     }
                     else if(save == "%")
                     {
-                        value2 = fristob.Pop().ToString();
-                        value = fristob.Peek().ToString();
+                        value2 = myStack.Pop().ToString();
+                        value = myStack.Peek().ToString();
                         
-                        fristob.Push(calculate(save, value, value2, 8));
+                        myStack.Push(calculate(save, value, value2, 8));
 
                     }
                     else
                     {
                         try
                         {
-                            value = fristob.Pop().ToString();
-                            value2 = fristob.Pop().ToString();
+                            value = myStack.Pop().ToString();
+                            value2 = myStack.Pop().ToString();
                         }
                         catch(Exception ex)
                         {
@@ -66,7 +66,7 @@ namespace CPE200Lab1
 
                       
 
-                        fristob.Push(calculate(save, value2, value, 8));
+                        myStack.Push(calculate(save, value2, value, 8));
                     }
                    
                     
@@ -74,9 +74,9 @@ namespace CPE200Lab1
                 }
                 
             }
-               if (fristob.Count == 1)
+               if (myStack.Count == 1)
                 {
-                return fristob.Pop().ToString();
+                return myStack.Pop().ToString();
                 }
                 else
                 {

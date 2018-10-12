@@ -8,8 +8,8 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine : TheCalculatorEngine
     {
-        private double firstOperand;
-        private double secondOperand;
+        protected double firstOperand;
+        protected double secondOperand;
 
         public void setFirstOperand(string num)
         {
@@ -20,9 +20,27 @@ namespace CPE200Lab1
             secondOperand = Convert.ToDouble(num);
         }
 
-    
 
-        
+        /// <summary>
+        /// process to calculate 2 number which input 
+        /// </summary>
+        /// <param name="str">str is string  input to process</param>
+        /// 
+        /// <returns>result of equations</returns>
+        public string calculate(string oper)
+        {
+            string[] parts = oper.Split(' ');
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            {
+                return "E";
+            }
+            else
+            {
+                return calculate(parts[1], parts[0], parts[2], 4);
+            }
+
+        }
+
 
     }
 }

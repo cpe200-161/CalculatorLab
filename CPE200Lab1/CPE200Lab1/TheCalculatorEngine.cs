@@ -19,7 +19,7 @@ namespace CPE200Lab1
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -41,25 +41,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        /// <summary>
-        /// process to calculate 2 number which input 
-        /// </summary>
-        /// <param name="str">str is string  input to process</param>
-        /// 
-        /// <returns>result of equations</returns>
-        public string Process(string str)
-        {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
-
-        }
+       
 
         /// <summary>
         /// this is function to calculate 1/x and loot
