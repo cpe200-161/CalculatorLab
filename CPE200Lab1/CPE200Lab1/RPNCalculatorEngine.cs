@@ -8,58 +8,61 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        Stack<string> Operands = new Stack<string>();
         /// <summary>
         /// input equation for calculate
         /// </summary>
-        /// <param name="str">equation for caculate </param>
+        /// <param name="oper">equation for caculate </param>
         /// <returns>result of equation</returns>
-        
-        public string Process(string str)
+        public string calculate(string oper)
         {
-            string firstOperand;
-            string secondOperand;
-            string result;
-            string[] parts = str.Split(' ');
-            Stack<string> Operands = new Stack<string>();
-
+            string[] parts = oper.Split(' ');
             foreach (string list in parts)
             {
                 if (isNumber(list))
                 {
                     Operands.Push(list);
+                    Console.Write(list);
                 }
                 else if (isOperator(list))
                 {
-                    if (Operands.Count < 2 && list != "%" && list != "√" && list != "1/x")
-                    {
-                        return "E";
-                    }
+                    string firstOperand;
+                    string secondOperand;
+                    string result;
                     if (list == "+" || list == "-" || list == "X" || list == "÷")
-                    {
-                        secondOperand = Operands.Pop();
-                        firstOperand = Operands.Pop();
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
-                    }
-                    else if (list == "%")
                     {
                         try
                         {
                             secondOperand = Operands.Pop();
-                            firstOperand = Operands.Peek();
-                        }catch(Exception a)
+                            firstOperand = Operands.Pop();
+                            result = calculate(list, firstOperand, secondOperand);
+                            Operands.Push(result);
+                        }
+                        catch (Exception e)
+                        {
+                            return "E";
+                        }
+                    }
+                    else if (list == "%")
+                    {
+                        if (Operands.Count == 1)
                         {
                             secondOperand = Operands.Pop();
                             firstOperand = "1";
                         }
-
+                        else
+                        {
+                            secondOperand = Operands.Pop();
+                            firstOperand = Operands.Peek();
+                        }
                         result = calculate(list, firstOperand, secondOperand);
                         Operands.Push(result);
                     }
                     else
                     {
+                        return "E";
                         secondOperand = Operands.Pop();
-                        result = unaryCalculate(list, secondOperand);
+                        result = calculate(list, secondOperand);
                         Operands.Push(result);
                     }
 
@@ -75,5 +78,6 @@ namespace CPE200Lab1
             }
 
         }
+
     }
 }
