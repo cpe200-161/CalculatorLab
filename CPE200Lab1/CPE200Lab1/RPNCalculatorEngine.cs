@@ -57,17 +57,17 @@ namespace CPE200Lab1
                         }
                 }
             }
-            //FIXME, what if there is more than one, or zero, items in the stack? 
-            if (operands.Count != 1)
-            {
-                return "E";
-            }
-            else if (operands.Count == 1)
-            {
+                //FIXME, what if there is more than one, or zero, items in the stack? 
+                if (operands.Count != 1)
+                {
+                    return "E";
+                }
+                else if (operands.Count == 1)
+                {
                     string number = operands.Pop();
                     string NumberReturn = number;
 
-                    for (int i = 0; i<number.Length;i++)
+                    for (int i = 0; i < number.Length; i++)
                     {
                         if (isOperator(number[i].ToString()) && number[0] != '-')
                             return "E";
@@ -76,10 +76,10 @@ namespace CPE200Lab1
                     string[] Checktxt = number.Split('.');
                     string Decimals;
                     int Decimalsint;
-                    if(Checktxt.Length>1 && isNumber(Checktxt[1]) && Checktxt[1].Length > 4)
+                    if (Checktxt.Length > 1 && isNumber(Checktxt[1]) && Checktxt[1].Length > 4)
                     {
                         Decimals = Checktxt[1].Substring(0, 5);
-                        if (Int32.Parse(Decimals[4].ToString())>5)
+                        if (Int32.Parse(Decimals[4].ToString()) > 5)
                         {
                             Decimalsint = Int32.Parse(Checktxt[1].Substring(0, 4));
                             Decimalsint++;
@@ -87,17 +87,16 @@ namespace CPE200Lab1
                         }
                         else
                         {
-
+                            Decimals = Checktxt[1].Substring(0, 4);
                         }
+                        NumberReturn = Checktxt[0] + "." + Decimals;
                     }
+                    operands.Push(NumberReturn);
+                }
                 return operands.Pop();
             }
-            catch
-            {
-                return "E";
+           
             }
-
-            return Convert.ToDouble(result).ToString("0.####");
         }
 
 
@@ -117,4 +116,4 @@ namespace CPE200Lab1
          }*/
     }
     
-}
+
