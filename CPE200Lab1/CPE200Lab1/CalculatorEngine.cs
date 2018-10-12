@@ -8,12 +8,22 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// check input is number
+        /// </summary>
+        /// <param name="str"> what string do you wanna check </param>
+        /// <returns> change string to double and return out of function </returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// check string is operater
+        /// </summary>
+        /// <param name="str"> what do you click operater to calculate </param>
+        /// <returns> operater </returns>
         public bool isOperator(string str)
         {
             switch (str)
@@ -30,6 +40,12 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        ///  input equation for calculate
+        /// </summary>
+        /// <param name="str">equation for calculate</param>
+        /// <returns>result of equation</returns>
+        
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -44,6 +60,14 @@ namespace CPE200Lab1
 
         }
 
+        /// <summary>
+        /// calculate if use only one Number 
+        /// </summary>
+        /// <param name="operate">operator for calculate</param>
+        /// <param name="operand">Number for calculate</param>
+        /// <param name="maxOutputSize">Length of number</param>
+        /// <returns>result</returns>
+        
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -63,6 +87,15 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// caculate for simple calculator
+        /// </summary>
+        /// <param name="operate"><operator for calculate</param>
+        /// <param name="firstOperand">the first number for calculate</param>
+        /// <param name="secondOperand">the second number for calculate</param>
+        /// <param name="maxOutputSize">Length of number</param>
+        /// <returns>result</returns>
+        
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -85,6 +118,15 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// caculate for simple calculator
+        /// </summary>
+        /// <param name="operate"><operator for calculate</param>
+        /// <param name="firstOperand">the first number for calculate</param>
+        /// <param name="secondOperand">the second number for calculate</param>
+        /// <param name="maxOutputSize">Length of number</param>
+        /// <returns>result</returns>
+        
         private static string NotOver8(double result, int maxOutputSize)
         {
             string[] parts;
