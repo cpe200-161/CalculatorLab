@@ -8,6 +8,7 @@ namespace CPE200Lab1
 {
     public class BasicCalculatorEngine
     {
+
         public bool isNumber(string str)
         {
             double retNum;
@@ -29,7 +30,11 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        /// <summary>
+        /// separate string form display.
+        /// </summary>
+        /// <param name="oper">path of operand and operate</param>
+        /// <returns>String to other method.</returns>
         public string calculate(string oper)
         {
             try
