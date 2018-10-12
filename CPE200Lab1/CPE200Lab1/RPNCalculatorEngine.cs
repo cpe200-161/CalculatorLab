@@ -9,7 +9,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : basicCalculatorEngine
     {
-        public string Process(string str)
+        public string calculate(string str)
         {
             string[] parts = str.Split(' ');
             Stack RPNCal = new Stack();

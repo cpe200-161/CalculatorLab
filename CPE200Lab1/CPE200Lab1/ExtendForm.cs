@@ -107,10 +107,10 @@ namespace CPE200Lab1
         {
            try
             {
-                string result = engine.Process(lblDisplay.Text);
+                string result = engine.calculate(lblDisplay.Text);
                 if (result is "E")
                 {
-                    result = myEngine.Process(lblDisplay.Text);
+                    result = myEngine.calculate(lblDisplay.Text);
                     if (result is "E")
                     {
                         lblDisplay.Text = "Error";
@@ -188,7 +188,7 @@ namespace CPE200Lab1
         private void btnSingleOperator_Click(object sender, EventArgs e)
         {
             string opt = ((Button)sender).Text;
-            string result = engine.unaryCalculate(opt, lblDisplay.Text, 4);
+            string result = engine.Calculate(opt, lblDisplay.Text, 4);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";

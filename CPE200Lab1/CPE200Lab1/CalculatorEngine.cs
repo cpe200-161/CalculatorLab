@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine : basicCalculatorEngine
     {
-        public string Process(string str)
+        public string calculate(string str)
         {
             string[] parts = str.Split(' ');
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
