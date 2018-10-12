@@ -19,7 +19,7 @@ namespace CPE200Lab1
             string[] parts = str.Split(' ');
             Stack<string> operands = new Stack<string>();
             for (int i = 0; i < parts.Length; i++)
-            {
+
                 if (isNumber(parts[i]))
                 {
                     operands.Push(parts[i]);
@@ -39,24 +39,26 @@ namespace CPE200Lab1
                     }
                     operands.Push(result);
                 }
-            }
+                
+        
             //FIXME, what if there is more than one, or zero, items in the stack?
-            if (operands.Count > 1)
+         
+              if (operands.Count > 1)
             {
                 return "E";
             }
+
                 return operands.Pop();
             }
-           
 
-        /*public override void handleSpace()
-        {
-            base.handleSpace();
-            isNumberPart = false;
+    /*public override void handleSpace()
+    {
+        base.handleSpace();
+        isNumberPart = false;
 
 
-        }*/
-    }
+    }*/
+}
     
 }
 
