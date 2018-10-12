@@ -6,48 +6,50 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-
+<<<<<<<<< Temporary merge branch 1
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public override string Process(string str)
         {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
-
-            foreach (string token in parts)
+            Stack<string> operend = new Stack<string>();
+            string[] parts = str.Split(' ');
+            string Re_salt = "0";
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(token))
-                {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                
+                    if (isNumber(parts[i]))
                     {
-                        return result;
+                    operend.Push(parts[i]);
                     }
-                    rpnStack.Push(result);
+                else
+                if (isOperator(parts[i]))
+                {
+                    string popkorn1;
+                    string popkorn2;
+
+                    if (operend.Count() > 1)
+                    {
+                        popkorn2 = operend.Pop();
+                        popkorn1 = operend.Pop();
+                        
+                    }
+                    else
+                    {
+                        return "E";
+                    }
+                    Re_salt = calculate(parts[i], popkorn1, popkorn2, 4);
+                    operend.Push(Re_salt);
                 }
+                
             }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            if(parts.Length<=1)
+                return "E";
+            operend.Pop();
+            if (operend.Count() != 0)
+                return "E";
+            return Re_salt;
         }
     }
-    /*
-    public class RPNCalculatorEngine
-    {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
-        }
-    }
-    */
+    
 }
+
