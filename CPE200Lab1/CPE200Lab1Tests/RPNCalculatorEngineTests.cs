@@ -91,7 +91,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("1", engine.Process("1 1 1 - - "));
             Assert.AreEqual("6", engine.Process("2 2 2 X + "));
             Assert.AreEqual("8", engine.Process("2 2 2 + X "));
-            Assert.AreEqual("0.5", engine.Process("2 2 2 + ÷"));
+            Assert.AreEqual("0.5", engine.Process("2 2 2 + ÷ "));
             Assert.AreEqual("3", engine.Process("2 2 2 ÷ +"));
         }
 

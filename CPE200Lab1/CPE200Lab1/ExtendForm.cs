@@ -76,7 +76,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            // check if the last one is operator
             string current = lblDisplay.Text;
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
