@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : SimpleCalculatorEngine
     {   
         /// <summary>
         /// process display
@@ -39,19 +39,7 @@ namespace CPE200Lab1
                         return "E";
                     }
                 }
-                if (isUnaryOperator(part))
-                {
-                    try
-                    {
-                        string operand;
-                        operand = rpnStack.Pop();
-                        rpnStack.Push(unaryCalculate(part, operand));
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        return "E";
-                    }
-                }
+              
             }
             if (rpnStack.Count > 1) return "E";
             return rpnStack.Pop();
