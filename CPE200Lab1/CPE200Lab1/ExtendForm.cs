@@ -15,12 +15,16 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine2;
+        private CalculatorEngine engine1;
+        private Controller ccontroller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine1 = new CalculatorEngine();
+            engine2 = new RPNCalculatorEngine();
+            ccontroller = new Controller();
         }
 
         private bool isOperator(char ch)
@@ -30,6 +34,19 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                    return true;
+            }
+            return false;
+        }
+        private bool isUnaryOperator(string strc)
+        {
+
+            switch (strc)
+            {
+                case "√":
+                //case "1/x":
+                case "x":
                     return true;
             }
             return false;
@@ -63,7 +80,22 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]) || isUnaryOperator(current[current.Length - 2].ToString()))
+            {
+                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                isSpaceAllowed = false;
+            }
+        }
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = lblDisplay.Text;
+            if (current[current.Length - 1].ToString() != " " || isUnaryOperator(current[current.Length - 2].ToString()))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -78,10 +110,15 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Contains("1/x"))
+            {
+                lblDisplay.Text = current.Substring(0, current.Length - 5);
+            }
+            else if (current[current.Length - 1] is ' ' && current.Length > 2 && (isOperator(current[current.Length - 2]) || isUnaryOperator(current[current.Length - 2].ToString())))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
             }
@@ -101,7 +138,11 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            
+            //string result = controller.Calculate(lblDisplay.Text);
+            string result = ccontroller.RPNcalculate(lblDisplay.Text);
+
+
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -109,10 +150,12 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
+            
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -125,14 +168,16 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
+            }
+            else if (current[current.Length - 1] is '-')
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current + "-";
             }
@@ -163,6 +208,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+                isContainDot = false;
             }
         }
     }

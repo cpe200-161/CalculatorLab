@@ -15,38 +15,47 @@ namespace CPE200Lab1.Tests
         public void Process_Basic_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            Assert.AreEqual("2", r.Process("1 1 +"));
-            Assert.AreEqual("1", r.Process("3 2 -"));
-            Assert.AreEqual("6", r.Process("3 2 X"));
-            Assert.AreEqual("2", r.Process("4 2 ÷"));
-            Assert.AreEqual("0", r.Process("1 -1 +"));
-            Assert.AreEqual("5", r.Process("3 -2 -"));
-            Assert.AreEqual("-1", r.Process("2 3 -"));
-            Assert.AreEqual("-6", r.Process("3 -2 X"));
-            Assert.AreEqual("-2", r.Process("-4 2 ÷"));
+            Assert.AreEqual("2", r.calculate("1 1 +"));
+            Assert.AreEqual("1", r.calculate("3 2 -"));
+            Assert.AreEqual("6", r.calculate("3 2 X"));
+            Assert.AreEqual("2", r.calculate("4 2 ÷"));
+            Assert.AreEqual("0", r.calculate("1 -1 +"));
+            Assert.AreEqual("5", r.calculate("3 -2 -"));
+            Assert.AreEqual("-1", r.calculate("2 3 -"));
+            Assert.AreEqual("-6", r.calculate("3 -2 X"));
+            Assert.AreEqual("-2", r.calculate("-4 2 ÷"));
         }
 
         [TestMethod()]
         public void Process_Complex_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            Assert.AreEqual("8", r.Process("1 3 + 2 X"));
-            Assert.AreEqual("5", r.Process("1 3 2 + X"));
-            Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
+            Assert.AreEqual("8", r.calculate("1 3 + 2 X"));
+            Assert.AreEqual("5", r.calculate("1 3 2 + X"));
+            Assert.AreEqual("-5", r.calculate("1 2 3 4 + - X"));
+            Assert.AreEqual("14", r.calculate("5 1 2 + 4 X 3 - +"));
+            Assert.AreEqual("-1", r.calculate("1 1 1 + -"));
+            Assert.AreEqual("1", r.calculate("1 1 + 1 -"));
+            //
+            Assert.AreEqual("360", r.calculate("300 20 % +"));
+
         }
 
         [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            Assert.AreEqual("E", r.Process("1"));
-            Assert.AreEqual("E", r.Process("1 +"));
-            Assert.AreEqual("E", r.Process("1 + 1"));
-            Assert.AreEqual("E", r.Process("1 1 1 +"));
-            Assert.AreEqual("E", r.Process("+"));
-            Assert.AreEqual("E", r.Process("+ 1"));
-            Assert.AreEqual("E", r.Process("+ 1 1"));
-            Assert.AreEqual("E", r.Process("1 1 1 + + +"));
+            //Assert.AreEqual("E", r.Process("1"));
+            Assert.AreEqual("E", r.calculate("1 +"));
+            Assert.AreEqual("E", r.calculate("1 + 1"));
+            Assert.AreEqual("E", r.calculate("1 1 1 +"));
+            Assert.AreEqual("E", r.calculate("+"));
+            Assert.AreEqual("E", r.calculate("+ 1"));
+            Assert.AreEqual("E", r.calculate("+ 1 1"));
+            Assert.AreEqual("E", r.calculate("1 1 1 + + +"));
+            //
+            Assert.AreEqual("E", r.calculate("1 1 1 + 1 -"));
+            Assert.AreEqual("E", r.calculate("1 0 ÷"));
         }
     }
 }
