@@ -40,7 +40,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -59,7 +59,7 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -104,7 +104,7 @@ namespace CPE200Lab1
             isSpaceAllowed = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnExe_Click(object sender, EventArgs e)
         {
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")

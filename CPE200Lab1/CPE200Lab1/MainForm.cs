@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private CalculatorEngine myEngine;
 
         private void resetAll()
         {
@@ -37,11 +37,11 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new CalculatorEngine();
+            myEngine = new CalculatorEngine();
             resetAll();
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -68,8 +68,8 @@ namespace CPE200Lab1
             lblDisplay.Text += digit;
             isAfterOperater = false;
         }
-
-        private void btnUnaryOperator_Click(object sender, EventArgs e)
+        
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -80,33 +80,10 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
-            if (result is "E" || result.Length > 8)
+            if(operate == "1/X" || operate == "√")
             {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-
-        }
-
-        private void btnOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            if(firstOperand != null)
-            {
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                firstOperand = lblDisplay.Text;
+                string result = myEngine.calculate(operate, firstOperand);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -115,32 +92,48 @@ namespace CPE200Lab1
                 {
                     lblDisplay.Text = result;
                 }
-            }
-            operate = ((Button)sender).Text;
-            switch (operate)
+            } else
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
-                case "%":
-                    // your code here
-                    break;
+                if (firstOperand != null)
+                {
+                    string secondOperand = lblDisplay.Text;
+                    string result = myEngine.calculate(operate, firstOperand, secondOperand);
+                    if (result is "E" || result.Length > 8)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                }
+                operate = ((Button)sender).Text;
+                switch (operate)
+                {
+                    case "+":
+                    case "-":
+                    case "X":
+                    case "÷":
+                        firstOperand = lblDisplay.Text;
+                        isAfterOperater = true;
+                        break;
+                    case "%":
+                        // your code here
+                        break;
+                }
             }
+           
             isAllowBack = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnExe_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = myEngine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

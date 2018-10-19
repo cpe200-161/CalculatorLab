@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatoreEngine
     {
         string result;
         string secondNum;
@@ -25,32 +25,40 @@ namespace CPE200Lab1
                 }
                 if (isOperator(parts[i]))
                 {
-                    if (parts[i] == "1/x" || parts[i] == "√")
+                    try
                     {
-                        firstNum = Set.Pop();
-                        Set.Push(unaryCalculate(parts[i], firstNum));
+                        if (parts[i] == "1/x" || parts[i] == "√")
+                        {
+                            firstNum = Set.Pop();
+                            Set.Push(calculate(parts[i], firstNum));
+                        }
+                        else if (parts[i] == "%" && Set.Count > 1)
+                        {
+                            secondNum = Set.Pop();
+                            firstNum = Set.Peek();
+                            Set.Push(calculate(parts[i], firstNum, secondNum));
+                        }
+                        else if (parts[i] == "%")
+                        {
+                            firstNum = Set.Pop();
+                            Set.Push(calculate(parts[i], firstNum, 1.ToString()));
+                        }
+                        else if (Set.Count < 1)
+                        {
+                            return "E";
+                        }
+                        else
+                        {
+                            secondNum = Set.Pop();
+                            firstNum = Set.Pop();
+                            Set.Push(calculate(parts[i], firstNum, secondNum));
+                        }
                     }
-                    else if (parts[i] == "%" && Set.Count > 1)
-                    {
-                        secondNum = Set.Pop();
-                        firstNum = Set.Peek();
-                        Set.Push(calculate(parts[i], firstNum, secondNum));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        firstNum = Set.Pop();
-                        Set.Push(calculate(parts[i], firstNum, 1.ToString()));
-                    }
-                    else if (Set.Count < 1)
+                    catch(Exception e)
                     {
                         return "E";
                     }
-                    else
-                    {
-                        secondNum = Set.Pop();
-                        firstNum = Set.Pop();
-                        Set.Push(calculate(parts[i], firstNum, secondNum));
-                    }
+                    
                 }
 
             }
