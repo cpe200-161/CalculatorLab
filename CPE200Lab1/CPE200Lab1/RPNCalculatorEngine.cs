@@ -27,21 +27,25 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (numbers.Count < 2)
+                    try
                     {
-                        return "E";
-                    }
-                    string firstnumber, secondnumber;
-                    secondnumber = numbers.Peek();
-                    numbers.Pop();
-                    firstnumber = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(calculate(parts[i], firstnumber, secondnumber, 8));
+                        string firstnumber, secondnumber;
+                        secondnumber = numbers.Peek();
+                        numbers.Pop();
+                        firstnumber = numbers.Peek();
+                        numbers.Pop();
+                        numbers.Push(calculate(parts[i], firstnumber, secondnumber, 8));
+                    }catch(InvalidOperationException)
+                        {
+                            return "E";
+                        }
 
                 }
             }
             if (numbers.Count == 1)
             {
+                try
+                {
                 if (parts[1] == "√" || parts[1] == "1/x")
                 {
                     string firstnumber;
@@ -50,6 +54,10 @@ namespace CPE200Lab1
                     numbers.Push(calculate(parts[1], firstnumber));
                 }
                 return numbers.Peek();
+                }catch(InvalidOperationException)
+                {
+                    return "E";
+                }
             }
             else
             {
