@@ -31,7 +31,7 @@ namespace CPE200Lab1.Tests
         {
             Assert.AreEqual("E", engine.Process(null));
             Assert.AreEqual("E", engine.Process(""));
-        }
+        }      
 
         [TestMethod()]
         public void BasicCalcuationOneTest()
