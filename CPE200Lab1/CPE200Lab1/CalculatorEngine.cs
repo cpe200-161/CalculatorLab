@@ -26,7 +26,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             //Split input string to multiple parts by space
             List<string> parts = str.Split(' ').ToList<string>();
@@ -57,21 +57,10 @@ namespace CPE200Lab1
                 case "√":
                     {
                         double result;
-                        string[] parts;
-                        int remainLength;
+                        
 
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        result = Math.Sqrt(Convert.ToInt32(operand));
+                        return result.ToString();
                     }
                 case "1/x":
                     if(operand != "0")
@@ -91,7 +80,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
             }
@@ -103,35 +92,19 @@ namespace CPE200Lab1
             switch (operate)
             {
                 case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                    return (Convert.ToInt32(firstOperand) + Convert.ToInt32(secondOperand)).ToString();
                 case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                    return (Convert.ToInt32(firstOperand) - Convert.ToInt32(secondOperand)).ToString();
                 case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                    return (Convert.ToInt32(firstOperand) * Convert.ToInt32(secondOperand)).ToString();
                 case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
+                    if(secondOperand == "0")
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return "E";
                     }
-                    break;
+                    return (Convert.ToInt32(firstOperand) / Convert.ToInt32(secondOperand)).ToString();
                 case "%":
-                    //your code here
+                    
                     break;
             }
             return "E";
