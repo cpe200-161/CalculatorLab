@@ -5,49 +5,84 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
+
 {
+	public class RPNCalculatorEngine : CalculatorEngine
+	{
 
-    public class RPNCalculatorEngine : CalculatorEngine
-    {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
+		public override string Process(string str)
+		{
+			//Boolean w = true;
+			int ValueNum = 0;
+			for (int j = 0;j < str.Length; j++)
+			{
+				if(str == null)
+				{
+					///w = false;
+					return "E";
+				}
+			}
 
-            foreach (string token in parts)
-            {
-                if (isNumber(token))
-                {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
-                    {
-                        return result;
-                    }
-                    rpnStack.Push(result);
-                }
-            }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
-        }
-    }
-    /*
-    public class RPNCalculatorEngine
-    {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
-        }
-    }
-    */
+				string[] parts = str.Split(' ');
+				Stack<string> operands = new Stack<string>();
+				string result = "0";
+				Boolean Key = false;
+				int amountNum = 0, amountOper = 0;
+		
+				for (int i = 0; i < parts.Length; i++)
+				{
+
+					if (parts[i] == "1+" || parts[i] == "+1" || parts[i] == "++" || parts[i] == "\"\"")
+					{
+						return "E";
+					}
+					if (isNumber(parts[i]))
+					{
+						if (Double.Parse(parts[i]) >= 1)
+							operands.Push(parts[i]);
+						result = parts[i];
+						amountNum = amountNum + 1;
+					    ValueNum++;
+					}
+					else if (isOperator(parts[i]))
+					{
+						string ppap1 = "0";
+						string ppap2 = "0";
+						if (operands.Count() > 1)
+						{
+							ppap2 = operands.Pop();
+							ppap1 = operands.Pop();
+
+						}
+						else
+						{
+							return "E";
+						}
+
+						result = calculate(parts[i], ppap1, ppap2, 4);
+						operands.Push(result);
+						Key = true;
+						amountOper++;
+
+					}
+					else if (parts[i] == null)
+					{
+						return "E";
+					}
+
+
+				}
+				if (amountNum - amountOper != 1 && Key == true)
+				{
+					return "E";
+				}
+				if (Key == false && ValueNum > 1)
+				{
+					return "E";
+				}
+			
+
+			return result;
+		}
+	}
 }
