@@ -20,7 +20,6 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private SimpleCalculatorEmgine engine;
-
         private void resetAll()
         {
             lblDisplay.Text = "0";

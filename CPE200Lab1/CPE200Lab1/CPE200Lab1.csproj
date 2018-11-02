@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorEngine.cs" />
+    <Compile Include="ControlerMain.cs" />
+    <Compile Include="ControllerExtend.cs" />
     <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
     </Compile>
