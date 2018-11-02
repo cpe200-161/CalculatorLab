@@ -37,7 +37,7 @@ namespace CPE200Lab1
                         {
 
                             secondOperand = myStack.Pop();
-                            myStack.Push(caculate(parts[i], secondOperand));
+                            myStack.Push(calculate(parts[i], secondOperand));
                         }
 
                         else

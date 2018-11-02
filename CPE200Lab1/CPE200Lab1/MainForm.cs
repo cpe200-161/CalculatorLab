@@ -20,8 +20,12 @@ namespace CPE200Lab1
         protected string operate;
         private double memory;
         protected CalculatorEngine engine;
+        //private Model engine;
+        //private Controller controller;
 
-        private void resetAll()
+ 
+
+    private void resetAll()
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
@@ -81,7 +85,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.caculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

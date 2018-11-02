@@ -32,7 +32,7 @@ namespace CPE200Lab1
             }
             return false;
         }
-        public string caculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -115,7 +115,7 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    break;
+                    
             }
             return "E";
         }
@@ -175,11 +175,11 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    break;
+                    
                 case "%":
                     //your code here
                     return (Convert.ToDouble(secondOperand) * Convert.ToDouble(firstOperand) / 100).ToString();
-                    break;
+                   
             }
             return "E";
         }
