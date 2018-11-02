@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool hasDot;
         private bool isAllowBack;
@@ -23,17 +23,26 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
-        private RPNCalculatorEngine RPNengine;
+        private RPNCalculatorEngine engine;
+        Model model;
+        Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-            RPNengine = new RPNCalculatorEngine();
+            engine = new RPNCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            model.AttachObserver(this);
+            controller.AddModel(model);
 
 
         }
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalculatorModel)m).getResult();
+        }
+        
 
         public bool isOperator(char ch)
         {
@@ -159,18 +168,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.calculate(lblDisplay.Text);
-            if (result is "E")
-            {
-                result = RPNengine.calculate(lblDisplay.Text);
-                if (result is "E")
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else lblDisplay.Text = result;
-                return;
-            }
-            lblDisplay.Text = result;
+            controller.Calculate(lblDisplay.Text);
         }
 
         private void btnSign_Click(object sender, EventArgs e)

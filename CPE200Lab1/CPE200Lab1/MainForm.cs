@@ -20,7 +20,8 @@ namespace CPE200Lab1
         private string operate;
         private string preoperate;
         private double memory;
-        private CalculatorEngine engine;
+        private Model engine;
+        private Controller controller;
 
         private void resetAll()
         {
@@ -38,7 +39,9 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(engine);
             resetAll();
         }
 
@@ -82,7 +85,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand);
+            string result = ((CalculatorModel)engine).calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -107,7 +110,7 @@ namespace CPE200Lab1
             if(firstOperand != null)
             {
                 string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                string result = ((CalculatorModel)engine).calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -130,7 +133,7 @@ namespace CPE200Lab1
 
                     break;
                 case "%":
-                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
+                    lblDisplay.Text = ((CalculatorModel)engine).calculate(operate, firstOperand, lblDisplay.Text);
 
                     operate = preoperate;
                     break;
@@ -145,7 +148,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                string result = ((CalculatorModel)engine).calculate(operate, firstOperand, secondOperand);
             
             if (result is "E" || result.Length > 8)
             {
