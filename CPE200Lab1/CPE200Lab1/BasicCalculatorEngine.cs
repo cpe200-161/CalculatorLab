@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class BasicCalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);

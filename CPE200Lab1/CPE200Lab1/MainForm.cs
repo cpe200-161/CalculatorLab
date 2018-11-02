@@ -12,6 +12,7 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
+        private CalculatorEngine engine;
         protected bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -19,7 +20,8 @@ namespace CPE200Lab1
         private string firstOperand;
         protected string operate;
         private double memory;
-        protected CalculatorEngine engine;
+        private Controller controller;
+        private Model model;
 
         private void resetAll()
         {
@@ -38,6 +40,10 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            engine = new CalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(model);
             resetAll();
         }
 
