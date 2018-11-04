@@ -8,11 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
-        private string display = "0";
-        public new string Process(string str)
+        public string Process(string str)
         {
             if (str == null || str == "")
             {
@@ -34,7 +30,6 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(token))
                 {
-                    //FIXME, what if there is only one left in stack?
                     if (rpnStack.Count == 1)
                     {
                         return "E";
@@ -65,7 +60,6 @@ namespace CPE200Lab1
                     return "E";
                 }
             }
-            //FIXME, what if there is more than one, or zero, items in the stack?
             if (rpnStack.Count > 1)
             {
                 return "E";
@@ -80,162 +74,7 @@ namespace CPE200Lab1
             }
 
             return Convert.ToDouble(result).ToString("0.####");
-
-        }
-        public string Display()
-        {
-            return display;
         }
 
-        public bool isOperator(char ch)
-        {
-            switch (ch)
-            {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
-                    return true;
-            }
-            return false;
-        }
-
-        public void Number_Click(string digit)
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            if (display is "0")
-            {
-                display = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
-            display += digit;
-            isSpaceAllowed = true;
-        }
-
-        public void BinaryOperator_Click(string op)
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = display;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                display += " " + op + " ";
-                isSpaceAllowed = false;
-            }
-        }
-
-        public void Back_Click()
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            // check if the last one is operator
-            string current = display;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
-            {
-                display = current.Substring(0, current.Length - 3);
-            }
-            else
-            {
-                display = current.Substring(0, current.Length - 1);
-            }
-            if (display is "")
-            {
-                display = "0";
-            }
-        }
-
-        public void Clear_Click()
-        {
-            display = "0";
-            isContainDot = false;
-            isNumberPart = false;
-            isSpaceAllowed = false;
-        }
-
-        public void Equal_Click()
-        {
-            string result = Process(display);
-            if (result is "E")
-            {
-                display = "Error";
-            }
-            else
-            {
-                display = result;
-                isSpaceAllowed = true;
-                isContainDot = false;
-                isNumberPart = true;
-            }
-        }
-
-        public void Sign_Click()
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            if (isNumberPart)
-            {
-                return;
-            }
-            string current = display;
-            if (current is "0")
-            {
-                display = "-";
-            }
-            else if (current[current.Length - 1] is '-')
-            {
-                display = current.Substring(0, current.Length - 1);
-                if (display is "")
-                {
-                    display = "0";
-                }
-            }
-            else
-            {
-                display = current + "-";
-            }
-            isSpaceAllowed = false;
-        }
-
-        public void Dot_Click()
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            if (!isContainDot)
-            {
-                isContainDot = true;
-                display += ".";
-                isSpaceAllowed = false;
-            }
-        }
-
-        public void Space_Click()
-        {
-            if (display is "Error")
-            {
-                return;
-            }
-            if (isSpaceAllowed)
-            {
-                display += " ";
-                isSpaceAllowed = false;
-            }
-        }
     }
 }
