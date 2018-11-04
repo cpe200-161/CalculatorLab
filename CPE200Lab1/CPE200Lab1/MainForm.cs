@@ -12,6 +12,8 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
+        private CalculatorEngine engine;
+        private string display = "0";
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -19,25 +21,26 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private Controller controller;
+        private Model model;
 
         private void resetAll()
         {
-            lblDisplay.Text = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
-            firstOperand = null;
+            display = "0";
         }
 
-      
-
-        public MainForm()
+        private MainForm()
         {
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            model = new CalModel();
+            controller = new CalController();
+            controller.AddModel(model);
             resetAll();
         }
 
@@ -55,42 +58,18 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
-        }
-
-        private void btnUnaryOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -103,7 +82,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
+            if (firstOperand != null)
             {
                 string secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
@@ -116,7 +95,7 @@ namespace CPE200Lab1
                     lblDisplay.Text = result;
                 }
             }
-            operate = ((Button)sender).Text;
+            operate = ((Button)sender).Text; ;
             switch (operate)
             {
                 case "+":
@@ -133,9 +112,32 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (isAfterOperater)
+            {
+                return;
+            }
+            operate = ((Button)sender).Text;
+            firstOperand = lblDisplay.Text;
+            string result = engine.calculate(operate, firstOperand);
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            if (display is "Error")
             {
                 return;
             }
@@ -188,18 +190,14 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text[0] is '-')
+            if (lblDisplay.Text[0] is '-')
             {
-                lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
-            } else
+                lblDisplay.Text = lblDisplay.Text.Substring(1, display.Length - 1);
+            }
+            else
             {
                 lblDisplay.Text = "-" + lblDisplay.Text;
             }
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            resetAll();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -216,25 +214,25 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
-                    lblDisplay.Text = "0";
+                    display = "0";
                 }
             }
         }
 
         private void btnMP_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
@@ -249,7 +247,7 @@ namespace CPE200Lab1
 
         private void btnMM_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
@@ -259,11 +257,283 @@ namespace CPE200Lab1
 
         private void btnMR_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "error")
+            if (lblDisplay.Text is "error")
             {
                 return;
             }
             lblDisplay.Text = memory.ToString();
         }
+        //private SimpleCalculatorEngine engine = new SimpleCalculatorEngine();
+
+        //private void resetAll()
+        //{
+        //    engine.resetAll();
+        //    lblDisplay.Text = engine.Display();
+
+        //}
+
+
+
+        //public MainForm()
+        //{
+        //    InitializeComponent();
+        //    resetAll();
+        //}
+
+        //private void btnNumber_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    string digit = ((Button)sender).Text;
+        //    engine.Number_Click(digit);
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (isAfterEqual)
+        //    //{
+        //    //    resetAll();
+        //    //}
+        //    //if (isAfterOperater)
+        //    //{
+        //    //    lblDisplay.Text = "0";
+        //    //}
+        //    //if(lblDisplay.Text.Length is 8)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //isAllowBack = true;
+        //    //string digit = ((Button)sender).Text;
+        //    //if(lblDisplay.Text is "0")
+        //    //{
+        //    //    lblDisplay.Text = "";
+        //    //}
+        //    //lblDisplay.Text += digit;
+        //    //isAfterOperater = false;
+        //}
+
+        //private void btnUnaryOperator_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    string op = ((Button)sender).Text;
+        //    engine.UnaryOperator_Click(op);
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (isAfterOperater)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //operate = ((Button)sender).Text;
+        //    //firstOperand = lblDisplay.Text;
+        //    //string result = engine.unaryCalculate(operate, firstOperand);
+        //    //if (result is "E" || result.Length > 8)
+        //    //{
+        //    //    lblDisplay.Text = "Error";
+        //    //}
+        //    //else
+        //    //{
+        //    //    lblDisplay.Text = result;
+        //    //}
+
+        //}
+
+        //private void btnOperator_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    string op = ((Button)sender).Text;
+        //    engine.Operator_Click(op);
+        //    lblDisplay.Text = engine.Display();
+
+        //}
+
+        //private void btnEqual_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.Equal_Click();
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //string secondOperand = lblDisplay.Text;
+        //    //string result = engine.calculate(operate, firstOperand, secondOperand);
+        //    //if (result is "E" || result.Length > 8)
+        //    //{
+        //    //    lblDisplay.Text = "Error";
+        //    //}
+        //    //else
+        //    //{
+        //    //    lblDisplay.Text = result;
+        //    //}
+        //    //isAfterEqual = true;
+        //}
+
+        //private void btnDot_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.Dot_Click();
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (isAfterEqual)
+        //    //{
+        //    //    resetAll();
+        //    //}
+        //    //if (lblDisplay.Text.Length is 8)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (!hasDot)
+        //    //{
+        //    //    lblDisplay.Text += ".";
+        //    //    hasDot = true;
+        //    //}
+        //}
+
+        //private void btnSign_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.Sign_Click();
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (isAfterEqual)
+        //    //{
+        //    //    resetAll();
+        //    //}
+        //    //// already contain negative sign
+        //    //if (lblDisplay.Text.Length is 8)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if(lblDisplay.Text[0] is '-')
+        //    //{
+        //    //    lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
+        //    //} else
+        //    //{
+        //    //    lblDisplay.Text = "-" + lblDisplay.Text;
+        //    //}
+        //}
+
+        //private void btnClear_Click(object sender, EventArgs e)
+        //{
+        //    resetAll();
+        //}
+
+        //private void btnBack_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.Back_Click();
+        //    lblDisplay.Text = engine.Display();
+        //    //if (lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (isAfterEqual)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (!isAllowBack)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if(lblDisplay.Text != "0")
+        //    //{
+        //    //    string current = lblDisplay.Text;
+        //    //    char rightMost = current[current.Length - 1];
+        //    //    if(rightMost is '.')
+        //    //    {
+        //    //        hasDot = false;
+        //    //    }
+        //    //    lblDisplay.Text = current.Substring(0, current.Length - 1);
+        //    //    if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+        //    //    {
+        //    //        lblDisplay.Text = "0";
+        //    //    }
+        //    //}
+        //}
+
+        //private void btnMP_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.MP_Click();
+        //    //if(lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //memory += Convert.ToDouble(lblDisplay.Text);
+        //    //isAfterOperater = true;
+
+        //}
+
+        //private void btnMC_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.MC_Click();
+        //    //memory = 0;
+        //}
+
+        //private void btnMM_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.MM_Click();
+        //    //if(lblDisplay.Text is "Error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //memory -= Convert.ToDouble(lblDisplay.Text);
+        //    //isAfterOperater = true;
+        //}
+
+        //private void btnMR_Click(object sender, EventArgs e)
+        //{
+        //    if (lblDisplay.Text is "Error")
+        //    {
+        //        return;
+        //    }
+        //    engine.MR_Click();
+        //    //if(lblDisplay.Text is "error")
+        //    //{
+        //    //    return;
+        //    //}
+        //    //lblDisplay.Text = memory.ToString();
+        //}
     }
 }
