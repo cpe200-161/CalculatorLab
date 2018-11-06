@@ -13,17 +13,25 @@ namespace CPE200Lab1
 
         public void setFirstOperand(string num)
         {
-            firstOperand = double.Parse(num);
+            firstOperand = Convert.ToDouble(num);
         }
 
         public void setSecondOperand(string num)
         {
-            secondOperand = double.Parse(num);
+            secondOperand = Convert.ToDouble(num);
         }
 
         public string calculate(string oper)
         {
-            return oper;
+            string[] parts = oper.Split(' ');
+            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
+            {
+                return calculate(parts[1], parts[0], parts[2], 4);
+            }
+            else
+            {
+                return "E";
+            }
         }
 
 
