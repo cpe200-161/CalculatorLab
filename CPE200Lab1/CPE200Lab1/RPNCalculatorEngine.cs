@@ -15,7 +15,10 @@ namespace CPE200Lab1
         public string result;
 
 
-
+        /// <summary> Determine wheter str is not operator </summary>
+        /// <param name="str"> input </param>
+        /// <returns> type of operator which is integer </returns>
+        
         private int isNotOperator(string str)
         {
             switch (str)
@@ -35,7 +38,11 @@ namespace CPE200Lab1
             }
             return 1;
         }
-
+        
+        /// <summary> get input from RPN calculator,push number to stack and separate operator then sent to calculate in CalculatorEngine  </summary>
+        /// <param name="str"> input </param>
+        /// <returns> result </returns>
+       
         public new string Process(string str)
         {
             engine = new CalculatorEngine();
