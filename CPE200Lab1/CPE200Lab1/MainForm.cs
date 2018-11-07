@@ -20,10 +20,14 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private SimpleCalculatorEngine engine;
+        private Model model;
+        private Controller controller;
+        private string display = "0";
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
+            display = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
@@ -38,6 +42,9 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new SimpleCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(model);
             resetAll();
         }
 
