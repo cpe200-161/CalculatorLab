@@ -19,11 +19,15 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private SimpleCalculatorEngine engine;
+        private Model model;
+        private Controller controller;
+        private string display = "0";
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
+            display = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
@@ -37,7 +41,10 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new CalculatorEngine();
+            engine = new SimpleCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(model);
             resetAll();
         }
 
@@ -81,7 +88,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
