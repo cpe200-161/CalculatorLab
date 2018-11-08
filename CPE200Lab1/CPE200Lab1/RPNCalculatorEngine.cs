@@ -8,21 +8,17 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine //inherit rpn is child of cal
     {
-        public new string Process(string str)
+        
+
+        public string calculate(string str)
         {
             
             Stack<string> rpnStack = new Stack<string>();
             List<string> parts;
 
-            try
-            {
+            
                 parts = str.Split(' ').ToList<string>();
-               
-            }
-            catch (NullReferenceException e)
-            {
-                return "E";
-            }
+            
 
            
 
@@ -41,21 +37,12 @@ namespace CPE200Lab1
                 {
                     //FIXME, what if there is only one left in stack?
 
-                    try
-                    {
+                    
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
 
-                    }
-                    catch (InvalidOperationException e)
-                    {
-
-                        return "E";
-                    }
-                    catch (Exception e)
-                    {
-                        return "E";
-                    }
+                    
+                   
 
 
 
@@ -75,25 +62,18 @@ namespace CPE200Lab1
             //FIXME, what if there is more than one, or zero, items in the stack?
 
 
-            try
-            {
+            
 
                 result = rpnStack.Pop();
                 if (rpnStack.Count != 0)
                 {
                     return "E";
                 }
-            }
-            catch (InvalidOperationException e)
-            {
-
-                return "E";
-            }
-            
+           
 
             
       
-                return Decimal.Parse(result).ToString("0.####");
+              return Decimal.Parse(result).ToString("0.####");
             
             
         }
