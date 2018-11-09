@@ -10,20 +10,30 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {                       //class name
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form ,View
     { 
         //fields
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
-
+        Model model;
+        Controller controller;
 
         //constructor
         public ExtendForm()
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+            model = new CalcModel();
+            model.AttachObserver(this);
+            controller = new CalcController();
+            controller.AddModel(model);
+        }
+
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalcModel)m).Display();
         }
 
         //methods
@@ -105,7 +115,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
