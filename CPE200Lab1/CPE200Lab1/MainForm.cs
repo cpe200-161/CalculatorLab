@@ -21,7 +21,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private SimpleCalculatorEngine engine;
+        private SimpleCal engine;
         private Controller controller;
         private Model model;
 

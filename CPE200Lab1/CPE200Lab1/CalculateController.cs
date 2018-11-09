@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CPE200Lab1
 {
-    class CalController : Controller
+    class CalculatorController : Controller
     {
-        public CalController()
+        public CalculatorController()
         {
         }
         public override void Calculate(string str)
         {
-            foreach (CalModel m in mList)
+            foreach (CalculatorModel m in mList)
             {
                 m.calculator(str);
             }

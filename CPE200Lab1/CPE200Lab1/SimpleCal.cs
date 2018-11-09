@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CPE200Lab1
 {
-    public class SimpleCalculator
+    public class SimpleCal
     {
         public bool isNumber(string str)
         {

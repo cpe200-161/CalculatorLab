@@ -7,24 +7,24 @@ namespace CPE200Lab1
 {
     class CalculatorModel : Model
     {
-        protected CalculatorEngine Engine;
+        protected CalculatorEngine engine;
         protected RPNCalculatorEngine RPNEngine;
         private string display;
         public CalculatorModel()
         {
-            Engine = new CalculatorEngine();
+            engine = new CalculatorEngine();
             RPNEngine = new RPNCalculatorEngine();
         }
         public string Display()
         {
             return display;
         }
-        public void Calculator(string str)
+        public void calculator(string str)
         {
-            string result = Engine.Calculate(str);
+            string result = engine.calculate(str);
             if (result is "E")
             {
-                result = RPNEngine.Calculate(str);
+                result = RPNEngine.calculate(str);
                 if (result is "E")
                 {
                     display = "Error";
@@ -42,15 +42,15 @@ namespace CPE200Lab1
         }
         public bool isNumber(string num)
         {
-            return Engine.isNumber(num);
+            return engine.isNumber(num);
         }
-        public string Calculate(string operate, string operand)
+        public string calculate(string operate, string operand)
         {
-            return Engine.Calculate(operate, operand);
+            return engine.calculate(operate, operand);
         }
-        public string Calculate(string operate, string firstOperand, string secondOperand)
+        public string calculate(string operate, string firstoperand, string secondoperand)
         {
-            return Calculate(operate, firstOperand, secondOperand);
+            return calculate(operate, firstoperand, secondoperand);
         }
     }
 }
