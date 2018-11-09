@@ -6,8 +6,19 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : NewCalculatorEngine
+    public class SimpleCalculatorEngine : NewCalculatorEngine
     {
+        protected Double firstoperand;
+        protected Double secondoperand;
+
+        public void setFirstOperand(String num)
+        {
+            firstoperand = Convert.ToDouble(num);
+        }
+        public void setSecondOperand(String num)
+        {
+            secondoperand = Convert.ToDouble(num);
+        }
         public string calculate(string str)
         {
             //Split input string to multiple parts by space
@@ -33,5 +44,7 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
+
+
     }
 }
