@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : SimpleCalculatorEngine
     {
-        public string Calculate(string str)
+        public string calculate(string str)
         {
             Stack<string> rpnStack = new Stack<string>();
             List<string> parts ;
@@ -83,7 +83,7 @@ namespace CPE200Lab1
 
         private string NewMethod(string firstOperand, string secondOperand, string token)
         {
-            return Calculate(token, firstOperand, secondOperand, 4);
+            return calculate(token, firstOperand, secondOperand, 4);
         }
     }
 }

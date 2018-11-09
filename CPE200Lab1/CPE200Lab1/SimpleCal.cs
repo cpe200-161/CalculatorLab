@@ -3,24 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CPE200Lab1
 {
-    public class CalculatorEngine :SimpleCalculatorEngine
-
+    public class SimpleCalculator
     {
-        /*
-        protected bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
-
             return Double.TryParse(str, out retNum);
         }
-
-
-        protected bool isOperator(string str)
+        public bool isOperator(string ch)
         {
-            switch (str)
+            switch (ch)
             {
                 case "+":
                 case "-":
@@ -30,43 +24,15 @@ namespace CPE200Lab1
             }
             return false;
         }
-
-      /*  public string Calculate(string str)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
-            //Split input string to multiple parts by space
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            //As long as we have more than one part
-            while (parts.Count > 1)
-            {
-                //Check if the first three is ready for calcuation
-                if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-                {
-                    return "E";
-                }
-                else
-                {
-                    //Calculate the first three
-                    result = Calculate(parts[1], parts[0], parts[2], 4);
-                    //Remove the first three
-                    parts.RemoveRange(0, 3);
-                    // Put back the result
-                    parts.Insert(0, result);
-                }
-            }
-            return parts[0];
-        } */
-
-        public string Calculate(string operand, string FirstOperand,int maxOutputSize = 8)
-        {
-            switch (operand)
+            switch (operate)
             {
                 case "√":
                     {
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -86,7 +52,6 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = (1.0 / Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -104,10 +69,9 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
-        public string Calculate(string operand, string firstOperand, string secondOperand ,int maxOutputSize=8)
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
-            switch (operand)
+            switch (operate)
             {
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
@@ -122,7 +86,6 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -134,9 +97,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        // return result.ToString("N" + remainLength);
-                        return decimal.Parse(result.ToString()).ToString("G29");
-
+                        return result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
@@ -146,8 +107,4 @@ namespace CPE200Lab1
             return "E";
         }
     }
-
-
-
-    
 }

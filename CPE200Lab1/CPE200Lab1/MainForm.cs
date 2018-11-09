@@ -12,6 +12,8 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
+        
+        private string diplay ="0";
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -20,24 +22,27 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private SimpleCalculatorEngine engine;
+        private Controller controller;
+        private Model model;
 
         private void resetAll()
         {
-            lblDisplay.Text = "0";
+            
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
-            firstOperand = null;
+            dispaly ="0";
         }
-
-      
-
-        public MainForm()
+           
+        private MainForm()
         {
             InitializeComponent();
             memory = 0;
             engine = new SimpleCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new calculateController();
+            controller.AddModel(model);
             resetAll();
         }
 
@@ -68,7 +73,7 @@ namespace CPE200Lab1
             lblDisplay.Text += digit;
             isAfterOperater = false;
         }
-
+//del
         private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -83,7 +88,7 @@ namespace CPE200Lab1
 
 
             engine.setFirstOperand(lblDisplay.Text);
-            string result = engine.Calculate(operate);
+            string result = engine.calculate(operate);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -109,7 +114,7 @@ namespace CPE200Lab1
             {
                 engine.setSecondOperand(lblDisplay.Text);
                 
-                string result = engine.Calculate(operate);
+                string result = engine.calculate(operate);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -144,7 +149,7 @@ namespace CPE200Lab1
             }
             engine.setSecondOperand(lblDisplay.Text);
             
-            string result = engine.Calculate(operate);
+            string result = engine.calculate(operate);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

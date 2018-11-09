@@ -13,7 +13,6 @@ namespace CPE200Lab1
 
         public void setFirstOperand(string num)
         {
-            
             firstOperand = Convert.ToDouble(num);
         }
 
@@ -21,10 +20,10 @@ namespace CPE200Lab1
         {
             secondOperand = Convert.ToDouble(num);
         }
-        public string Calculate(string operate)
+        public string calculate(string operate)
         {
 
-            return Calculate(operate,firstOperand.ToString(),secondOperand.ToString());
+            return calculate(operate,firstOperand.ToString(),secondOperand.ToString());
         }
       
         
