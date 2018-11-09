@@ -71,7 +71,6 @@ namespace CPE200Lab1
            try
             {
                 result = rpnStack.Pop();
-
             }
             catch(Exception e)
             {
