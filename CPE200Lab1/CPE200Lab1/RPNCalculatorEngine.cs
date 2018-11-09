@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine //inherit rpn is child of cal
     {
-        public new string Process(string str)
+        public  string calculate(string str)
         {
             
             Stack<string> rpnStack = new Stack<string>();
@@ -52,10 +52,7 @@ namespace CPE200Lab1
 
                         return "E";
                     }
-                    catch (Exception e)
-                    {
-                        return "E";
-                    }
+                    
 
 
 
