@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : NewCalculatorEngine
     {
         public string calculate(string str)
+
 
         {
             if(str == null || str == "")
