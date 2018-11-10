@@ -4,7 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//model
 namespace CPE200Lab1
 {
     /// <summary>
@@ -12,6 +12,8 @@ namespace CPE200Lab1
     /// </summary>
     public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+
+
         /// <summary>
         /// แยกออกมาจาก calculate เพราะ มี่ input เหมือนกันแต่คำนวณต่างกัน
         /// </summary>

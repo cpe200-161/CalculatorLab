@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-
+    //calculatorEngine model;
     public class CalculatorEngine : BasicCalculatorEngine 
     {
-
         protected double firstOperand;
         protected double secondOperand;
 

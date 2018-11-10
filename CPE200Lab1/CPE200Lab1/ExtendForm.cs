@@ -12,6 +12,7 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
+        private ExtendFromController controller;
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
@@ -21,6 +22,7 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+            controller = new ExtendFromController();
         }
 
         private bool isOperator(char ch)
@@ -105,7 +107,7 @@ namespace CPE200Lab1
         private void btnEqual_Click(object sender, EventArgs e)
         {
 
-            string result = engine.Process(lblDisplay.Text);
+            string result = controller.findResult(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -163,6 +165,7 @@ namespace CPE200Lab1
             {
                 return;
             }
+
             if(isSpaceAllowed)
             {
                 lblDisplay.Text += " ";

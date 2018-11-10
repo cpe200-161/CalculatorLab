@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+//model
 namespace CPE200Lab1
 {
     public class BasicCalculatorEngine
     {
+
 
         /// <summary>
         /// return true if input is number 
@@ -41,6 +42,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
 
         public string calculate(string operate, string firstOperand, string secondOperand,int maxOutputSize = 8)
         {
