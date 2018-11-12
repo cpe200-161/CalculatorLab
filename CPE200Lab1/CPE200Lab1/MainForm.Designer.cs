@@ -343,7 +343,7 @@
             this.btnSqr.TabIndex = 25;
             this.btnSqr.Text = "√";
             this.btnSqr.UseVisualStyleBackColor = true;
-            this.btnSqr.Click += new System.EventHandler(this.btnUnaryOperator_Click);
+            this.btnSqr.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // btnOox
             // 
@@ -354,7 +354,7 @@
             this.btnOox.TabIndex = 26;
             this.btnOox.Text = "1/x";
             this.btnOox.UseVisualStyleBackColor = true;
-            this.btnOox.Click += new System.EventHandler(this.btnUnaryOperator_Click);
+            this.btnOox.Click += new System.EventHandler(this.btnOperator_Click);
             // 
             // MainForm
             // 
