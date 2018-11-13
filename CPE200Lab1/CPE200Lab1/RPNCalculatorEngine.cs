@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine  : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        private CalculatorEngine engine;
+        public TheCalculatorEngine engine;
         Stack<string> RPN = new Stack<string>();
         public string firstOperand;
         public string secondOperand;
         public string result;
-        
-        
+
+
 
         private int isNotOperator(string str)
         {
@@ -36,70 +36,93 @@ namespace CPE200Lab1
             return 1;
         }
 
-        public new string Process(string str)
+        public new string Calculate(string str)
         {
-            engine = new CalculatorEngine();
-            string[] element = str.Split(' ');
+             engine = new TheCalculatorEngine();
+             string[] element = str.Split(' ');
             if (element.Length <= 1)
             {
                 return "E";
             }
-            for(int i=0;i<element.Length;i++)
+            for (int i = 0; i < element.Length; i++)
             {
-                if (isNotOperator(element[i])==1)
+                if (isNotOperator(element[i]) == 1)
                 {
                     RPN.Push(element[i]);
                 }
+
                 else if (isNotOperator(element[i]) == 4)
                 {
-                    firstOperand = RPN.Pop();
-                    result = engine.unaryCalculate(element[i], firstOperand);
-                    RPN.Push(result);
+                    try
+                    {
+                        firstOperand = RPN.Pop();
+                        result = engine.Calculate(element[i], firstOperand);
+                        RPN.Push(result);
+                    }
+                    catch
+                    {
+                        return "E";
+                    }
                 }
                 else if (isNotOperator(element[i]) == 3)
                 {
-                     if (element[i + 1] == "+" || element[i + 1] == "-")
+                    try
                     {
-                        secondOperand = RPN.Pop();
-                        firstOperand = RPN.Peek();
-                        secondOperand = (float.Parse(firstOperand) * float.Parse(secondOperand) * 0.01).ToString();
+                        if (element.Length == 2)
+                        {
+                            secondOperand = RPN.Pop();
+                            secondOperand = (float.Parse(secondOperand) * 0.01).ToString();
+                        }
+                        else if (element[i + 1] == "+" || element[i + 1] == "-")
+                        {
+                            secondOperand = RPN.Pop();
+                            firstOperand = RPN.Peek();
+                            secondOperand = (float.Parse(firstOperand) * float.Parse(secondOperand) * 0.01).ToString();
 
+                        }
+                        else if (element[i + 1] == "X" || element[i + 1] == "÷")
+                        {
+                            secondOperand = RPN.Pop();
+                            secondOperand = (float.Parse(secondOperand) * 0.01).ToString();
+                        }
+                        RPN.Push(secondOperand);
                     }
-                    else if (element[i + 1] == "X" || element[i + 1] == "÷")
+                    catch
                     {
-                        secondOperand = RPN.Pop();
-                        secondOperand = (float.Parse(secondOperand) * 0.01).ToString();
+                      return "E";
                     }
-                    RPN.Push(secondOperand);
                 }
                 else
-                {   
-                    if(RPN.Count > 1)
+                {
+
+                    if (RPN.Count > 1)
                     {
-                        
-                        secondOperand = RPN.Pop();
-                        firstOperand = RPN.Pop();
-                        if (isNotOperator(element[i]) == 5)
+                        try
                         {
-                            if (RPN.Peek() != 0.ToString())
+                            secondOperand = RPN.Pop();
+                            firstOperand = RPN.Pop();
+
+                            if (isNotOperator(element[i]) == 5) //1/X
                             {
                                 element[i] = "÷";
                                 firstOperand = 1.ToString();
+
                             }
-                            else return "E";
-                           
+                            result = engine.Calculate(element[i], firstOperand, secondOperand);
+                            RPN.Push(result);
                         }
-                        
-                        
-                        result = engine.calculate(element[i], firstOperand, secondOperand);
-                        RPN.Push(result);
+                        catch
+                        {
+                            return "E";
+                        }
                     }
                     else
                     {
                         return "E";
                     }
+
                 }
-            }  
+            }
             if (RPN.Count == 1)
             {
                 result = RPN.Pop().ToString();
@@ -110,5 +133,5 @@ namespace CPE200Lab1
                 return "E";
             }
         }
-    }      
+    }
 }

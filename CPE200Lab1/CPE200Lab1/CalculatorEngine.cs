@@ -8,37 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine 
     {
-        private bool isNumber(string str)
-        {
-            double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        private bool isOperator(string str)
-        {
-            switch(str) {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    return true;
-            }
-            return false;
-        }
-
-        public string Process(string str)
-        {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            } else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
-
-        }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string Calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -62,7 +32,7 @@ namespace CPE200Lab1
                         return result.ToString();
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -85,8 +55,7 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
-        public string calculate( string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string Calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -119,7 +88,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    
+
                     break;
             }
             return "E";
