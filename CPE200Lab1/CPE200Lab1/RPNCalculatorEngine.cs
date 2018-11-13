@@ -29,7 +29,6 @@ namespace CPE200Lab1
                 Console.WriteLine("555");
                 return "E";
             }
-
             string result;
             string firstOperand, secondOperand;
 
