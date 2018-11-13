@@ -36,7 +36,7 @@ namespace CPE200Lab1
             return 1;
         }
 
-        public new string Process(string str)
+        public new string Calculate(string str)
         {
             engine = new CalculatorEngine();
             string[] element = str.Split(' ');
@@ -50,7 +50,7 @@ namespace CPE200Lab1
                 else if (isNotOperator(element[i]) == 3)
                 {
                     firstOperand = RPN.Pop();
-                    result = engine.unaryCalculate(element[i], firstOperand);
+                    result = engine.Calculate(element[i], firstOperand);
                     RPN.Push(result);
                 }
                 else if (isNotOperator(element[i]) == 4)
@@ -59,7 +59,7 @@ namespace CPE200Lab1
                     {
                         firstOperand = 1.ToString();
                         secondOperand = RPN.Pop();
-                        result = engine.calculate("÷", firstOperand, secondOperand);
+                        result = engine.Calculate("÷", firstOperand, secondOperand);
                         RPN.Push(result);
                     }
 
@@ -88,7 +88,7 @@ namespace CPE200Lab1
                     {
                         secondOperand = RPN.Pop();
                         firstOperand = RPN.Pop();
-                        result = engine.calculate(element[i], firstOperand, secondOperand);
+                        result = engine.Calculate(element[i], firstOperand, secondOperand);
                         RPN.Push(result);
                     }
                     else
