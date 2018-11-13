@@ -10,10 +10,7 @@ namespace CPE200Lab1
     {
         private TheCalculatorEngine engine;
         Stack<float> RPN = new Stack<float>();
-        public string firstOperand;
-        public string secondOperand;
-        public string result;
-      
+       
         
         private int isNotOperator(string str)
         {
@@ -39,7 +36,7 @@ namespace CPE200Lab1
             engine = new TheCalculatorEngine();
             string[] element = str.Split(' ');
 
-            if(element.Length == 1)
+            if(element.Length <= 1)
                 {
                     return "E";
                 }
