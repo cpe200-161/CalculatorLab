@@ -18,12 +18,12 @@ namespace CPE200Lab1
         float Memory;
         string operate;
         bool MemoryOperater;
-        private RPNCalculatorEngine engine;
+        private Controller Engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            Engine = new Controller();
 
         }
 
@@ -105,7 +105,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Calculate(lblDisplay.Text);
+            string result = Engine.Calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
