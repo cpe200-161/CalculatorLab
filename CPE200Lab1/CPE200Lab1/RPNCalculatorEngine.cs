@@ -20,27 +20,27 @@ namespace CPE200Lab1
             {
                 if (isOperator(text))
                 {
-                    try
+                    try   
                     {
-                        secondOperand = numbers.Pop();
+                        secondOperand = numbers.Pop(); 
                         firstOperand = numbers.Pop();
-                        ansWer = calculate(text, firstOperand, secondOperand);
+                        ansWer = calculate(text, firstOperand, secondOperand);  // calculate secondOperand and firstOperand
                         numbers.Push(ansWer);
                     }
-                    catch (Exception)
+                    catch (Exception)  // Pop stack when stack empty
                     {
                         return "E";
                     }
                 }
-                else if (isNumber(text))
+                else if (isNumber(text)) // if String is Number
                 {
 
                     numbers.Push(text);
 
                 }
-                else if (text == "√" || text == "1/x")
+                else if (text == "√" || text == "1/x") // text is square root or OneOverX  
                 {
-                    ansWer = unaryCalculate(text, numbers.Pop());
+                    ansWer = unaryCalculate(text, numbers.Pop()); // calculate with method unaryCalculate()
                     numbers.Push(ansWer);
                 }
                 else
@@ -48,11 +48,11 @@ namespace CPE200Lab1
                     return "E";
                 }
             }
-            if (numbers.Count == 1)
+            if (numbers.Count == 1) // stack must have only one value after calculate
             {
                 return numbers.Pop();
             }
-            else
+            else // stack have many value
             {
                 return "E";
             }

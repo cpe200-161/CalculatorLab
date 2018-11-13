@@ -16,7 +16,7 @@ namespace CPE200Lab1
 
         public bool isOperator(string str)
         {
-            switch (str)
+            switch (str) // check Is it operator?
             {
                 case "+":
                 case "-":
@@ -25,7 +25,7 @@ namespace CPE200Lab1
                 case "%":
                     return true;
             }
-            return false;
+            return false; // if not
         }
 
         public string ProcessCal(string str)
@@ -51,16 +51,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-                        try
-                        {
-                            result = Math.Sqrt(Convert.ToDouble(operand));
-                        }
-                        catch (Exception)
-                        {
-                            return "E";
-                        }
-
-
+                        result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
@@ -80,11 +71,11 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-                        try
+                        try  // When divide 0
                         {
                             result = (1.0 / Convert.ToDouble(operand));
                         }
-                        catch (Exception)
+                        catch (Exception) // divide 0 catch Exception
                         {
                             return "E";
                         }
@@ -125,11 +116,11 @@ namespace CPE200Lab1
                         string[] parts;
                         int remainLength;
 
-                        try
+                        try  // When divide 0
                         {
                             result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         }
-                        catch (Exception)
+                        catch (Exception)  // divide 0  return error
                         {
                             return "E";
                         }
@@ -151,14 +142,8 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    try
-                    {
-                        return (double.Parse(secondOperand) * double.Parse(firstOperand) / 100).ToString();
-                    }
-                    catch (Exception)
-                    {
-                        return "E";
-                    }
+                    return (double.Parse(secondOperand) * double.Parse(firstOperand) / 100).ToString();
+                    
                     break;
             }
             return "E";
