@@ -1,2 +1,2 @@
-# Lab2
+# Lab3
 RPN Calculator
