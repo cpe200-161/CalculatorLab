@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1.Tests
 {
+
     [TestClass()]
     public class RPNCalculatorEngineTests
     {
@@ -75,6 +76,7 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void BasicCalcuationFiveTest()
         {
+
             Assert.AreEqual("0.5", engine.Process("1 2 ÷"));
             Assert.AreEqual("0.3333", engine.Process("1 3 ÷"));
             Assert.AreEqual("0.25", engine.Process("1 4 ÷"));
