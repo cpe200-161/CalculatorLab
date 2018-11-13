@@ -71,10 +71,12 @@ namespace CPE200Lab1
                 else if (isNotOperator(element[i]) == 5)
                 {
                     if (RPN.Peek() != 0.ToString())
+                    {
                         firstOperand = 1.ToString();
-                    secondOperand = RPN.Pop();
-                    result = engine.calculate("÷", firstOperand, secondOperand);
-                    RPN.Push(result);
+                        secondOperand = RPN.Pop();
+                        result = engine.calculate("÷", firstOperand, secondOperand);
+                        RPN.Push(result);
+                    }   
                 }
                 else
                 {
