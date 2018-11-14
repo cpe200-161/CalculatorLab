@@ -10,19 +10,29 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form,View
     {
+        
+        protected string oper;
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        protected bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
-
+        protected RPNCalculatorEngine engine;
+        Controller controller;
+        Model model;
         public ExtendForm()
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+            controller = new Controller();
+            model = new Model();
+            model.AttachObserver(this);
+            controller.AddModel(model);
         }
-
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalModel)m).Display();
+        }
         private bool isOperator(char ch)
         {
             switch(ch) {
@@ -101,7 +111,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -167,6 +177,16 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
+        }
+
+        private void ExtendForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
