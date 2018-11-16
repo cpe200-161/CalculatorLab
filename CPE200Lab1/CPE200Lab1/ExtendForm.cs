@@ -12,165 +12,52 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
-        private ExtendFromController controller;
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        private Controler controler;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
-            controller = new ExtendFromController();
-        }
-
-        private bool isOperator(char ch)
-        {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
-                case '%':
-                case '√':
-                case 'i':
-                    return true;
-            }
-            return false;
+            controler = new Controler();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
-            lblDisplay.Text += ((Button)sender).Text;
-            isSpaceAllowed = true;
+            lblDisplay.Text = controler.clickNum(((Button)sender).Text , lblDisplay.Text);
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
+            lblDisplay.Text = controler.clickBinaryOperator(((Button)sender).Text , lblDisplay.Text);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            // check if the last one is operator
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-            }
-            if (lblDisplay.Text is "")
-            {
-                lblDisplay.Text = "0";
-            }
+            lblDisplay.Text = controler.clickBack(lblDisplay.Text);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            lblDisplay.Text = "0";
-            isContainDot = false;
-            isNumberPart = false;
-            isSpaceAllowed = false;
+            lblDisplay.Text = controler.clickClear();
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-
-            string result = controller.findResult(lblDisplay.Text);
-            if (result is "E")
-            {
-                lblDisplay.Text = "Error";
-            } else
-            {
-                lblDisplay.Text = result;
-            }
+            lblDisplay.Text = controler.clickEqual(lblDisplay.Text);
         }
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isNumberPart)
-            {
-                return;
-            }
-            string current = lblDisplay.Text;
-            if (current is "0")
-            {
-                lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if (lblDisplay.Text is "")
-                {
-                    lblDisplay.Text = "0";
-                }
-            } else
-            {
-                lblDisplay.Text = current + "-";
-            }
-            isSpaceAllowed = false;
+            lblDisplay.Text = controler.clickSing(lblDisplay.Text);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if(!isContainDot)
-            {
-                isContainDot = true;
-                lblDisplay.Text += ".";
-                isSpaceAllowed = false;
-            }
+            lblDisplay.Text = controler.clickDot(lblDisplay.Text);
         }
 
         private void btnSpace_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
-            {
-                return;
-            }
-
-            if(isSpaceAllowed)
-            {
-                lblDisplay.Text += " ";
-                isSpaceAllowed = false;
-            }
+            lblDisplay.Text = controler.clickSpace(lblDisplay.Text);
         }
     }
 }

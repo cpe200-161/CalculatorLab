@@ -47,14 +47,12 @@
   <ItemGroup>
     <Compile Include="BasicCalculatorEngine.cs" />
     <Compile Include="CalculatorEngine.cs" />
+    <Compile Include="Controler.cs" />
     <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExtendForm.Designer.cs">
       <DependentUpon>ExtendForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExtendFromController.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
