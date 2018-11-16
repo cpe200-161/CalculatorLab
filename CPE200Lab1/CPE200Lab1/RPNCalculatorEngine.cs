@@ -10,7 +10,7 @@ namespace CPE200Lab1
     {
 
 
-        public string Process(string str)
+        public string calculate(string str)
         {
             // your code here
             string Num1, Num2, result;

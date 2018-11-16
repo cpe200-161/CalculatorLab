@@ -32,8 +32,6 @@ namespace CPE200Lab1
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
-
         }
-
     }
 }

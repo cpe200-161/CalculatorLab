@@ -15,12 +15,18 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        private Controller engine;
+        private string str;
+        public float Memory;
+        private string operate;
+        bool isAfterOperater;
+
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            engine = new Controller(str);
+
         }
 
         private bool isOperator(char ch)
@@ -53,6 +59,33 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "M+":
+                    Memory = Memory + float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+                case "M-":
+                    Memory = Memory - float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+                case "MS":
+                    Memory = float.Parse(lblDisplay.Text);
+                    isAfterOperater = true;
+                    break;
+                case "MC":
+                    Memory = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Memory.ToString();
+                    isAfterOperater = true;
+                    break;
+            }
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
@@ -107,7 +140,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.RPNcalculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
