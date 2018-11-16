@@ -12,12 +12,12 @@ namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
     {
-        private Controler controler;
+        private ExtendFromControler controler;
 
         public ExtendForm()
         {
             InitializeComponent();
-            controler = new Controler();
+            controler = new ExtendFromControler();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)

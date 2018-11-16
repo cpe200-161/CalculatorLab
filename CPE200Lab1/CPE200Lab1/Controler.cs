@@ -2,14 +2,14 @@
 
 namespace CPE200Lab1
 {
-    internal class Controler
+    internal class ExtendFromControler
     {
     private RPNCalculatorEngine engine; 
     public bool isNumberPart = false;
     public bool isContainDot = false;
     public bool isSpaceAllowed = false;
 
-        public Controler()
+        public ExtendFromControler()
         {
             engine = new RPNCalculatorEngine();
         }
