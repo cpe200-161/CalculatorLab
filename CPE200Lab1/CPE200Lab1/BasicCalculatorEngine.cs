@@ -6,30 +6,28 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine:BasicCalculatorEngine
+    public class BasicCalculatorEngine
     {
-        protected double firstOperand;
-        protected double secondOperand;
-
-        public void setFirstOperand(string num)
-        {
-            firstOperand = Convert.ToDouble(num);
-        }
-
-        public void setSecondOperator(string num)
-        {
-            secondOperand = Convert.ToDouble(num);
-        }
-
+        /// <summary>
+        /// Check that string is number.
+        /// </summary>
+        /// <param name="str">str is string of input.</param>
+        /// <returns>True if string is numer,otherwise false.</returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// Check that string is operator.
+        /// </summary>
+        /// <param name="str">str is string of input.</param>
+        /// <returns>True if string have operator.otherwise false.</returns>
         public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -45,15 +43,16 @@ namespace CPE200Lab1
         /// <summary>
         /// Calculate with normal Calculator.
         /// </summary>
-        /// <param name="oper">str is string of input.</param>
+        /// <param name="str">str is string of input.</param>
         /// <returns>The result from calculate.</returns>
-        public string calculate(string oper)
+        public string calculate(string str)
         {
-            string[] parts = oper.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            string[] parts = str.Split(' ');
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -91,7 +90,7 @@ namespace CPE200Lab1
                         return result.ToString("G" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
