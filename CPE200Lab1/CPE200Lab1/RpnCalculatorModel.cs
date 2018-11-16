@@ -49,6 +49,7 @@ namespace CPE200Lab1
             }
             extendForm.lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
+            NoticeMeSenpai();
         }
 
         public void BtnBinaryOperator_Click(object sender, EventArgs e)
@@ -65,6 +66,7 @@ namespace CPE200Lab1
                 extendForm.lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
+            NoticeMeSenpai();
         }
 
         public void BtnBack_Click(object sender, EventArgs e)
@@ -87,6 +89,7 @@ namespace CPE200Lab1
             {
                 extendForm.lblDisplay.Text = "0";
             }
+            NoticeMeSenpai();
         }
 
         public void BtnClear_Click(object sender, EventArgs e)
@@ -95,6 +98,7 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            NoticeMeSenpai();
         }
 
         public void BtnEqual_Click(object sender, EventArgs e)
@@ -107,6 +111,7 @@ namespace CPE200Lab1
                 extendForm.lblDisplay.Text = "Error";
             }
             extendForm.lblDisplay.Text = result;
+            NoticeMeSenpai();
         }
 
         public void BtnSign_Click(object sender, EventArgs e)
@@ -137,6 +142,7 @@ namespace CPE200Lab1
                 extendForm.lblDisplay.Text = current + "-";
             }
             isSpaceAllowed = false;
+            NoticeMeSenpai();
         }
 
         public void BtnDot_Click(object sender, EventArgs e)
@@ -177,6 +183,7 @@ namespace CPE200Lab1
             string current = extendForm.lblDisplay.Text;
             extendForm.lblDisplay.Text += " " + ((Button)sender).Text + " ";
             isSpaceAllowed = false;
+            NoticeMeSenpai();
         }
     }
 }
