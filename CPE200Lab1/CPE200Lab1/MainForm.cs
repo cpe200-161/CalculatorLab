@@ -23,6 +23,7 @@ namespace CPE200Lab1
         private double memory;
         string newOper;
         private CalculatorEngine myEngine;
+        private Controller engine;
 
         private void resetAll()
         {
@@ -42,6 +43,7 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             myEngine = new CalculatorEngine();
+            engine = new Controller();
             resetAll();
         }
 
@@ -91,7 +93,7 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    result = myEngine.calculate(oper);
+                    result = engine.calculate(oper);
                     myEngine.setFirstOperand(result);
                     myEngine.setSecondOperand(lblDisplay.Text);
                 }
@@ -124,7 +126,7 @@ namespace CPE200Lab1
             }else
             {
                 string result;
-                result = myEngine.calculate(oper);
+                result = engine.calculate(oper);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -147,12 +149,12 @@ namespace CPE200Lab1
             {
                 if (oper == "%")
                 {
-                    result = myEngine.calculate(oper);
+                    result = engine.calculate(oper);
                     myEngine.setSecondOperand(result);
                 }
                 else
                 {
-                    result = myEngine.calculate(oper);
+                    result = engine.calculate(oper);
                     myEngine.setFirstOperand(result);
                     myEngine.setSecondOperand(lblDisplay.Text);
                 }
@@ -161,7 +163,7 @@ namespace CPE200Lab1
             {
                 myEngine.setSecondOperand(lblDisplay.Text);
             }
-            result= myEngine.calculate(newOper);
+            result= engine.calculate(newOper);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

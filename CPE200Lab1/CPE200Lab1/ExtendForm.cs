@@ -16,12 +16,13 @@ namespace CPE200Lab1
         private bool hasDot = false;
         private bool isSpaceAllowed = false;
         private bool isEqual = false;
-        private RPNCalculatorEngine myEngine;
+        private string str;
+        private Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            myEngine = new RPNCalculatorEngine();
+            controller = new Controller();
         }
 
         /*private bool isOperator(char ch)
@@ -87,40 +88,6 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        /*private void btnBinaryOperator_Click(object sender, EventArgs e)
-        {
-            string result ;
-            isNumberPart = false;
-            hasDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            // check if the last one is operator
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-            }
-            if (lblDisplay.Text is "")
-            {
-                lblDisplay.Text = "0";
-            }
-        }*/
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
@@ -132,7 +99,7 @@ namespace CPE200Lab1
 
         private void btnExe_Click(object sender, EventArgs e)
         {
-            string result = myEngine.caculate(lblDisplay.Text);
+            string result = controller.RPNcalculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
