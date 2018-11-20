@@ -6,69 +6,65 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : TheCalculatoreEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        string result;
-        string secondNum;
-        string firstNum;
         public string Process(string str)
         {
-
+            Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
-            Stack<string> Set = new Stack<string>();
-
+            if (parts.Length == 1)
+            {
+                return "E";
+            }
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
                 {
-                    Set.Push(parts[i]);
+                    numbers.Push(parts[i]);
                 }
-                if (isOperator(parts[i]))
+                else if (thisisOperator(parts[i]))
                 {
-                    try
-                    {
-                        if (parts[i] == "1/x" || parts[i] == "√")
-                        {
-                            firstNum = Set.Pop();
-                            Set.Push(calculate(parts[i], firstNum));
-                        }
-                        else if (parts[i] == "%" && Set.Count > 1)
-                        {
-                            secondNum = Set.Pop();
-                            firstNum = Set.Peek();
-                            Set.Push(calculate(parts[i], firstNum, secondNum));
-                        }
-                        else if (parts[i] == "%")
-                        {
-                            firstNum = Set.Pop();
-                            Set.Push(calculate(parts[i], firstNum, 1.ToString()));
-                        }
-                        else if (Set.Count < 1)
-                        {
-                            return "E";
-                        }
-                        else
-                        {
-                            secondNum = Set.Pop();
-                            firstNum = Set.Pop();
-                            Set.Push(calculate(parts[i], firstNum, secondNum));
-                        }
-                    }
-                    catch(Exception e)
+                    string first;
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, 8));
+                }
+                else if (isModOpreator(parts[i]))
+                {
+                    string first, second;
+                    if (numbers.Count < 2)
                     {
                         return "E";
                     }
-                    
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(first, second, 8));
+                }
+                else if (isOperator(parts[i]))
+                {
+                    if (numbers.Count < 2)
+                    {
+                        return "E";
+                    }
+                    string first, second;
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, second, 8));
                 }
 
             }
-
-            result = Set.Peek();
-            if (Set.Count != 1)
+            if (numbers.Count == 1)
+            {
+                return numbers.Peek();
+            }
+            else
             {
                 return "E";
             }
-            return result;
 
         }
     }

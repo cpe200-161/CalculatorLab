@@ -6,25 +6,35 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : TheCalculatoreEngine
+    public class CalculatorEngine : TheCalculatorEngine
     {
-        private double firstOperand;
-        private double secondOperand;
 
-        public void setFirstOperand(string num)
+        public string Process(string str)
         {
-            firstOperand = Convert.ToDouble(num);
+            string[] parts = str.Split(' ');
+            if (parts.Length >= 4)
+            {
+                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isModOpreator(parts[3]))
+                {
+                    return modCalculate(parts[1], parts[0], parts[2], 4);
+                }
+            }
+            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
+            {
+                return calculate(parts[1], parts[0], parts[2], 4);
+            }
+            else if (isNumber(parts[0]) && thisisOperator(parts[1]))
+            {
+                return calculate(parts[1], parts[0], 4);
+            }
+
+            else
+            {
+                return "E";
+            }
         }
 
-        public void setsSeconOperand(string num)
-        {
 
-            secondOperand = Convert.ToDouble(num);
-        }
 
-        public string calculate(string oper)
-        {
-            return "E";
-        }
     }
 }

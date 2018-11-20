@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CPE200Lab1.Tests
 {
     [TestClass()]
@@ -25,7 +24,6 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("-6", r.Process("3 -2 X"));
             Assert.AreEqual("-2", r.Process("-4 2 ÷"));
         }
-
         [TestMethod()]
         public void Process_Complex_Test()
         {
@@ -34,12 +32,11 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("5", r.Process("1 3 2 + X"));
             Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
         }
-
         [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            //Assert.AreEqual("E", r.Process("1"));
+            Assert.AreEqual("E", r.Process("1"));
             Assert.AreEqual("E", r.Process("1 +"));
             Assert.AreEqual("E", r.Process("1 + 1"));
             Assert.AreEqual("E", r.Process("1 1 1 +"));

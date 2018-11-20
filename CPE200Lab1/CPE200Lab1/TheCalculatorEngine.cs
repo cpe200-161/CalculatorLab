@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class TheCalculatoreEngine
+    public class TheCalculatorEngine
     {
-
         public bool isNumber(string str)
         {
             double retNum;
@@ -23,27 +22,35 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-                case "%":
-                case "1/x":
-                case "√":
                     return true;
             }
             return false;
         }
 
-        public string Process(string str)
+        public bool isModOpreator(string str)
         {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (str == "%")
             {
-                return "E";
+                return true;
             }
             else
             {
-                return calculate(parts[1], parts[0], parts[2], 4);
+                return false;
             }
-
         }
+
+        public bool thisisOperator(string str)
+        {
+            switch (str)
+            {
+                case "√":
+                case "1/x":
+                    return true;
+            }
+            return false;
+        }
+
+        //Calculate Part
 
         public string calculate(string oper, string firstOperand, int maxOutputSize = 8)
         {
@@ -62,11 +69,7 @@ namespace CPE200Lab1
                             return "E";
                         }
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        if ((Convert.ToDouble(result) * 10) % 2 == 0)
-                        {
-                            return result.ToString();
-                        }
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                 case "1/x":
                     if (firstOperand != "0")
@@ -76,23 +79,17 @@ namespace CPE200Lab1
                         int remainLength;
 
                         result = (1.0 / Convert.ToDouble(firstOperand));
+
                         parts = result.ToString().Split('.');
                         if (parts[0].Length > maxOutputSize)
                         {
                             return "E";
                         }
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        if (parts.Length <= 1)
-                        {
-                            return result.ToString();
-                        }
-                        else if (parts[1].Length < maxOutputSize)
-                        {
-                            return result.ToString();
-                        }
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                     break;
+
             }
             return "E";
         }
@@ -121,17 +118,37 @@ namespace CPE200Lab1
                             return "E";
                         }
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        if (parts.Length < 2 || parts[1].Length < maxOutputSize)
-                        {
-                            return result.ToString();
-                        }
-                        return result.ToString("N" + remainLength);
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
+                    //your code here
+                    break;
             }
             return "E";
         }
+
+        public string modCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            switch (operate)
+            {
+                case "+":
+                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "-":
+                    return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "X":
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "÷":
+                    return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+            }
+            return "E";
+        }
+
+        public string thismodCalculator(string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+
+            return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
+        }
+
     }
 }
