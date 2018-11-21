@@ -6,48 +6,258 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        private bool isSpaceAllowed = false;
+        private string display;
 
-            foreach (string token in parts)
+        public string Display()
+        {
+            return display;
+        }
+
+        public void resetAll()
+        {
+            display = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
+        private bool isOperator(char ch)
+        {
+            switch (ch)
             {
-                if (isNumber(token))
+                case '+':
+                case '-':
+                case 'X':
+                case '÷':
+                    return true;
+            }
+            return false;
+        }
+
+        public void handleNumber(string inputNumber)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (display is "0")
+            {
+                display = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            display += inputNumber;
+            isSpaceAllowed = true;
+        }
+
+        public void handleBinaryOperator(string inputBinaryOperator)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = display;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            {
+                display += " " + inputBinaryOperator + " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void handleBack()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            // check if the last one is operator
+            string current = display;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            {
+                display = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                display = current.Substring(0, current.Length - 1);
+            }
+            if (display is "")
+            {
+                display = "0";
+            }
+        }
+
+        public void handleEqual()
+        {
+            string result = Process(display);
+            if (result is "E")
+            {
+                display = "Error";
+            }
+            else
+            {
+                display = result;
+                isSpaceAllowed = true;
+                isContainDot = false;
+                isNumberPart = true;
+            }
+        }
+        public void handleSign()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = display;
+            if (current is "0")
+            {
+                display = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                display = current.Substring(0, current.Length - 1);
+                if (display is "")
                 {
-                    rpnStack.Push(token);
+                    display = "0";
                 }
-                else if (isOperator(token))
+            }
+            else
+            {
+                display = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+
+        public void handleDot()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                display += ".";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public void handleSpace()
+        {
+            if (display is "Error")
+            {
+                return;
+            }
+            if (isSpaceAllowed)
+            {
+                display += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        public override string Process(string str)
+        {
+
+            if (str == null || str == "")
+            {
+                return "E";
+            }
+            string[] parts = str.Split(' ');
+            Stack<string> operands = new Stack<string>();
+            for (int i = 0; i < parts.Length; i++)
+
+                if (isNumber(parts[i]))
                 {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
+                    operands.Push(parts[i]);
+                }
+                else if (isOperator(parts[i]))
+                {
+                    if (operands.Count < 2)
+                    {
+                        return "E";
+                    }
+                    String op2 = operands.Pop();
+                    String op1 = operands.Pop();
+                    string result = calculate(parts[i], op1, op2, 4);
                     if (result is "E")
                     {
                         return result;
                     }
-                    rpnStack.Push(result);
+                    operands.Push(result);
                 }
-            }
+                else
+                {
+                    string Errnum = parts[i];
+                    for (int j = 0; j < Errnum.Length; j++)
+                    {
+                        if (isOperator(Errnum[j].ToString()) && Errnum[j] != '-')
+                        {
+                            return "E";
+                        }
+                    }
+                }
+
+
             //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+
+            if (operands.Count != 1)
+            {
+                return "E";
+            }
+
+            else if (operands.Count == 1)
+            {
+                string number = operands.Pop();
+                string numberReturn = number;
+                for (int i = 0; i < number.Length; i++)
+                {
+                    if (isOperator(number[i].ToString()) && number[0] != '-')
+                        return "E";
+                }
+                string[] checktxt = number.Split('.');
+                string decimals;
+                int decimalsint;
+                if (checktxt.Length > 1 && isNumber(checktxt[1]) && checktxt[1].Length > 4)
+                {
+                    decimals = checktxt[1].Substring(0, 5);
+                    if (Int32.Parse(decimals[4].ToString()) > 5)
+                    {
+                        decimalsint = Int32.Parse(checktxt[1].Substring(0, 4));
+                        decimalsint++;
+                        decimals = decimalsint.ToString();
+                    }
+                    else
+                    {
+                        decimals = checktxt[1].Substring(0, 4);
+                    }
+                    numberReturn = checktxt[0] + "." + decimals;
+                }
+                operands.Push(numberReturn);
+            }
+            return operands.Pop();
         }
     }
-    /*
-    public class RPNCalculatorEngine
+    /*public override void handleSpace()
     {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
-        }
-    }
-    */
+        base.handleSpace();
+        isNumberPart = false;
+
+
+    }*/
 }
+    
+
+
