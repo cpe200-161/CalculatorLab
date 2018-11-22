@@ -23,7 +23,8 @@ namespace CPE200Lab1
         private double memory;
         string newOper;
         private CalculatorEngine myEngine;
-        private Controller engine;
+        private Controller controller;
+        Model model;
 
         private void resetAll()
         {
@@ -35,6 +36,8 @@ namespace CPE200Lab1
             isFirst = false;
             myEngine.setFirstOperand("0");
             myEngine.setSecondOperand("0");
+            model = new CalculatorModel();
+            controller = new CalculatorController();
             isSecond = false;
         }
 
@@ -43,7 +46,8 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             myEngine = new CalculatorEngine();
-            engine = new Controller();
+            controller = new CalculatorController();
+            model = new CalculatorModel();
             resetAll();
         }
 
@@ -93,7 +97,7 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    result = engine.calculate(oper);
+                    result = myEngine.calculate(oper);
                     myEngine.setFirstOperand(result);
                     myEngine.setSecondOperand(lblDisplay.Text);
                 }
@@ -126,7 +130,7 @@ namespace CPE200Lab1
             }else
             {
                 string result;
-                result = engine.calculate(oper);
+                result = myEngine.calculate(oper);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -149,12 +153,12 @@ namespace CPE200Lab1
             {
                 if (oper == "%")
                 {
-                    result = engine.calculate(oper);
+                    result = myEngine.calculate(oper);
                     myEngine.setSecondOperand(result);
                 }
                 else
                 {
-                    result = engine.calculate(oper);
+                    result = myEngine.calculate(oper);
                     myEngine.setFirstOperand(result);
                     myEngine.setSecondOperand(lblDisplay.Text);
                 }
@@ -163,7 +167,7 @@ namespace CPE200Lab1
             {
                 myEngine.setSecondOperand(lblDisplay.Text);
             }
-            result= engine.calculate(newOper);
+            result= myEngine.calculate(oper);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

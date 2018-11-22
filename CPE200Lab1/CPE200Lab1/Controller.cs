@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,26 @@ namespace CPE200Lab1
 {
     public class Controller
     {
-        CalculatorEngine engine;
-        RPNCalculatorEngine engine2;
-
+        protected ArrayList mList;
         public Controller()
         {
-            engine = new CalculatorEngine();
-            engine2 = new RPNCalculatorEngine();
+            mList = new ArrayList();
         }
-
-        public string calculate(string str)
+        public void AddModel(Model m)
         {
-            return engine.calculate(str);
+            mList.Add(m);
         }
-
-        public string RPNcalculate(string str)
+        public virtual void Calculate(string str)
         {
-            return engine2.caculate(str);
+            throw new NotImplementedException();
+        }
+        public virtual void isNumber(string str)
+        {
+            throw new NotImplementedException();
+        }
+        public virtual void isOperator(string str)
+        {
+            throw new NotImplementedException();
         }
 
     }
