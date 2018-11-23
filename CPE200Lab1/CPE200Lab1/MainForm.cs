@@ -20,6 +20,8 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private Controller controller;
+        private Model model;
 
         private void resetAll()
         {
@@ -36,6 +38,9 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            model = new CalculatorEngineModel();
+            controller = new CalculatorEngineController();
+            controller.AddModel(model);
             resetAll();
         }
 
@@ -261,6 +266,11 @@ namespace CPE200Lab1
                 return;
             }
             lblDisplay.Text = memory.ToString();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

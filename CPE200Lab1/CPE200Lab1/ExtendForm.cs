@@ -10,17 +10,28 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
+        Model model;
+        Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+            model = new CalculatorEngineModel();
+            controller = new CalculatorEngineController();
+            model.AttachObserver(this);
+            controller.AddModel(model);
+        }
+
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalculatorEngineModel)m).lblDisplayText();
         }
 
         private bool isOperator(string str)
