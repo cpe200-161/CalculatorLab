@@ -4,55 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : BasicCalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        /// <summary>
-        /// Calculating using RPN calculator 
-        /// </summary>
-        /// <param name="str"> The string of RPN style calculation </param>
-        /// <returns> Resulf of string </returns>
-
-        public string calculate(string str)
+        public string Process(string str)
         {
             Stack<string> numbers = new Stack<string>();
-            string[] part = str.Split(' ');
-            string secondOperand;
-            string firstOperand;
-            string ansWer;
-            foreach (string text in part)
+            string[] parts = str.Split(' ');
+            if (parts.Length == 1)
             {
-                if (isOperator(text))
+                return "E";
+            }
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (isNumber(parts[i]))
                 {
-                    if (numbers.Count >= 2)
-                    {
-                        secondOperand = numbers.Pop();
-                        firstOperand = numbers.Pop();
-                        ansWer = calculate(text, firstOperand, secondOperand);
-                        numbers.Push(ansWer);
-                    }
-                    else
+                    numbers.Push(parts[i]);
+                }
+                else if (thisisOperator(parts[i]))
+                {
+                    string first;
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, 8));
+                }
+                else if (isModOpreator(parts[i]))
+                {
+                    string first, second;
+                    if (numbers.Count < 2)
                     {
                         return "E";
                     }
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(first, second, 8));
                 }
-                else if (isNumber(text))
+                else if (isOperator(parts[i]))
                 {
+                    if (numbers.Count < 2)
+                    {
+                        return "E";
+                    }
+                    string first, second;
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, second, 8));
+                }
 
-                    numbers.Push(text);
-
-                }
-                else if (text == "√" || text == "1/x")
-                {
-                    ansWer = calculate(text, numbers.Pop());
-                    numbers.Push(ansWer);
-                }
-                else
-                {
-                    return "E";
-                }
             }
             if (numbers.Count == 1)
             {
@@ -62,6 +65,7 @@ namespace CPE200Lab1
             {
                 return "E";
             }
+
         }
     }
 }
