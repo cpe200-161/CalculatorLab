@@ -6,79 +6,69 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-   
-    public class RPNCalculatorEngine : BasicCalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public string calculate(string oper)
+        public string calculate(string str)
         {
-            string[] parts;
-            Stack<string> myStack = new Stack<string>();
-            parts = oper.Split(' ');
-
-            try
-            {
-                for (int i = 0; i < parts.Length; i++)
-                {
-                    if (isNumber(parts[i]))
-                    {
-                        myStack.Push(parts[i]);
-
-                    }
-                    else if (isOperator(parts[i]))
-                    {
-                        if (myStack.Count == 0)
-                        {
-                            return "E";
-                        }
-                        else if (myStack.Count == 1)
-                        {
-                            string first = myStack.Pop();
-                            myStack.Push(calculate(parts[i], first, 4));
-                        }
-                        else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%")
-                        {
-                            string first = myStack.Pop();
-                            string second = myStack.Pop();
-                            myStack.Push(calculate(parts[i], second, first, 4));
-                        }
-                        else if (parts[i] == "%")
-                        {
-                            string second = myStack.Pop();
-                            string first = myStack.Pop();
-                            myStack.Push(first);
-                            myStack.Push(calculate(parts[i], first, second, 4));
-                        }
-
-                    }
-
-                }
-                if (myStack.Count == 1)
-                {
-                    return myStack.Pop();
-                }
-                return "E";
-            }
-            catch (Exception)
+            Stack<string> numbers = new Stack<string>();
+            string[] parts = str.Split(' ');
+            if (parts.Length == 1)
             {
                 return "E";
             }
-
-        }
-        private bool isOperator(string str)
-        {
-            switch (str)
+            for (int i = 0; i < parts.Length; i++)
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "√":
-                case "1/x":
-                case "%":
-                    return true;
+                if (isNumber(parts[i]))
+                {
+                    numbers.Push(parts[i]);
+                }
+                else if (thisisOperator(parts[i]))
+                {
+                    string st;
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i],st,8));
+                }
+                else if (parts[i]== "%")
+                {
+                    string st, nd;
+                    if (numbers.Count < 2)
+                    {
+                        return "E";
+                    }
+                    nd = numbers.Peek();
+                    numbers.Pop();
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(st, nd, 8));
+
+                }
+                else if (isOperator(parts[i]))
+                {
+                    if (numbers.Count < 2)
+                    {
+                        return "E";
+                    }
+                    string st, nd;
+                    nd = numbers.Peek();
+                    numbers.Pop();
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], st, nd, 8));
+
+                }
+
             }
-            return false;
+            if (numbers.Count == 1)
+            {
+                return numbers.Peek();
+            }
+            else
+            {
+                return "E";
+            }
+            // your code here
+
         }
     }
 }
-

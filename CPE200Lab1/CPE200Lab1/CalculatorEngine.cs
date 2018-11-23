@@ -6,32 +6,61 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : BasicCalculatorEngine
+    public class CalculatorEngine : TheCalculatorEngine
     {
-        protected double firstOperand;
-        protected double secondOperand;
-        public void setFirstOperand(string num)
+        public bool isNumber(string str)
         {
-            firstOperand = Convert.ToDouble(num);
+            double retNum;
+            return Double.TryParse(str, out retNum);
         }
-        public void setSecondOperand(string num)
+
+        public bool isOperator(string str)
         {
-            secondOperand = Convert.ToDouble(num);
-        }
-        public string calculate(string oper)
-        {
-            string[] parts = oper.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
+            switch(str) {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "%":
+                    return true;
             }
-            else
+            return false;
+        }
+        public bool thisisOperator(string str)
+        {
+            switch (str)
+            {
+                case "√":
+                case "1/x":
+                    return true;
+            }
+            return false;
+        }
+
+        public string calculate(string str)
+        {
+            string[] parts = str.Split(' ');
+            if (parts.Length >= 4)
+            {
+                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isOperator(parts[3]))
+                {
+                    return ModCalculate(parts[1], parts[0], parts[2], 4);
+                }
+            }
+            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
+            else if (isNumber(parts[0]) && thisisOperator(parts[1]))
+            {
+                return calculate(parts[1], parts[0], 4);
+            }
+
+            else
+            {
+                return "E";
+            }
         }
+       
     }
 }
-
-        
-       
