@@ -10,21 +10,33 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
 		private RPNCalculatorEngine myEngine;
+		private RPNCalculatorEngine RPNengine;
+		Model model;
+		Controller controller;
 
 
 		public ExtendForm()
         {
             InitializeComponent();
 			myEngine = new RPNCalculatorEngine();
-        }
+			RPNengine = new RPNCalculatorEngine();
+			model = new CalculatorModel();
+			controller = new CalculatorController();
+			model.AttachObserver(this);
+			controller.AddModel(model);
+		}
+		public void Notify(Model m)
+		{
+			lblDisplay.Text = ((CalculatorModel)m).Display();
+		}
 
-        private bool isOperator(char ch)
+		private bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
@@ -38,8 +50,19 @@ namespace CPE200Lab1
             }
             return false;
         }
+		private bool thisisoperator(string str)
+		{
+			switch (str)
+			{
+				case "1/x":
+				case "%":
+				case "√":
+					return true;
+			}
+			return false;
+		}
 
-        private void btnNumber_Click(object sender, EventArgs e)
+		private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {

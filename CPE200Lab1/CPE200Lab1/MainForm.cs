@@ -20,8 +20,10 @@ namespace CPE200Lab1
         private string oper;
         private double memory;
         private CalculatorEngine myEngine;
+		private Controller controller;
+		private Model model;
 
-        private void resetAll()
+		private void resetAll()
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
@@ -38,7 +40,9 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             myEngine = new CalculatorEngine();
-            resetAll();
+			model = new CalculatorModel();
+			controller = new CalculatorController();
+			resetAll();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
