@@ -10,6 +10,22 @@ namespace CPE200Lab1
     {
         private double firstOperand;
         private double secondOperand;
+        public string calculator(string str)
+        {
+            string[] parts = str.Split(' ');
+            setFirstOperand(parts[0]); 
+            if(isNumber(parts[2]))
+            {
+                setFirstOperand(parts[0]);
+                setSecondOperand(parts[2]);
+                return calculate(parts[1]);
+            }
+            else
+            {
+                return "E";
+            }
+            
+        }
         public void setFirstOperand(string num)
         {
             firstOperand = Convert.ToDouble(num);
@@ -21,7 +37,7 @@ namespace CPE200Lab1
         }
 
         public string calculate(string oper)
-        {
+        {  
             switch (oper)
             {
                 case "%": 

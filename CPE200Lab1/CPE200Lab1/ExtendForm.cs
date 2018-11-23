@@ -112,10 +112,18 @@ namespace CPE200Lab1
 
         private void btnExe_Click(object sender, EventArgs e)
         {
-            string result = RPNengine.caculate(lblDisplay.Text);
+            string result = engine.calculator(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
+                result = RPNengine.caculate(lblDisplay.Text);
+                if(result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                }
             } else
             {
                 lblDisplay.Text = result;
