@@ -7,9 +7,6 @@ namespace CPE200Lab1
 {
     class CalculatorController : Controller
     {
-        public CalculatorController()
-        {
-        }
         public override void Calculate(string str)
         {
             foreach (CalculatorModel m in mList)
