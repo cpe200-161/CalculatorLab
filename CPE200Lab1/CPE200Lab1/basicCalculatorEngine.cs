@@ -55,7 +55,7 @@ namespace CPE200Lab1
 						{
 							result = Math.Sqrt(Convert.ToDouble(operand));
 						}
-						catch (Exception ex)
+						catch (Exception e)
 						{
 							return "E";
 						}
