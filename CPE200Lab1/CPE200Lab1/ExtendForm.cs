@@ -10,33 +10,50 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
-        private bool isContainDot = false;
+        private bool hasDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        private bool isEqual = false;
+        private string str;
+        private CalculatorEngine engine;
+        private RPNCalculatorEngine RPNengine;
+        Controller controller;
+        Model model;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
+            engine = new CalculatorEngine();
+            RPNengine = new RPNCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            model.AttachObserver(this);
+            controller.AddModel(model);
         }
 
-        private bool isOperator(char ch)
+        /*private bool isOperator(char ch)
         {
-            switch (ch)
-            {
+            switch(ch) {
                 case '+':
                 case '-':
-                case 'X':
+                case 'x':
                 case '÷':
+                case '%':
+                case 'X':
+                case '√':
                     return true;
             }
             return false;
+        }*/
+
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalculatorModel)m).Display();
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -46,75 +63,73 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "";
             }
+            if (isEqual)
+            {
+                lblDisplay.Text = "";
+                isEqual = false;
+            }
             if (!isNumberPart)
             {
                 isNumberPart = true;
-                isContainDot = false;
+                hasDot = false;
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
         }
 
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
+            if (isEqual)
             {
-                return;
+                lblDisplay.Text = "";
+                isEqual = false;
             }
-            // check if the last one is operator
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (!isNumberPart)
             {
-                lblDisplay.Text = current.Substring(0, current.Length - 3);
+                isNumberPart = true;
+                hasDot = false;
             }
-            else
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-            }
-            if (lblDisplay.Text is "")
-            {
-                lblDisplay.Text = "0";
-            }
+            lblDisplay.Text += " " + ((Button)sender).Text + " ";
+            isSpaceAllowed = true;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            isContainDot = false;
+            hasDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
+            isEqual = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnExe_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculator(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
+                result = RPNengine.caculate(lblDisplay.Text);
+                if (result is "E")
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                }
             }
             else
             {
                 lblDisplay.Text = result;
-                isSpaceAllowed = true;
-                isContainDot = false;
-                isNumberPart = true;
             }
+            isEqual = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -137,7 +152,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
-                    lblDisplay.Text = "0";
+                    lblDisplay.Text = "-";
                 }
             }
             else
@@ -153,9 +168,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (!isContainDot)
+            if (!hasDot)
             {
-                isContainDot = true;
+                hasDot = true;
                 lblDisplay.Text += ".";
                 isSpaceAllowed = false;
             }
@@ -171,7 +186,9 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+                hasDot = false;
             }
         }
+
     }
 }

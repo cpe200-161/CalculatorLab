@@ -6,38 +6,71 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatoeEngine
     {
-        public new string Process(string str)
-        {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
+        Stack<string> myStack = new Stack<string>();
 
-            foreach (string token in parts)
+        public string caculate(string oper)
+        {
+            string firstOperand;
+            string secondOperand;
+            string result;
+            string[] parts = oper.Split(' ');
+            foreach (string list in parts)
             {
-                if (isNumber(token))
+                if (isNumber(list))
                 {
-                    rpnStack.Push(token);
+                    myStack.Push(list);
                 }
-                else if (isOperator(token))
+                else if (isOperator(list))
                 {
-                    //FIXME, what if there is only one left in stack?
-                    
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                    try
                     {
-                        return result;
+                        if (list == "+" || list == "-" || list == "X" || list == "÷")
+                        {
+                            secondOperand = myStack.Pop();
+                            firstOperand = myStack.Pop();
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
+                        }
+                        else if (list == "%")
+                        {
+                            if (myStack.Count == 1)
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = "1";
+                            }
+                            else
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = myStack.Peek();
+                            }
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
+                        }
+                        else
+                        {
+                            secondOperand = myStack.Pop();
+                            result = calculate(list, secondOperand);
+                            myStack.Push(result);
+                        }
+
                     }
-                    rpnStack.Push(result);
+                    catch (Exception e)
+                    {
+                        return "E";
+                    }
                 }
             }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            if (myStack.Count == 1)
+            {
+                return myStack.Pop();
+            }
+            else
+            {
+                return "E";
+            }
+
         }
     }
 }
