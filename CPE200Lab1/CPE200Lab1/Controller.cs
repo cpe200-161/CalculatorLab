@@ -1,31 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace CPE200Lab1
 {
     class Controller
     {
-        CalculatorEngine Engine1;
-        RPNCalculatorEngine Engine2;
+        protected ArrayList mList;
 
-        public Controller(string str)
+        public Controller()
         {
-            Engine1 = new CalculatorEngine();
-            Engine2 = new RPNCalculatorEngine();
+            mList = new ArrayList();
         }
 
-        public string calculate(string str)
+        public void AddModel(Model m)
         {
-            return Engine1.calculate(str);
+            mList.Add(m);
         }
 
-        public string RPNcalculate(string str)
+        // virtual keyword allow the method to be overriden
+        public virtual void Calculate(string str)
         {
-            return Engine2.calculate(str);
+            throw new NotImplementedException();
         }
 
+        public virtual void isNumber(string str)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void isOperator(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

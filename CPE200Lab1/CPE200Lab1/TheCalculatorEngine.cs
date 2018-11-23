@@ -5,15 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
-{   
-
-    public class BasicCalculatorEngine
+{
+    public class TheCalculatorEngine
     {
-        /// <summary>
-        /// Check wether imputis a number 
-        /// </summary>
-        /// <param name="str">input string</param>
-        /// <returns></returns>
         public bool isNumber(string str)
         {
             double retNum;
@@ -22,29 +16,18 @@ namespace CPE200Lab1
 
         public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
         }
-
-        public bool isModOpreator(string str)
-        {
-            if (str == "%")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool isOperatorUnary(string str)
+        public bool thisisOperator(string str)
         {
             switch (str)
             {
@@ -54,6 +37,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
 
         public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -75,12 +59,11 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =           
-                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
-
+                        // trim the fractional part gracefully. =
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -97,12 +80,32 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
-
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                     break;
+
             }
             return "E";
+        }
+        public string ModCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            switch (operate)
+            {
+                case "+":
+                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "-":
+                    return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "X":
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "÷":
+                    return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+            }
+            return "E";
+        }
+        public string thismodCalculator(string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+
+            return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
         }
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -134,35 +137,14 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
+                        return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
                     //your code here
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
+                    break;
             }
             return "E";
-        }
-
-        public string modCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch (operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
-                case "÷":
-                    return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
-            }
-            return "E";
-        }
-
-        public string thismodCalculator(string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
         }
     }
 }
