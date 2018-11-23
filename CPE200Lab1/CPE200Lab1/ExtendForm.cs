@@ -31,9 +31,6 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
-                case '%':
-                case '√':
-                case 'i':
                     return true;
             }
             return false;
@@ -106,7 +103,6 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
@@ -115,6 +111,9 @@ namespace CPE200Lab1
             else
             {
                 lblDisplay.Text = result;
+                isSpaceAllowed = true;
+                isContainDot = false;
+                isNumberPart = true;
             }
         }
 

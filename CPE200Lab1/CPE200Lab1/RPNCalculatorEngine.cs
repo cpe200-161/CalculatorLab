@@ -8,69 +8,36 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
-            string firstOperand;
-            string secondOperand;
+            Stack<string> rpnStack = new Stack<string>();
+            List<string> parts = str.Split(' ').ToList<string>();
             string result;
-            string[] parts = str.Split(' ');
-            Stack<string> Operands = new Stack<string>();
+            string firstOperand, secondOperand;
 
-            foreach (string list in parts)
+            foreach (string token in parts)
             {
-                if (isNumber(list))
+                if (isNumber(token))
                 {
-                    Operands.Push(list);
+                    rpnStack.Push(token);
                 }
-                else if (isOperator(list))
+                else if (isOperator(token))
                 {
-                    if (Operands.Count < 2 && list != "%" && list != "√" && list != "1/x")
+                    //FIXME, what if there is only one left in stack?
+                    
+                    secondOperand = rpnStack.Pop();
+                    firstOperand = rpnStack.Pop();
+                    result = calculate(token, firstOperand, secondOperand, 4);
+                    if (result is "E")
                     {
-                        return "E";
+                        return result;
                     }
-                    if (list == "+" || list == "-" || list == "X" || list == "÷")
-                    {
-                        secondOperand = Operands.Pop();
-                        firstOperand = Operands.Pop();
-                        
-                       
-                            result = calculate(list, firstOperand, secondOperand);
-                            Operands.Push(result);
-                        
-                    }
-                    else if (list == "%")
-                    {
-                        if (Operands.Count == 1)
-                        {
-                            secondOperand = Operands.Pop();
-                            firstOperand = "1";
-                        }
-                        else
-                        {
-                            secondOperand = Operands.Pop();
-                            firstOperand = Operands.Peek();
-                        }
-                        result = calculate(list, firstOperand, secondOperand);
-                        Operands.Push(result);
-                    }
-                    else
-                    {
-                        secondOperand = Operands.Pop();
-                        result = unaryCalculate(list, secondOperand);
-                        Operands.Push(result);
-                    }
-
+                    rpnStack.Push(result);
                 }
             }
-            if (Operands.Count == 1)
-            {
-                return Operands.Peek();
-            }
-            else
-            {
-                return "E";
-            }
-
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
         }
     }
 }
