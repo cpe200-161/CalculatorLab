@@ -10,26 +10,40 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
+        Model model;
+        Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
+            model = new CalculatorEngineModel();
+            controller = new CalculatorEngineController();
+            model.AttachObserver(this);
+            controller.AddModel(model);
         }
 
-        private bool isOperator(char ch)
+        public void Notify(Model m)
         {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
+            lblDisplay.Text = ((CalculatorEngineModel)m).lblDisplayText();
+        }
+
+        private bool isOperator(string str)
+        {
+            switch(str) {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "%":
+                case "1/x":
+                case "√":
                     return true;
             }
             return false;
@@ -63,7 +77,7 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -78,7 +92,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
             } else
@@ -101,7 +115,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = engine.calculate(lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
