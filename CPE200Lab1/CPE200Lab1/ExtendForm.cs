@@ -10,17 +10,27 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form,View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private double memory;
+        private string memorybutton;
+        private Model RPNengine;
+        private Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            RPNengine = new CalculatorModel();
+            controller = new CalculatorController();
+            RPNengine.AttachObserver(this);
+            controller.AddModel(RPNengine);
+        }
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalculatorModel)m).getResult();
         }
 
         private bool isOperator(char ch)
@@ -30,6 +40,9 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case '√':
+                case 'x':
                     return true;
             }
             return false;
@@ -101,14 +114,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
-            if (result is "E")
-            {
-                lblDisplay.Text = "Error";
-            } else
-            {
-                lblDisplay.Text = result;
-            }
+            controller.Calculate(lblDisplay.Text);
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -162,6 +168,56 @@ namespace CPE200Lab1
             if(isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            memorybutton = "";
+            Button mem = ((Button)sender);
+            memorybutton = mem.Text;
+            switch (memorybutton)
+            {
+                case "MC":
+                    memory = 0;
+                    memorybutton = "";
+                    break;
+                case "MR":
+                    if (lblDisplay.Text == "0")
+                    {
+                        lblDisplay.Text = memory.ToString();
+                    }
+                    else
+                    {
+                        lblDisplay.Text += memory.ToString();
+                    }
+                    break;
+                case "MS":
+                    memory = double.Parse(lblDisplay.Text);
+                    break;
+                case "M+":
+                    memory += double.Parse(lblDisplay.Text);
+                    break;
+                case "M-":
+                    memory = memory - double.Parse(lblDisplay.Text);
+                    break;
+            }
+
+        }
+
+        private void thisOperator_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = lblDisplay.Text;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            {
+                lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
         }
