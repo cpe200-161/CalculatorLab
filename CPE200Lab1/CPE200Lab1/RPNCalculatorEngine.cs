@@ -3,83 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="str">str is string input</param>
-        /// <returns>result</returns>
-        public new string Process(string str)
+        public string Process(string str)
         {
-            // your code here
-            string[] parts;
-            Stack myStack = new Stack();
-            parts = str.Split(' ');
-
+            Stack<string> numbers = new Stack<string>();
+            string[] parts = str.Split(' ');
+            if (parts.Length == 1)
+            {
+                return "E";
+            }
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
                 {
-                    myStack.Push(parts[i]);
-
+                    numbers.Push(parts[i]);
                 }
-                else if (isOperator(parts[i]))
+                else if (thisisOperator(parts[i]))
                 {
-                    if (myStack.Count == 0)
+                    string first;
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, 8));
+                }
+                else if (isModOpreator(parts[i]))
+                {
+                    string first, second;
+                    if (numbers.Count < 2)
                     {
                         return "E";
                     }
-                    else if (myStack.Count == 1)
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(first, second, 8));
+                }
+                else if (isOperator(parts[i]))
+                {
+                    if (numbers.Count < 2)
                     {
-                        string first = myStack.Pop().ToString();
-                        myStack.Push(unaryCalculate(parts[i], first, 4));
+                        return "E";
                     }
-                    else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Pop().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Peek().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }
-
+                    string first, second;
+                    second = numbers.Peek();
+                    numbers.Pop();
+                    first = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], first, second, 8));
                 }
 
             }
-            if (myStack.Count == 1)
+            if (numbers.Count == 1)
             {
-                return myStack.Pop().ToString();
+                return numbers.Peek();
             }
-            return "E";
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="str">str is string input</param>
-        /// <returns>true or false</returns>
-        private bool isOperator(string str)
-        {
-            switch (str)
+            else
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "√":
-                case "1/x":
-                case "%":
-                    return true;
+                return "E";
             }
-            return false;
+
         }
     }
 }
