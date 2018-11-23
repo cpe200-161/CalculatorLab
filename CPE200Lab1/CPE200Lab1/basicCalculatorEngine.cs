@@ -26,7 +26,9 @@ namespace CPE200Lab1
             }
             return false;
         }
-        public string Calculate(string operate, string operand, int maxOutputSize = 8)
+
+        // 1/x, √, % Calculation
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             try
             {
@@ -81,6 +83,8 @@ namespace CPE200Lab1
                 return "E";
             }
         }
+
+        //Normal Calculation
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
