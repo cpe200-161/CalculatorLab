@@ -18,6 +18,7 @@ namespace CPE200Lab1
         {
             switch (str)
             {
+
                 case "+":
                 case "-":
                 case "X":
