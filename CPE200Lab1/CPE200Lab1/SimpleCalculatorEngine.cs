@@ -6,39 +6,22 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine
+    class SimpleCalculatorEngine : CalculatorEngine
     {
-        protected bool isNumber(string str)
-        {
-            double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        protected bool isOperator(string str)
-        {
-            switch(str) {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    return true;
-            }
-            return false;
-        }
-
         public string Process(string str)
         {
             //Split input string to multiple parts by space
             List<string> parts = str.Split(' ').ToList<string>();
             string result;
             //As long as we have more than one part
-            while(parts.Count > 1)
+            while (parts.Count > 1)
             {
                 //Check if the first three is ready for calcuation
-                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
                     return "E";
-                } else
+                }
+                else
                 {
                     //Calculate the first three
                     result = calculate(parts[1], parts[0], parts[2], 4);
@@ -50,7 +33,7 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
-        public string Calculate(string operate, string operand, int maxOutputSize = 8)
+        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -74,7 +57,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -110,9 +93,9 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    
-                  //  if (secondOperand != "0")
-                  try
+
+                    //  if (secondOperand != "0")
+                    try
                     {
                         double result;
                         string[] parts;
@@ -130,7 +113,8 @@ namespace CPE200Lab1
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
                         return Convert.ToDecimal(result).ToString("0.####");
-                    }catch(Exception E)
+                    }
+                    catch (Exception E)
                     {
                         return "E";
                     }
