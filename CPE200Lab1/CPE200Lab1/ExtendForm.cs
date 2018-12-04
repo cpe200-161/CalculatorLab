@@ -10,32 +10,59 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+		private RPNCalculatorEngine myEngine;
+		private RPNCalculatorEngine RPNengine;
+		Model model;
+		Controller controller;
 
-        public ExtendForm()
+
+		public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-        }
+			myEngine = new RPNCalculatorEngine();
+			RPNengine = new RPNCalculatorEngine();
+			model = new CalculatorModel();
+			controller = new CalculatorController();
+			model.AttachObserver(this);
+			controller.AddModel(model);
+		}
+		public void Notify(Model m)
+		{
+			lblDisplay.Text = ((CalculatorModel)m).Display();
+		}
 
-        private bool isOperator(char ch)
+		private bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
                 case '-':
                 case 'X':
                 case '÷':
-                    return true;
+				case '%':
+				case '√':
+				case 'x':
+					return true;
             }
             return false;
         }
+		private bool thisisoperator(string str)
+		{
+			switch (str)
+			{
+				case "1/x":
+				case "%":
+				case "√":
+					return true;
+			}
+			return false;
+		}
 
-        private void btnNumber_Click(object sender, EventArgs e)
+		private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -76,7 +103,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            // check if the last one is operator
             string current = lblDisplay.Text;
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
@@ -101,11 +127,12 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = myEngine.calculate(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
-            } else
+				lblDisplay.Text = "Error";
+            }
+			else
             {
                 lblDisplay.Text = result;
             }
