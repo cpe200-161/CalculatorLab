@@ -10,7 +10,7 @@ namespace CPE200Lab1
     class Controller
     {
         public ArrayList modelList;
-
+ 
         public Controller()
         {
             modelList = new ArrayList();
