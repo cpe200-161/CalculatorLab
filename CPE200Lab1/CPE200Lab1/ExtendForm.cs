@@ -10,27 +10,41 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, View
     {
+        private RPNCalculatorEngine engine;
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine engine;
+        Model model;
+        Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new RPNCalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            model.AttachObserver(this);
+            controller.AddModel(model);
         }
 
-        private bool isOperator(char ch)
+        public void Notify(Model m)
         {
-            switch (ch)
+            lblDisplay.Text = ((CalculatorModel)m).Display();
+        }
+
+        private bool isOperator(char operand)
+        {
+            switch (operand)
             {
                 case '+':
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                case '√':
+                case 'x':
                     return true;
             }
             return false;

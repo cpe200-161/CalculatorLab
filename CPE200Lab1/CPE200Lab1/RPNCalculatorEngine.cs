@@ -16,12 +16,15 @@ namespace CPE200Lab1
             }
             Stack<string> rpnStack = new Stack<string>();
             List<string> parts = str.Split(' ').ToList<string>();
+
             string result;
             string firstOperand, secondOperand;
-            if (parts[0] != "0" && parts.Count == 1)
+
+            if (parts.Count() < 3 && str != "0")
             {
                 return "E";
             }
+
             foreach (string token in parts)
             {
                 if (isNumber(token))
@@ -35,23 +38,24 @@ namespace CPE200Lab1
                     {
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
-                        result = calculate(token, firstOperand, secondOperand, 6);
                     }
-                    catch (Exception)
-                    {
-                        return "E";
-                    }
+                    catch (InvalidOperationException e) { return "E"; }
+
+                    result = calculate(token, firstOperand, secondOperand, 4);
                     if (result is "E")
                     {
                         return result;
                     }
                     rpnStack.Push(result);
                 }
+                else if (!isOperator(token) && token != "")
+                {
+                    return "E";
+                }
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
             if (rpnStack.Count == 1)
             {
-
                 result = rpnStack.Pop();
                 return result;
             }
