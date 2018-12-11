@@ -26,7 +26,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public string calculate(string str)
         {
             //Split input string to multiple parts by space
             List<string> parts = str.Split(' ').ToList<string>();
@@ -50,7 +50,7 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -71,7 +71,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
                 case "1/x":
                     if(operand != "0")
@@ -127,7 +127,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
                     }
                     break;
                 case "%":
