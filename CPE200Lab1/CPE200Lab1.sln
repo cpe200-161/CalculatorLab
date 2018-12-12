@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPE200Lab1", "CPE200Lab1\CP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPE200Lab1Tests", "CPE200Lab1Tests\CPE200Lab1Tests.csproj", "{C92330F4-DC76-46B0-970C-73126DE55500}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48E35A3E-34AA-45DC-8AC0-153FA81E6FC9}"
+	ProjectSection(SolutionItems) = preProject
+		View.cs = View.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

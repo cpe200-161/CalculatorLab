@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine
+    public class CalculatorEngine : NewCalculatorEngine
     {
         protected bool isNumber(string str)
         {
@@ -26,7 +26,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+       public string calculate(string str)
         {
             //Split input string to multiple parts by space
             List<string> parts = str.Split(' ').ToList<string>();
@@ -54,98 +54,4 @@ namespace CPE200Lab1
 
                 return parts[0];
         }
-        public string Calculate(string operate, string operand, int maxOutputSize = 8)
-        {
-            switch (operate)
-            {
-                case "√":
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = Math.Sqrt(Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
-                    }
-                case "1/x":
-                    if(operand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (1.0 / Convert.ToDouble(operand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
-                    }
-                    break;
-            }
-            return "E";
-        }
-
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch (operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    try
-                    {
-                        if (secondOperand != "0")
-                        {
-                            double result;
-                            string[] parts;
-                            int remainLength;
-
-                            result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                            // split between integer part and fractional part
-                            parts = result.ToString().Split('.');
-                            // if integer part length is already break max output, return error
-                            if (parts[0].Length > maxOutputSize)
-                            {
-                                return "E";
-                            }
-                            // calculate remaining space for fractional part.
-                            remainLength = maxOutputSize - parts[0].Length - 1;
-                            // trim the fractional part gracefully. =
-                            return decimal.Parse(result.ToString("N" + remainLength)).ToString("G29");
-                        }
-                    }
-                    catch (OverflowException)
-                    {
-                        return "E";
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    break;
-            }
-            return "E";
-        }
-    }
-}
+       
