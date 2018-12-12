@@ -12,6 +12,9 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
+        private CalculatorEngine engine;
+        private string display = "0";
+
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
@@ -19,7 +22,8 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private Controller controller;
+        private Model model;
 
         private void resetAll()
         {
@@ -37,10 +41,15 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
+            engine = new SimpleCalculatorEngine();
             engine = new CalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(model);
             resetAll();
         }
 
+        
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -81,7 +90,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -139,8 +148,13 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            if (isAfterOperater)
+            {
+                return;
+            }
+            operate = ((Button)sender).Text;
+            firstOperand = lblDisplay.Text;
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -149,7 +163,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-            isAfterEqual = true;
+        }
+        private void BtnEqual_Click(object sender, EventArgs e)
+        {
+            if (display is "Error")
+            {
+                return;
+            }
         }
 
         private void btnDot_Click(object sender, EventArgs e)
