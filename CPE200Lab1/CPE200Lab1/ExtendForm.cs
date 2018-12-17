@@ -7,163 +7,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/// <summary>
+/// ExtendForm config
+/// </summary>
 namespace CPE200Lab1
-{
-    public partial class ExtendForm : Form
+{   /// <summary>
+/// contain Number,MathOperation to do in Rpnterm
+/// </summary>
+    public partial class ExtendForm : Form, View
     {
-        private bool isNumberPart = false;
-        private bool isContainDot = false;
-        private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        Model model;
+        Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            model = new RpnCalculatorModel();
+            model.AttachObserver(this);
+            controller = new RpnCalculatorController();
+            controller.AddModel(model);
         }
-
-        private bool isOperator(char ch)
+        public void Notify(Model m)
         {
-            switch(ch) {
-                case '+':
-                case '-':
-                case 'X':
-                case '÷':
-                    return true;
-            }
-            return false;
+            throw new NotImplementedException();
         }
+        public void BtnNumber_Click(object sender, EventArgs e) => controller.BtnNumber_Click(sender, e);
 
-        private void btnNumber_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            if (!isNumberPart)
-            {
-                isNumberPart = true;
-                isContainDot = false;
-            }
-            lblDisplay.Text += ((Button)sender).Text;
-            isSpaceAllowed = true;
-        }
+        public void BtnBinaryOperator_Click(object sender, EventArgs e) => controller.BtnBinaryOperator_Click(sender, e);
 
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            isNumberPart = false;
-            isContainDot = false;
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
-                isSpaceAllowed = false;
-            }
-        }
+        private void BtnBack_Click(object sender, EventArgs e) => controller.BtnBack_Click(sender, e);
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            // check if the last one is operator
-            string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-            }
-            if (lblDisplay.Text is "")
-            {
-                lblDisplay.Text = "0";
-            }
-        }
+        public void BtnClear_Click(object sender, EventArgs e) => controller.BtnClear_Click(sender, e);
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            lblDisplay.Text = "0";
-            isContainDot = false;
-            isNumberPart = false;
-            isSpaceAllowed = false;
-        }
+        public void BtnEqual_Click(object sender, EventArgs e) => controller.BtnEqual_Click(sender, e);
 
-        private void btnEqual_Click(object sender, EventArgs e)
-        {
-            string result = engine.Process(lblDisplay.Text);
-            if (result is "E")
-            {
-                lblDisplay.Text = "Error";
-            } else
-            {
-                lblDisplay.Text = result;
-            }
-        }
+        public void BtnSign_Click(object sender, EventArgs e) => controller.BtnSign_Click(sender, e);
 
-        private void btnSign_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isNumberPart)
-            {
-                return;
-            }
-            string current = lblDisplay.Text;
-            if (current is "0")
-            {
-                lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
-            {
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if (lblDisplay.Text is "")
-                {
-                    lblDisplay.Text = "0";
-                }
-            } else
-            {
-                lblDisplay.Text = current + "-";
-            }
-            isSpaceAllowed = false;
-        }
+        public void BtnDot_Click(object sender, EventArgs e) => controller.BtnDot_Click(sender, e);
 
-        private void btnDot_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if(!isContainDot)
-            {
-                isContainDot = true;
-                lblDisplay.Text += ".";
-                isSpaceAllowed = false;
-            }
-        }
+        public void BtnSpace_Click(object sender, EventArgs e) => controller.BtnSpace_Click(sender, e);
 
-        private void btnSpace_Click(object sender, EventArgs e)
-        {
-            if(lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if(isSpaceAllowed)
-            {
-                lblDisplay.Text += " ";
-                isSpaceAllowed = false;
-            }
-        }
+        public void BtnUnaryOperator_Click(object sender, EventArgs e) => controller.BtnUnaryOperator_Click(sender, e);
     }
 }

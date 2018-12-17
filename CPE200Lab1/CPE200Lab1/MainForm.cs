@@ -10,260 +10,50 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+
+    public partial class MainForm : Form, View
     {
-        private bool hasDot;
-        private bool isAllowBack;
-        private bool isAfterOperater;
-        private bool isAfterEqual;
-        private string firstOperand;
-        private string operate;
-        private double memory;
-        private CalculatorEngine engine;
+        Model model;
+        Controller controller;
 
-        private void resetAll()
+        public void Notify(Model m)
         {
-            lblDisplay.Text = "0";
-            isAllowBack = true;
-            hasDot = false;
-            isAfterOperater = false;
-            isAfterEqual = false;
-            firstOperand = null;
+            throw new NotImplementedException();
         }
-
-      
 
         public MainForm()
         {
             InitializeComponent();
-            memory = 0;
-            engine = new CalculatorEngine();
-            resetAll();
-        }
-
-        private void btnNumber_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterEqual)
-            {
-                resetAll();
-            }
-            if (isAfterOperater)
-            {
-                lblDisplay.Text = "0";
-            }
-            if(lblDisplay.Text.Length is 8)
-            {
-                return;
-            }
-            isAllowBack = true;
-            string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
-            {
-                lblDisplay.Text = "";
-            }
-            lblDisplay.Text += digit;
-            isAfterOperater = false;
-        }
-
-        private void btnUnaryOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
+            model = new CalculatorModel();
+            model.AttachObserver(this);
+            controller = new CalculatorController();
+            controller.AddModel(model);
 
         }
 
-        private void btnOperator_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterOperater)
-            {
-                return;
-            }
-            if(firstOperand != null)
-            {
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
-                if (result is "E" || result.Length > 8)
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                }
-            }
-            operate = ((Button)sender).Text;
-            switch (operate)
-            {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
-                case "%":
-                    // your code here
-                    break;
-            }
-            isAllowBack = false;
-        }
+        public void BtnNumber_Click(object sender, EventArgs e) => controller.BtnNumber_Click(sender, e);
 
-        private void btnEqual_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-            isAfterEqual = true;
-        }
+        public void BtnUnaryOperator_Click(object sender, EventArgs e) => controller.BtnUnaryOperator_Click(sender, e);
 
-        private void btnDot_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterEqual)
-            {
-                resetAll();
-            }
-            if (lblDisplay.Text.Length is 8)
-            {
-                return;
-            }
-            if (!hasDot)
-            {
-                lblDisplay.Text += ".";
-                hasDot = true;
-            }
-        }
+        public void BtnOperator_Click(object sender, EventArgs e) => controller.BtnOperator_Click(sender, e);
 
-        private void btnSign_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterEqual)
-            {
-                resetAll();
-            }
-            // already contain negative sign
-            if (lblDisplay.Text.Length is 8)
-            {
-                return;
-            }
-            if(lblDisplay.Text[0] is '-')
-            {
-                lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
-            } else
-            {
-                lblDisplay.Text = "-" + lblDisplay.Text;
-            }
-        }
+        public void BtnEqual_Click(object sender, EventArgs e) => controller.BtnEqual_Click(sender, e);
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            resetAll();
-        }
+        public void BtnDot_Click(object sender, EventArgs e) => controller.BtnDot_Click(sender, e);
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            if (isAfterEqual)
-            {
-                return;
-            }
-            if (!isAllowBack)
-            {
-                return;
-            }
-            if(lblDisplay.Text != "0")
-            {
-                string current = lblDisplay.Text;
-                char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
-                {
-                    hasDot = false;
-                }
-                lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
-                {
-                    lblDisplay.Text = "0";
-                }
-            }
-        }
+        public void BtnSign_Click(object sender, EventArgs e) => controller.BtnSign_Click(sender, e);
 
-        private void btnMP_Click(object sender, EventArgs e)
-        {
-            if(lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            memory += Convert.ToDouble(lblDisplay.Text);
-            isAfterOperater = true;
-        }
+        public void BtnClear_Click(object sender, EventArgs e) => controller.BtnClear_Click(sender, e);
 
-        private void btnMC_Click(object sender, EventArgs e)
-        {
-            memory = 0;
-        }
+        public void BtnBack_Click(object sender, EventArgs e) => controller.BtnBack_Click(sender, e);
 
-        private void btnMM_Click(object sender, EventArgs e)
-        {
-            if(lblDisplay.Text is "Error")
-            {
-                return;
-            }
-            memory -= Convert.ToDouble(lblDisplay.Text);
-            isAfterOperater = true;
-        }
+        public void BtnMP_Click(object sender, EventArgs e) => controller.BtnMP_Click(sender, e);
 
-        private void btnMR_Click(object sender, EventArgs e)
-        {
-            if(lblDisplay.Text is "error")
-            {
-                return;
-            }
-            lblDisplay.Text = memory.ToString();
-        }
+        public void BtnMC_Click(object sender, EventArgs e) => controller.BtnMC_Click(sender, e);
+
+        public void BtnMM_Click(object sender, EventArgs e) => controller.BtnMM_Click(sender, e);
+
+        public void BtnMR_Click(object sender, EventArgs e) => controller.BtnMR_Click(sender, e);
+
     }
 }
