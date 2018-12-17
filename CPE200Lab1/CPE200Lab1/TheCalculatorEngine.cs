@@ -6,44 +6,17 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class CalculatorEngine : TheCalculatorEngine
+    public class  TheCalculatorEngine
     {
-        protected double firstOperand;
-        protected double secondOperand;
-
-        public void FirstOperand(string num)
-        {
-            firstOperand = Convert.ToDouble(num);
-        }
-
-        public void SecondOperand(string num)
-        {
-            secondOperand = Convert.ToDouble(num);
-        }
-
-        public string Process(string str)
-        {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
-        }
-
-        /*
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
         public bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -53,10 +26,7 @@ namespace CPE200Lab1
             }
             return false;
         }
-
-       
-         
-       public string calculate(string operate, string operand,int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -80,7 +50,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -103,7 +73,6 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -137,9 +106,9 @@ namespace CPE200Lab1
                         //return result.ToString("N" + remainLength);
                     }
                     break;
-  
+
             }
             return "E";
-        }*/
+        }
     }
 }
