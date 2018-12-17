@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : SimpleCalculatorEngine
     {
-        public string Process(string str)
+        public  string Process(string str)
         {
-            string mun1, mun2, result;
-            
+            if (str == "" || str == null)
+            {
+                return "E";
+            }
+
             Stack<string> myStack = new Stack<string>();
-
-
             string[] parts = str.Split(' ');
-            
+            string result;
+            string mun1, mun2;
+
+            if ((parts.Length == 1 || parts.Length == 2) && parts[0] != "0")
+            {
+                return "E";
+            }
+
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -26,28 +34,41 @@ namespace CPE200Lab1
                 
                 else if (isOperator(parts[i]))
                 {
-                    mun2 = myStack.Pop();
-                    mun1 = myStack.Pop();
-                    result = calculate(parts[i], mun1, mun2, 4);
+                    try
+                        
+                    {
+                        mun2 = myStack.Pop();
+                        mun1 = myStack.Pop();
+                        result = calculate(parts[i], mun1, mun2, 4);
+                    }
+                    catch(Exception)
+                    {
+                        return "E";
+                    }
+                    
                     myStack.Push(result);
-                }
+                    
+                    
+                    }
                 
+                    else if (parts[i]=="++")
+                    {
+                        return "E";
+                    }
              
-            }
+                }
             
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if(myStack.Count() == 1)
             {
-                return myStack.Peek();
+                result = myStack.Pop();
+                return result;
             }
             else
             {
                 return "E";
             }
-
-            
-            
             
         }
     }
-    */
+    
 }
